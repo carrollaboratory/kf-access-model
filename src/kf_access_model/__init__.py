@@ -1,0 +1,10 @@
+"""kf-access-model.
+
+Internal Access model for the Kids First Data Resource Center
+"""
+
+try:
+    from kf_access_model._version import __version__, __version_tuple__
+except ImportError:  # pragma: no cover
+    __version__ = "0.0.0"
+    __version_tuple__ = (0, 0, 0)
