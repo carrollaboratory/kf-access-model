@@ -52,4 +52,6 @@ jobs:
         run: uv sync --group dev
 
       - name: Run test suite
-        run: just test
+        run: |
+          just init-submodule
+          just test
