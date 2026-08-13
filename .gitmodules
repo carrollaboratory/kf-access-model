@@ -1,0 +1,6 @@
+[submodule "src/kf_access_model/schema/kf_access_model"]
+	path = src/kf_access_model/schema/common_access_model
+	url = https://github.com/include-dcc/common-access-model
+[submodule "src/kf_access_model/schema/common_access_model"]
+	path = src/kf_access_model/schema/common_access_model
+	url = https://github.com/include-dcc/common-access-model
