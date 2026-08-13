@@ -11,12 +11,13 @@ authors = [
 license = "MIT"
 license-files = ["LICENSE"]
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.10,<3.14"
 dynamic = ["version"]
 
 dependencies = [
   "linkml==1.9.6",
   "linkml-runtime==1.9.5",
+  "the-caddie",
 ]
 
 [dependency-groups]
@@ -81,3 +82,6 @@ extend-exclude = [
   "src/kf_access_model/datamodel/kf_access_model_pydantic.py",
   "src/kf_access_model/datamodel/kf_access_model.py",
 ]
+
+[tool.uv.sources]
+the-caddie = { git = "https://github.com/carrollaboratory/the-caddie" }
