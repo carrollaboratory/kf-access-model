@@ -1,5 +1,5 @@
 # Auto generated from kf_access_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-08-13T14:23:58
+# Generation date: 2026-08-13T17:31:49
 # Schema: kf-access-model
 #
 # id: https://w3id.org/carrollaboratory/kf-access-model
@@ -65,6 +65,7 @@ version = None
 # Namespaces
 DUO = CurieNamespace('DUO', 'http://purl.obolibrary.org/obo/DUO_')
 HP = CurieNamespace('HP', 'http://purl.obolibrary.org/obo/HP_')
+KIN = CurieNamespace('KIN', 'http://purl.org/ga4gh/kin.owl#')
 MONDO = CurieNamespace('MONDO', 'http://purl.obolibrary.org/obo/MONDO_')
 NCIT = CurieNamespace('NCIT', 'http://purl.obolibrary.org/obo/NCIT_')
 PATO = CurieNamespace('PATO', 'http://purl.obolibrary.org/obo/PATO_')
@@ -80,6 +81,7 @@ IG_DOB_METHOD = CurieNamespace('ig_dob_method', 'https://nih-ncpi.github.io/ncpi
 IGCONDTYPE = CurieNamespace('igcondtype', 'https://nih-ncpi.github.io/ncpi-fhir-ig-2/CodeSystem/condition-type/')
 KF_ACCESS_MODEL = CurieNamespace('kf_access_model', 'https://w3id.org/carrollaboratory/kf-access-model/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
+LOINC = CurieNamespace('loinc', 'https://loinc.org/')
 MESH = CurieNamespace('mesh', 'http://id.nlm.nih.gov/mesh/')
 SCHEMA = CurieNamespace('schema', 'http://schema.org/')
 SNOMED_CT = CurieNamespace('snomed_ct', 'http://snomed.info/id/')

@@ -30,9 +30,11 @@ prefixes:
   mesh: http://id.nlm.nih.gov/mesh/
   NCIT: http://purl.obolibrary.org/obo/NCIT_
   DUO: http://purl.obolibrary.org/obo/DUO_
+  loinc: https://loinc.org/
+  KIN: http://purl.org/ga4gh/kin.owl#
 
 default_prefix: kf_access_model
-default_range: linkml:string
+default_range: string
 
 imports:
   - linkml:types
