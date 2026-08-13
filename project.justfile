@@ -22,3 +22,10 @@ gen-ftddd:
 [group('model development')]
 gen-dbtmodel:
   uv run gen-dbtmodel
+
+init-submodule:
+  git submodule update --init --recursive
+  cd {{source_schema_dir}}/common_access_model && git sparse-checkout init --no-cone && git sparse-checkout set src/common_access_model/schema
+
+#update-submodule:
+#  git submodule update --init --recursive --remote --merge
