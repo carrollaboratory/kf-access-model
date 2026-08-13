@@ -15,84 +15,27 @@ prefixes:
   schema: http://schema.org/
   PATO: http://purl.obolibrary.org/obo/PATO_
   example: http://www.example.org/rdf#
+  cam: https://includedcc.org/common-access-model/
+ # subset of CDC Race and Ethnicity Code Set Version 1.0
+  cdc_race_eth: urn:oid:2.16.840.1.113883.6.238/
+  hl7_null: http://terminology.hl7.org/CodeSystem/v3-NullFlavor/
+  ig_dob_method: https://nih-ncpi.github.io/ncpi-fhir-ig-2/CodeSystem/research-data-date-of-birth-method/
+  igcondtype: https://nih-ncpi.github.io/ncpi-fhir-ig-2/CodeSystem/condition-type/
+  ig2dac: https://nih-ncpi.github.io/ncpi-fhir-ig-2/CodeSystem/research-data-access-code/
+  ig2dat: https://nih-ncpi.github.io/ncpi-fhir-ig-2/CodeSystem/research-data-access-type/
+  ig2_biospecimen_availability: https://nih-ncpi.github.io/ncpi-fhir-ig-2/CodeSystem/biospecimen-availability/
+  snomed_ct: 	http://snomed.info/id/
+  MONDO: http://purl.obolibrary.org/obo/MONDO_
+  HP: http://purl.obolibrary.org/obo/HP_
+  mesh: http://id.nlm.nih.gov/mesh/
+  NCIT: http://purl.obolibrary.org/obo/NCIT_
+  DUO: http://purl.obolibrary.org/obo/DUO_
+
 default_prefix: kf_access_model
-default_range: string
+default_range: linkml:string
 
 imports:
   - linkml:types
+  - common_access_model/src/common_access_model/schema/common_access_model
 
 classes:
-
-  NamedThing:
-    description: >-
-      A generic grouping for any identifiable entity
-    slots:
-      - id
-      - name
-      - description
-    class_uri: schema:Thing
-
-  Person:
-    is_a: NamedThing
-    description: >-
-      Represents a Person
-    slots:
-      - primary_email
-      - birth_date
-      - age_in_years
-      - vital_status
-    slot_usage:
-      primary_email:
-        pattern: "^\\S+@[\\S+\\.]+\\S+"
-
-  PersonCollection:
-    tree_root: true
-    description: >-
-      A holder for Person objects
-    attributes:
-      people:
-        range: Person
-        multivalued: true
-        inlined_as_list: true
-
-slots:
-  id:
-    identifier: true
-    slot_uri: schema:identifier
-    range: uriorcurie
-    description: A unique identifier for a thing
-  name:
-    slot_uri: schema:name
-    description: A human-readable name for a thing
-  description:
-    slot_uri: schema:description
-    description: A human-readable description for a thing
-  primary_email:
-    slot_uri: schema:email
-    description: The main email address of a person
-  birth_date:
-    slot_uri: schema:birthDate
-    range: date
-    description: Date on which a person is born
-  age_in_years:
-    range: integer
-    description: Number of years since birth
-  vital_status:
-    range: PersonStatus
-    description: living or dead status
-
-enums:
-  PersonStatus:
-    description:
-      The vital status of a person
-    permissible_values:
-      ALIVE:
-        description: the person is living
-        meaning: PATO:0001421
-      DEAD:
-        description: the person is deceased
-        meaning: PATO:0001422
-      UNKNOWN:
-        description: the vital status is not known
-        todos:
-          - map this to an ontology
