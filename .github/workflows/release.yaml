@@ -28,6 +28,7 @@ jobs:
         with:
           fetch-depth: 0 # Required for uv-dynamic-versioning to read git tags
           persist-credentials: false
+          submodules: 'recursive' # grab submodules
 
       - name: Set up uv
         uses: astral-sh/setup-uv@v9.0.0
