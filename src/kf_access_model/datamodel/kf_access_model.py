@@ -1,5 +1,5 @@
 # Auto generated from kf_access_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-08-13T17:31:49
+# Generation date: 2026-08-17T12:36:29
 # Schema: kf-access-model
 #
 # id: https://w3id.org/carrollaboratory/kf-access-model

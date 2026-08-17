@@ -1376,7 +1376,7 @@ requires-dist = [
     { name = "hatchling", specifier = ">=1.32.0" },
     { name = "linkml", specifier = "==1.9.6" },
     { name = "linkml-runtime", specifier = "==1.9.5" },
-    { name = "the-caddie", editable = "../../the-caddie" },
+    { name = "the-caddie", git = "https://github.com/carrollaboratory/the-caddie" },
 ]
 
 [package.metadata.requires-dev]
@@ -3025,21 +3025,13 @@ wheels = [
 
 [[package]]
 name = "the-caddie"
-source = { editable = "../../the-caddie" }
+version = "0.5.1.dev8"
+source = { git = "https://github.com/carrollaboratory/the-caddie#5eb8f69cba6c74b9a428c1492f37c461244c5681" }
 dependencies = [
     { name = "hatchling" },
     { name = "linkml" },
     { name = "linkml-runtime" },
     { name = "rich" },
-    { name = "tomli", marker = "python_full_version < '3.11'" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "hatchling", specifier = ">=1.27.0" },
-    { name = "linkml", specifier = "==1.9.6" },
-    { name = "linkml-runtime", specifier = "==1.9.5" },
-    { name = "rich", specifier = ">=15.0.0" },
     { name = "tomli", marker = "python_full_version < '3.11'" },
 ]
 

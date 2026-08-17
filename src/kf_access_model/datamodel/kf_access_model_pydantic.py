@@ -79,7 +79,7 @@ class LinkMLMeta(RootModel):
 
 
 linkml_meta = LinkMLMeta({'default_prefix': 'kf_access_model',
-     'default_range': 'linkml:string',
+     'default_range': 'string',
      'description': 'Internal Access model for the Kids First Data Resource Center',
      'id': 'https://w3id.org/carrollaboratory/kf-access-model',
      'imports': ['linkml:types',
@@ -536,8 +536,8 @@ class Record(ConfiguredBaseModel):
     """
     One row / entity within the database
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://includedcc.org/common-access-model',
-         'mixin': True,
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
+         'from_schema': 'https://includedcc.org/common-access-model',
          'title': 'Record'})
 
     external_id: Optional[list[str]] = Field(default=[], title="External Identifiers", description="""Other identifiers for this entity, eg, from the submitting study or in systems like dbGaP""", json_schema_extra = { "linkml_meta": {'domain_of': ['Record']} })
