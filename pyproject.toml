@@ -1,5 +1,7 @@
 [build-system]
-requires = ["hatchling", "uv-dynamic-versioning"]
+requires = ["hatchling",
+  "uv-dynamic-versioning",
+  "the-caddie"]
 build-backend = "hatchling.build"
 
 [project]
@@ -15,6 +17,7 @@ requires-python = ">=3.10,<3.14"
 dynamic = ["version"]
 
 dependencies = [
+  "hatchling>=1.32.0",
   "linkml==1.9.6",
   "linkml-runtime==1.9.5",
   "the-caddie",
@@ -72,6 +75,9 @@ quiet-level = 3
 # Ref.: https://github.com/crate-ci/typos (spell checker)
 [tool.typos.default.extend-words]
 linke = "linke"
+
+# Activate the hook
+[tool.hatch.build.targets.wheel.hooks.caddie-sqla]
 
 [tool.typos.files]
 extend-exclude = [
