@@ -3673,7 +3673,7 @@ classes:
     class_uri: cam:Dataset
 metamodel_version: 1.7.0
 source_file: kf_access_model.yaml
-source_file_date: '2026-08-17T17:39:13'
+source_file_date: '2026-08-17T17:58:54'
 source_file_size: 1717
-generation_date: '2026-08-17T17:39:44'
+generation_date: '2026-08-17T17:59:27'
 
