@@ -29,6 +29,7 @@ jobs:
         uses: actions/checkout@v6.0.2
         with:
           persist-credentials: false
+          submodules: 'recursive' # grab submodules
 
       # https://github.com/astral-sh/setup-uv
       - name: Install uv
