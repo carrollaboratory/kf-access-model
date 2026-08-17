@@ -82,3 +82,21 @@ just lint && just test
 git add src/kf_access_model/schema/common_access_model
 git commit -m "chore: update common_access_model submodule to latest hash"
 ```
+
+## Release Artifacts
+
+There are a number of artifacts which are used by various scripts including the
+dbt utilities which are built via github actions during release. To trigger the
+build, create releases linked to a semantic version preceded with a v (i.e.
+v1.0.1).
+
+These artifacts include:
+
+- SQL Alchemy model
+- dbt model yml file
+- SQL Schema
+- data dictionary conformant to the current FTD spec
+- enumerations csv file extracted from all of the permissible values
+
+The last two are used by this group's dbt utilities tooling. The SQL Alchemy
+model is used by a handful of other scripts.
