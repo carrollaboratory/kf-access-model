@@ -54,20 +54,14 @@ imports:
   - common_access_model/src/common_access_model/schema/common_access_model
 
 classes:
-
   KFRecord:
     title: Kids First Record
     description: >-
-      Abstract base for every record sourced from the Kids First
-      Dataservice. is_a cam:Record (external_id, access_policy_id,
-      study_id), adding the Dataservice's own kf_id identifier and its
-      per-record visibility/access-control fields. Concrete classes below
-      are is_a KFRecord and, where a matching common-access-model class
-      exists, also mixin that class to implement/reuse its fields.
-    is_a: Record
-    abstract: true
+      One row/entity in the Kids First Dataservice, representing a single record with its kf_id and visibility fields.
+    mixin: true
     slots:
       - kf_id
+      - kf_entity_type
       - visible
       - visibility_comment
       - visibility_reason
@@ -75,26 +69,24 @@ classes:
       kf_id:
         required: true
         identifier: true
+      kf_entity_type:
+        required: true
 
   KFInvestigator:
     title: Investigator
     description: >-
-      An individual who made contributions to the collection, analysis,
-      or sharing of data. is_a KFRecord and mixins (implements)
-      cam:Investigator, so it inherits name, institution,
-      investigator_title, and email directly from cam.
-    is_a: KFRecord
+      An individual who made contributions to the collection, analysis, or sharing of data
+    is_a: Investigator
     mixins:
-      - Investigator
+      - KFRecord
 
   KFStudy:
     title: Study
     description: >-
-      Study metadata. is_a KFRecord and mixins (implements) cam:Study,
-      adding the Dataservice's own fields on top.
-    is_a: KFRecord
+      Study metadata. 
+    is_a: Study
     mixins:
-      - Study
+      - KFRecord
     slots:
       - data_access_authority
       - investigator_id
@@ -106,14 +98,6 @@ classes:
       - category
       - status
     slot_usage:
-      study_id:
-        description: >-
-          Overridden from common-access-model. Kids First studies are
-          identified by kf_id (see KFRecord); this mixed-in slot is not
-          used as the study's own identifier here.
-        range: string
-        required: false
-        identifier: false
       parent_study:
         description: The parent KFStudy for this study, if it is a nested study.
         range: KFStudy
@@ -128,20 +112,10 @@ classes:
     title: Family
     description: >-
       A group of individuals of some relation who are grouped together in
-      a study. is_a KFRecord and mixins (implements) cam:Family.
-    is_a: KFRecord
+      a study. 
+    is_a: Family
     mixins:
-      - Family
-    slot_usage:
-      family_id:
-        description: >-
-          Overridden from common-access-model. Not used as this record's
-          identifier in the Kids First model (see KFRecord.kf_id).
-        range: string
-        required: false
-        identifier: false
-      study_id:
-        required: true
+      - KFRecord
 
   KFParticipant:
     title: Participant
@@ -161,9 +135,6 @@ classes:
       - race
       - affected_status
       - species
-    slot_usage:
-      study_id:
-        required: true
 
   KFFamilyRelationship:
     title: Family Relationship
@@ -173,24 +144,15 @@ classes:
       relationships as directed pairs of Participants rather than cam's
       family_member_id/subject_id pairing, so those fields are added
       alongside (rather than in place of) the mixed-in cam slots.
-    is_a: KFRecord
+    is_a: FamilyRelationship
     mixins:
-      - FamilyRelationship
+      - KFRecord
     slots:
       - participant1_id
       - participant2_id
       - participant1_to_participant2_relation
     slot_usage:
-      family_relationship_id:
-        description: >-
-          Overridden from common-access-model. Not used as this record's
-          identifier in the Kids First model (see KFRecord.kf_id).
-        range: string
-        required: false
-        identifier: false
-      participant2_id:
-        required: true
-      participant1_to_participant2_relation:
+      participant1_id:
         required: true
 
   KFDiagnosis:
@@ -256,9 +218,9 @@ classes:
       A grouping of Biospecimens collected from a Participant at the same
       event. is_a KFRecord and mixins (implements) cam:Sample, adding the
       fields the Dataservice's samples entity actually carries.
-    is_a: KFRecord
+    is_a: Sample
     mixins:
-      - Sample
+      - KFRecord
     slots:
       - participant_id
       - age_at_event_days
@@ -269,13 +231,6 @@ classes:
       - tissue_type
       - volume_ul
     slot_usage:
-      sample_id:
-        description: >-
-          Overridden from common-access-model. Not used as this record's
-          identifier in the Kids First model (see KFRecord.kf_id).
-        range: string
-        required: false
-        identifier: false
       parent_sample_id:
         description: KFSample from which this sample is derived.
         range: KFSample
@@ -485,6 +440,10 @@ slots:
       Kids First Dataservice identifier for this record, eg, PT_00000000.
     range: string
     pattern: "^[A-Z]{2}_[A-Z0-9]{8}$"
+  kf_entity_type:
+    title: KF Entity Type
+    description: The type of entity this record was pulled from in the Kids First dataservice.
+    range: EnumKFEntityType
   visible:
     title: Visible
     description: >-
@@ -959,6 +918,40 @@ enums:
         title: SHA-512
 
   # --- new: Kids First ingest library enums ---
+  EnumKFEntityType:
+    title: KF Entity Type
+    description: The type of entity this record was pulled from in the Kids First dataservice.
+    permissible_values:
+      study:
+        title: Study
+      investigator:
+        title: Investigator
+      family:
+        title: Family
+      participant:
+        title: Participant
+      family_relationship:
+        title: Family Relationship
+      sample:
+        title: Sample
+      sample_relationship:
+        title: Sample Relationship
+      biospecimen:
+        title: Biospecimen
+      genomic_file:
+        title: Genomic File
+      diagnosis:
+        title: Diagnosis
+      phenotype:
+        title: Phenotype
+      outcome:
+        title: Outcome
+      read_group:
+        title: Read Group
+      sequencing_experiment:
+        title: Sequencing Experiment
+
+
   EnumVisibilityReason:
     title: Visibility Reason
     description: >-
