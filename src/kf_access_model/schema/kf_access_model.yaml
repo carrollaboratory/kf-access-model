@@ -3,7 +3,17 @@ id: https://w3id.org/carrollaboratory/kf-access-model
 name: kf-access-model
 title: kf-access-model
 description: |-
-  Internal Access model for the Kids First Data Resource Center
+  Internal Access model for the Kids First Data Resource Center.
+
+  This schema profiles the common-access-model (cam) for data hosted in the
+  Kids First Dataservice. Where a cam class already models the concept
+  (Investigator, Study, Family, FamilyRelationship, Sample), it is extended
+  in place with the Dataservice's own identifier (kf_id) and per-record
+  visibility/access-control fields. Where the Dataservice models a concept
+  that cam does not (Participant, Diagnosis, Phenotype, Outcome, Biospecimen,
+  GenomicFile, ReadGroup, SequencingExperiment, SequencingCenter, and the
+  various join entities), a new class is added following the same style,
+  built on the shared cam:Record/KFRecord base.
 license: MIT
 see_also:
   - https://carrollaboratory.github.io/kf-access-model
@@ -29,6 +39,7 @@ prefixes:
   HP: http://purl.obolibrary.org/obo/HP_
   mesh: http://id.nlm.nih.gov/mesh/
   NCIT: http://purl.obolibrary.org/obo/NCIT_
+  NCBITaxon: http://purl.obolibrary.org/obo/NCBITaxon_
   DUO: http://purl.obolibrary.org/obo/DUO_
   loinc: https://loinc.org/
   KIN: http://purl.org/ga4gh/kin.owl#
@@ -41,3 +52,1703 @@ imports:
   - common_access_model/src/common_access_model/schema/common_access_model
 
 classes:
+
+  KFRecord:
+    title: Kids First Record
+    description: >-
+      Abstract base for every record sourced from the Kids First
+      Dataservice. Extends common-access-model's Record (external_id,
+      access_policy_id, study_id) with the Dataservice's own kf_id
+      identifier and its per-record visibility fields.
+    is_a: Record
+    abstract: true
+    slots:
+      - kf_id
+      - visible
+      - visibility_comment
+      - visibility_reason
+
+  Investigator:
+    # Extends cam:Investigator (name, institution, investigator_title,
+    # email) in place; no additional slots are needed beyond KFRecord's.
+    is_a: KFRecord
+
+  Study:
+    # Extends cam:Study in place, adding Dataservice-specific fields.
+    is_a: KFRecord
+    slots:
+      - data_access_authority
+      - investigator_id
+      - name
+      - short_name
+      - version
+      - file_version_descriptor
+      - attribution
+      - category
+      - status
+    slot_usage:
+      study_id:
+        description: >-
+          Overridden from common-access-model. Kids First studies are
+          identified by kf_id (see KFRecord); this inherited slot is not
+          used as the study's own identifier here.
+        range: string
+        required: false
+        identifier: false
+
+  Family:
+    # Extends cam:Family in place; no additional slots needed.
+    is_a: KFRecord
+    slot_usage:
+      family_id:
+        description: >-
+          Overridden from common-access-model. Not used as this record's
+          identifier in the Kids First model (see KFRecord.kf_id).
+        range: string
+        required: false
+        identifier: false
+      study_id:
+        required: true
+
+  Participant:
+    title: Participant
+    description: >-
+      A study participant. Combines the roles of cam:Subject and
+      cam:Demographics into a single record, matching the Kids First
+      Dataservice's participants entity.
+    is_a: KFRecord
+    slots:
+      - family_id
+      - is_proband
+      - ethnicity
+      - gender
+      - race
+      - affected_status
+      - species
+    slot_usage:
+      study_id:
+        required: true
+
+  FamilyRelationship:
+    # Extends cam:FamilyRelationship in place. The Dataservice models
+    # relationships as directed pairs of Participants rather than cam's
+    # family_member_id/subject_id pairing, so those fields are added
+    # alongside (rather than in place of) the inherited cam slots.
+    is_a: KFRecord
+    slots:
+      - participant1_id
+      - participant2_id
+      - participant1_to_participant2_relation
+    slot_usage:
+      family_relationship_id:
+        description: >-
+          Overridden from common-access-model. Not used as this record's
+          identifier in the Kids First model (see KFRecord.kf_id).
+        range: string
+        required: false
+        identifier: false
+      participant2_id:
+        required: true
+      participant1_to_participant2_relation:
+        required: true
+
+  Diagnosis:
+    title: Diagnosis
+    description: A diagnosis event or assertion recorded for a Participant.
+    is_a: KFRecord
+    slots:
+      - participant_id
+      - source_text_diagnosis
+      - age_at_event_days
+      - source_text_tumor_location
+      - mondo_id_diagnosis
+      - icd_id_diagnosis
+      - uberon_id_tumor_location
+      - ncit_id_diagnosis
+      - spatial_descriptor
+      - diagnosis_category
+    slot_usage:
+      participant_id:
+        required: true
+      source_text_diagnosis:
+        required: true
+
+  Phenotype:
+    title: Phenotype
+    description: >-
+      A phenotypic feature observed (or explicitly not observed) for a
+      Participant.
+    is_a: KFRecord
+    slots:
+      - participant_id
+      - source_text_phenotype
+      - observed
+      - age_at_event_days
+      - hpo_id_phenotype
+      - snomed_id_phenotype
+    slot_usage:
+      participant_id:
+        required: true
+      source_text_phenotype:
+        required: true
+      observed:
+        required: true
+
+  Outcome:
+    title: Outcome
+    description: The latest recorded vital-status outcome for a Participant.
+    is_a: KFRecord
+    slots:
+      - participant_id
+      - disease_related
+      - age_at_event_days
+      - vital_status
+    slot_usage:
+      participant_id:
+        required: true
+      vital_status:
+        required: true
+
+  Sample:
+    # Extends cam:Sample in place, adding the fields the Dataservice's
+    # samples entity actually carries (a Sample groups Biospecimens
+    # collected at the same event).
+    is_a: KFRecord
+    slots:
+      - participant_id
+      - age_at_event_days
+      - anatomical_location
+      - method_of_sample_procurement
+      - preservation_method
+      - sample_event_key
+      - tissue_type
+      - volume_ul
+    slot_usage:
+      sample_id:
+        description: >-
+          Overridden from common-access-model. Not used as this record's
+          identifier in the Kids First model (see KFRecord.kf_id).
+        range: string
+        required: false
+        identifier: false
+      study_id:
+        required: true
+      participant_id:
+        required: true
+
+  SampleRelationship:
+    title: Sample Relationship
+    description: A parent/child derivation relationship between two Samples.
+    is_a: KFRecord
+    slots:
+      - parent_id
+      - child_id
+      - external_parent_id
+      - external_child_id
+      - notes
+    slot_usage:
+      child_id:
+        required: true
+
+  Biospecimen:
+    title: Biospecimen
+    description: >-
+      A specific specimen/aliquot derived from a Sample, carrying
+      material, consent, and shipment details. Distinct from cam:Aliquot
+      to preserve the Dataservice's own field set.
+    is_a: KFRecord
+    slots:
+      - external_aliquot_id
+      - sequencing_center_id
+      - participant_id
+      - sample_id
+      - external_sample_id
+      - source_text_tissue_type
+      - composition
+      - source_text_anatomical_site
+      - age_at_event_days
+      - source_text_tumor_descriptor
+      - ncit_id_tissue_type
+      - ncit_id_anatomical_site
+      - uberon_id_anatomical_site
+      - spatial_descriptor
+      - shipment_origin
+      - shipment_date
+      - analyte_type
+      - concentration_mg_per_ml
+      - volume_ul
+      - specimen_status
+      - method_of_sample_procurement
+      - dbgap_consent_code
+      - consent_type
+    slot_usage:
+      study_id:
+        required: true
+      participant_id:
+        required: true
+      external_aliquot_id:
+        required: true
+
+  GenomicFile:
+    title: Genomic File
+    description: >-
+      A data file generated by or associated with sequencing. Distinct
+      from cam:File to preserve the Dataservice's own field set.
+    is_a: KFRecord
+    slots:
+      - file_name
+      - file_format
+      - data_type
+      - availability
+      - controlled_access
+      - is_harmonized
+      - hashes
+      - size
+      - urls
+      - acl
+      - authz
+      - reference_genome
+      - workflow_type
+      - workflow_tool
+      - workflow_version
+      - data_category
+      - file_version_descriptor
+    slot_usage:
+      study_id:
+        required: true
+      data_type:
+        description: The type of data within this file.
+        range: EnumGenomicFileDataType
+      availability:
+        description: Is or was this file available to users?
+        range: EnumGenomicFileAvailability
+
+  ReadGroup:
+    title: Read Group
+    description: Sequencing read group (flow cell / lane) metadata.
+    is_a: KFRecord
+    slots:
+      - flow_cell
+      - lane_number
+      - quality_scale
+    slot_usage:
+      study_id:
+        required: true
+      flow_cell:
+        required: true
+      lane_number:
+        required: true
+
+  SequencingCenter:
+    title: Sequencing Center
+    description: An organization that performs sequencing for a study.
+    is_a: KFRecord
+    slots:
+      - name
+
+  SequencingExperiment:
+    title: Sequencing Experiment
+    description: A sequencing experiment performed on a Biospecimen.
+    is_a: KFRecord
+    slots:
+      - sequencing_center_id
+      - library_name
+      - experiment_date
+      - experiment_strategy
+      - library_strand
+      - library_prep
+      - library_selection
+      - is_paired_end
+      - platform
+      - instrument_model
+      - max_insert_size
+      - mean_insert_size
+      - mean_depth
+      - total_reads
+      - mean_read_length
+      - target_capture_kit
+      - read_pair_number
+      - is_adapter_trimmed
+      - adapter_sequencing
+    slot_usage:
+      study_id:
+        required: true
+      sequencing_center_id:
+        required: true
+
+  BiospecimenGenomicFile:
+    title: Biospecimen Genomic File
+    description: Links a Biospecimen to a GenomicFile it produced.
+    is_a: KFRecord
+    slots:
+      - biospecimen_id
+      - genomic_file_id
+    slot_usage:
+      biospecimen_id:
+        required: true
+      genomic_file_id:
+        required: true
+
+  BiospecimenDiagnosis:
+    title: Biospecimen Diagnosis
+    description: Links a Biospecimen to a Diagnosis it is associated with.
+    is_a: KFRecord
+    slots:
+      - biospecimen_id
+      - diagnosis_id
+    slot_usage:
+      biospecimen_id:
+        required: true
+      diagnosis_id:
+        required: true
+
+  ReadGroupGenomicFile:
+    title: Read Group Genomic File
+    description: Links a ReadGroup to a GenomicFile it produced.
+    is_a: KFRecord
+    slots:
+      - read_group_id
+      - genomic_file_id
+    slot_usage:
+      read_group_id:
+        required: true
+      genomic_file_id:
+        required: true
+
+  SequencingExperimentGenomicFile:
+    title: Sequencing Experiment Genomic File
+    description: Links a SequencingExperiment to a GenomicFile it produced.
+    is_a: KFRecord
+    slots:
+      - sequencing_experiment_id
+      - genomic_file_id
+    slot_usage:
+      sequencing_experiment_id:
+        required: true
+      genomic_file_id:
+        required: true
+
+slots:
+  # --- overridden from common-access-model ---
+  external_id:
+    title: External Identifier
+    description: >-
+      The identifier for this entity as submitted by the source study.
+      Overridden from common-access-model to be a single string, matching
+      the Kids First Dataservice's external_id field.
+    range: string
+    multivalued: false
+
+  # --- identity / access control (KFRecord) ---
+  kf_id:
+    title: KF ID
+    description: >-
+      Kids First Dataservice identifier for this record, eg, PT_00000000.
+    range: string
+    pattern: "^[A-Z]{2}_[A-Z0-9]{8}$"
+  visible:
+    title: Visible
+    description: >-
+      Whether this record is visible/released, per Kids First Dataservice
+      access control.
+    range: boolean
+  visibility_comment:
+    title: Visibility Comment
+    description: Free-text explanation supporting visibility_reason.
+    range: string
+  visibility_reason:
+    title: Visibility Reason
+    description: The reason this record is or is not visible.
+    range: EnumVisibilityReason
+
+  # --- Study ---
+  data_access_authority:
+    title: Data Access Authority
+    description: >-
+      The authority governing access to this study's data, eg, dbGaP.
+    range: EnumDataAccessAuthority
+  investigator_id:
+    title: Investigator ID
+    description: The primary Investigator for this study.
+    range: Investigator
+  short_name:
+    title: Short Name
+    description: A short name for the study.
+    range: string
+  version:
+    title: Version
+    description: The version of this study's data.
+    range: string
+  file_version_descriptor:
+    title: File Version Descriptor
+    description: >-
+      A descriptor distinguishing this record's data version from others.
+    range: string
+  attribution:
+    title: Attribution
+    description: Text describing how to attribute use of this study's data.
+    range: string
+  category:
+    title: Study Category
+    description: The broad category of research this study addresses.
+    range: EnumStudyCategory
+  status:
+    title: Study Status
+    description: The processing/release status of this study.
+    range: EnumStudyStatus
+
+  # --- Participant ---
+  is_proband:
+    title: Is Proband
+    description: Whether this Participant is the proband of their Family.
+    range: boolean
+  gender:
+    title: Gender
+    description: >-
+      Participant gender, as reported by the source study. See also
+      cam:sex, which uses a different (NCIT-coded) value set.
+    range: EnumGender
+  affected_status:
+    title: Affected Status
+    description: >-
+      Whether the Participant is affected by the condition(s) under study.
+    range: boolean
+  species:
+    title: Species
+    description: The species of the Participant.
+    range: EnumSpecies
+  participant_id:
+    title: Participant ID
+    description: The Participant this record is associated with.
+    range: Participant
+  participant1_id:
+    title: Participant 1 ID
+    description: The first Participant in a pairwise family relationship.
+    range: Participant
+  participant2_id:
+    title: Participant 2 ID
+    description: >-
+      The second Participant in a pairwise family relationship - the
+      relationship target, ie, participant1 <relation> participant2.
+    range: Participant
+  participant1_to_participant2_relation:
+    title: Participant 1 to Participant 2 Relation
+    description: The family relationship of participant1 to participant2.
+    range: EnumFamilyRelationshipKF
+
+  # --- Diagnosis / Phenotype / Outcome ---
+  age_at_event_days:
+    title: Age at Event (days)
+    description: >-
+      The age in days of the Participant at the time of this event.
+    range: integer
+    unit:
+      ucum_code: d
+  source_text_diagnosis:
+    title: Source Text Diagnosis
+    description: The diagnosis as reported by the source study.
+    range: string
+  source_text_tumor_location:
+    title: Source Text Tumor Location
+    description: The tumor location as reported by the source study.
+    range: string
+  mondo_id_diagnosis:
+    title: MONDO ID Diagnosis
+    description: The MONDO ontology term for this diagnosis.
+    range: uriorcurie
+  icd_id_diagnosis:
+    title: ICD ID Diagnosis
+    description: The ICD ontology term for this diagnosis.
+    range: uriorcurie
+  uberon_id_tumor_location:
+    title: UBERON ID Tumor Location
+    description: The UBERON ontology term for the tumor location.
+    range: uriorcurie
+  ncit_id_diagnosis:
+    title: NCIT ID Diagnosis
+    description: The NCIT ontology term for this diagnosis.
+    range: uriorcurie
+  spatial_descriptor:
+    title: Spatial Descriptor
+    description: Additional spatial/location qualifiers for this record.
+    range: string
+  diagnosis_category:
+    title: Diagnosis Category
+    description: The broad category of this diagnosis.
+    range: string
+  source_text_phenotype:
+    title: Source Text Phenotype
+    description: The phenotype as reported by the source study.
+    range: string
+  observed:
+    title: Observed
+    description: >-
+      Whether the phenotype was observed (present) or not observed
+      (absent).
+    range: EnumPresentAbsent
+  hpo_id_phenotype:
+    title: HPO ID Phenotype
+    description: The Human Phenotype Ontology term for this phenotype.
+    range: uriorcurie
+  snomed_id_phenotype:
+    title: SNOMED ID Phenotype
+    description: The SNOMED CT term for this phenotype.
+    range: uriorcurie
+  disease_related:
+    title: Disease Related
+    description: >-
+      Whether this Outcome is related to the disease(s) under study.
+    range: EnumOutcomeDiseaseRelated
+
+  # --- Sample / Biospecimen ---
+  anatomical_location:
+    title: Anatomical Location
+    description: >-
+      The anatomical site this Sample was collected from, as reported by
+      the source study.
+    range: string
+  method_of_sample_procurement:
+    title: Method of Sample Procurement
+    description: The method used to procure the sample.
+    range: EnumSampleProcurement
+  preservation_method:
+    title: Preservation Method
+    description: The method used to preserve the sample.
+    range: string
+  sample_event_key:
+    title: Sample Event Key
+    description: >-
+      An identifier grouping Biospecimens collected during the same event.
+    range: string
+  tissue_type:
+    title: Tissue Type
+    description: The type of tissue this Sample represents.
+    range: EnumTissueType
+  volume_ul:
+    title: Volume (uL)
+    description: The volume of the specimen, in microliters.
+    range: float
+    unit:
+      ucum_code: uL
+  parent_id:
+    title: Parent Sample ID
+    description: The Sample from which this Sample was derived.
+    range: Sample
+    inlined: false
+  child_id:
+    title: Child Sample ID
+    description: The Sample that was derived from the parent Sample.
+    range: Sample
+    inlined: false
+  external_parent_id:
+    title: External Parent ID
+    description: The submitter-provided identifier for the parent Sample.
+    range: string
+  external_child_id:
+    title: External Child ID
+    description: The submitter-provided identifier for the child Sample.
+    range: string
+  notes:
+    title: Notes
+    description: Free-text notes about this record.
+    range: string
+  external_aliquot_id:
+    title: External Aliquot ID
+    description: >-
+      The submitter-provided identifier for this Biospecimen/aliquot.
+    range: string
+  sequencing_center_id:
+    title: Sequencing Center ID
+    description: The sequencing center associated with this record.
+    range: SequencingCenter
+  sample_id:
+    title: Sample ID
+    description: The Sample this Biospecimen belongs to.
+    range: Sample
+  external_sample_id:
+    title: External Sample ID
+    description: >-
+      The submitter-provided identifier for the Sample this Biospecimen
+      belongs to.
+    range: string
+  source_text_tissue_type:
+    title: Source Text Tissue Type
+    description: The tissue type as reported by the source study.
+    range: string
+  composition:
+    title: Composition
+    description: The material composition of the specimen.
+    range: EnumSpecimenComposition
+  source_text_anatomical_site:
+    title: Source Text Anatomical Site
+    description: >-
+      The anatomical site of collection, as reported by the source study.
+    range: string
+  source_text_tumor_descriptor:
+    title: Source Text Tumor Descriptor
+    description: >-
+      The tumor descriptor (eg, Primary, Metastatic) as reported by the
+      source study.
+    range: string
+  ncit_id_tissue_type:
+    title: NCIT ID Tissue Type
+    description: The NCIT ontology term for the tissue type.
+    range: uriorcurie
+  ncit_id_anatomical_site:
+    title: NCIT ID Anatomical Site
+    description: The NCIT ontology term for the anatomical site.
+    range: uriorcurie
+  uberon_id_anatomical_site:
+    title: UBERON ID Anatomical Site
+    description: The UBERON ontology term for the anatomical site.
+    range: uriorcurie
+  shipment_origin:
+    title: Shipment Origin
+    description: The origin location of the specimen shipment.
+    range: string
+  shipment_date:
+    title: Shipment Date
+    description: The date the specimen was shipped.
+    range: date
+  analyte_type:
+    title: Analyte Type
+    description: The type of analyte extracted from the specimen.
+    range: EnumAnalyte
+  concentration_mg_per_ml:
+    title: Concentration (mg/mL)
+    description: The concentration of the analyte, in mg/mL.
+    range: float
+    unit:
+      ucum_code: mg/mL
+  specimen_status:
+    title: Specimen Status
+    description: Whether the specimen is available for further analysis.
+    range: EnumAvailabilityStatus
+  dbgap_consent_code:
+    title: dbGaP Consent Code
+    description: >-
+      The dbGaP-style consent short name/code for this specimen.
+    range: string
+  consent_type:
+    title: Consent Type
+    description: >-
+      The Data Use Ontology-style consent short name for this specimen.
+    range: EnumConsentType
+
+  # --- Genomic File ---
+  file_name:
+    title: File Name
+    description: The name of the file.
+    range: string
+  file_format:
+    title: File Format
+    description: The format of the file.
+    range: EnumGenomicFileFormat
+  controlled_access:
+    title: Controlled Access
+    description: Whether access to this file is controlled.
+    range: boolean
+  is_harmonized:
+    title: Is Harmonized
+    description: Whether this file was produced by a harmonization workflow.
+    range: boolean
+  hashes:
+    title: Hashes
+    description: Content hashes for this file.
+    range: FileHash
+    multivalued: true
+  urls:
+    title: URLs
+    description: The location(s) of this file.
+    range: uri
+    multivalued: true
+  acl:
+    title: ACL
+    description: Deprecated access control list for this file. See authz.
+    range: string
+    multivalued: true
+  authz:
+    title: Authz
+    description: >-
+      The access control identifiers (eg, dbGaP phs accessions) that gate
+      access to this file.
+    range: string
+    multivalued: true
+  reference_genome:
+    title: Reference Genome
+    description: >-
+      The reference genome build this file is aligned to or was generated
+      against.
+    range: EnumReferenceGenome
+  workflow_type:
+    title: Workflow Type
+    description: >-
+      The type of workflow that produced this file. (Kids First
+      Dataservice field: worflow_type)
+    range: string
+  workflow_tool:
+    title: Workflow Tool
+    description: >-
+      The tool used by the workflow that produced this file. (Kids First
+      Dataservice field: worflow_tool)
+    range: string
+  workflow_version:
+    title: Workflow Version
+    description: The version of the workflow tool used to produce this file.
+    range: string
+
+  # --- Read Group / Sequencing Experiment ---
+  flow_cell:
+    title: Flow Cell
+    description: The flow cell identifier for this read group.
+    range: string
+  lane_number:
+    title: Lane Number
+    description: The lane number for this read group.
+    range: integer
+  quality_scale:
+    title: Quality Scale
+    description: The quality score scale used for this read group.
+    range: EnumReadGroupQualityScale
+  library_name:
+    title: Library Name
+    description: The name of the sequencing library.
+    range: string
+  experiment_date:
+    title: Experiment Date
+    description: The date the sequencing experiment was performed.
+    range: date
+  experiment_strategy:
+    title: Experiment Strategy
+    description: The sequencing strategy used.
+    range: EnumSequencingStrategy
+  library_strand:
+    title: Library Strand
+    description: The strandedness of the sequencing library.
+    range: EnumLibraryStrand
+  library_prep:
+    title: Library Prep
+    description: The library preparation method used.
+    range: EnumLibraryPrep
+  library_selection:
+    title: Library Selection
+    description: The library selection method used.
+    range: EnumLibrarySelection
+  is_paired_end:
+    title: Is Paired End
+    description: Whether the sequencing reads are paired-end.
+    range: boolean
+  platform:
+    title: Platform
+    description: The sequencing platform used.
+    range: EnumSequencingPlatform
+  instrument_model:
+    title: Instrument Model
+    description: The sequencing instrument model used.
+    range: EnumSequencingInstrument
+  max_insert_size:
+    title: Max Insert Size
+    description: The maximum insert size, in base pairs.
+    range: integer
+  mean_insert_size:
+    title: Mean Insert Size
+    description: The mean insert size, in base pairs.
+    range: float
+  mean_depth:
+    title: Mean Depth
+    description: The mean sequencing depth of coverage.
+    range: float
+  total_reads:
+    title: Total Reads
+    description: The total number of reads generated.
+    range: integer
+  mean_read_length:
+    title: Mean Read Length
+    description: The mean read length, in base pairs.
+    range: integer
+  target_capture_kit:
+    title: Target Capture Kit
+    description: The target capture kit used, if any.
+    range: string
+  read_pair_number:
+    title: Read Pair Number
+    description: >-
+      The read pair number (1 or 2) for this read group, for paired-end
+      sequencing.
+    range: integer
+  is_adapter_trimmed:
+    title: Is Adapter Trimmed
+    description: Whether adapter sequences were trimmed.
+    range: boolean
+  adapter_sequencing:
+    title: Adapter Sequence
+    description: The adapter sequence used, if known.
+    range: string
+
+  # --- join tables ---
+  biospecimen_id:
+    title: Biospecimen ID
+    description: The Biospecimen referenced by this record.
+    range: Biospecimen
+  genomic_file_id:
+    title: Genomic File ID
+    description: The GenomicFile referenced by this record.
+    range: GenomicFile
+  diagnosis_id:
+    title: Diagnosis ID
+    description: The Diagnosis referenced by this record.
+    range: Diagnosis
+  read_group_id:
+    title: Read Group ID
+    description: The ReadGroup referenced by this record.
+    range: ReadGroup
+  sequencing_experiment_id:
+    title: Sequencing Experiment ID
+    description: The SequencingExperiment referenced by this record.
+    range: SequencingExperiment
+
+enums:
+  # --- extended from common-access-model ---
+  EnumFileHashType:
+    # Adds the sha256/sha512 hash types the ingest library supports
+    # alongside cam's existing md5/etag/sha1.
+    permissible_values:
+      sha256:
+        title: SHA-256
+      sha512:
+        title: SHA-512
+
+  # --- new: Kids First ingest library enums ---
+  EnumVisibilityReason:
+    title: Visibility Reason
+    description: >-
+      Reasons a Kids First Dataservice record is or is not visible/
+      released, from kf_lib_data_ingest.common.constants.COMMON.VISIBILITY_REASON.
+    permissible_values:
+      ready:
+        title: Ready For Release
+      pre_release:
+        title: Pre-Release
+      sample_issue:
+        title: Sample Issue
+      consent_hold:
+        title: Consent Hold
+      sequencing_quality:
+        title: Sequencing Quality Issue
+
+  EnumDataAccessAuthority:
+    title: Data Access Authority
+    description: >-
+      Authorities that can govern access to a study's data, from
+      kf_lib_data_ingest.common.constants.AUTHORITY.
+    permissible_values:
+      dbgap:
+        title: dbGaP
+
+  EnumStudyCategory:
+    title: Study Category
+    description: >-
+      Broad categories of research a study addresses, from
+      kf_lib_data_ingest.common.constants.STUDY.
+    permissible_values:
+      cancer:
+        title: Cancer
+      structural_defect:
+        title: Structural Birth Defect
+      structural_defect_and_cancer:
+        title: Structural Birth Defect and Cancer
+
+  EnumStudyStatus:
+    title: Study Status
+    description: >-
+      Processing/release status of a study, from
+      kf_lib_data_ingest.common.constants.STUDY.STATUS.
+    permissible_values:
+      canceled:
+        title: Canceled
+      failed:
+        title: Failed
+      pending:
+        title: Pending
+      published:
+        title: Published
+      publishing:
+        title: Publishing
+      running:
+        title: Running
+      staged:
+        title: Staged
+      waiting:
+        title: Waiting
+
+  EnumConsentType:
+    title: Consent Type
+    description: >-
+      Data Use Ontology-style consent short names used by Kids First, from
+      kf_lib_data_ingest.common.constants.CONSENT_TYPE.
+    permissible_values:
+      DS-OBDR-MDS:
+        title: DS-OBDR-MDS
+        description: >-
+          Disease-Specific (Orofacial birth defects and related
+          phenotypes, MDS). Use of the data must be related to Orofacial
+          birth defects and related phenotypes; includes methods
+          development research.
+      DS-OBD-MDS:
+        title: DS-OBD-MDS
+        description: >-
+          Disease-Specific (Orofacial birth defects, MDS). Use of the
+          data must be related to Orofacial birth defects; includes
+          methods development research.
+      DS-OC-PUB-MDS:
+        title: DS-OC-PUB-MDS
+        description: >-
+          Disease-Specific (Oral Clefts, PUB, MDS). Use of the data must
+          be related to Oral Clefts; requestor agrees to make results
+          publicly available; includes methods development research.
+      HMB-MDS:
+        title: HMB-MDS
+        description: >-
+          Health/Medical/Biomedical (MDS). Limited to health/medical/
+          biomedical purposes, excludes population origins/ancestry
+          research; includes methods development research.
+      HMB-IRB:
+        title: HMB-IRB
+        description: Health/Medical/Biomedical general research.
+      DS-CHD-IRB:
+        title: DS-CHD-IRB
+        description: Disease specific Cardiac Heart Defect.
+      DS-CHD:
+        title: DS-CHD
+        description: Disease specific Cardiac Heart Defect.
+      HMB-NPU:
+        title: HMB-NPU
+        description: >-
+          Health/Medical/Biomedical (NPU). Limited to health/medical/
+          biomedical purposes and to not-for-profit organizations.
+      GRU:
+        title: GRU
+        description: General Research Use.
+      GRU-NPU:
+        title: GRU-NPU
+        description: >-
+          General Research Use (NPU). Limited to general research use by
+          not-for-profit organizations.
+      HMB-GSO:
+        title: HMB-GSO
+        description: >-
+          Health/Medical/Biomedical (GSO). Genetic studies only; no
+          phenotype-only research.
+
+  EnumOutcomeDiseaseRelated:
+    title: Outcome Disease Related
+    description: >-
+      Whether an Outcome is related to the disease(s) under study, from
+      kf_lib_data_ingest.common.constants.OUTCOME.DISEASE_RELATED.
+    permissible_values:
+      yes:
+        title: 'Yes'
+      no:
+        title: 'No'
+
+  EnumGender:
+    title: Gender
+    description: >-
+      Participant gender, from kf_lib_data_ingest.common.constants.GENDER.
+      Distinct from cam:EnumSex, which uses a different (NCIT-coded)
+      value set.
+    permissible_values:
+      male:
+        title: Male
+      female:
+        title: Female
+      other:
+        title: Other
+
+  EnumSpecies:
+    title: Species
+    description: >-
+      Species of the Participant, from
+      kf_lib_data_ingest.common.constants.SPECIES.
+    permissible_values:
+      dog:
+        title: Canis lupus familiaris
+        meaning: NCBITaxon:9615
+      fly:
+        title: Drosophila melanogaster
+        meaning: NCBITaxon:7227
+      human:
+        title: Homo sapiens
+        meaning: NCBITaxon:9606
+      mouse:
+        title: Mus musculus
+        meaning: NCBITaxon:10090
+
+  EnumSpecimenComposition:
+    title: Specimen Composition
+    description: >-
+      Material composition of a specimen, from
+      kf_lib_data_ingest.common.constants.SPECIMEN.COMPOSITION.
+    permissible_values:
+      blood:
+        title: Peripheral Whole Blood
+      bone:
+        title: Bone
+      bone_marrow:
+        title: Bone Marrow
+      buccal_swab:
+        title: Buccal Cells
+      ebvi:
+        title: Epstein-Barr Virus Immortalized Cells
+      fibroblasts:
+        title: Fibroblasts
+      line:
+        title: Derived Cell Line
+      lymphoblastoid_cell_lines:
+        title: Lymphoblastoid Cell Lines
+      lymphocytes:
+        title: Lymphocytes
+      mnc:
+        title: Mononuclear Cells
+      plasma:
+        title: Plasma
+      saliva:
+        title: Saliva
+      tissue:
+        title: Solid Tissue
+      xenograft:
+        title: Xenograft Tissue
+
+  EnumSampleProcurement:
+    title: Sample Procurement Method
+    description: >-
+      Method used to procure a specimen, from
+      kf_lib_data_ingest.common.constants.SPECIMEN.SAMPLE_PROCUREMENT.
+    permissible_values:
+      autopsy:
+        title: Autopsy
+      biopsy:
+        title: Biopsy
+      blood_draw:
+        title: Blood Draw
+      saliva_kit:
+        title: Saliva Kit
+      subtotal_resection:
+        title: Subtotal Resection
+      total_resection:
+        title: Gross Total Resection
+      bone_marrow_aspiration:
+        title: Bone Marrow Aspiration
+
+  EnumAnatomySite:
+    title: Anatomy Site
+    description: >-
+      Sites of specimen collection, from
+      kf_lib_data_ingest.common.constants.SPECIMEN.ANATOMY_SITE. Not bound
+      to a slot directly - the Dataservice records anatomical site as
+      free text (see anatomical_location, source_text_anatomical_site) -
+      but provided for reference and validation use.
+    permissible_values:
+      arm:
+        title: Arm
+      bone_marrow:
+        title: Bone Marrow
+      hair:
+        title: Hair
+      mouth:
+        title: Mouth
+      skull:
+        title: Skull
+      umbilical_cord:
+        title: Umbilical Cord
+      cns:
+        title: Central Nervous System
+
+  EnumTissueType:
+    title: Tissue Type
+    description: >-
+      Types of tissue, from
+      kf_lib_data_ingest.common.constants.SPECIMEN.TISSUE_TYPE.
+    permissible_values:
+      germline:
+        title: Normal
+        description: Germline (normal) tissue.
+      normal:
+        title: Normal
+      tumor:
+        title: Tumor
+
+  EnumGenomicFileAvailability:
+    title: Genomic File Availability
+    description: >-
+      Availability of a genomic file, from
+      kf_lib_data_ingest.common.constants.GENOMIC_FILE.AVAILABILITY.
+    permissible_values:
+      immediate:
+        title: Immediate Download
+      cold_storage:
+        title: Cold Storage
+
+  EnumGenomicFileDataType:
+    title: Genomic File Data Type
+    description: >-
+      Types of data carried by a genomic file, from
+      kf_lib_data_ingest.common.constants.GENOMIC_FILE.DATA_TYPE.
+    permissible_values:
+      aligned_reads:
+        title: Aligned Reads
+      aligned_reads_index:
+        title: Aligned Reads Index
+      expression:
+        title: Expression
+      gvcf:
+        title: gVCF
+      gvcf_index:
+        title: gVCF Index
+      histology_images:
+        title: Histology Images
+      nucleotide_variation:
+        title: Simple Nucleotide Variations
+      operation_reports:
+        title: Operation Reports
+      pathology_reports:
+        title: Pathology Reports
+      radiology_images:
+        title: Radiology Images
+      radiology_reports:
+        title: Radiology Reports
+      unaligned_reads:
+        title: Unaligned Reads
+      variant_calls:
+        title: Variant Calls
+      variant_calls_index:
+        title: Variant Calls Index
+      annotated_somatic_mutations:
+        title: Annotated Somatic Mutations
+      gene_expression:
+        title: Gene Expression
+      gene_fusions:
+        title: Gene Fusions
+      isoform_expression:
+        title: Isoform Expression
+      somatic_copy_number_variations:
+        title: Somatic Copy Number Variations
+      somatic_structural_variations:
+        title: Somatic Structural Variations
+
+  EnumGenomicFileFormat:
+    title: Genomic File Format
+    description: >-
+      File format extensions, from
+      kf_lib_data_ingest.common.constants.GENOMIC_FILE.FORMAT.
+    permissible_values:
+      bai:
+        title: bai
+      bam:
+        title: bam
+      crai:
+        title: crai
+      cram:
+        title: cram
+      dcm:
+        title: dcm
+      fastq:
+        title: fastq
+      gpr:
+        title: gpr
+      gvcf:
+        title: gvcf
+      idat:
+        title: idat
+      pdf:
+        title: pdf
+      svs:
+        title: svs
+      tbi:
+        title: tbi
+      vcf:
+        title: vcf
+      html:
+        title: html
+      maf:
+        title: maf
+
+  EnumReferenceGenome:
+    title: Reference Genome
+    description: >-
+      Reference genome builds, from
+      kf_lib_data_ingest.common.constants.SEQUENCING.REFERENCE_GENOME.
+    permissible_values:
+      GRCh38:
+        title: GRCh38
+      GRCh37:
+        title: GRCh37
+      hs37d5:
+        title: hs37d5
+      hg19:
+        title: hg19
+
+  EnumSequencingPlatform:
+    title: Sequencing Platform
+    description: >-
+      Sequencing platforms, from
+      kf_lib_data_ingest.common.constants.SEQUENCING.PLATFORM.
+    permissible_values:
+      complete_genomics:
+        title: Complete Genomics
+      illumina:
+        title: Illumina
+      ion_torrent:
+        title: Ion Torrent
+      ls454:
+        title: LS454
+      pacbio:
+        title: PacBio
+      solid:
+        title: SOLiD
+      ont:
+        title: ONT
+
+  EnumSequencingInstrument:
+    title: Sequencing Instrument
+    description: >-
+      Sequencing instrument models, from
+      kf_lib_data_ingest.common.constants.SEQUENCING.INSTRUMENT.
+    permissible_values:
+      hiseq_x_v2_5:
+        title: HiSeq X v2.5
+      hiseq_x_10:
+        title: HiSeq X Ten
+
+  EnumLibraryStrand:
+    title: Library Strand
+    description: >-
+      Sequencing library strandedness, from
+      kf_lib_data_ingest.common.constants.SEQUENCING.STRAND.
+    permissible_values:
+      first:
+        title: First Stranded
+      second:
+        title: Second Stranded
+      stranded:
+        title: Stranded
+      unstranded:
+        title: Unstranded
+
+  EnumSequencingStrategy:
+    title: Sequencing Strategy
+    description: >-
+      Sequencing strategies, from
+      kf_lib_data_ingest.common.constants.SEQUENCING.STRATEGY.
+    permissible_values:
+      linked_wgs:
+        title: Linked-Read WGS (10x Chromium)
+      methyl:
+        title: Methylation
+      mrna:
+        title: miRNA-Seq
+      rna:
+        title: RNA-Seq
+      wgs:
+        title: WGS
+      wxs:
+        title: WXS
+      targeted:
+        title: Targeted Sequencing
+      panel:
+        title: Panel
+      scrna:
+        title: scRNA-Seq
+      snrna:
+        title: snRNA-Seq
+      ccs_wgs:
+        title: Circular Consensus Sequencing WGS
+      ccs_rna:
+        title: Circular Consensus Sequencing RNA-Seq
+      clr_wgs:
+        title: Continuous Long Reads WGS
+      clr_rna:
+        title: Continuous Long Reads RNA-Seq
+      ont_wgs:
+        title: ONT WGS
+
+  EnumAnalyte:
+    title: Analyte Type
+    description: >-
+      Types of analyte extracted from a specimen, from
+      kf_lib_data_ingest.common.constants.SEQUENCING.ANALYTE.
+    permissible_values:
+      dna:
+        title: DNA
+      rna:
+        title: RNA
+      virtual:
+        title: Virtual
+
+  EnumLibrarySelection:
+    title: Library Selection
+    description: >-
+      Sequencing library selection methods, from
+      kf_lib_data_ingest.common.constants.SEQUENCING.LIBRARY.SELECTION.
+    permissible_values:
+      hybrid:
+        title: Hybrid Selection
+      pcr:
+        title: PCR
+      affinity_enrichment:
+        title: Affinity Enrichment
+      polyt_enrichment:
+        title: Poly-T Enrichment
+      random:
+        title: Random
+      rna_depletion:
+        title: rRNA Depletion
+      mrna_size_fractionation:
+        title: miRNA Size Fractionation
+
+  EnumLibraryPrep:
+    title: Library Prep
+    description: >-
+      Sequencing library preparation methods, from
+      kf_lib_data_ingest.common.constants.SEQUENCING.LIBRARY.PREP.
+    permissible_values:
+      polya:
+        title: polyA
+      totalrnaseq:
+        title: totalRNAseq
+
+  EnumSequencingCenter:
+    title: Sequencing Center
+    description: >-
+      Sequencing centers known to Kids First, from
+      kf_lib_data_ingest.common.constants.SEQUENCING.CENTER. Provided for
+      reference; SequencingCenter.name is left as free text so new
+      centers can be added without a schema change.
+    permissible_values:
+      ashion:
+        title: Ashion
+        description: 'Kids First sequencing center ID: SC_0CNMF82N'
+      baylor:
+        title: Baylor College of Medicine
+        description: 'Kids First sequencing center ID: SC_A1JNZAZH'
+      bc_cancer_agency:
+        title: British Columbia Cancer Agency Genome Sciences Centre
+        description: 'Kids First sequencing center ID: SC_FN7NH453'
+      bgi:
+        title: BGI@CHOP Genome Center
+        description: 'Kids First sequencing center ID: SC_WWEQ9HFY'
+      bgi_china:
+        title: BGI
+        description: 'Kids First sequencing center ID: SC_FAD4KCQG'
+      broad:
+        title: Broad Institute
+        description: 'Kids First sequencing center ID: SC_DGDDQVYR'
+      cbtn_unsequenced:
+        title: CBTN Unsequenced
+        description: 'Kids First sequencing center ID: SC_31369RXZ'
+      chop:
+        title: CHOP
+        description: 'Kids First sequencing center ID: SC_9NSC532X'
+      chop_dgd:
+        title: CHOP DGD
+        description: 'Kids First sequencing center ID: SC_ZZPPF973'
+      complete_genomics:
+        title: Complete Genomics
+        description: 'Kids First sequencing center ID: SC_D30SEWS4'
+      csir:
+        title: CSIR - Institute of Genomics and Integrative Biology, Delhi, India
+        description: 'Kids First sequencing center ID: SC_MDY0AZMZ'
+      feline_diagnostics:
+        title: Feline Diagnostics LLC
+        description: 'Kids First sequencing center ID: SC_CATTVETT'
+      fg:
+        title: fg
+        description: 'Kids First sequencing center ID: SC_XXXXXXX2'
+      genedx:
+        title: GeneDx
+        description: 'Kids First sequencing center ID: SC_5EDC0A25'
+      hgt:
+        title: Humangenetik Tübingen
+        description: 'Kids First sequencing center ID: SC_75KENA7A'
+      hudson_alpha:
+        title: HudsonAlpha Institute for Biotechnology
+        description: 'Kids First sequencing center ID: SC_X1N69WJM'
+      nant:
+        title: NantOmics
+        description: 'Kids First sequencing center ID: SC_N1EVHSME'
+      novogene:
+        title: Novogene
+        description: 'Kids First sequencing center ID: SC_2ZBAMKK0'
+      nygc:
+        title: New York Genome Center
+        description: 'Kids First sequencing center ID: SC_BJW95TMY'
+      nci:
+        title: National Cancer Institute, Khan Lab
+        description: 'Kids First sequencing center ID: SC_F6RZ51K9'
+      nih:
+        title: National Institutes of Health
+        description: 'Kids First sequencing center ID: SC_HEXD2E5R'
+      princess_maxima:
+        title: Princess Maxima Center
+        description: 'Kids First sequencing center ID: SC_V4CCQ3WE'
+      sickkids:
+        title: SickKids
+        description: 'Kids First sequencing center ID: SC_9WMJKQ1X'
+      sidra:
+        title: Genomic Clinical Core at Sidra Medical and Research Center
+        description: 'Kids First sequencing center ID: SC_KE2ASNJM'
+      st_jude:
+        title: St Jude
+        description: 'Kids First sequencing center ID: SC_1K3QGW4V'
+      temp:
+        title: TEMP
+        description: 'Kids First sequencing center ID: SC_SJJ0B9GN'
+      tempus:
+        title: Tempus
+        description: 'Kids First sequencing center ID: SC_TQ8HJWGE'
+      tgen:
+        title: The Translational Genomics Research Institute
+        description: 'Kids First sequencing center ID: SC_KQ9JZG3P'
+      unknown_chris_jones:
+        title: 'UNKNOWN:CHRIS_JONES'
+        description: 'Kids First sequencing center ID: SC_5A2B1T4K'
+      ucsf_cat:
+        title: UCSF CAT
+        description: 'Kids First sequencing center ID: SC_MSQP04K7'
+      variantyx:
+        title: Variantyx
+        description: 'Kids First sequencing center ID: SC_T2A19FHX'
+      virtual:
+        title: Virtual
+        description: 'Kids First sequencing center ID: SC_BATJDPHB'
+      washu:
+        title: Washington University
+        description: 'Kids First sequencing center ID: SC_K52V7463'
+      yale:
+        title: Yale
+        description: 'Kids First sequencing center ID: SC_31W52VNX'
+      fredhutch:
+        title: Fred Hutchinson Cancer Research Center
+        description: 'Kids First sequencing center ID: SC_8JXH42X1'
+
+  EnumFamilyRelationshipKF:
+    title: Family Relationship (Kids First)
+    description: >-
+      Family relationship terms used by the Kids First ingest library,
+      from kf_lib_data_ingest.common.constants.RELATIONSHIP. "Twin" here
+      means identical twins; use the normal sibling terms for
+      non-identical twins. Distinct from cam:EnumFamilyRelation, which is
+      instead reachable from the KIN ontology.
+    permissible_values:
+      proband:
+        title: Proband
+      wife:
+        title: Wife
+      husband:
+        title: Husband
+      spouse:
+        title: Spouse
+      mother:
+        title: Mother
+      father:
+        title: Father
+      parent:
+        title: Parent
+      daughter:
+        title: Daughter
+      son:
+        title: Son
+      child:
+        title: Child
+      sister:
+        title: Sister
+      brother:
+        title: Brother
+      sibling:
+        title: Sibling
+      twin_sister:
+        title: Twin Sister
+      twin_brother:
+        title: Twin Brother
+      twin:
+        title: Twin
+      maternal_half_sister:
+        title: Maternal Half-Sister
+      maternal_half_brother:
+        title: Maternal Half-Brother
+      maternal_half_sibling:
+        title: Maternal Half-Sibling
+      paternal_half_sister:
+        title: Paternal Half-Sister
+      paternal_half_brother:
+        title: Paternal Half-Brother
+      paternal_half_sibling:
+        title: Paternal Half-Sibling
+      half_sister:
+        title: Half-Sister
+      half_brother:
+        title: Half-Brother
+      half_sibling:
+        title: Half-Sibling
+      maternal_grandmother:
+        title: Maternal Grandmother
+      maternal_grandfather:
+        title: Maternal Grandfather
+      maternal_grandparent:
+        title: Maternal Grandparent
+      paternal_grandmother:
+        title: Paternal Grandmother
+      paternal_grandfather:
+        title: Paternal Grandfather
+      paternal_grandparent:
+        title: Paternal Grandparent
+      grandmother:
+        title: Grandmother
+      grandfather:
+        title: Grandfather
+      grandparent:
+        title: Grandparent
+      maternal_granddaughter:
+        title: Maternal Granddaughter
+      maternal_grandson:
+        title: Maternal Grandson
+      maternal_grandchild:
+        title: Maternal Grandchild
+      paternal_granddaughter:
+        title: Paternal Granddaughter
+      paternal_grandson:
+        title: Paternal Grandson
+      paternal_grandchild:
+        title: Paternal Grandchild
+      granddaughter:
+        title: Granddaughter
+      grandson:
+        title: Grandson
+      grandchild:
+        title: Grandchild
+      maternal_great_grandmother:
+        title: Maternal Great-Grandmother
+      maternal_great_grandfather:
+        title: Maternal Great-Grandfather
+      maternal_great_grandparent:
+        title: Maternal Great-Grandparent
+      paternal_great_grandmother:
+        title: Paternal Great-Grandmother
+      paternal_great_grandfather:
+        title: Paternal Great-Grandfather
+      paternal_great_grandparent:
+        title: Paternal Great-Grandparent
+      great_grandmother:
+        title: Great-Grandmother
+      great_grandfather:
+        title: Great-Grandfather
+      great_grandparent:
+        title: Great-Grandparent
+      maternal_great_granddaughter:
+        title: Maternal Great-Granddaughter
+      maternal_great_grandson:
+        title: Maternal Great-Grandson
+      maternal_great_grandchild:
+        title: Maternal Great-Grandchild
+      paternal_great_granddaughter:
+        title: Paternal Great-Granddaughter
+      paternal_great_grandson:
+        title: Paternal Great-Grandson
+      paternal_great_grandchild:
+        title: Paternal Great-Grandchild
+      great_granddaughter:
+        title: Great-Granddaughter
+      great_grandson:
+        title: Great-Grandson
+      great_grandchild:
+        title: Great-Grandchild
+      maternal_aunt:
+        title: Maternal Aunt
+      maternal_uncle:
+        title: Maternal Uncle
+      maternal_pibling:
+        title: Maternal Aunt or Uncle
+      paternal_aunt:
+        title: Paternal Aunt
+      paternal_uncle:
+        title: Paternal Uncle
+      paternal_pibling:
+        title: Paternal Aunt or Uncle
+      aunt:
+        title: Aunt
+      uncle:
+        title: Uncle
+      pibling:
+        title: Aunt or Uncle
+      maternal_niece:
+        title: Maternal Niece
+      maternal_nephew:
+        title: Maternal Nephew
+      maternal_nibling:
+        title: Maternal Niece or Nephew
+      paternal_niece:
+        title: Paternal Niece
+      paternal_nephew:
+        title: Paternal Nephew
+      paternal_nibling:
+        title: Paternal Niece or Nephew
+      niece:
+        title: Niece
+      nephew:
+        title: Nephew
+      nibling:
+        title: Niece or Nephew
+      maternal_great_aunt:
+        title: Maternal Great Aunt
+      maternal_great_uncle:
+        title: Maternal Great Uncle
+      maternal_great_pibling:
+        title: Maternal Great Aunt or Uncle
+      paternal_great_aunt:
+        title: Paternal Great Aunt
+      paternal_great_uncle:
+        title: Paternal Great Uncle
+      paternal_great_pibling:
+        title: Paternal Great Aunt or Uncle
+      great_aunt:
+        title: Great Aunt
+      great_uncle:
+        title: Great Uncle
+      great_pibling:
+        title: Great Aunt or Uncle
+      maternal_great_niece:
+        title: Maternal Great Niece
+      maternal_great_nephew:
+        title: Maternal Great Nephew
+      maternal_great_nibling:
+        title: Maternal Great Niece or Nephew
+      paternal_great_niece:
+        title: Paternal Great Niece
+      paternal_great_nephew:
+        title: Paternal Great Nephew
+      paternal_great_nibling:
+        title: Paternal Great Niece or Nephew
+      great_niece:
+        title: Great Niece
+      great_nephew:
+        title: Great Nephew
+      great_nibling:
+        title: Great Niece or Nephew
+      maternal_first_cousin:
+        title: Maternal First Cousin
+      paternal_first_cousin:
+        title: Paternal First Cousin
+      first_cousin:
+        title: First Cousin
+      maternal_second_cousin:
+        title: Maternal Second Cousin
+      paternal_second_cousin:
+        title: Paternal Second Cousin
+      second_cousin:
+        title: Second Cousin
+      maternal_cousin:
+        title: Maternal Cousin
+      paternal_cousin:
+        title: Paternal Cousin
+      cousin:
+        title: Cousin
