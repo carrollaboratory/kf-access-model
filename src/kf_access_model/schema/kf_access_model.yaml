@@ -6,14 +6,16 @@ description: |-
   Internal Access model for the Kids First Data Resource Center.
 
   This schema profiles the common-access-model (cam) for data hosted in the
-  Kids First Dataservice. Where a cam class already models the concept
-  (Investigator, Study, Family, FamilyRelationship, Sample), it is extended
-  in place with the Dataservice's own identifier (kf_id) and per-record
-  visibility/access-control fields. Where the Dataservice models a concept
-  that cam does not (Participant, Diagnosis, Phenotype, Outcome, Biospecimen,
-  GenomicFile, ReadGroup, SequencingExperiment, SequencingCenter, and the
-  various join entities), a new class is added following the same style,
-  built on the shared cam:Record/KFRecord base.
+  Kids First Dataservice. Every Dataservice-sourced class descends from
+  KFRecord (itself is_a cam:Record), which supplies the Dataservice's own
+  kf_id identifier plus its per-record visibility/access-control fields.
+  Where cam already models the concept (Investigator, Study, Family,
+  FamilyRelationship, Sample), the corresponding KF class is_a KFRecord
+  and also mixins the matching cam class, so it implements/reuses cam's
+  fields directly. Where the Dataservice models a concept cam does not
+  (Participant, Diagnosis, Phenotype, Outcome, Biospecimen, GenomicFile,
+  ReadGroup, SequencingExperiment, SequencingCenter, and the various join
+  entities), the KF class is_a KFRecord only.
 license: MIT
 see_also:
   - https://carrollaboratory.github.io/kf-access-model
@@ -34,7 +36,7 @@ prefixes:
   ig2dac: https://nih-ncpi.github.io/ncpi-fhir-ig-2/CodeSystem/research-data-access-code/
   ig2dat: https://nih-ncpi.github.io/ncpi-fhir-ig-2/CodeSystem/research-data-access-type/
   ig2_biospecimen_availability: https://nih-ncpi.github.io/ncpi-fhir-ig-2/CodeSystem/biospecimen-availability/
-  snomed_ct: 	http://snomed.info/id/
+  snomed_ct: http://snomed.info/id/
   MONDO: http://purl.obolibrary.org/obo/MONDO_
   HP: http://purl.obolibrary.org/obo/HP_
   mesh: http://id.nlm.nih.gov/mesh/
@@ -57,9 +59,11 @@ classes:
     title: Kids First Record
     description: >-
       Abstract base for every record sourced from the Kids First
-      Dataservice. Extends common-access-model's Record (external_id,
-      access_policy_id, study_id) with the Dataservice's own kf_id
-      identifier and its per-record visibility fields.
+      Dataservice. is_a cam:Record (external_id, access_policy_id,
+      study_id), adding the Dataservice's own kf_id identifier and its
+      per-record visibility/access-control fields. Concrete classes below
+      are is_a KFRecord and, where a matching common-access-model class
+      exists, also mixin that class to implement/reuse its fields.
     is_a: Record
     abstract: true
     slots:
@@ -67,15 +71,30 @@ classes:
       - visible
       - visibility_comment
       - visibility_reason
+    slot_usage:
+      kf_id:
+        required: true
+        identifier: true
 
-  Investigator:
-    # Extends cam:Investigator (name, institution, investigator_title,
-    # email) in place; no additional slots are needed beyond KFRecord's.
+  KFInvestigator:
+    title: Investigator
+    description: >-
+      An individual who made contributions to the collection, analysis,
+      or sharing of data. is_a KFRecord and mixins (implements)
+      cam:Investigator, so it inherits name, institution,
+      investigator_title, and email directly from cam.
     is_a: KFRecord
+    mixins:
+      - Investigator
 
-  Study:
-    # Extends cam:Study in place, adding Dataservice-specific fields.
+  KFStudy:
+    title: Study
+    description: >-
+      Study metadata. is_a KFRecord and mixins (implements) cam:Study,
+      adding the Dataservice's own fields on top.
     is_a: KFRecord
+    mixins:
+      - Study
     slots:
       - data_access_authority
       - investigator_id
@@ -90,15 +109,29 @@ classes:
       study_id:
         description: >-
           Overridden from common-access-model. Kids First studies are
-          identified by kf_id (see KFRecord); this inherited slot is not
+          identified by kf_id (see KFRecord); this mixed-in slot is not
           used as the study's own identifier here.
         range: string
         required: false
         identifier: false
+      parent_study:
+        description: The parent KFStudy for this study, if it is a nested study.
+        range: KFStudy
+      principal_investigator:
+        description: The KFInvestigator(s) responsible for the study.
+        range: KFInvestigator
+      contact:
+        description: The KFInvestigator(s) to contact with questions about this study.
+        range: KFInvestigator
 
-  Family:
-    # Extends cam:Family in place; no additional slots needed.
+  KFFamily:
+    title: Family
+    description: >-
+      A group of individuals of some relation who are grouped together in
+      a study. is_a KFRecord and mixins (implements) cam:Family.
     is_a: KFRecord
+    mixins:
+      - Family
     slot_usage:
       family_id:
         description: >-
@@ -110,12 +143,15 @@ classes:
       study_id:
         required: true
 
-  Participant:
+  KFParticipant:
     title: Participant
     description: >-
       A study participant. Combines the roles of cam:Subject and
       cam:Demographics into a single record, matching the Kids First
-      Dataservice's participants entity.
+      Dataservice's participants entity. No mixin is used here because
+      the Dataservice's own fields (gender, race, ethnicity, species
+      recorded directly on the participant) don't line up cleanly with
+      cam:Subject/cam:Demographics's required fields (subject_type, sex).
     is_a: KFRecord
     slots:
       - family_id
@@ -129,12 +165,17 @@ classes:
       study_id:
         required: true
 
-  FamilyRelationship:
-    # Extends cam:FamilyRelationship in place. The Dataservice models
-    # relationships as directed pairs of Participants rather than cam's
-    # family_member_id/subject_id pairing, so those fields are added
-    # alongside (rather than in place of) the inherited cam slots.
+  KFFamilyRelationship:
+    title: Family Relationship
+    description: >-
+      A relationship between two Participants. is_a KFRecord and mixins
+      (implements) cam:FamilyRelationship. The Dataservice models
+      relationships as directed pairs of Participants rather than cam's
+      family_member_id/subject_id pairing, so those fields are added
+      alongside (rather than in place of) the mixed-in cam slots.
     is_a: KFRecord
+    mixins:
+      - FamilyRelationship
     slots:
       - participant1_id
       - participant2_id
@@ -152,7 +193,7 @@ classes:
       participant1_to_participant2_relation:
         required: true
 
-  Diagnosis:
+  KFDiagnosis:
     title: Diagnosis
     description: A diagnosis event or assertion recorded for a Participant.
     is_a: KFRecord
@@ -173,7 +214,7 @@ classes:
       source_text_diagnosis:
         required: true
 
-  Phenotype:
+  KFPhenotype:
     title: Phenotype
     description: >-
       A phenotypic feature observed (or explicitly not observed) for a
@@ -194,7 +235,7 @@ classes:
       observed:
         required: true
 
-  Outcome:
+  KFOutcome:
     title: Outcome
     description: The latest recorded vital-status outcome for a Participant.
     is_a: KFRecord
@@ -209,11 +250,15 @@ classes:
       vital_status:
         required: true
 
-  Sample:
-    # Extends cam:Sample in place, adding the fields the Dataservice's
-    # samples entity actually carries (a Sample groups Biospecimens
-    # collected at the same event).
+  KFSample:
+    title: Sample
+    description: >-
+      A grouping of Biospecimens collected from a Participant at the same
+      event. is_a KFRecord and mixins (implements) cam:Sample, adding the
+      fields the Dataservice's samples entity actually carries.
     is_a: KFRecord
+    mixins:
+      - Sample
     slots:
       - participant_id
       - age_at_event_days
@@ -231,12 +276,15 @@ classes:
         range: string
         required: false
         identifier: false
+      parent_sample_id:
+        description: KFSample from which this sample is derived.
+        range: KFSample
       study_id:
         required: true
       participant_id:
         required: true
 
-  SampleRelationship:
+  KFSampleRelationship:
     title: Sample Relationship
     description: A parent/child derivation relationship between two Samples.
     is_a: KFRecord
@@ -250,7 +298,7 @@ classes:
       child_id:
         required: true
 
-  Biospecimen:
+  KFBiospecimen:
     title: Biospecimen
     description: >-
       A specific specimen/aliquot derived from a Sample, carrying
@@ -261,7 +309,7 @@ classes:
       - external_aliquot_id
       - sequencing_center_id
       - participant_id
-      - sample_id
+      - kf_sample_id
       - external_sample_id
       - source_text_tissue_type
       - composition
@@ -289,7 +337,7 @@ classes:
       external_aliquot_id:
         required: true
 
-  GenomicFile:
+  KFGenomicFile:
     title: Genomic File
     description: >-
       A data file generated by or associated with sequencing. Distinct
@@ -323,7 +371,7 @@ classes:
         description: Is or was this file available to users?
         range: EnumGenomicFileAvailability
 
-  ReadGroup:
+  KFReadGroup:
     title: Read Group
     description: Sequencing read group (flow cell / lane) metadata.
     is_a: KFRecord
@@ -339,14 +387,14 @@ classes:
       lane_number:
         required: true
 
-  SequencingCenter:
+  KFSequencingCenter:
     title: Sequencing Center
     description: An organization that performs sequencing for a study.
     is_a: KFRecord
     slots:
       - name
 
-  SequencingExperiment:
+  KFSequencingExperiment:
     title: Sequencing Experiment
     description: A sequencing experiment performed on a Biospecimen.
     is_a: KFRecord
@@ -376,7 +424,7 @@ classes:
       sequencing_center_id:
         required: true
 
-  BiospecimenGenomicFile:
+  KFBiospecimenGenomicFile:
     title: Biospecimen Genomic File
     description: Links a Biospecimen to a GenomicFile it produced.
     is_a: KFRecord
@@ -389,7 +437,7 @@ classes:
       genomic_file_id:
         required: true
 
-  BiospecimenDiagnosis:
+  KFBiospecimenDiagnosis:
     title: Biospecimen Diagnosis
     description: Links a Biospecimen to a Diagnosis it is associated with.
     is_a: KFRecord
@@ -402,7 +450,7 @@ classes:
       diagnosis_id:
         required: true
 
-  ReadGroupGenomicFile:
+  KFReadGroupGenomicFile:
     title: Read Group Genomic File
     description: Links a ReadGroup to a GenomicFile it produced.
     is_a: KFRecord
@@ -415,7 +463,7 @@ classes:
       genomic_file_id:
         required: true
 
-  SequencingExperimentGenomicFile:
+  KFSequencingExperimentGenomicFile:
     title: Sequencing Experiment Genomic File
     description: Links a SequencingExperiment to a GenomicFile it produced.
     is_a: KFRecord
@@ -429,15 +477,6 @@ classes:
         required: true
 
 slots:
-  # --- overridden from common-access-model ---
-  external_id:
-    title: External Identifier
-    description: >-
-      The identifier for this entity as submitted by the source study.
-      Overridden from common-access-model to be a single string, matching
-      the Kids First Dataservice's external_id field.
-    range: string
-    multivalued: false
 
   # --- identity / access control (KFRecord) ---
   kf_id:
@@ -470,7 +509,7 @@ slots:
   investigator_id:
     title: Investigator ID
     description: The primary Investigator for this study.
-    range: Investigator
+    range: KFInvestigator
   short_name:
     title: Short Name
     description: A short name for the study.
@@ -520,17 +559,17 @@ slots:
   participant_id:
     title: Participant ID
     description: The Participant this record is associated with.
-    range: Participant
+    range: KFParticipant
   participant1_id:
     title: Participant 1 ID
     description: The first Participant in a pairwise family relationship.
-    range: Participant
+    range: KFParticipant
   participant2_id:
     title: Participant 2 ID
     description: >-
       The second Participant in a pairwise family relationship - the
       relationship target, ie, participant1 <relation> participant2.
-    range: Participant
+    range: KFParticipant
   participant1_to_participant2_relation:
     title: Participant 1 to Participant 2 Relation
     description: The family relationship of participant1 to participant2.
@@ -632,13 +671,13 @@ slots:
       ucum_code: uL
   parent_id:
     title: Parent Sample ID
-    description: The Sample from which this Sample was derived.
-    range: Sample
+    description: The KFSample from which this KFSample was derived.
+    range: KFSample
     inlined: false
   child_id:
     title: Child Sample ID
-    description: The Sample that was derived from the parent Sample.
-    range: Sample
+    description: The KFSample that was derived from the parent KFSample.
+    range: KFSample
     inlined: false
   external_parent_id:
     title: External Parent ID
@@ -660,11 +699,11 @@ slots:
   sequencing_center_id:
     title: Sequencing Center ID
     description: The sequencing center associated with this record.
-    range: SequencingCenter
-  sample_id:
+    range: KFSequencingCenter
+  kf_sample_id:
     title: Sample ID
-    description: The Sample this Biospecimen belongs to.
-    range: Sample
+    description: The KFSample this Biospecimen belongs to.
+    range: KFSample
   external_sample_id:
     title: External Sample ID
     description: >-
@@ -889,27 +928,28 @@ slots:
   biospecimen_id:
     title: Biospecimen ID
     description: The Biospecimen referenced by this record.
-    range: Biospecimen
+    range: KFBiospecimen
   genomic_file_id:
     title: Genomic File ID
     description: The GenomicFile referenced by this record.
-    range: GenomicFile
+    range: KFGenomicFile
   diagnosis_id:
     title: Diagnosis ID
     description: The Diagnosis referenced by this record.
-    range: Diagnosis
+    range: KFDiagnosis
   read_group_id:
     title: Read Group ID
     description: The ReadGroup referenced by this record.
-    range: ReadGroup
+    range: KFReadGroup
   sequencing_experiment_id:
     title: Sequencing Experiment ID
     description: The SequencingExperiment referenced by this record.
-    range: SequencingExperiment
+    range: KFSequencingExperiment
 
 enums:
   # --- extended from common-access-model ---
-  EnumFileHashType:
+  EnumFileHashTypeExtension:
+    inherits: cam:EnumFileHashType
     # Adds the sha256/sha512 hash types the ingest library supports
     # alongside cam's existing md5/etag/sha1.
     permissible_values:
@@ -1273,6 +1313,23 @@ enums:
       maf:
         title: maf
 
+  EnumReadGroupQualityScale:
+    title: Read Group Quality Scale
+    description: >-
+      Quality score scales, from
+      kf_lib_data_ingest.common.constants.READ_GROUP.QUALITY_SCALE.
+    permissible_values:
+      illumina13:
+        title: Illumina13
+      illumina15:
+        title: Illumina15
+      illumina18:
+        title: Illumina18
+      sanger:
+        title: Sanger
+      solexa:
+        title: Solexa
+
   EnumReferenceGenome:
     title: Reference Genome
     description: >-
@@ -1422,7 +1479,7 @@ enums:
     description: >-
       Sequencing centers known to Kids First, from
       kf_lib_data_ingest.common.constants.SEQUENCING.CENTER. Provided for
-      reference; SequencingCenter.name is left as free text so new
+      reference; KFSequencingCenter.name is left as free text so new
       centers can be added without a schema change.
     permissible_values:
       ashion:
