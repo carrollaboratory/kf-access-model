@@ -411,6 +411,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-and-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type and Range
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardinality-and-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cardinality and Requirements
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -486,10 +514,9 @@
 
 <h1 id="slot-study-id-subject_id">Slot: Study ID (subject_id)</h1>
 <p><em>INCLUDE Global ID for the Subject</em></p>
-<p>URI: <a href="https://w3id.org/carrollaboratory/kf-access-model/subject_id">kf_access_model:subject_id</a>
-Alias: subject_id</p>
+<div>
+<p>URI: <a href="https://w3id.org/carrollaboratory/kf-access-model/subject_id">kf_access_model:subject_id</a></p>
 <!-- no inheritance hierarchy -->
-
 <h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
@@ -501,18 +528,13 @@ Alias: subject_id</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../File/">File</a></td>
-<td>File</td>
+<td><a href="../Subject/">Subject</a></td>
+<td>This entity is the subject about which data or references are recorded</td>
 <td>yes</td>
 </tr>
 <tr>
-<td><a href="../KFFamilyRelationship/">KFFamilyRelationship</a></td>
-<td>A relationship between two Participants</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Subject/">Subject</a></td>
-<td>This entity is the subject about which data or references are recorded</td>
+<td><a href="../Demographics/">Demographics</a></td>
+<td>Basic participant demographics summary</td>
 <td>yes</td>
 </tr>
 <tr>
@@ -531,26 +553,57 @@ Alias: subject_id</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../Assay/">Assay</a></td>
-<td>A specific assay that was performed on given subject(s) or sample(s)</td>
-<td>yes</td>
-</tr>
-<tr>
 <td><a href="../Encounter/">Encounter</a></td>
 <td>An event at which data was collected about a participant, an intervention was...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../Demographics/">Demographics</a></td>
-<td>Basic participant demographics summary</td>
+<td><a href="../File/">File</a></td>
+<td>File</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../Assay/">Assay</a></td>
+<td>A specific assay that was performed on given subject(s) or sample(s)</td>
 <td>yes</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
-<ul>
-<li>Range: <a href="../Subject/">Subject</a></li>
-</ul>
+<h3 id="type-and-range">Type and Range</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Range</td>
+<td><a href="../Subject/">Subject</a></td>
+</tr>
+<tr>
+<td>Domain Of</td>
+<td><a href="../Subject/">Subject</a>, <a href="../Demographics/">Demographics</a>, <a href="../FamilyRelationship/">FamilyRelationship</a>, <a href="../FamilyMembership/">FamilyMembership</a>, <a href="../SubjectAssertion/">SubjectAssertion</a>, <a href="../Encounter/">Encounter</a>, <a href="../File/">File</a>, <a href="../Assay/">Assay</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="cardinality-and-requirements">Cardinality and Requirements</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -582,7 +635,6 @@ Alias: subject_id</p>
 <span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Study ID</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/carrollaboratory/kf-access-model</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">subject_id</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Subject</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Demographics</span>
@@ -596,12 +648,16 @@ Alias: subject_id</p>
 <span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 </code></pre></div>
 </details>
+</div>
 
 
 
 
 
 
+
+  
+  
 
 
 
