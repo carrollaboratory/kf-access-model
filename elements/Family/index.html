@@ -306,6 +306,11 @@
       Record &lt;|-- Family
         click Record href "../Record/"
 
+
+      Family &lt;|-- KFFamily
+        click KFFamily href "../KFFamily/"
+
+
       Family : access_policy_id
 
 
@@ -362,7 +367,10 @@
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../Record/">Record</a><ul>
-<li><strong>Family</strong></li>
+<li><strong>Family</strong><ul>
+<li><a href="../KFFamily/">KFFamily</a> [ <a href="../KFRecord/">KFRecord</a>]</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -438,6 +446,12 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="../KFParticipant/">KFParticipant</a></td>
+<td><a href="../family_id/">family_id</a></td>
+<td>range</td>
+<td><a href="./">Family</a></td>
+</tr>
 <tr>
 <td><a href="../FamilyMembership/">FamilyMembership</a></td>
 <td><a href="../family_id/">family_id</a></td>
@@ -519,6 +533,7 @@
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">family_id</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Family</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">KFParticipant</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Family</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FamilyMembership</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">grGlobalID</span>

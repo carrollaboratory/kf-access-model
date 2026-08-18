@@ -306,6 +306,11 @@
       Record &lt;|-- Investigator
         click Record href "../Record/"
 
+
+      Investigator &lt;|-- KFInvestigator
+        click KFInvestigator href "../KFInvestigator/"
+
+
       Investigator : access_policy_id
 
 
@@ -342,7 +347,10 @@
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../Record/">Record</a><ul>
-<li><strong>Investigator</strong></li>
+<li><strong>Investigator</strong><ul>
+<li><a href="../KFInvestigator/">KFInvestigator</a> [ <a href="../KFRecord/">KFRecord</a>]</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -491,6 +499,8 @@
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Investigator</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">KFStudy</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">KFSequencingCenter</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VirtualBiorepository</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Investigator</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EncounterDefinition</span>

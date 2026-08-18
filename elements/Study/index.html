@@ -306,6 +306,11 @@
       Record &lt;|-- Study
         click Record href "../Record/"
 
+
+      Study &lt;|-- KFStudy
+        click KFStudy href "../KFStudy/"
+
+
       Study : access_policy_id
 
 
@@ -407,7 +412,10 @@
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../Record/">Record</a><ul>
-<li><strong>Study</strong></li>
+<li><strong>Study</strong><ul>
+<li><a href="../KFStudy/">KFStudy</a> [ <a href="../KFRecord/">KFRecord</a>]</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -483,7 +491,7 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../publication/">publication</a></td>
+<td><a href="publication.md">publication</a></td>
 <td>* <br/> <a href="../Publication/">Publication</a></td>
 <td>Publications associated with this Record</td>
 <td>direct</td>
@@ -537,6 +545,30 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="../KFInvestigator/">KFInvestigator</a></td>
+<td><a href="../study_id/">study_id</a></td>
+<td>range</td>
+<td><a href="./">Study</a></td>
+</tr>
+<tr>
+<td><a href="../KFFamily/">KFFamily</a></td>
+<td><a href="../study_id/">study_id</a></td>
+<td>range</td>
+<td><a href="./">Study</a></td>
+</tr>
+<tr>
+<td><a href="../KFFamilyRelationship/">KFFamilyRelationship</a></td>
+<td><a href="../study_id/">study_id</a></td>
+<td>range</td>
+<td><a href="./">Study</a></td>
+</tr>
+<tr>
+<td><a href="../KFSample/">KFSample</a></td>
+<td><a href="../study_id/">study_id</a></td>
+<td>range</td>
+<td><a href="./">Study</a></td>
+</tr>
 <tr>
 <td><a href="../Record/">Record</a></td>
 <td><a href="../study_id/">study_id</a></td>

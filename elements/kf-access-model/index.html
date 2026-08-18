@@ -405,7 +405,18 @@
 
 
 <h1 id="kf-access-model">kf-access-model</h1>
-<p>Internal Access model for the Kids First Data Resource Center</p>
+<p>Internal Access model for the Kids First Data Resource Center.</p>
+<p>This schema profiles the common-access-model (cam) for data hosted in the
+Kids First Dataservice. Every Dataservice-sourced class descends from
+KFRecord (itself is_a cam:Record), which supplies the Dataservice's own
+kf_id identifier plus its per-record visibility/access-control fields.
+Where cam already models the concept (Investigator, Study, Family,
+FamilyRelationship, Sample), the corresponding KF class is_a KFRecord
+and also mixins the matching cam class, so it implements/reuses cam's
+fields directly. Where the Dataservice models a concept cam does not
+(Participant, Diagnosis, Phenotype, Outcome, Biospecimen, GenomicFile,
+ReadGroup, SequencingExperiment, SequencingCenter, and the various join
+entities), the KF class is_a KFRecord only.</p>
 <p>URI: <a href="https://w3id.org/carrollaboratory/kf-access-model">https://w3id.org/carrollaboratory/kf-access-model</a></p>
 
 

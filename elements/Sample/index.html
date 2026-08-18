@@ -306,6 +306,11 @@
       Record &lt;|-- Sample
         click Record href "../Record/"
 
+
+      Sample &lt;|-- KFSample
+        click KFSample href "../KFSample/"
+
+
       Sample : access_policy_id
 
 
@@ -388,7 +393,10 @@
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../Record/">Record</a><ul>
-<li><strong>Sample</strong></li>
+<li><strong>Sample</strong><ul>
+<li><a href="../KFSample/">KFSample</a> [ <a href="../KFRecord/">KFRecord</a>]</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

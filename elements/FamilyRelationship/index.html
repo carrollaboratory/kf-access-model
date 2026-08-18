@@ -297,6 +297,11 @@
       Record &lt;|-- FamilyRelationship
         click Record href "../Record/"
 
+
+      FamilyRelationship &lt;|-- KFFamilyRelationship
+        click KFFamilyRelationship href "../KFFamilyRelationship/"
+
+
       FamilyRelationship : access_policy_id
 
 
@@ -360,7 +365,10 @@
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../Record/">Record</a><ul>
-<li><strong>FamilyRelationship</strong></li>
+<li><strong>FamilyRelationship</strong><ul>
+<li><a href="../KFFamilyRelationship/">KFFamilyRelationship</a> [ <a href="../KFRecord/">KFRecord</a>]</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
