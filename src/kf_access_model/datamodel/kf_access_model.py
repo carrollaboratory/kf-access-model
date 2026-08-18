@@ -1,5 +1,5 @@
 # Auto generated from kf_access_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-08-17T12:36:29
+# Generation date: 2026-08-18T15:20:05
 # Schema: kf-access-model
 #
 # id: https://w3id.org/carrollaboratory/kf-access-model
@@ -59,7 +59,7 @@ from rdflib import (
 from linkml_runtime.linkml_model.types import Float, Integer, String, Uri, Uriorcurie
 from linkml_runtime.utils.metamodelcore import URI, URIorCURIE
 
-metamodel_version = "1.7.0"
+metamodel_version = "1.11.0"
 version = None
 
 # Namespaces
@@ -377,7 +377,7 @@ class AccessPolicy(YAMLRoot):
 
 
 @dataclass(repr=False)
-class Study(Record):
+class Study(YAMLRoot):
     """
     Study Metadata
     """
@@ -403,6 +403,8 @@ class Study(Record):
     acknowledgments: Optional[str] = None
     citation_statement: Optional[str] = None
     do_id: Optional[Union[str, DOIDoId]] = None
+    external_id: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
+    access_policy_id: Optional[Union[str, AccessPolicyAccessPolicyId]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.study_id):
@@ -469,11 +471,18 @@ class Study(Record):
         if self.do_id is not None and not isinstance(self.do_id, DOIDoId):
             self.do_id = DOIDoId(self.do_id)
 
+        if not isinstance(self.external_id, list):
+            self.external_id = [self.external_id] if self.external_id is not None else []
+        self.external_id = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.external_id]
+
+        if self.access_policy_id is not None and not isinstance(self.access_policy_id, AccessPolicyAccessPolicyId):
+            self.access_policy_id = AccessPolicyAccessPolicyId(self.access_policy_id)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class StudyMetadata(Record):
+class StudyMetadata(YAMLRoot):
     """
     Additional features about studies that may not apply to all studies
     """
@@ -494,6 +503,8 @@ class StudyMetadata(Record):
     actual_number_of_participants: int = None
     selection_criteria: Optional[str] = None
     vbr_id: Optional[Union[str, VirtualBiorepositoryVbrId]] = None
+    external_id: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
+    access_policy_id: Optional[Union[str, AccessPolicyAccessPolicyId]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.study_id):
@@ -547,11 +558,18 @@ class StudyMetadata(Record):
         if self.vbr_id is not None and not isinstance(self.vbr_id, VirtualBiorepositoryVbrId):
             self.vbr_id = VirtualBiorepositoryVbrId(self.vbr_id)
 
+        if not isinstance(self.external_id, list):
+            self.external_id = [self.external_id] if self.external_id is not None else []
+        self.external_id = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.external_id]
+
+        if self.access_policy_id is not None and not isinstance(self.access_policy_id, AccessPolicyAccessPolicyId):
+            self.access_policy_id = AccessPolicyAccessPolicyId(self.access_policy_id)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class VirtualBiorepository(Record):
+class VirtualBiorepository(YAMLRoot):
     """
     An organization that can provide access to specimen for further analysis.
     """
@@ -568,6 +586,9 @@ class VirtualBiorepository(Record):
     institution: Optional[str] = None
     website: Optional[Union[str, URI]] = None
     vbr_readme: Optional[str] = None
+    external_id: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
+    access_policy_id: Optional[Union[str, AccessPolicyAccessPolicyId]] = None
+    study_id: Optional[Union[str, StudyStudyId]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.vbr_id):
@@ -593,11 +614,21 @@ class VirtualBiorepository(Record):
         if self.vbr_readme is not None and not isinstance(self.vbr_readme, str):
             self.vbr_readme = str(self.vbr_readme)
 
+        if not isinstance(self.external_id, list):
+            self.external_id = [self.external_id] if self.external_id is not None else []
+        self.external_id = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.external_id]
+
+        if self.access_policy_id is not None and not isinstance(self.access_policy_id, AccessPolicyAccessPolicyId):
+            self.access_policy_id = AccessPolicyAccessPolicyId(self.access_policy_id)
+
+        if self.study_id is not None and not isinstance(self.study_id, StudyStudyId):
+            self.study_id = StudyStudyId(self.study_id)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class DOI(Record):
+class DOI(YAMLRoot):
     """
     A DOI is a permanent reference with metadata about a digital object.
     """
@@ -610,6 +641,9 @@ class DOI(Record):
 
     do_id: Union[str, DOIDoId] = None
     bibliographic_reference: Optional[str] = None
+    external_id: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
+    access_policy_id: Optional[Union[str, AccessPolicyAccessPolicyId]] = None
+    study_id: Optional[Union[str, StudyStudyId]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.do_id):
@@ -620,11 +654,21 @@ class DOI(Record):
         if self.bibliographic_reference is not None and not isinstance(self.bibliographic_reference, str):
             self.bibliographic_reference = str(self.bibliographic_reference)
 
+        if not isinstance(self.external_id, list):
+            self.external_id = [self.external_id] if self.external_id is not None else []
+        self.external_id = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.external_id]
+
+        if self.access_policy_id is not None and not isinstance(self.access_policy_id, AccessPolicyAccessPolicyId):
+            self.access_policy_id = AccessPolicyAccessPolicyId(self.access_policy_id)
+
+        if self.study_id is not None and not isinstance(self.study_id, StudyStudyId):
+            self.study_id = StudyStudyId(self.study_id)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class Investigator(Record):
+class Investigator(YAMLRoot):
     """
     An individual who made contributions to the collection, analysis, or sharing of data.
     """
@@ -639,6 +683,9 @@ class Investigator(Record):
     institution: Optional[str] = None
     investigator_title: Optional[str] = None
     email: Optional[str] = None
+    external_id: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
+    access_policy_id: Optional[Union[str, AccessPolicyAccessPolicyId]] = None
+    study_id: Optional[Union[str, StudyStudyId]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self.name is not None and not isinstance(self.name, str):
@@ -653,11 +700,21 @@ class Investigator(Record):
         if self.email is not None and not isinstance(self.email, str):
             self.email = str(self.email)
 
+        if not isinstance(self.external_id, list):
+            self.external_id = [self.external_id] if self.external_id is not None else []
+        self.external_id = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.external_id]
+
+        if self.access_policy_id is not None and not isinstance(self.access_policy_id, AccessPolicyAccessPolicyId):
+            self.access_policy_id = AccessPolicyAccessPolicyId(self.access_policy_id)
+
+        if self.study_id is not None and not isinstance(self.study_id, StudyStudyId):
+            self.study_id = StudyStudyId(self.study_id)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class Publication(Record):
+class Publication(YAMLRoot):
     """
     Information about a specific publication.
     """
@@ -670,6 +727,9 @@ class Publication(Record):
 
     bibliographic_reference: Optional[str] = None
     website: Optional[Union[str, URI]] = None
+    external_id: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
+    access_policy_id: Optional[Union[str, AccessPolicyAccessPolicyId]] = None
+    study_id: Optional[Union[str, StudyStudyId]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self.bibliographic_reference is not None and not isinstance(self.bibliographic_reference, str):
@@ -678,11 +738,21 @@ class Publication(Record):
         if self.website is not None and not isinstance(self.website, URI):
             self.website = URI(self.website)
 
+        if not isinstance(self.external_id, list):
+            self.external_id = [self.external_id] if self.external_id is not None else []
+        self.external_id = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.external_id]
+
+        if self.access_policy_id is not None and not isinstance(self.access_policy_id, AccessPolicyAccessPolicyId):
+            self.access_policy_id = AccessPolicyAccessPolicyId(self.access_policy_id)
+
+        if self.study_id is not None and not isinstance(self.study_id, StudyStudyId):
+            self.study_id = StudyStudyId(self.study_id)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class Subject(Record):
+class Subject(YAMLRoot):
     """
     This entity is the subject about which data or references are recorded. This includes the idea of a human
     participant in a study, a cell line, an animal model, or any other similar entity.
@@ -697,6 +767,9 @@ class Subject(Record):
     subject_id: Union[str, SubjectSubjectId] = None
     subject_type: Union[str, "EnumSubjectType"] = None
     organism_type: Optional[Union[str, URIorCURIE]] = None
+    external_id: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
+    access_policy_id: Optional[Union[str, AccessPolicyAccessPolicyId]] = None
+    study_id: Optional[Union[str, StudyStudyId]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.subject_id):
@@ -712,11 +785,21 @@ class Subject(Record):
         if self.organism_type is not None and not isinstance(self.organism_type, URIorCURIE):
             self.organism_type = URIorCURIE(self.organism_type)
 
+        if not isinstance(self.external_id, list):
+            self.external_id = [self.external_id] if self.external_id is not None else []
+        self.external_id = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.external_id]
+
+        if self.access_policy_id is not None and not isinstance(self.access_policy_id, AccessPolicyAccessPolicyId):
+            self.access_policy_id = AccessPolicyAccessPolicyId(self.access_policy_id)
+
+        if self.study_id is not None and not isinstance(self.study_id, StudyStudyId):
+            self.study_id = StudyStudyId(self.study_id)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class Demographics(Record):
+class Demographics(YAMLRoot):
     """
     Basic participant demographics summary
     """
@@ -734,6 +817,9 @@ class Demographics(Record):
     age_at_last_vital_status: Optional[int] = None
     vital_status: Optional[Union[str, "EnumVitalStatus"]] = None
     age_at_first_engagement: Optional[int] = None
+    external_id: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
+    access_policy_id: Optional[Union[str, AccessPolicyAccessPolicyId]] = None
+    study_id: Optional[Union[str, StudyStudyId]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.subject_id):
@@ -766,11 +852,21 @@ class Demographics(Record):
         if self.age_at_first_engagement is not None and not isinstance(self.age_at_first_engagement, int):
             self.age_at_first_engagement = int(self.age_at_first_engagement)
 
+        if not isinstance(self.external_id, list):
+            self.external_id = [self.external_id] if self.external_id is not None else []
+        self.external_id = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.external_id]
+
+        if self.access_policy_id is not None and not isinstance(self.access_policy_id, AccessPolicyAccessPolicyId):
+            self.access_policy_id = AccessPolicyAccessPolicyId(self.access_policy_id)
+
+        if self.study_id is not None and not isinstance(self.study_id, StudyStudyId):
+            self.study_id = StudyStudyId(self.study_id)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class Family(Record):
+class Family(YAMLRoot):
     """
     A group of individuals of some relation who are grouped together in a study.
     """
@@ -786,6 +882,9 @@ class Family(Record):
     family_description: Optional[str] = None
     consanguinity: Optional[Union[str, "EnumConsanguinityAssertion"]] = None
     family_study_focus: Optional[Union[str, URIorCURIE]] = None
+    external_id: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
+    access_policy_id: Optional[Union[str, AccessPolicyAccessPolicyId]] = None
+    study_id: Optional[Union[str, StudyStudyId]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.family_id):
@@ -805,11 +904,21 @@ class Family(Record):
         if self.family_study_focus is not None and not isinstance(self.family_study_focus, URIorCURIE):
             self.family_study_focus = URIorCURIE(self.family_study_focus)
 
+        if not isinstance(self.external_id, list):
+            self.external_id = [self.external_id] if self.external_id is not None else []
+        self.external_id = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.external_id]
+
+        if self.access_policy_id is not None and not isinstance(self.access_policy_id, AccessPolicyAccessPolicyId):
+            self.access_policy_id = AccessPolicyAccessPolicyId(self.access_policy_id)
+
+        if self.study_id is not None and not isinstance(self.study_id, StudyStudyId):
+            self.study_id = StudyStudyId(self.study_id)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class FamilyRelationship(Record):
+class FamilyRelationship(YAMLRoot):
     """
     A relationship between two Subjects. Directed as follows <family_member_id> <relationship> <subject_id> <Mother's
     id> <KIN:027 "isBiologicalMotherOf"> <subject_id>
@@ -825,6 +934,9 @@ class FamilyRelationship(Record):
     family_member_id: Union[str, SubjectSubjectId] = None
     relation: Union[str, "EnumFamilyRelation"] = None
     subject_id: Union[str, SubjectSubjectId] = None
+    external_id: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
+    access_policy_id: Optional[Union[str, AccessPolicyAccessPolicyId]] = None
+    study_id: Optional[Union[str, StudyStudyId]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.family_relationship_id):
@@ -842,11 +954,21 @@ class FamilyRelationship(Record):
         if not isinstance(self.subject_id, SubjectSubjectId):
             self.subject_id = SubjectSubjectId(self.subject_id)
 
+        if not isinstance(self.external_id, list):
+            self.external_id = [self.external_id] if self.external_id is not None else []
+        self.external_id = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.external_id]
+
+        if self.access_policy_id is not None and not isinstance(self.access_policy_id, AccessPolicyAccessPolicyId):
+            self.access_policy_id = AccessPolicyAccessPolicyId(self.access_policy_id)
+
+        if self.study_id is not None and not isinstance(self.study_id, StudyStudyId):
+            self.study_id = StudyStudyId(self.study_id)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class FamilyMembership(Record):
+class FamilyMembership(YAMLRoot):
     """
     Designates a Subject as a member of a family with a specified role.
     """
@@ -861,6 +983,9 @@ class FamilyMembership(Record):
     family_id: Union[str, FamilyFamilyId] = None
     subject_id: Union[str, SubjectSubjectId] = None
     family_role: Optional[Union[str, URIorCURIE]] = None
+    external_id: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
+    access_policy_id: Optional[Union[str, AccessPolicyAccessPolicyId]] = None
+    study_id: Optional[Union[str, StudyStudyId]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.family_membership_id):
@@ -881,11 +1006,21 @@ class FamilyMembership(Record):
         if self.family_role is not None and not isinstance(self.family_role, URIorCURIE):
             self.family_role = URIorCURIE(self.family_role)
 
+        if not isinstance(self.external_id, list):
+            self.external_id = [self.external_id] if self.external_id is not None else []
+        self.external_id = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.external_id]
+
+        if self.access_policy_id is not None and not isinstance(self.access_policy_id, AccessPolicyAccessPolicyId):
+            self.access_policy_id = AccessPolicyAccessPolicyId(self.access_policy_id)
+
+        if self.study_id is not None and not isinstance(self.study_id, StudyStudyId):
+            self.study_id = StudyStudyId(self.study_id)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class SubjectAssertion(Record):
+class SubjectAssertion(YAMLRoot):
     """
     Assertion about a particular Subject. May include Conditions, Measurements, etc.
     """
@@ -910,6 +1045,9 @@ class SubjectAssertion(Record):
     value_source: Optional[str] = None
     value_unit: Optional[Union[str, ConceptConceptCurie]] = None
     value_unit_source: Optional[str] = None
+    external_id: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
+    access_policy_id: Optional[Union[str, AccessPolicyAccessPolicyId]] = None
+    study_id: Optional[Union[str, StudyStudyId]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.assertion_id):
@@ -958,6 +1096,16 @@ class SubjectAssertion(Record):
         if self.value_unit_source is not None and not isinstance(self.value_unit_source, str):
             self.value_unit_source = str(self.value_unit_source)
 
+        if not isinstance(self.external_id, list):
+            self.external_id = [self.external_id] if self.external_id is not None else []
+        self.external_id = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.external_id]
+
+        if self.access_policy_id is not None and not isinstance(self.access_policy_id, AccessPolicyAccessPolicyId):
+            self.access_policy_id = AccessPolicyAccessPolicyId(self.access_policy_id)
+
+        if self.study_id is not None and not isinstance(self.study_id, StudyStudyId):
+            self.study_id = StudyStudyId(self.study_id)
+
         super().__post_init__(**kwargs)
 
 
@@ -989,7 +1137,7 @@ class Concept(YAMLRoot):
 
 
 @dataclass(repr=False)
-class Sample(Record):
+class Sample(YAMLRoot):
     """
     A functionally equivalent specimen taken from a participant or processed from such a sample.
     """
@@ -1009,6 +1157,9 @@ class Sample(Record):
     storage_method: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
     quantity_number: Optional[float] = None
     quantity_unit: Optional[Union[str, ConceptConceptCurie]] = None
+    external_id: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
+    access_policy_id: Optional[Union[str, AccessPolicyAccessPolicyId]] = None
+    study_id: Optional[Union[str, StudyStudyId]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.sample_id):
@@ -1044,11 +1195,21 @@ class Sample(Record):
         if self.quantity_unit is not None and not isinstance(self.quantity_unit, ConceptConceptCurie):
             self.quantity_unit = ConceptConceptCurie(self.quantity_unit)
 
+        if not isinstance(self.external_id, list):
+            self.external_id = [self.external_id] if self.external_id is not None else []
+        self.external_id = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.external_id]
+
+        if self.access_policy_id is not None and not isinstance(self.access_policy_id, AccessPolicyAccessPolicyId):
+            self.access_policy_id = AccessPolicyAccessPolicyId(self.access_policy_id)
+
+        if self.study_id is not None and not isinstance(self.study_id, StudyStudyId):
+            self.study_id = StudyStudyId(self.study_id)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class BiospecimenCollection(Record):
+class BiospecimenCollection(YAMLRoot):
     """
     A biospecimen collection event which yields one or more Samples.
     """
@@ -1066,6 +1227,9 @@ class BiospecimenCollection(Record):
     spatial_qualifier: Optional[Union[str, "EnumSpatialQualifiers"]] = None
     laterality: Optional[Union[str, "EnumLaterality"]] = None
     encounter_id: Optional[Union[str, EncounterEncounterId]] = None
+    external_id: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
+    access_policy_id: Optional[Union[str, AccessPolicyAccessPolicyId]] = None
+    study_id: Optional[Union[str, StudyStudyId]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.biospecimen_collection_id):
@@ -1079,11 +1243,21 @@ class BiospecimenCollection(Record):
         if self.encounter_id is not None and not isinstance(self.encounter_id, EncounterEncounterId):
             self.encounter_id = EncounterEncounterId(self.encounter_id)
 
+        if not isinstance(self.external_id, list):
+            self.external_id = [self.external_id] if self.external_id is not None else []
+        self.external_id = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.external_id]
+
+        if self.access_policy_id is not None and not isinstance(self.access_policy_id, AccessPolicyAccessPolicyId):
+            self.access_policy_id = AccessPolicyAccessPolicyId(self.access_policy_id)
+
+        if self.study_id is not None and not isinstance(self.study_id, StudyStudyId):
+            self.study_id = StudyStudyId(self.study_id)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class Aliquot(Record):
+class Aliquot(YAMLRoot):
     """
     A specific tube or amount of a biospecimen associated with a Sample.
     """
@@ -1101,6 +1275,9 @@ class Aliquot(Record):
     quantity_unit: Optional[Union[str, ConceptConceptCurie]] = None
     concentration_number: Optional[float] = None
     concentration_unit: Optional[Union[str, ConceptConceptCurie]] = None
+    external_id: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
+    access_policy_id: Optional[Union[str, AccessPolicyAccessPolicyId]] = None
+    study_id: Optional[Union[str, StudyStudyId]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.aliquot_id):
@@ -1126,11 +1303,21 @@ class Aliquot(Record):
         if self.concentration_unit is not None and not isinstance(self.concentration_unit, ConceptConceptCurie):
             self.concentration_unit = ConceptConceptCurie(self.concentration_unit)
 
+        if not isinstance(self.external_id, list):
+            self.external_id = [self.external_id] if self.external_id is not None else []
+        self.external_id = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.external_id]
+
+        if self.access_policy_id is not None and not isinstance(self.access_policy_id, AccessPolicyAccessPolicyId):
+            self.access_policy_id = AccessPolicyAccessPolicyId(self.access_policy_id)
+
+        if self.study_id is not None and not isinstance(self.study_id, StudyStudyId):
+            self.study_id = StudyStudyId(self.study_id)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class Encounter(Record):
+class Encounter(YAMLRoot):
     """
     An event at which data was collected about a participant, an intervention was made, or information about a
     participant was recorded.
@@ -1146,6 +1333,9 @@ class Encounter(Record):
     subject_id: Optional[Union[str, SubjectSubjectId]] = None
     encounter_definition_id: Optional[Union[str, EncounterDefinitionEncounterDefinitionId]] = None
     age_at_event: Optional[int] = None
+    external_id: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
+    access_policy_id: Optional[Union[str, AccessPolicyAccessPolicyId]] = None
+    study_id: Optional[Union[str, StudyStudyId]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.encounter_id):
@@ -1162,11 +1352,21 @@ class Encounter(Record):
         if self.age_at_event is not None and not isinstance(self.age_at_event, int):
             self.age_at_event = int(self.age_at_event)
 
+        if not isinstance(self.external_id, list):
+            self.external_id = [self.external_id] if self.external_id is not None else []
+        self.external_id = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.external_id]
+
+        if self.access_policy_id is not None and not isinstance(self.access_policy_id, AccessPolicyAccessPolicyId):
+            self.access_policy_id = AccessPolicyAccessPolicyId(self.access_policy_id)
+
+        if self.study_id is not None and not isinstance(self.study_id, StudyStudyId):
+            self.study_id = StudyStudyId(self.study_id)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class EncounterDefinition(Record):
+class EncounterDefinition(YAMLRoot):
     """
     A definition of an encounter type in this study, ie, an event at which data was collected about a participant, an
     intervention was made, or information about a participant was recorded. This may be something planned by a study
@@ -1183,6 +1383,9 @@ class EncounterDefinition(Record):
     name: Optional[str] = None
     description: Optional[str] = None
     activity_definition_id: Optional[Union[Union[str, ActivityDefinitionActivityDefinitionId], list[Union[str, ActivityDefinitionActivityDefinitionId]]]] = empty_list()
+    external_id: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
+    access_policy_id: Optional[Union[str, AccessPolicyAccessPolicyId]] = None
+    study_id: Optional[Union[str, StudyStudyId]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.encounter_definition_id):
@@ -1200,11 +1403,21 @@ class EncounterDefinition(Record):
             self.activity_definition_id = [self.activity_definition_id] if self.activity_definition_id is not None else []
         self.activity_definition_id = [v if isinstance(v, ActivityDefinitionActivityDefinitionId) else ActivityDefinitionActivityDefinitionId(v) for v in self.activity_definition_id]
 
+        if not isinstance(self.external_id, list):
+            self.external_id = [self.external_id] if self.external_id is not None else []
+        self.external_id = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.external_id]
+
+        if self.access_policy_id is not None and not isinstance(self.access_policy_id, AccessPolicyAccessPolicyId):
+            self.access_policy_id = AccessPolicyAccessPolicyId(self.access_policy_id)
+
+        if self.study_id is not None and not isinstance(self.study_id, StudyStudyId):
+            self.study_id = StudyStudyId(self.study_id)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class ActivityDefinition(Record):
+class ActivityDefinition(YAMLRoot):
     """
     A definition of an activity in this study, eg, a biospecimen collection, assay, intervention, survey, or
     assessment.
@@ -1219,6 +1432,9 @@ class ActivityDefinition(Record):
     activity_definition_id: Union[str, ActivityDefinitionActivityDefinitionId] = None
     name: Optional[str] = None
     description: Optional[str] = None
+    external_id: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
+    access_policy_id: Optional[Union[str, AccessPolicyAccessPolicyId]] = None
+    study_id: Optional[Union[str, StudyStudyId]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.activity_definition_id):
@@ -1232,11 +1448,21 @@ class ActivityDefinition(Record):
         if self.description is not None and not isinstance(self.description, str):
             self.description = str(self.description)
 
+        if not isinstance(self.external_id, list):
+            self.external_id = [self.external_id] if self.external_id is not None else []
+        self.external_id = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.external_id]
+
+        if self.access_policy_id is not None and not isinstance(self.access_policy_id, AccessPolicyAccessPolicyId):
+            self.access_policy_id = AccessPolicyAccessPolicyId(self.access_policy_id)
+
+        if self.study_id is not None and not isinstance(self.study_id, StudyStudyId):
+            self.study_id = StudyStudyId(self.study_id)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class File(Record):
+class File(YAMLRoot):
     """
     File
     """
@@ -1262,6 +1488,9 @@ class File(Record):
     storage_class: Optional[str] = None
     hash: Optional[Union[Union[dict, "FileHash"], list[Union[dict, "FileHash"]]]] = empty_list()
     availability: Optional[Union[str, "EnumFileAvailability"]] = None
+    external_id: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
+    access_policy_id: Optional[Union[str, AccessPolicyAccessPolicyId]] = None
+    study_id: Optional[Union[str, StudyStudyId]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.file_id):
@@ -1310,6 +1539,16 @@ class File(Record):
         if self.availability is not None and not isinstance(self.availability, EnumFileAvailability):
             self.availability = EnumFileAvailability(self.availability)
 
+        if not isinstance(self.external_id, list):
+            self.external_id = [self.external_id] if self.external_id is not None else []
+        self.external_id = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.external_id]
+
+        if self.access_policy_id is not None and not isinstance(self.access_policy_id, AccessPolicyAccessPolicyId):
+            self.access_policy_id = AccessPolicyAccessPolicyId(self.access_policy_id)
+
+        if self.study_id is not None and not isinstance(self.study_id, StudyStudyId):
+            self.study_id = StudyStudyId(self.study_id)
+
         super().__post_init__(**kwargs)
 
 
@@ -1339,7 +1578,7 @@ class FileHash(YAMLRoot):
 
 
 @dataclass(repr=False)
-class Assay(Record):
+class Assay(YAMLRoot):
     """
     A specific assay that was performed on given subject(s) or sample(s).
     """
@@ -1357,6 +1596,9 @@ class Assay(Record):
     file_id: Optional[Union[Union[str, FileFileId], list[Union[str, FileFileId]]]] = empty_list()
     assay_source: Optional[str] = None
     activity_definition_id: Optional[Union[str, ActivityDefinitionActivityDefinitionId]] = None
+    external_id: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
+    access_policy_id: Optional[Union[str, AccessPolicyAccessPolicyId]] = None
+    study_id: Optional[Union[str, StudyStudyId]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.assay_id):
@@ -1381,6 +1623,16 @@ class Assay(Record):
 
         if self.activity_definition_id is not None and not isinstance(self.activity_definition_id, ActivityDefinitionActivityDefinitionId):
             self.activity_definition_id = ActivityDefinitionActivityDefinitionId(self.activity_definition_id)
+
+        if not isinstance(self.external_id, list):
+            self.external_id = [self.external_id] if self.external_id is not None else []
+        self.external_id = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.external_id]
+
+        if self.access_policy_id is not None and not isinstance(self.access_policy_id, AccessPolicyAccessPolicyId):
+            self.access_policy_id = AccessPolicyAccessPolicyId(self.access_policy_id)
+
+        if self.study_id is not None and not isinstance(self.study_id, StudyStudyId):
+            self.study_id = StudyStudyId(self.study_id)
 
         super().__post_init__(**kwargs)
 
