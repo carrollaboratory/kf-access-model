@@ -249,11 +249,11 @@
          <lastmod>2026-08-19</lastmod>
     </url>
     <url>
-         <loc>https://carrollaboratory.github.io/kf-access-model/elements/EnumStudyCategory/</loc>
+         <loc>https://carrollaboratory.github.io/kf-access-model/elements/EnumStudyDesign/</loc>
          <lastmod>2026-08-19</lastmod>
     </url>
     <url>
-         <loc>https://carrollaboratory.github.io/kf-access-model/elements/EnumStudyDesign/</loc>
+         <loc>https://carrollaboratory.github.io/kf-access-model/elements/EnumStudyDomain/</loc>
          <lastmod>2026-08-19</lastmod>
     </url>
     <url>
@@ -513,10 +513,6 @@
          <lastmod>2026-08-19</lastmod>
     </url>
     <url>
-         <loc>https://carrollaboratory.github.io/kf-access-model/elements/category/</loc>
-         <lastmod>2026-08-19</lastmod>
-    </url>
-    <url>
          <loc>https://carrollaboratory.github.io/kf-access-model/elements/cell_entity/</loc>
          <lastmod>2026-08-19</lastmod>
     </url>
@@ -590,6 +586,10 @@
     </url>
     <url>
          <loc>https://carrollaboratory.github.io/kf-access-model/elements/display/</loc>
+         <lastmod>2026-08-19</lastmod>
+    </url>
+    <url>
+         <loc>https://carrollaboratory.github.io/kf-access-model/elements/domain/</loc>
          <lastmod>2026-08-19</lastmod>
     </url>
     <url>
