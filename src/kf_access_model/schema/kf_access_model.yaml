@@ -5,23 +5,13 @@ title: kf-access-model
 description: |-
   Internal Access model for the Kids First Data Resource Center.
 
-  This schema profiles the common-access-model (cam) for data hosted in the
-  Kids First Dataservice. Every Dataservice-sourced class descends from
-  KFRecord (itself is_a cam:Record), which supplies the Dataservice's own
-  kf_id identifier plus its per-record visibility/access-control fields.
-  Where cam already models the concept (Investigator, Study, Family,
-  FamilyRelationship, Sample), the corresponding KF class is_a KFRecord
-  and also mixins the matching cam class, so it implements/reuses cam's
-  fields directly. Where the Dataservice models a concept cam does not
-  (Participant, Diagnosis, Phenotype, Outcome, Biospecimen, GenomicFile,
-  ReadGroup, SequencingExperiment, SequencingCenter, and the various join
-  entities), the KF class is_a KFRecord only.
+  This schema creates a base access model for the Kids First program, attempting to combine both the common-access-model and the KF Dataservice.
 license: MIT
 see_also:
   - https://carrollaboratory.github.io/kf-access-model
 
 prefixes:
-  kf_access_model: https://w3id.org/carrollaboratory/kf-access-model/
+  kidsfirst: https://w3id.org/carrollaboratory/kf-access-model/
   linkml: https://w3id.org/linkml/
   biolink: https://w3id.org/biolink/vocab/
   schema: http://schema.org/
@@ -46,7 +36,7 @@ prefixes:
   loinc: https://loinc.org/
   KIN: http://purl.org/ga4gh/kin.owl#
 
-default_prefix: kf_access_model
+default_prefix: kidsfirst
 default_range: string
 
 imports:
@@ -167,12 +157,12 @@ classes:
       - acknowledgments
       - citation_statement
       # - do_id
+
       # KF fields
-      - data_access_authority
+      # - data_access_authority -- always mapped to dbGaP in KF
       - version
-      - file_version_descriptor
       - attribution
-      - category
+      - domain
       - status
     slot_usage:
       parent_study:
@@ -211,6 +201,8 @@ classes:
       - age_at_last_vital_status 
       - vital_status
       - age_at_first_engagement
+
+      # KF Fields
       - family_id
       - is_proband
       - affected_status
@@ -275,6 +267,7 @@ classes:
          - range: deGlobalID
          - range: msGlobalID
 
+# Added new class for KF Assertion to allow for values relateed to tumor/cancer data
   KFSubjectAssertion:
     title: Subject Assertion
     description: A Subject Assertion recorded for a Participant.
@@ -346,6 +339,7 @@ classes:
       - quantity_unit 
       - concentration_number
       - concentration_unit
+
       # KF Fields
       - has_matched_normal_sample
       - cell_entity
@@ -450,6 +444,7 @@ classes:
       assay_type:
         required: true
 
+# Created a new class for SequencingAssay to allow for sequencing-specific metadata to be captured
   SequencingAssay:
     title: Sequencing Experiment Assay
     description: A sequencing experiment performed on a Biospecimen.
@@ -636,10 +631,10 @@ slots:
     title: Attribution
     description: Text describing how to attribute use of this study's data.
     range: string
-  category:
-    title: Study Category
+  domain:
+    title: Study Domain
     description: The broad category of research this study addresses.
-    range: EnumStudyCategory
+    range: EnumStudyDomain
   status:
     title: Study Status
     description: The processing/release status of this study.
@@ -1378,8 +1373,8 @@ enums:
       dbgap:
         title: dbGaP
 
-  EnumStudyCategory:
-    title: Study Category
+  EnumStudyDomain:
+    title: Study Domain
     description: >-
       Broad categories of research a study addresses, from
       kf_lib_data_ingest.common.constants.STUDY.
