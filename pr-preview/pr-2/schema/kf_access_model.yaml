@@ -1,0 +1,4767 @@
+name: kf-access-model
+description: 'Internal Access model for the Kids First Data Resource Center.
+
+
+  This schema profiles the common-access-model (cam) for data hosted in the
+
+  Kids First Dataservice. Every Dataservice-sourced class descends from
+
+  KFRecord (itself is_a cam:Record), which supplies the Dataservice''s own
+
+  kf_id identifier plus its per-record visibility/access-control fields.
+
+  Where cam already models the concept (Investigator, Study, Family,
+
+  FamilyRelationship, Sample), the corresponding KF class is_a KFRecord
+
+  and also mixins the matching cam class, so it implements/reuses cam''s
+
+  fields directly. Where the Dataservice models a concept cam does not
+
+  (Participant, Diagnosis, Phenotype, Outcome, Biospecimen, GenomicFile,
+
+  ReadGroup, SequencingExperiment, SequencingCenter, and the various join
+
+  entities), the KF class is_a KFRecord only.'
+title: kf-access-model
+see_also:
+- https://carrollaboratory.github.io/kf-access-model
+id: https://w3id.org/carrollaboratory/kf-access-model
+imports:
+- linkml:types
+license: MIT
+prefixes:
+  kf_access_model:
+    prefix_prefix: kf_access_model
+    prefix_reference: https://w3id.org/carrollaboratory/kf-access-model/
+  linkml:
+    prefix_prefix: linkml
+    prefix_reference: https://w3id.org/linkml/
+  biolink:
+    prefix_prefix: biolink
+    prefix_reference: https://w3id.org/biolink/vocab/
+  schema:
+    prefix_prefix: schema
+    prefix_reference: http://schema.org/
+  PATO:
+    prefix_prefix: PATO
+    prefix_reference: http://purl.obolibrary.org/obo/PATO_
+  example:
+    prefix_prefix: example
+    prefix_reference: http://www.example.org/rdf#
+  cam:
+    prefix_prefix: cam
+    prefix_reference: https://includedcc.org/common-access-model/
+  cdc_race_eth:
+    prefix_prefix: cdc_race_eth
+    prefix_reference: urn:oid:2.16.840.1.113883.6.238/
+  hl7_null:
+    prefix_prefix: hl7_null
+    prefix_reference: http://terminology.hl7.org/CodeSystem/v3-NullFlavor/
+  ig_dob_method:
+    prefix_prefix: ig_dob_method
+    prefix_reference: https://nih-ncpi.github.io/ncpi-fhir-ig-2/CodeSystem/research-data-date-of-birth-method/
+  igcondtype:
+    prefix_prefix: igcondtype
+    prefix_reference: https://nih-ncpi.github.io/ncpi-fhir-ig-2/CodeSystem/condition-type/
+  ig2dac:
+    prefix_prefix: ig2dac
+    prefix_reference: https://nih-ncpi.github.io/ncpi-fhir-ig-2/CodeSystem/research-data-access-code/
+  ig2dat:
+    prefix_prefix: ig2dat
+    prefix_reference: https://nih-ncpi.github.io/ncpi-fhir-ig-2/CodeSystem/research-data-access-type/
+  ig2_biospecimen_availability:
+    prefix_prefix: ig2_biospecimen_availability
+    prefix_reference: https://nih-ncpi.github.io/ncpi-fhir-ig-2/CodeSystem/biospecimen-availability/
+  snomed_ct:
+    prefix_prefix: snomed_ct
+    prefix_reference: http://snomed.info/id/
+  MONDO:
+    prefix_prefix: MONDO
+    prefix_reference: http://purl.obolibrary.org/obo/MONDO_
+  HP:
+    prefix_prefix: HP
+    prefix_reference: http://purl.obolibrary.org/obo/HP_
+  mesh:
+    prefix_prefix: mesh
+    prefix_reference: http://id.nlm.nih.gov/mesh/
+  NCIT:
+    prefix_prefix: NCIT
+    prefix_reference: http://purl.obolibrary.org/obo/NCIT_
+  NCBITaxon:
+    prefix_prefix: NCBITaxon
+    prefix_reference: http://purl.obolibrary.org/obo/NCBITaxon_
+  DUO:
+    prefix_prefix: DUO
+    prefix_reference: http://purl.obolibrary.org/obo/DUO_
+  loinc:
+    prefix_prefix: loinc
+    prefix_reference: https://loinc.org/
+  KIN:
+    prefix_prefix: KIN
+    prefix_reference: http://purl.org/ga4gh/kin.owl#
+default_prefix: kf_access_model
+default_range: string
+types:
+  kfID:
+    name: kfID
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/KfID
+    description: KF dataservice identifier for a record, eg, PT_00000000, BS_00000000,
+      etc.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  ptGlobalID:
+    name: ptGlobalID
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/PtGlobalID
+    description: Dewrangle pt global ID. For FHIR Patient Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  obGlobalID:
+    name: obGlobalID
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/ObGlobalID
+    description: Dewrangle ob global ID. For FHIR Observation Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  lsGlobalID:
+    name: lsGlobalID
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/LsGlobalID
+    description: Dewrangle ls global ID. For FHIR List Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  orGlobalID:
+    name: orGlobalID
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/OrGlobalID
+    description: Dewrangle or global ID. For FHIR Organization Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  grGlobalID:
+    name: grGlobalID
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/GrGlobalID
+    description: Dewrangle gr global ID. For FHIR Group Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  sdGlobalID:
+    name: sdGlobalID
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/SdGlobalID
+    description: Dewrangle sd global ID. For FHIR ResearchStudy Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  deGlobalID:
+    name: deGlobalID
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/DeGlobalID
+    description: Dewrangle de global ID. For FHIR Device Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  bsGlobalID:
+    name: bsGlobalID
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/BsGlobalID
+    description: Dewrangle bs global ID. For FHIR Specimen Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  adGlobalID:
+    name: adGlobalID
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/AdGlobalID
+    description: Dewrangle ad global ID. For FHIR ActivityDefinition Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  drGlobalID:
+    name: drGlobalID
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/DrGlobalID
+    description: Dewrangle dr global ID. For FHIR DocumentReference Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  enGlobalID:
+    name: enGlobalID
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnGlobalID
+    description: Dewrangle en global ID. For FHIR Encounter Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  coGlobalID:
+    name: coGlobalID
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/CoGlobalID
+    description: Dewrangle co global ID. For FHIR Consent Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  diGlobalID:
+    name: diGlobalID
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/DiGlobalID
+    description: Dewrangle di global ID. For FHIR Diagnostic Report Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  fmGlobalID:
+    name: fmGlobalID
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/FmGlobalID
+    description: Dewrangle __ global ID. For FHIR FamilyMemberHistory Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  pdGlobalID:
+    name: pdGlobalID
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/PdGlobalID
+    description: Dewrangle __ global ID. For FHIR PlanDefinition Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  msGlobalID:
+    name: msGlobalID
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/MsGlobalID
+    description: Dewrangle __ global ID. For FHIR MedicationStatement Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  string:
+    name: string
+    definition_uri: https://w3id.org/linkml/String
+    description: A character string
+    notes:
+    - In RDF serializations, a slot with range of string is treated as a literal or
+      type xsd:string. If you are authoring schemas in LinkML YAML, the type is referenced
+      with the lower case "string".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Text
+    base: str
+    uri: xsd:string
+  integer:
+    name: integer
+    definition_uri: https://w3id.org/linkml/Integer
+    description: An integer
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "integer".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Integer
+    base: int
+    uri: xsd:integer
+  boolean:
+    name: boolean
+    definition_uri: https://w3id.org/linkml/Boolean
+    description: A binary (true or false) value
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "boolean".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Boolean
+    base: Bool
+    uri: xsd:boolean
+    repr: bool
+  float:
+    name: float
+    definition_uri: https://w3id.org/linkml/Float
+    description: A real number that conforms to the xsd:float specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "float".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Float
+    base: float
+    uri: xsd:float
+  double:
+    name: double
+    definition_uri: https://w3id.org/linkml/Double
+    description: A real number that conforms to the xsd:double specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "double".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    close_mappings:
+    - schema:Float
+    base: float
+    uri: xsd:double
+  decimal:
+    name: decimal
+    definition_uri: https://w3id.org/linkml/Decimal
+    description: A real number with arbitrary precision that conforms to the xsd:decimal
+      specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "decimal".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    broad_mappings:
+    - schema:Number
+    base: Decimal
+    uri: xsd:decimal
+  time:
+    name: time
+    definition_uri: https://w3id.org/linkml/Time
+    description: A time object represents a (local) time of day, independent of any
+      particular day
+    notes:
+    - URI is dateTime because OWL reasoners do not work with straight date or time
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "time".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Time
+    base: XSDTime
+    uri: xsd:time
+    repr: str
+  date:
+    name: date
+    definition_uri: https://w3id.org/linkml/Date
+    description: a date (year, month and day) in an idealized calendar
+    notes:
+    - URI is dateTime because OWL reasoners don't work with straight date or time
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "date".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Date
+    base: XSDDate
+    uri: xsd:date
+    repr: str
+  datetime:
+    name: datetime
+    definition_uri: https://w3id.org/linkml/Datetime
+    description: The combination of a date and time
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "datetime".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:DateTime
+    base: XSDDateTime
+    uri: xsd:dateTime
+    repr: str
+  date_or_datetime:
+    name: date_or_datetime
+    definition_uri: https://w3id.org/linkml/DateOrDatetime
+    description: Either a date or a datetime
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "date_or_datetime".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: linkml:DateOrDatetime
+    repr: str
+  uriorcurie:
+    name: uriorcurie
+    definition_uri: https://w3id.org/linkml/Uriorcurie
+    description: a URI or a CURIE
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "uriorcurie".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: URIorCURIE
+    uri: xsd:anyURI
+    repr: str
+  curie:
+    name: curie
+    definition_uri: https://w3id.org/linkml/Curie
+    conforms_to: https://www.w3.org/TR/curie/
+    description: a compact URI
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "curie".
+    comments:
+    - in RDF serializations this MUST be expanded to a URI
+    - in non-RDF serializations MAY be serialized as the compact representation
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: Curie
+    uri: xsd:string
+    repr: str
+  uri:
+    name: uri
+    definition_uri: https://w3id.org/linkml/Uri
+    conforms_to: https://www.ietf.org/rfc/rfc3987.txt
+    description: a complete URI
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "uri".
+    comments:
+    - in RDF serializations a slot with range of uri is treated as a literal or type
+      xsd:anyURI unless it is an identifier or a reference to an identifier, in which
+      case it is translated directly to a node
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    close_mappings:
+    - schema:URL
+    base: URI
+    uri: xsd:anyURI
+    repr: str
+  ncname:
+    name: ncname
+    definition_uri: https://w3id.org/linkml/Ncname
+    description: Prefix part of CURIE
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "ncname".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: NCName
+    uri: xsd:string
+    repr: str
+  objectidentifier:
+    name: objectidentifier
+    definition_uri: https://w3id.org/linkml/Objectidentifier
+    description: A URI or CURIE that represents an object in the model.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "objectidentifier".
+    comments:
+    - Used for inheritance and type checking
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: ElementIdentifier
+    uri: shex:iri
+    repr: str
+  nodeidentifier:
+    name: nodeidentifier
+    definition_uri: https://w3id.org/linkml/Nodeidentifier
+    description: A URI, CURIE or BNODE that represents a node in a model.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "nodeidentifier".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: NodeIdentifier
+    uri: shex:nonLiteral
+    repr: str
+  jsonpointer:
+    name: jsonpointer
+    definition_uri: https://w3id.org/linkml/Jsonpointer
+    conforms_to: https://datatracker.ietf.org/doc/html/rfc6901
+    description: A string encoding a JSON Pointer. The value of the string MUST conform
+      to JSON Point syntax and SHOULD dereference to a valid object within the current
+      instance document when encoded in tree form.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "jsonpointer".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+  jsonpath:
+    name: jsonpath
+    definition_uri: https://w3id.org/linkml/Jsonpath
+    conforms_to: https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html
+    description: A string encoding a JSON Path. The value of the string MUST conform
+      to JSON Point syntax and SHOULD dereference to zero or more valid objects within
+      the current instance document when encoded in tree form.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "jsonpath".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+  sparqlpath:
+    name: sparqlpath
+    definition_uri: https://w3id.org/linkml/Sparqlpath
+    conforms_to: https://www.w3.org/TR/sparql11-query/#propertypaths
+    description: A string encoding a SPARQL Property Path. The value of the string
+      MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects
+      within the current instance document when encoded as RDF.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "sparqlpath".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+enums:
+  EnumProgram:
+    name: EnumProgram
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumProgram
+    description: Funding programs relevant to inform operations.
+    title: Funding Programs
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      include:
+        text: include
+        title: INCLUDE
+      kf:
+        text: kf
+        title: KF
+      other:
+        text: other
+        title: Other
+  EnumResearchDomain:
+    name: EnumResearchDomain
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumResearchDomain
+    description: Domains of Research used to find studies.
+    title: Research Domain
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      behavior_and_behavior_mechanisms:
+        text: behavior_and_behavior_mechanisms
+        meaning: mesh:D001520
+        title: Behavior and Behavior Mechanisms
+      congenital_heart_defects:
+        text: congenital_heart_defects
+        meaning: mesh:D006330
+        title: Congenital Heart Defects
+      immune_system_diseases:
+        text: immune_system_diseases
+        meaning: mesh:D007154
+        title: Immune System Diseases
+      hematologic_diseases:
+        text: hematologic_diseases
+        meaning: mesh:D006402
+        title: Hematologic Diseases
+      neurodevelopment:
+        text: neurodevelopment
+        meaning: mesh:D065886
+        title: Neurodevelopment
+      sleep_wake_disorders:
+        text: sleep_wake_disorders
+        meaning: mesh:D012893
+        title: Sleep Wake Disorders
+      all_co_occurring_conditions:
+        text: all_co_occurring_conditions
+        meaning: mesh:D013568
+        title: All Co-occurring Conditions
+      physical_fitness:
+        text: physical_fitness
+        meaning: mesh:D010809
+        title: Physical Fitness
+      other:
+        text: other
+        title: Other
+      neoplasms:
+        text: neoplasms
+        meaning: mesh:D009369
+        title: Neoplasms
+      congenital_abnormalities:
+        text: congenital_abnormalities
+        meaning: mesh:D009358
+        title: Congenital, Hereditary, and Neonatal Diseases and Abnormalities
+  EnumStudyDesign:
+    name: EnumStudyDesign
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumStudyDesign
+    description: Approaches for collecting data, investigating interventions, and/or
+      analyzing data.
+    title: Study Design
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      case_control:
+        text: case_control
+        title: Case-Control
+      case_set:
+        text: case_set
+        title: Case Set
+      control_set:
+        text: control_set
+        title: Control Set
+      clinical_trial:
+        text: clinical_trial
+        title: Clinical Trial
+      cross_sectional:
+        text: cross_sectional
+        title: Cross-Sectional
+      family_twins_trios:
+        text: family_twins_trios
+        title: Family/Twins/Trios
+      interventional:
+        text: interventional
+        title: Interventional
+      longitudinal:
+        text: longitudinal
+        title: Longitudinal
+      trial_readiness_study:
+        text: trial_readiness_study
+        title: Trial Readiness Study
+      tumor_vs_matched_normal:
+        text: tumor_vs_matched_normal
+        title: Tumor vs Matched Normal
+  EnumVisibilityReason:
+    name: EnumVisibilityReason
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumVisibilityReason
+    description: Reasons a Kids First Dataservice record is or is not visible/ released,
+      from kf_lib_data_ingest.common.constants.COMMON.VISIBILITY_REASON.
+    title: Visibility Reason
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      ready:
+        text: ready
+        title: Ready For Release
+      pre_release:
+        text: pre_release
+        title: Pre-Release
+      sample_issue:
+        text: sample_issue
+        title: Sample Issue
+      consent_hold:
+        text: consent_hold
+        title: Consent Hold
+      sequencing_quality:
+        text: sequencing_quality
+        title: Sequencing Quality Issue
+  EnumDataAccessAuthority:
+    name: EnumDataAccessAuthority
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumDataAccessAuthority
+    description: Authorities that can govern access to a study's data, from kf_lib_data_ingest.common.constants.AUTHORITY.
+    title: Data Access Authority
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      dbgap:
+        text: dbgap
+        title: dbGaP
+  EnumStudyCategory:
+    name: EnumStudyCategory
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumStudyCategory
+    description: Broad categories of research a study addresses, from kf_lib_data_ingest.common.constants.STUDY.
+    title: Study Category
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      cancer:
+        text: cancer
+        title: Cancer
+      structural_defect:
+        text: structural_defect
+        title: Structural Birth Defect
+      structural_defect_and_cancer:
+        text: structural_defect_and_cancer
+        title: Structural Birth Defect and Cancer
+  EnumStudyStatus:
+    name: EnumStudyStatus
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumStudyStatus
+    description: Processing/release status of a study, from kf_lib_data_ingest.common.constants.STUDY.STATUS.
+    title: Study Status
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      canceled:
+        text: canceled
+        title: Canceled
+      failed:
+        text: failed
+        title: Failed
+      pending:
+        text: pending
+        title: Pending
+      published:
+        text: published
+        title: Published
+      publishing:
+        text: publishing
+        title: Publishing
+      running:
+        text: running
+        title: Running
+      staged:
+        text: staged
+        title: Staged
+      waiting:
+        text: waiting
+        title: Waiting
+  EnumSubjectType:
+    name: EnumSubjectType
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumSubjectType
+    description: Types of Subject entities
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      participant:
+        text: participant
+        description: Study participant with consent, assent, or waiver of consent.
+      non_participant:
+        text: non_participant
+        description: An individual associated with a study who was not explictly consented,
+          eg, the subject of a reported family history.
+      cell_line:
+        text: cell_line
+        description: Cell Line
+      animal_model:
+        text: animal_model
+        description: Animal model
+      group:
+        text: group
+        description: A group of individuals or entities.
+      other:
+        text: other
+        description: A different entity type- ideally this will be resolved!
+  EnumSex:
+    name: EnumSex
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumSex
+    description: Subject Sex
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      female:
+        text: female
+        meaning: NCIT:C16576
+        title: Female
+      male:
+        text: male
+        meaning: NCIT:C20197
+        title: Male
+      other:
+        text: other
+        meaning: NCIT:C17649
+        title: Other
+      unknown:
+        text: unknown
+        meaning: NCIT:C17998
+        title: Unknown
+  EnumRace:
+    name: EnumRace
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumRace
+    description: Participant Race
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      american_indian_or_alaska_native:
+        text: american_indian_or_alaska_native
+        meaning: NCIT:C41259
+        title: American Indian or Alaska Native
+      asian:
+        text: asian
+        meaning: NCIT:C41260
+        title: Asian
+      black_or_african_american:
+        text: black_or_african_american
+        meaning: NCIT:C16352
+        title: Black or African American
+      more_than_one_race:
+        text: more_than_one_race
+        meaning: NCIT:C67109
+        title: More than one race
+      native_hawaiian_or_other_pacific_islander:
+        text: native_hawaiian_or_other_pacific_islander
+        meaning: NCIT:C41219
+        title: Native Hawaiian or Other Pacific Islander
+      other:
+        text: other
+        meaning: NCIT:C17649
+        title: Other
+      white:
+        text: white
+        meaning: NCIT:C41261
+        title: White
+      prefer_not_to_answer:
+        text: prefer_not_to_answer
+        meaning: NCIT:C132222
+        title: Prefer not to answer
+      unknown:
+        text: unknown
+        meaning: NCIT:C17998
+        title: Unknown
+      east_asian:
+        text: east_asian
+        description: UK only; do not use for US data
+        meaning: NCIT:C161419
+        title: East Asian
+      latin_american:
+        text: latin_american
+        description: UK only; do not use for US data
+        meaning: NCIT:C126531
+        title: Latin American
+      middle_eastern_or_north_african:
+        text: middle_eastern_or_north_african
+        description: UK only; do not use for US data
+        meaning: NCIT:C43866
+        title: Middle Eastern or North African
+      south_asian:
+        text: south_asian
+        description: UK only; do not use for US data
+        meaning: NCIT:C41263
+        title: South Asian
+  EnumEthnicity:
+    name: EnumEthnicity
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumEthnicity
+    description: Participant ethnicity, specific to Hispanic or Latino.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      hispanic_or_latino:
+        text: hispanic_or_latino
+        meaning: NCIT:C17459
+        title: Hispanic or Latino
+      not_hispanic_or_latino:
+        text: not_hispanic_or_latino
+        meaning: NCIT:C41222
+        title: Not Hispanic or Latino
+      prefer_not_to_answer:
+        text: prefer_not_to_answer
+        meaning: NCIT:C132222
+        title: Prefer not to answer
+      unknown:
+        text: unknown
+        meaning: NCIT:C17998
+        title: Unknown
+  EnumVitalStatus:
+    name: EnumVitalStatus
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumVitalStatus
+    description: Descriptions of a Subject's vital status
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: EnumNull
+    permissible_values:
+      dead:
+        text: dead
+        meaning: NCIT:C28554
+        title: Dead
+      alive:
+        text: alive
+        meaning: NCIT:C37987
+        title: Alive
+  EnumNull:
+    name: EnumNull
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumNull
+    description: Base enumeration providing null options.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      unknown:
+        text: unknown
+        meaning: NCIT:C17998
+        title: Unknown
+  EnumFamilyType:
+    name: EnumFamilyType
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumFamilyType
+    description: Enumerations describing research family type
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: EnumNull
+    permissible_values:
+      control_only:
+        text: control_only
+        description: Control Only
+        title: Control-only
+      duo:
+        text: duo
+        description: Duo
+        title: Duo
+      proband_only:
+        text: proband_only
+        description: Proband Only
+        title: Proband-only
+      trio:
+        text: trio
+        description: Trio (2 parents and affected child)
+        title: Trio
+      trio_plus:
+        text: trio_plus
+        description: 2 Parents and 2 or more children
+        title: Trio+
+  EnumFamilyRelation:
+    name: EnumFamilyRelation
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumFamilyRelation
+    description: Definitions of family relations as provided by KIN Ontology.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: EnumNull
+    reachable_from:
+      source_ontology: http://purl.org/ga4gh/kin.owl
+      source_nodes:
+      - KIN:KIN_001
+      relationship_types:
+      - rdfs:subClassOf
+      is_direct: false
+      include_self: true
+  EnumConsanguinityAssertion:
+    name: EnumConsanguinityAssertion
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumConsanguinityAssertion
+    description: Asserts known or suspected consanguinity in this study family
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      not_suspected:
+        text: not_suspected
+        description: Not suspected
+        meaning: snomed_ct:428263003
+        title: not-suspected
+      suspected:
+        text: suspected
+        description: Suspected
+        meaning: snomed_ct:415684004
+        title: suspected
+      known_present:
+        text: known_present
+        description: Known Present
+        meaning: snomed_ct:410515003
+        title: known-present
+      unknown:
+        text: unknown
+        description: Unknown
+        meaning: snomed_ct:261665006
+        title: unknown
+  EnumAssertionProvenance:
+    name: EnumAssertionProvenance
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumAssertionProvenance
+    description: Possible data sources for assertions.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: EnumNull
+    permissible_values:
+      medical_record:
+        text: medical_record
+        description: Data obtained from a medical record
+        title: Medical Record
+      investigator_assessment:
+        text: investigator_assessment
+        description: Data obtained by examination, interview, etc. with investigator
+        title: Investigator Assessment
+      participant_or_caregiver_report:
+        text: participant_or_caregiver_report
+        description: Data obtained from survey, questionnaire, etc. filled out by
+          participant or caregiver
+        title: Participant or Caregiver Report
+      other:
+        text: other
+        description: Data obtained from other source, such as tissue bank
+        title: Other
+  EnumOutcomeDiseaseRelated:
+    name: EnumOutcomeDiseaseRelated
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumOutcomeDiseaseRelated
+    description: Whether an Outcome is related to the disease(s) under study, from
+      kf_lib_data_ingest.common.constants.OUTCOME.DISEASE_RELATED.
+    title: Outcome Disease Related
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      'True':
+        text: 'True'
+        title: 'Yes'
+      'False':
+        text: 'False'
+        title: 'No'
+  EnumPresentAbsent:
+    name: EnumPresentAbsent
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumPresentAbsent
+    description: Options for Phenotypic Feature Assertions that may be present, absent,
+      or indeterminate. Derived from https://loinc.org/LL750-1
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: EnumNull
+    permissible_values:
+      loinc:LA9633-4:
+        text: loinc:LA9633-4
+        description: This feature was determined to be present.
+        meaning: loinc:LA9633-4
+        title: Present
+      loinc:LA9634-2:
+        text: loinc:LA9634-2
+        description: This feature was determined to be absent.
+        meaning: loinc:LA9634-2
+        title: Absent
+      loinc:LA11884-6:
+        text: loinc:LA11884-6
+        description: This feature was assessed, but unable to be determined as present
+          or absent.
+        meaning: loinc:LA11884-6
+        title: Indeterminate
+  EnumAvailabilityStatus:
+    name: EnumAvailabilityStatus
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumAvailabilityStatus
+    description: Is the biospecimen available for use?
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      available:
+        text: available
+        description: Biospecimen is Available
+        meaning: ig2_biospecimen_availability:available
+        title: Available
+      unavailable:
+        text: unavailable
+        description: Biospecimen is Unavailable
+        meaning: ig2_biospecimen_availability:unavailable
+        title: Unavailable
+  EnumConsentType:
+    name: EnumConsentType
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumConsentType
+    description: Data Use Ontology-style consent short names used by Kids First, from
+      kf_lib_data_ingest.common.constants.CONSENT_TYPE.
+    title: Consent Type
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      DS-OBDR-MDS:
+        text: DS-OBDR-MDS
+        description: Disease-Specific (Orofacial birth defects and related phenotypes,
+          MDS). Use of the data must be related to Orofacial birth defects and related
+          phenotypes; includes methods development research.
+        title: DS-OBDR-MDS
+      DS-OBD-MDS:
+        text: DS-OBD-MDS
+        description: Disease-Specific (Orofacial birth defects, MDS). Use of the data
+          must be related to Orofacial birth defects; includes methods development
+          research.
+        title: DS-OBD-MDS
+      DS-OC-PUB-MDS:
+        text: DS-OC-PUB-MDS
+        description: Disease-Specific (Oral Clefts, PUB, MDS). Use of the data must
+          be related to Oral Clefts; requestor agrees to make results publicly available;
+          includes methods development research.
+        title: DS-OC-PUB-MDS
+      HMB-MDS:
+        text: HMB-MDS
+        description: Health/Medical/Biomedical (MDS). Limited to health/medical/ biomedical
+          purposes, excludes population origins/ancestry research; includes methods
+          development research.
+        title: HMB-MDS
+      HMB-IRB:
+        text: HMB-IRB
+        description: Health/Medical/Biomedical general research.
+        title: HMB-IRB
+      DS-CHD-IRB:
+        text: DS-CHD-IRB
+        description: Disease specific Cardiac Heart Defect.
+        title: DS-CHD-IRB
+      DS-CHD:
+        text: DS-CHD
+        description: Disease specific Cardiac Heart Defect.
+        title: DS-CHD
+      HMB-NPU:
+        text: HMB-NPU
+        description: Health/Medical/Biomedical (NPU). Limited to health/medical/ biomedical
+          purposes and to not-for-profit organizations.
+        title: HMB-NPU
+      GRU:
+        text: GRU
+        description: General Research Use.
+        title: GRU
+      GRU-NPU:
+        text: GRU-NPU
+        description: General Research Use (NPU). Limited to general research use by
+          not-for-profit organizations.
+        title: GRU-NPU
+      HMB-GSO:
+        text: HMB-GSO
+        description: Health/Medical/Biomedical (GSO). Genetic studies only; no phenotype-only
+          research.
+        title: HMB-GSO
+  EnumSpecimenComposition:
+    name: EnumSpecimenComposition
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumSpecimenComposition
+    description: Material composition of a specimen, from kf_lib_data_ingest.common.constants.SPECIMEN.COMPOSITION.
+    title: Specimen Composition
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      blood:
+        text: blood
+        title: Peripheral Whole Blood
+      bone:
+        text: bone
+        title: Bone
+      bone_marrow:
+        text: bone_marrow
+        title: Bone Marrow
+      buccal_swab:
+        text: buccal_swab
+        title: Buccal Cells
+      ebvi:
+        text: ebvi
+        title: Epstein-Barr Virus Immortalized Cells
+      fibroblasts:
+        text: fibroblasts
+        title: Fibroblasts
+      line:
+        text: line
+        title: Derived Cell Line
+      lymphoblastoid_cell_lines:
+        text: lymphoblastoid_cell_lines
+        title: Lymphoblastoid Cell Lines
+      lymphocytes:
+        text: lymphocytes
+        title: Lymphocytes
+      mnc:
+        text: mnc
+        title: Mononuclear Cells
+      plasma:
+        text: plasma
+        title: Plasma
+      saliva:
+        text: saliva
+        title: Saliva
+      tissue:
+        text: tissue
+        title: Solid Tissue
+      xenograft:
+        text: xenograft
+        title: Xenograft Tissue
+  EnumSampleCollectionMethod:
+    name: EnumSampleCollectionMethod
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumSampleCollectionMethod
+    description: The approach used to collect the biospecimen. [LOINC](https://loinc.org)
+      is recommended.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+  EnumSite:
+    name: EnumSite
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumSite
+    description: The location of the specimen collection. [SNOMED Body Site](https://hl7.org/fhir/R4B/valueset-body-site.html)
+      is recommended.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+  EnumSpatialQualifiers:
+    name: EnumSpatialQualifiers
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumSpatialQualifiers
+    description: Any spatial/location qualifiers.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    enum_uri: http://hl7.org/fhir/us/mcode/ValueSet/mcode-body-location-qualifier-vs
+    reachable_from:
+      source_ontology: bioregistry:snomedct
+      source_nodes:
+      - snomedct:106233006
+      - snomedct:272424004
+      - snomedct:51440002
+      - snomedct:399488007
+      - snomedct:24028007
+      - snomedct:7771000
+      relationship_types:
+      - rdfs:subClassOf
+      is_direct: false
+  EnumLaterality:
+    name: EnumLaterality
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumLaterality
+    description: Laterality information for the site
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+  EnumCellEntity:
+    name: EnumCellEntity
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumCellEntity
+    description: The type of cell entity present in the sample.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      single_cell:
+        text: single_cell
+        title: Single Cell
+      bulk:
+        text: bulk
+        title: Bulk Cells
+  EnumTissueType:
+    name: EnumTissueType
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumTissueType
+    description: Types of tissue, from kf_lib_data_ingest.common.constants.SPECIMEN.TISSUE_TYPE.
+    title: Tissue Type
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      germline:
+        text: germline
+        description: Germline (normal) tissue.
+        title: Normal
+      normal:
+        text: normal
+        title: Normal
+      tumor:
+        text: tumor
+        title: Tumor
+  EnumEDAMFormats:
+    name: EnumEDAMFormats
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumEDAMFormats
+    description: Data formats from the EDAM ontology.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    reachable_from:
+      source_ontology: bioregistry:edam
+      source_nodes:
+      - edam:format_1915
+      relationship_types:
+      - rdfs:subClassOf
+      is_direct: false
+      include_self: false
+  EnumEDAMDataTypes:
+    name: EnumEDAMDataTypes
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumEDAMDataTypes
+    description: Data types from the EDAM ontology.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    reachable_from:
+      source_ontology: bioregistry:edam
+      source_nodes:
+      - edam:data_0006
+      relationship_types:
+      - rdfs:subClassOf
+      is_direct: false
+      include_self: false
+  EnumFileHashType:
+    name: EnumFileHashType
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumFileHashType
+    description: Types of file hashes supported.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      md5:
+        text: md5
+        title: MD5
+      etag:
+        text: etag
+        title: ETag
+      sha1:
+        text: sha1
+        title: SHA-1
+      sha256:
+        text: sha256
+        title: SHA-256
+      sha512:
+        text: sha512
+        title: SHA-512
+  EnumDataCategory:
+    name: EnumDataCategory
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumDataCategory
+    description: Categories of data which may be collected about participants.
+    title: Data Category
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      unharmonized_demographic_clinical_data:
+        text: unharmonized_demographic_clinical_data
+        title: Unharmonized Demographic/Clinical Data
+      harmonized_demographic_clinical_data:
+        text: harmonized_demographic_clinical_data
+        title: Harmonized Demographic/Clinical Data
+      genomics:
+        text: genomics
+        title: Genomics
+      transcriptomics:
+        text: transcriptomics
+        title: Transcriptomics
+      epigenomics:
+        text: epigenomics
+        title: Epigenomics
+      proteomics:
+        text: proteomics
+        title: Proteomics
+      metabolomics:
+        text: metabolomics
+        title: Metabolomics
+      cognitive_behavioral:
+        text: cognitive_behavioral
+        title: Cognitive/Behavioral
+      immune_profiling:
+        text: immune_profiling
+        title: Immune Profiling
+      imaging:
+        text: imaging
+        title: Imaging
+      microbiome:
+        text: microbiome
+        title: Microbiome
+      fitness:
+        text: fitness
+        title: Fitness
+      physical_activity:
+        text: physical_activity
+        title: Physical Activity
+      other:
+        text: other
+        title: Other
+      sleep_study:
+        text: sleep_study
+        title: Sleep Study
+  EnumGenomicFileAvailability:
+    name: EnumGenomicFileAvailability
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumGenomicFileAvailability
+    description: Availability of a genomic file, from kf_lib_data_ingest.common.constants.GENOMIC_FILE.AVAILABILITY.
+    title: Genomic File Availability
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      immediate:
+        text: immediate
+        title: Immediate Download
+      cold_storage:
+        text: cold_storage
+        title: Cold Storage
+  EnumGenomicFileDataType:
+    name: EnumGenomicFileDataType
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumGenomicFileDataType
+    description: Types of data carried by a genomic file, from kf_lib_data_ingest.common.constants.GENOMIC_FILE.DATA_TYPE.
+    title: Genomic File Data Type
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      aligned_reads:
+        text: aligned_reads
+        title: Aligned Reads
+      aligned_reads_index:
+        text: aligned_reads_index
+        title: Aligned Reads Index
+      expression:
+        text: expression
+        title: Expression
+      gvcf:
+        text: gvcf
+        title: gVCF
+      gvcf_index:
+        text: gvcf_index
+        title: gVCF Index
+      histology_images:
+        text: histology_images
+        title: Histology Images
+      nucleotide_variation:
+        text: nucleotide_variation
+        title: Simple Nucleotide Variations
+      operation_reports:
+        text: operation_reports
+        title: Operation Reports
+      pathology_reports:
+        text: pathology_reports
+        title: Pathology Reports
+      radiology_images:
+        text: radiology_images
+        title: Radiology Images
+      radiology_reports:
+        text: radiology_reports
+        title: Radiology Reports
+      unaligned_reads:
+        text: unaligned_reads
+        title: Unaligned Reads
+      variant_calls:
+        text: variant_calls
+        title: Variant Calls
+      variant_calls_index:
+        text: variant_calls_index
+        title: Variant Calls Index
+      annotated_somatic_mutations:
+        text: annotated_somatic_mutations
+        title: Annotated Somatic Mutations
+      gene_expression:
+        text: gene_expression
+        title: Gene Expression
+      gene_fusions:
+        text: gene_fusions
+        title: Gene Fusions
+      isoform_expression:
+        text: isoform_expression
+        title: Isoform Expression
+      somatic_copy_number_variations:
+        text: somatic_copy_number_variations
+        title: Somatic Copy Number Variations
+      somatic_structural_variations:
+        text: somatic_structural_variations
+        title: Somatic Structural Variations
+  EnumAssayType:
+    name: EnumAssayType
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumAssayType
+    description: Type of assays performed
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: EnumNull
+    reachable_from:
+      source_ontology: bioregistry:obi
+      source_nodes:
+      - obi:0000070
+      relationship_types:
+      - rdfs:subClassOf
+      is_direct: false
+      include_self: true
+  EnumReadGroupQualityScale:
+    name: EnumReadGroupQualityScale
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumReadGroupQualityScale
+    description: Quality score scales, from kf_lib_data_ingest.common.constants.READ_GROUP.QUALITY_SCALE.
+    title: Read Group Quality Scale
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      illumina13:
+        text: illumina13
+        title: Illumina13
+      illumina15:
+        text: illumina15
+        title: Illumina15
+      illumina18:
+        text: illumina18
+        title: Illumina18
+      sanger:
+        text: sanger
+        title: Sanger
+      solexa:
+        text: solexa
+        title: Solexa
+  EnumReferenceGenome:
+    name: EnumReferenceGenome
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumReferenceGenome
+    description: Reference genome builds, from kf_lib_data_ingest.common.constants.SEQUENCING.REFERENCE_GENOME.
+    title: Reference Genome
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      GRCh38:
+        text: GRCh38
+        title: GRCh38
+      GRCh37:
+        text: GRCh37
+        title: GRCh37
+      hs37d5:
+        text: hs37d5
+        title: hs37d5
+      hg19:
+        text: hg19
+        title: hg19
+  EnumSequencingPlatform:
+    name: EnumSequencingPlatform
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumSequencingPlatform
+    description: Sequencing platforms, from kf_lib_data_ingest.common.constants.SEQUENCING.PLATFORM.
+    title: Sequencing Platform
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      complete_genomics:
+        text: complete_genomics
+        title: Complete Genomics
+      illumina:
+        text: illumina
+        title: Illumina
+      ion_torrent:
+        text: ion_torrent
+        title: Ion Torrent
+      ls454:
+        text: ls454
+        title: LS454
+      pacbio:
+        text: pacbio
+        title: PacBio
+      solid:
+        text: solid
+        title: SOLiD
+      ont:
+        text: ont
+        title: ONT
+  EnumSequencingInstrument:
+    name: EnumSequencingInstrument
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumSequencingInstrument
+    description: Sequencing instrument models, from kf_lib_data_ingest.common.constants.SEQUENCING.INSTRUMENT.
+    title: Sequencing Instrument
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      hiseq_x_v2_5:
+        text: hiseq_x_v2_5
+        title: HiSeq X v2.5
+      hiseq_x_10:
+        text: hiseq_x_10
+        title: HiSeq X Ten
+  EnumLibraryStrand:
+    name: EnumLibraryStrand
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumLibraryStrand
+    description: Sequencing library strandedness, from kf_lib_data_ingest.common.constants.SEQUENCING.STRAND.
+    title: Library Strand
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      first:
+        text: first
+        title: First Stranded
+      second:
+        text: second
+        title: Second Stranded
+      stranded:
+        text: stranded
+        title: Stranded
+      unstranded:
+        text: unstranded
+        title: Unstranded
+  EnumSequencingStrategy:
+    name: EnumSequencingStrategy
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumSequencingStrategy
+    description: Sequencing strategies, from kf_lib_data_ingest.common.constants.SEQUENCING.STRATEGY.
+    title: Sequencing Strategy
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      linked_wgs:
+        text: linked_wgs
+        title: Linked-Read WGS (10x Chromium)
+      methyl:
+        text: methyl
+        title: Methylation
+      mrna:
+        text: mrna
+        title: miRNA-Seq
+      rna:
+        text: rna
+        title: RNA-Seq
+      wgs:
+        text: wgs
+        title: WGS
+      wxs:
+        text: wxs
+        title: WXS
+      targeted:
+        text: targeted
+        title: Targeted Sequencing
+      panel:
+        text: panel
+        title: Panel
+      scrna:
+        text: scrna
+        title: scRNA-Seq
+      snrna:
+        text: snrna
+        title: snRNA-Seq
+      ccs_wgs:
+        text: ccs_wgs
+        title: Circular Consensus Sequencing WGS
+      ccs_rna:
+        text: ccs_rna
+        title: Circular Consensus Sequencing RNA-Seq
+      clr_wgs:
+        text: clr_wgs
+        title: Continuous Long Reads WGS
+      clr_rna:
+        text: clr_rna
+        title: Continuous Long Reads RNA-Seq
+      ont_wgs:
+        text: ont_wgs
+        title: ONT WGS
+  EnumAnalyte:
+    name: EnumAnalyte
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumAnalyte
+    description: Types of analyte extracted from a specimen, from kf_lib_data_ingest.common.constants.SEQUENCING.ANALYTE.
+    title: Analyte Type
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      dna:
+        text: dna
+        title: DNA
+      rna:
+        text: rna
+        title: RNA
+      virtual:
+        text: virtual
+        title: Virtual
+  EnumLibrarySelection:
+    name: EnumLibrarySelection
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumLibrarySelection
+    description: Sequencing library selection methods, from kf_lib_data_ingest.common.constants.SEQUENCING.LIBRARY.SELECTION.
+    title: Library Selection
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      hybrid:
+        text: hybrid
+        title: Hybrid Selection
+      pcr:
+        text: pcr
+        title: PCR
+      affinity_enrichment:
+        text: affinity_enrichment
+        title: Affinity Enrichment
+      polyt_enrichment:
+        text: polyt_enrichment
+        title: Poly-T Enrichment
+      random:
+        text: random
+        title: Random
+      rna_depletion:
+        text: rna_depletion
+        title: rRNA Depletion
+      mrna_size_fractionation:
+        text: mrna_size_fractionation
+        title: miRNA Size Fractionation
+  EnumLibraryPrep:
+    name: EnumLibraryPrep
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumLibraryPrep
+    description: Sequencing library preparation methods, from kf_lib_data_ingest.common.constants.SEQUENCING.LIBRARY.PREP.
+    title: Library Prep
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      polya:
+        text: polya
+        title: polyA
+      totalrnaseq:
+        text: totalrnaseq
+        title: totalRNAseq
+  EnumSequencingCenter:
+    name: EnumSequencingCenter
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumSequencingCenter
+    description: Sequencing centers known to Kids First, from kf_lib_data_ingest.common.constants.SEQUENCING.CENTER.
+      Provided for reference; KFSequencingCenter.name is left as free text so new
+      centers can be added without a schema change.
+    title: Sequencing Center
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      ashion:
+        text: ashion
+        description: 'Kids First sequencing center ID: SC_0CNMF82N'
+        title: Ashion
+      baylor:
+        text: baylor
+        description: 'Kids First sequencing center ID: SC_A1JNZAZH'
+        title: Baylor College of Medicine
+      bc_cancer_agency:
+        text: bc_cancer_agency
+        description: 'Kids First sequencing center ID: SC_FN7NH453'
+        title: British Columbia Cancer Agency Genome Sciences Centre
+      bgi:
+        text: bgi
+        description: 'Kids First sequencing center ID: SC_WWEQ9HFY'
+        title: BGI@CHOP Genome Center
+      bgi_china:
+        text: bgi_china
+        description: 'Kids First sequencing center ID: SC_FAD4KCQG'
+        title: BGI
+      broad:
+        text: broad
+        description: 'Kids First sequencing center ID: SC_DGDDQVYR'
+        title: Broad Institute
+      cbtn_unsequenced:
+        text: cbtn_unsequenced
+        description: 'Kids First sequencing center ID: SC_31369RXZ'
+        title: CBTN Unsequenced
+      chop:
+        text: chop
+        description: 'Kids First sequencing center ID: SC_9NSC532X'
+        title: CHOP
+      chop_dgd:
+        text: chop_dgd
+        description: 'Kids First sequencing center ID: SC_ZZPPF973'
+        title: CHOP DGD
+      complete_genomics:
+        text: complete_genomics
+        description: 'Kids First sequencing center ID: SC_D30SEWS4'
+        title: Complete Genomics
+      csir:
+        text: csir
+        description: 'Kids First sequencing center ID: SC_MDY0AZMZ'
+        title: CSIR - Institute of Genomics and Integrative Biology, Delhi, India
+      feline_diagnostics:
+        text: feline_diagnostics
+        description: 'Kids First sequencing center ID: SC_CATTVETT'
+        title: Feline Diagnostics LLC
+      fg:
+        text: fg
+        description: 'Kids First sequencing center ID: SC_XXXXXXX2'
+        title: fg
+      genedx:
+        text: genedx
+        description: 'Kids First sequencing center ID: SC_5EDC0A25'
+        title: GeneDx
+      hgt:
+        text: hgt
+        description: 'Kids First sequencing center ID: SC_75KENA7A'
+        title: "Humangenetik T\xFCbingen"
+      hudson_alpha:
+        text: hudson_alpha
+        description: 'Kids First sequencing center ID: SC_X1N69WJM'
+        title: HudsonAlpha Institute for Biotechnology
+      nant:
+        text: nant
+        description: 'Kids First sequencing center ID: SC_N1EVHSME'
+        title: NantOmics
+      novogene:
+        text: novogene
+        description: 'Kids First sequencing center ID: SC_2ZBAMKK0'
+        title: Novogene
+      nygc:
+        text: nygc
+        description: 'Kids First sequencing center ID: SC_BJW95TMY'
+        title: New York Genome Center
+      nci:
+        text: nci
+        description: 'Kids First sequencing center ID: SC_F6RZ51K9'
+        title: National Cancer Institute, Khan Lab
+      nih:
+        text: nih
+        description: 'Kids First sequencing center ID: SC_HEXD2E5R'
+        title: National Institutes of Health
+      princess_maxima:
+        text: princess_maxima
+        description: 'Kids First sequencing center ID: SC_V4CCQ3WE'
+        title: Princess Maxima Center
+      sickkids:
+        text: sickkids
+        description: 'Kids First sequencing center ID: SC_9WMJKQ1X'
+        title: SickKids
+      sidra:
+        text: sidra
+        description: 'Kids First sequencing center ID: SC_KE2ASNJM'
+        title: Genomic Clinical Core at Sidra Medical and Research Center
+      st_jude:
+        text: st_jude
+        description: 'Kids First sequencing center ID: SC_1K3QGW4V'
+        title: St Jude
+      temp:
+        text: temp
+        description: 'Kids First sequencing center ID: SC_SJJ0B9GN'
+        title: TEMP
+      tempus:
+        text: tempus
+        description: 'Kids First sequencing center ID: SC_TQ8HJWGE'
+        title: Tempus
+      tgen:
+        text: tgen
+        description: 'Kids First sequencing center ID: SC_KQ9JZG3P'
+        title: The Translational Genomics Research Institute
+      unknown_chris_jones:
+        text: unknown_chris_jones
+        description: 'Kids First sequencing center ID: SC_5A2B1T4K'
+        title: UNKNOWN:CHRIS_JONES
+      ucsf_cat:
+        text: ucsf_cat
+        description: 'Kids First sequencing center ID: SC_MSQP04K7'
+        title: UCSF CAT
+      variantyx:
+        text: variantyx
+        description: 'Kids First sequencing center ID: SC_T2A19FHX'
+        title: Variantyx
+      virtual:
+        text: virtual
+        description: 'Kids First sequencing center ID: SC_BATJDPHB'
+        title: Virtual
+      washu:
+        text: washu
+        description: 'Kids First sequencing center ID: SC_K52V7463'
+        title: Washington University
+      yale:
+        text: yale
+        description: 'Kids First sequencing center ID: SC_31W52VNX'
+        title: Yale
+      fredhutch:
+        text: fredhutch
+        description: 'Kids First sequencing center ID: SC_8JXH42X1'
+        title: Fred Hutchinson Cancer Research Center
+  EnumFamilyRelationshipKF:
+    name: EnumFamilyRelationshipKF
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumFamilyRelationshipKF
+    description: Family relationship terms used by the Kids First ingest library,
+      from kf_lib_data_ingest.common.constants.RELATIONSHIP. "Twin" here means identical
+      twins; use the normal sibling terms for non-identical twins. Distinct from cam:EnumFamilyRelation,
+      which is instead reachable from the KIN ontology.
+    title: Family Relationship (Kids First)
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    permissible_values:
+      proband:
+        text: proband
+        title: Proband
+      wife:
+        text: wife
+        title: Wife
+      husband:
+        text: husband
+        title: Husband
+      spouse:
+        text: spouse
+        title: Spouse
+      mother:
+        text: mother
+        title: Mother
+      father:
+        text: father
+        title: Father
+      parent:
+        text: parent
+        title: Parent
+      daughter:
+        text: daughter
+        title: Daughter
+      son:
+        text: son
+        title: Son
+      child:
+        text: child
+        title: Child
+      sister:
+        text: sister
+        title: Sister
+      brother:
+        text: brother
+        title: Brother
+      sibling:
+        text: sibling
+        title: Sibling
+      twin_sister:
+        text: twin_sister
+        title: Twin Sister
+      twin_brother:
+        text: twin_brother
+        title: Twin Brother
+      twin:
+        text: twin
+        title: Twin
+      maternal_half_sister:
+        text: maternal_half_sister
+        title: Maternal Half-Sister
+      maternal_half_brother:
+        text: maternal_half_brother
+        title: Maternal Half-Brother
+      maternal_half_sibling:
+        text: maternal_half_sibling
+        title: Maternal Half-Sibling
+      paternal_half_sister:
+        text: paternal_half_sister
+        title: Paternal Half-Sister
+      paternal_half_brother:
+        text: paternal_half_brother
+        title: Paternal Half-Brother
+      paternal_half_sibling:
+        text: paternal_half_sibling
+        title: Paternal Half-Sibling
+      half_sister:
+        text: half_sister
+        title: Half-Sister
+      half_brother:
+        text: half_brother
+        title: Half-Brother
+      half_sibling:
+        text: half_sibling
+        title: Half-Sibling
+      maternal_grandmother:
+        text: maternal_grandmother
+        title: Maternal Grandmother
+      maternal_grandfather:
+        text: maternal_grandfather
+        title: Maternal Grandfather
+      maternal_grandparent:
+        text: maternal_grandparent
+        title: Maternal Grandparent
+      paternal_grandmother:
+        text: paternal_grandmother
+        title: Paternal Grandmother
+      paternal_grandfather:
+        text: paternal_grandfather
+        title: Paternal Grandfather
+      paternal_grandparent:
+        text: paternal_grandparent
+        title: Paternal Grandparent
+      grandmother:
+        text: grandmother
+        title: Grandmother
+      grandfather:
+        text: grandfather
+        title: Grandfather
+      grandparent:
+        text: grandparent
+        title: Grandparent
+      maternal_granddaughter:
+        text: maternal_granddaughter
+        title: Maternal Granddaughter
+      maternal_grandson:
+        text: maternal_grandson
+        title: Maternal Grandson
+      maternal_grandchild:
+        text: maternal_grandchild
+        title: Maternal Grandchild
+      paternal_granddaughter:
+        text: paternal_granddaughter
+        title: Paternal Granddaughter
+      paternal_grandson:
+        text: paternal_grandson
+        title: Paternal Grandson
+      paternal_grandchild:
+        text: paternal_grandchild
+        title: Paternal Grandchild
+      granddaughter:
+        text: granddaughter
+        title: Granddaughter
+      grandson:
+        text: grandson
+        title: Grandson
+      grandchild:
+        text: grandchild
+        title: Grandchild
+      maternal_great_grandmother:
+        text: maternal_great_grandmother
+        title: Maternal Great-Grandmother
+      maternal_great_grandfather:
+        text: maternal_great_grandfather
+        title: Maternal Great-Grandfather
+      maternal_great_grandparent:
+        text: maternal_great_grandparent
+        title: Maternal Great-Grandparent
+      paternal_great_grandmother:
+        text: paternal_great_grandmother
+        title: Paternal Great-Grandmother
+      paternal_great_grandfather:
+        text: paternal_great_grandfather
+        title: Paternal Great-Grandfather
+      paternal_great_grandparent:
+        text: paternal_great_grandparent
+        title: Paternal Great-Grandparent
+      great_grandmother:
+        text: great_grandmother
+        title: Great-Grandmother
+      great_grandfather:
+        text: great_grandfather
+        title: Great-Grandfather
+      great_grandparent:
+        text: great_grandparent
+        title: Great-Grandparent
+      maternal_great_granddaughter:
+        text: maternal_great_granddaughter
+        title: Maternal Great-Granddaughter
+      maternal_great_grandson:
+        text: maternal_great_grandson
+        title: Maternal Great-Grandson
+      maternal_great_grandchild:
+        text: maternal_great_grandchild
+        title: Maternal Great-Grandchild
+      paternal_great_granddaughter:
+        text: paternal_great_granddaughter
+        title: Paternal Great-Granddaughter
+      paternal_great_grandson:
+        text: paternal_great_grandson
+        title: Paternal Great-Grandson
+      paternal_great_grandchild:
+        text: paternal_great_grandchild
+        title: Paternal Great-Grandchild
+      great_granddaughter:
+        text: great_granddaughter
+        title: Great-Granddaughter
+      great_grandson:
+        text: great_grandson
+        title: Great-Grandson
+      great_grandchild:
+        text: great_grandchild
+        title: Great-Grandchild
+      maternal_aunt:
+        text: maternal_aunt
+        title: Maternal Aunt
+      maternal_uncle:
+        text: maternal_uncle
+        title: Maternal Uncle
+      maternal_pibling:
+        text: maternal_pibling
+        title: Maternal Aunt or Uncle
+      paternal_aunt:
+        text: paternal_aunt
+        title: Paternal Aunt
+      paternal_uncle:
+        text: paternal_uncle
+        title: Paternal Uncle
+      paternal_pibling:
+        text: paternal_pibling
+        title: Paternal Aunt or Uncle
+      aunt:
+        text: aunt
+        title: Aunt
+      uncle:
+        text: uncle
+        title: Uncle
+      pibling:
+        text: pibling
+        title: Aunt or Uncle
+      maternal_niece:
+        text: maternal_niece
+        title: Maternal Niece
+      maternal_nephew:
+        text: maternal_nephew
+        title: Maternal Nephew
+      maternal_nibling:
+        text: maternal_nibling
+        title: Maternal Niece or Nephew
+      paternal_niece:
+        text: paternal_niece
+        title: Paternal Niece
+      paternal_nephew:
+        text: paternal_nephew
+        title: Paternal Nephew
+      paternal_nibling:
+        text: paternal_nibling
+        title: Paternal Niece or Nephew
+      niece:
+        text: niece
+        title: Niece
+      nephew:
+        text: nephew
+        title: Nephew
+      nibling:
+        text: nibling
+        title: Niece or Nephew
+      maternal_great_aunt:
+        text: maternal_great_aunt
+        title: Maternal Great Aunt
+      maternal_great_uncle:
+        text: maternal_great_uncle
+        title: Maternal Great Uncle
+      maternal_great_pibling:
+        text: maternal_great_pibling
+        title: Maternal Great Aunt or Uncle
+      paternal_great_aunt:
+        text: paternal_great_aunt
+        title: Paternal Great Aunt
+      paternal_great_uncle:
+        text: paternal_great_uncle
+        title: Paternal Great Uncle
+      paternal_great_pibling:
+        text: paternal_great_pibling
+        title: Paternal Great Aunt or Uncle
+      great_aunt:
+        text: great_aunt
+        title: Great Aunt
+      great_uncle:
+        text: great_uncle
+        title: Great Uncle
+      great_pibling:
+        text: great_pibling
+        title: Great Aunt or Uncle
+      maternal_great_niece:
+        text: maternal_great_niece
+        title: Maternal Great Niece
+      maternal_great_nephew:
+        text: maternal_great_nephew
+        title: Maternal Great Nephew
+      maternal_great_nibling:
+        text: maternal_great_nibling
+        title: Maternal Great Niece or Nephew
+      paternal_great_niece:
+        text: paternal_great_niece
+        title: Paternal Great Niece
+      paternal_great_nephew:
+        text: paternal_great_nephew
+        title: Paternal Great Nephew
+      paternal_great_nibling:
+        text: paternal_great_nibling
+        title: Paternal Great Niece or Nephew
+      great_niece:
+        text: great_niece
+        title: Great Niece
+      great_nephew:
+        text: great_nephew
+        title: Great Nephew
+      great_nibling:
+        text: great_nibling
+        title: Great Niece or Nephew
+      maternal_first_cousin:
+        text: maternal_first_cousin
+        title: Maternal First Cousin
+      paternal_first_cousin:
+        text: paternal_first_cousin
+        title: Paternal First Cousin
+      first_cousin:
+        text: first_cousin
+        title: First Cousin
+      maternal_second_cousin:
+        text: maternal_second_cousin
+        title: Maternal Second Cousin
+      paternal_second_cousin:
+        text: paternal_second_cousin
+        title: Paternal Second Cousin
+      second_cousin:
+        text: second_cousin
+        title: Second Cousin
+      maternal_cousin:
+        text: maternal_cousin
+        title: Maternal Cousin
+      paternal_cousin:
+        text: paternal_cousin
+        title: Paternal Cousin
+      cousin:
+        text: cousin
+        title: Cousin
+slots:
+  study_id:
+    name: study_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/study_id
+    description: Global ID for the study
+    title: Study ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:study_id
+    owner: Record
+    domain_of:
+    - Record
+    range: Study
+    multivalued: false
+  external_id:
+    name: external_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/external_id
+    description: Other identifiers for this entity, eg, from the submitting study
+      or in systems like dbGaP
+    title: External Identifiers
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:external_id
+    owner: Record
+    domain_of:
+    - Record
+    range: uriorcurie
+    required: false
+    multivalued: true
+  kf_id:
+    name: kf_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/kf_id
+    description: Kids First Dataservice identifier for this record, eg, PT_00000000.
+    title: KF ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:kf_id
+    owner: Record
+    domain_of:
+    - Record
+    range: string
+    pattern: ^[A-Z]{2}_[A-Z0-9]{8}$
+  visible:
+    name: visible
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/visible
+    description: Whether this record is visible/released, per Kids First Dataservice
+      access control.
+    title: Visible
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:visible
+    owner: Record
+    domain_of:
+    - Record
+    range: boolean
+  visibility_comment:
+    name: visibility_comment
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/visibility_comment
+    description: Free-text explanation supporting visibility_reason.
+    title: Visibility Comment
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:visibility_comment
+    owner: Record
+    domain_of:
+    - Record
+    range: string
+  visibility_reason:
+    name: visibility_reason
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/visibility_reason
+    description: The reason this record is or is not visible.
+    title: Visibility Reason
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:visibility_reason
+    owner: Record
+    domain_of:
+    - Record
+    range: EnumVisibilityReason
+  parent_study:
+    name: parent_study
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/parent_study
+    description: The parent study for this study, if it is a nested study.
+    title: Parent Study
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:parent_study
+    owner: Study
+    domain_of:
+    - Study
+    range: Study
+    required: false
+    multivalued: false
+  funding_source:
+    name: funding_source
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/funding_source
+    description: The funding source(s) of the study.
+    title: Funding Source
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:funding_source
+    owner: Study
+    domain_of:
+    - Study
+    range: string
+    required: false
+    multivalued: true
+  principal_investigator:
+    name: principal_investigator
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/principal_investigator
+    description: The Principal Investigator(s) responsible for the study.
+    title: Principal Investigator
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:principal_investigator
+    owner: Study
+    domain_of:
+    - Study
+    range: Investigator
+    required: true
+    multivalued: true
+  study_title:
+    name: study_title
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/study_title
+    description: Full Study Title
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:study_title
+    owner: Study
+    domain_of:
+    - Study
+    range: string
+    required: true
+    multivalued: false
+  study_code:
+    name: study_code
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/study_code
+    description: Unique identifier for the study (generally a short acronym)
+    title: Study Code
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:study_code
+    owner: Study
+    domain_of:
+    - Study
+    range: string
+    required: true
+  study_short_name:
+    name: study_short_name
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/study_short_name
+    description: Short name for the study
+    title: Study Short Name
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:study_short_name
+    owner: Study
+    domain_of:
+    - Study
+    range: string
+    required: false
+  data_access_authority:
+    name: data_access_authority
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/data_access_authority
+    description: The authority governing access to this study's data, eg, dbGaP.
+    title: Data Access Authority
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:data_access_authority
+    owner: Study
+    domain_of:
+    - Study
+    range: EnumDataAccessAuthority
+  version:
+    name: version
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/version
+    description: The version of this study's data.
+    title: Version
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:version
+    owner: Study
+    domain_of:
+    - Study
+    range: string
+  file_version_descriptor:
+    name: file_version_descriptor
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/file_version_descriptor
+    description: A descriptor distinguishing this record's data version from others.
+    title: File Version Descriptor
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:file_version_descriptor
+    owner: GenomicFile
+    domain_of:
+    - Study
+    - GenomicFile
+    range: string
+  attribution:
+    name: attribution
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/attribution
+    description: Text describing how to attribute use of this study's data.
+    title: Attribution
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:attribution
+    owner: Study
+    domain_of:
+    - Study
+    range: string
+  category:
+    name: category
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/category
+    description: The broad category of research this study addresses.
+    title: Study Category
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:category
+    owner: Study
+    domain_of:
+    - Study
+    range: EnumStudyCategory
+  status:
+    name: status
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/status
+    description: The processing/release status of this study.
+    title: Study Status
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:status
+    owner: Study
+    domain_of:
+    - Study
+    range: EnumStudyStatus
+  investigator_title:
+    name: investigator_title
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/investigator_title
+    description: The title of the Investigator, eg, "Assistant Professor"
+    title: Investigator Title
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:investigator_title
+    owner: Investigator
+    domain_of:
+    - Investigator
+    range: string
+    required: false
+  name:
+    name: name
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/name
+    description: Name of the entity.
+    title: Name
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:name
+    owner: SequencingCenter
+    domain_of:
+    - Investigator
+    - SequencingCenter
+    range: string
+    required: false
+  email:
+    name: email
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/email
+    description: An email address to reach the entity.
+    title: Email Address
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:email
+    owner: Investigator
+    domain_of:
+    - Investigator
+    range: string
+    required: false
+  institution:
+    name: institution
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/institution
+    description: Name of the institution this record is associated with.
+    title: Institution
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:institution
+    owner: Investigator
+    domain_of:
+    - Investigator
+    range: string
+    required: false
+  program:
+    name: program
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/program
+    description: Funding source(s) for the study
+    title: Program
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:program
+    owner: Study
+    domain_of:
+    - Study
+    range: EnumProgram
+    required: true
+    multivalued: true
+  study_description:
+    name: study_description
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/study_description
+    description: Brief description of the study (2-4 sentences)
+    title: Study Description
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:study_description
+    owner: Study
+    domain_of:
+    - Study
+    range: string
+    required: true
+  website:
+    name: website
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/website
+    description: Website with more information about this entity.
+    title: Website
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:website
+    owner: Study
+    domain_of:
+    - Study
+    range: uri
+  contact:
+    name: contact
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/contact
+    description: The individual to contact with questions about this record.
+    title: Contact Person
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:contact
+    owner: Study
+    domain_of:
+    - Study
+    range: Investigator
+    required: true
+    multivalued: true
+  acknowledgments:
+    name: acknowledgments
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/acknowledgments
+    description: Funding statement and acknowledgments for this study
+    title: Acknowledgments
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:acknowledgments
+    owner: Study
+    domain_of:
+    - Study
+    range: string
+  citation_statement:
+    name: citation_statement
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/citation_statement
+    description: Statement that secondary data users should use to acknowledge use
+      of this study or dataset. E.g., "The results analyzed and <published or shown>
+      here are based in whole or in part upon data generated by the INCLUDE (INvestigation
+      of Co-occurring conditions across the Lifespan to Understand Down syndromE)
+      Project <insert accession number(s) and/or study DOI(s)>, and were accessed
+      from the INCLUDE Data Hub and <insert other database(s)>."
+    title: Citation Statement
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:citation_statement
+    owner: Study
+    domain_of:
+    - Study
+    range: string
+  participant_id:
+    name: participant_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/participant_id
+    description: Global ID for the Participant
+    title: Participant ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:participant_id
+    owner: Aliquot
+    domain_of:
+    - Participant
+    - Aliquot
+    range: Participant
+    multivalued: false
+  organism_type:
+    name: organism_type
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/organism_type
+    description: Organism Type, typically from NCBITaxon. For reference, Human is
+      NCBITaxon:9606.
+    title: Organism Type
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:organism_type
+    owner: Participant
+    domain_of:
+    - Participant
+    range: uriorcurie
+  subject_type:
+    name: subject_type
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/subject_type
+    description: Type of entity this record represents
+    title: Subject Type
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:subject_type
+    owner: Participant
+    domain_of:
+    - Participant
+    range: EnumSubjectType
+    required: true
+  sex:
+    name: sex
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/sex
+    description: Sex of Participant
+    title: Sex
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:sex
+    owner: Participant
+    domain_of:
+    - Participant
+    range: EnumSex
+    required: true
+  race:
+    name: race
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/race
+    description: Race of Participant
+    title: Race
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:race
+    owner: Participant
+    domain_of:
+    - Participant
+    range: EnumRace
+    required: true
+    multivalued: true
+  ethnicity:
+    name: ethnicity
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/ethnicity
+    description: Ethnicity of Participant
+    title: Ethnicity
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:ethnicity
+    owner: Participant
+    domain_of:
+    - Participant
+    range: EnumEthnicity
+    required: true
+  is_proband:
+    name: is_proband
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/is_proband
+    description: Whether this Participant is the proband of their Family.
+    title: Is Proband
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:is_proband
+    owner: Participant
+    domain_of:
+    - Participant
+    range: boolean
+  affected_status:
+    name: affected_status
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/affected_status
+    description: Whether the Participant is affected by the condition(s) under study.
+    title: Affected Status
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:affected_status
+    owner: Participant
+    domain_of:
+    - Participant
+    range: boolean
+  age_at_first_engagement:
+    name: age_at_first_engagement
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/age_at_first_engagement
+    description: Age in days of Participant at first recorded study event (enrollment,
+      visit, observation, sample collection, survey completion, etc.). Age at enrollment
+      is preferred, if available.
+    title: Age at First Participant Engagement
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:age_at_first_engagement
+    owner: Participant
+    domain_of:
+    - Participant
+    range: integer
+    minimum_value: -365
+    maximum_value: 32507
+    unit:
+      ucum_code: d
+  vital_status:
+    name: vital_status
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/vital_status
+    description: Whether participant is alive or dead
+    title: Vital Status
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:vital_status
+    owner: KFSubjectAssertion
+    domain_of:
+    - Participant
+    - KFSubjectAssertion
+    range: EnumVitalStatus
+  age_at_last_vital_status:
+    name: age_at_last_vital_status
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/age_at_last_vital_status
+    description: Age in days when participant's vital status was last recorded
+    title: Age at Last Vital Status
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:age_at_last_vital_status
+    owner: Participant
+    domain_of:
+    - Participant
+    range: integer
+    minimum_value: -365
+    maximum_value: 32507
+    unit:
+      ucum_code: d
+  subject_id:
+    name: subject_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/subject_id
+    description: The family member Subject who is the relationship "object".
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:subject_id
+    owner: Assay
+    domain_of:
+    - FamilyRelationship
+    - SubjectAssertion
+    - GenomicFile
+    - Assay
+    range: Participant
+    required: true
+    inlined: false
+  family_id:
+    name: family_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/family_id
+    description: Global ID for the Family
+    title: Family ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:family_id
+    owner: Family
+    domain_of:
+    - Participant
+    - Family
+    range: Family
+  family_type:
+    name: family_type
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/family_type
+    description: Describes the 'type' of study family, eg, trio.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:family_type
+    owner: Family
+    domain_of:
+    - Family
+    range: EnumFamilyType
+  family_description:
+    name: family_description
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/family_description
+    description: Free text describing the study family, such as potential inheritance
+      or details about consanguinity
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:family_description
+    owner: Family
+    domain_of:
+    - Family
+    range: string
+  consanguinity:
+    name: consanguinity
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/consanguinity
+    description: Is there known or suspected consanguinity in this study family?
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:consanguinity
+    owner: Family
+    domain_of:
+    - Family
+    range: EnumConsanguinityAssertion
+  family_study_focus:
+    name: family_study_focus
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/family_study_focus
+    description: The specific focus of the investigation, eg, a condition.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:family_study_focus
+    owner: Family
+    domain_of:
+    - Family
+    range: uriorcurie
+  family_relationship_id:
+    name: family_relationship_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/family_relationship_id
+    description: Global ID for the Family Relationship
+    title: Family Relationship ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:family_relationship_id
+    owner: FamilyRelationship
+    domain_of:
+    - FamilyRelationship
+    range: FamilyRelationship
+  family_member_id:
+    name: family_member_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/family_member_id
+    description: The family member Subject who is the relationship "subject".
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:family_member_id
+    owner: FamilyRelationship
+    domain_of:
+    - FamilyRelationship
+    range: Participant
+    required: true
+    inlined: false
+  relation:
+    name: relation
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/relation
+    description: Code definting the relationship predicate. Relationship of the "Family
+      Member" to the "Subject", eg, mother of. Ideally uses KIN ontology.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:relation
+    owner: FamilyRelationship
+    domain_of:
+    - FamilyRelationship
+    range: EnumFamilyRelation
+    required: true
+  assertion_id:
+    name: assertion_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/assertion_id
+    description: INCLUDE Global ID for the Assertion
+    title: Assertion ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:assertion_id
+    owner: SubjectAssertion
+    domain_of:
+    - SubjectAssertion
+    range: SubjectAssertion
+    multivalued: false
+  assertion_provenance:
+    name: assertion_provenance
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/assertion_provenance
+    description: The original source of this assertion
+    title: Assertion Provenance
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:assertion_provenance
+    owner: SubjectAssertion
+    domain_of:
+    - SubjectAssertion
+    range: EnumAssertionProvenance
+  age_at_assertion:
+    name: age_at_assertion
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/age_at_assertion
+    description: The age in days of the Subject when the assertion was made.
+    title: Age at assertion
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:age_at_assertion
+    owner: SubjectAssertion
+    domain_of:
+    - SubjectAssertion
+    range: integer
+    unit:
+      ucum_code: d
+  age_at_event:
+    name: age_at_event
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/age_at_event
+    description: The age in days of the Subject at the time point which the assertion
+      describes, eg, age of onset or when a measurement was performed.
+    title: Age at event
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:age_at_event
+    owner: SubjectAssertion
+    domain_of:
+    - SubjectAssertion
+    range: integer
+    unit:
+      ucum_code: d
+  age_at_resolution:
+    name: age_at_resolution
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/age_at_resolution
+    description: The age in days of the Subject when the asserted state was resolved.
+    title: Age at resolution
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:age_at_resolution
+    owner: SubjectAssertion
+    domain_of:
+    - SubjectAssertion
+    range: integer
+    unit:
+      ucum_code: d
+  concept:
+    name: concept
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/concept
+    description: The structured term defining the meaning of the assertion.
+    title: Concept
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:concept
+    owner: SubjectAssertion
+    domain_of:
+    - SubjectAssertion
+    range: Concept
+    multivalued: true
+  concept_curie:
+    name: concept_curie
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/concept_curie
+    description: The standardized curie for the term.
+    title: Concept Curie
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:concept_curie
+    owner: Concept
+    domain_of:
+    - Concept
+    range: uriorcurie
+  display:
+    name: display
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/display
+    description: The friendly display string of the coded term.
+    title: Display String
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:display
+    owner: Concept
+    domain_of:
+    - Concept
+    range: string
+  concept_source:
+    name: concept_source
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/concept_source
+    description: The source text yielding the standardized concept.
+    title: Concept Source Text
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:concept_source
+    owner: SubjectAssertion
+    domain_of:
+    - SubjectAssertion
+    range: string
+  value_concept:
+    name: value_concept
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/value_concept
+    description: The structured term defining the value of the assertion.
+    title: Value concept
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:value_concept
+    owner: SubjectAssertion
+    domain_of:
+    - SubjectAssertion
+    range: Concept
+    multivalued: true
+    any_of:
+    - range: EnumPresentAbsent
+  value_number:
+    name: value_number
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/value_number
+    description: The numeric value of the assertion.
+    title: Value Number
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:value_number
+    owner: SubjectAssertion
+    domain_of:
+    - SubjectAssertion
+    range: float
+  value_source:
+    name: value_source
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/value_source
+    description: The source text yielding the value.
+    title: Value Source Text
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:value_source
+    owner: SubjectAssertion
+    domain_of:
+    - SubjectAssertion
+    range: string
+  value_unit:
+    name: value_unit
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/value_unit
+    description: The structured term defining the units of the value.
+    title: Value Units
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:value_unit
+    owner: SubjectAssertion
+    domain_of:
+    - SubjectAssertion
+    range: Concept
+  value_unit_source:
+    name: value_unit_source
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/value_unit_source
+    description: The source text yielding the value's units.
+    title: Value Units Source Text
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:value_unit_source
+    owner: SubjectAssertion
+    domain_of:
+    - SubjectAssertion
+    range: string
+  age_at_event_days:
+    name: age_at_event_days
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/age_at_event_days
+    description: The age in days of the Participant at the time of this event.
+    title: Age at Event (days)
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:age_at_event_days
+    range: integer
+    unit:
+      ucum_code: d
+  source_text_tumor_location:
+    name: source_text_tumor_location
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/source_text_tumor_location
+    description: The tumor location as reported by the source study.
+    title: Source Text Tumor Location
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:source_text_tumor_location
+    owner: KFSubjectAssertion
+    domain_of:
+    - KFSubjectAssertion
+    range: string
+  uberon_id_tumor_location:
+    name: uberon_id_tumor_location
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/uberon_id_tumor_location
+    description: The UBERON ontology term for the tumor location.
+    title: UBERON ID Tumor Location
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:uberon_id_tumor_location
+    owner: KFSubjectAssertion
+    domain_of:
+    - KFSubjectAssertion
+    range: uriorcurie
+  spatial_descriptor:
+    name: spatial_descriptor
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/spatial_descriptor
+    description: Additional spatial/location qualifiers for this record.
+    title: Spatial Descriptor
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:spatial_descriptor
+    owner: Aliquot
+    domain_of:
+    - KFSubjectAssertion
+    - Aliquot
+    range: string
+  diagnosis_category:
+    name: diagnosis_category
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/diagnosis_category
+    description: The broad category of this diagnosis.
+    title: Diagnosis Category
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:diagnosis_category
+    owner: KFSubjectAssertion
+    domain_of:
+    - KFSubjectAssertion
+    range: string
+  disease_related:
+    name: disease_related
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/disease_related
+    description: Whether this Outcome is related to the disease(s) under study.
+    title: Disease Related
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:disease_related
+    owner: KFSubjectAssertion
+    domain_of:
+    - KFSubjectAssertion
+    range: EnumOutcomeDiseaseRelated
+  sample_id:
+    name: sample_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/sample_id
+    description: The unique identifier for this Sample.
+    title: Sample ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:sample_id
+    owner: Assay
+    domain_of:
+    - Sample
+    - Aliquot
+    - GenomicFile
+    - Assay
+    range: Sample
+  parent_sample_id:
+    name: parent_sample_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/parent_sample_id
+    description: Sample from which this sample is derived
+    title: Parent Sample ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:parent_sample_id
+    owner: Sample
+    domain_of:
+    - Sample
+    range: Sample
+    inlined: false
+  biospecimen_collection_id:
+    name: biospecimen_collection_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/biospecimen_collection_id
+    description: Unique identifier for this Biospecimen Collection.
+    title: Biospecimen Collection ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:biospecimen_collection_id
+    owner: BiospecimenCollection
+    domain_of:
+    - Sample
+    - BiospecimenCollection
+    range: BiospecimenCollection
+  aliquot_id:
+    name: aliquot_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/aliquot_id
+    description: Unique identifier for an Aliquot.
+    title: Aliquot ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:aliquot_id
+    owner: Aliquot
+    domain_of:
+    - Aliquot
+    range: Aliquot
+  sample_type:
+    name: sample_type
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/sample_type
+    description: Type of material of which this Sample is comprised. UBERON is recommended.
+    title: Sample Type
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:sample_type
+    owner: Sample
+    domain_of:
+    - Sample
+    range: uriorcurie
+    required: true
+  processing:
+    name: processing
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/processing
+    description: Processing that was applied to the Parent Sample or from the Biospecimen
+      Collection that yielded this distinct sample. OBI is recommended.
+    title: Sample Processing
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:processing
+    owner: Sample
+    domain_of:
+    - Sample
+    range: uriorcurie
+    multivalued: true
+  availablity_status:
+    name: availablity_status
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/availablity_status
+    description: Can this Sample be requested for further analysis?
+    title: Sample Availability
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:availablity_status
+    owner: Aliquot
+    domain_of:
+    - Sample
+    - Aliquot
+    range: EnumAvailabilityStatus
+  storage_method:
+    name: storage_method
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/storage_method
+    description: Sample storage method, eg, Frozen or with additives. OBI may be suitable,
+      or ChEBI for additives.
+    title: Sample Storage Method
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:storage_method
+    owner: Sample
+    domain_of:
+    - Sample
+    range: uriorcurie
+    multivalued: true
+  quantity_number:
+    name: quantity_number
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/quantity_number
+    description: The total quantity of the specimen
+    title: Quantity
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:quantity_number
+    owner: Aliquot
+    domain_of:
+    - Sample
+    - Aliquot
+    range: float
+  quantity_unit:
+    name: quantity_unit
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/quantity_unit
+    description: The structured term defining the units of the quantity.
+    title: Quantity Units
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:quantity_unit
+    owner: Aliquot
+    domain_of:
+    - Sample
+    - Aliquot
+    range: Concept
+  concentration_number:
+    name: concentration_number
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/concentration_number
+    description: What is the concentration of the analyte in the Aliquot?
+    title: Concentration
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:concentration_number
+    owner: Aliquot
+    domain_of:
+    - Aliquot
+    range: float
+  concentration_unit:
+    name: concentration_unit
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/concentration_unit
+    description: Units associated with the concentration of the analyte in the Aliquot.
+    title: Concentration Units
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:concentration_unit
+    owner: Aliquot
+    domain_of:
+    - Aliquot
+    range: Concept
+  age_at_collection:
+    name: age_at_collection
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/age_at_collection
+    description: The age at which this biospecimen was collected in decimal years.
+    title: Age at Biospecimen Collection
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:age_at_collection
+    owner: BiospecimenCollection
+    domain_of:
+    - BiospecimenCollection
+    range: float
+    unit:
+      ucum_code: a
+  method:
+    name: method
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/method
+    description: The approach used to collect the biospecimen.
+    title: Biospecimen Collection Method
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:method
+    owner: BiospecimenCollection
+    domain_of:
+    - BiospecimenCollection
+    range: EnumSampleCollectionMethod
+  site:
+    name: site
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/site
+    description: The location of the specimen collection.
+    title: Biospecimen Collection Site
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:site
+    owner: BiospecimenCollection
+    domain_of:
+    - BiospecimenCollection
+    range: EnumSite
+  spatial_qualifier:
+    name: spatial_qualifier
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/spatial_qualifier
+    description: Qualifier that further refine the specific location of biospecimen
+      collection
+    title: Spatial Qualifier
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:spatial_qualifier
+    owner: BiospecimenCollection
+    domain_of:
+    - BiospecimenCollection
+    range: EnumSpatialQualifiers
+  laterality:
+    name: laterality
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/laterality
+    description: Laterality that further refine the specific location of biospecimen
+      collection
+    title: Location Laterality
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:laterality
+    owner: BiospecimenCollection
+    domain_of:
+    - BiospecimenCollection
+    range: EnumLaterality
+  tissue_type:
+    name: tissue_type
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/tissue_type
+    description: The type of tissue this Sample represents.
+    title: Tissue Type
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:tissue_type
+    range: EnumTissueType
+  has_matched_normal_sample:
+    name: has_matched_normal_sample
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/has_matched_normal_sample
+    description: Whether this sample has a matched normal sample.
+    title: Has Matched Normal Sample
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:has_matched_normal_sample
+    owner: Aliquot
+    domain_of:
+    - Aliquot
+    range: boolean
+  cell_entity:
+    name: cell_entity
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/cell_entity
+    description: The type of cell entity present in the sample.
+    title: Cell Entity
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:cell_entity
+    owner: Aliquot
+    domain_of:
+    - Aliquot
+    range: EnumCellEntity
+  external_aliquot_id:
+    name: external_aliquot_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/external_aliquot_id
+    description: The submitter-provided identifier for this Biospecimen/aliquot.
+    title: External Aliquot ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:external_aliquot_id
+    owner: Aliquot
+    domain_of:
+    - Aliquot
+    range: string
+  sequencing_center_id:
+    name: sequencing_center_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/sequencing_center_id
+    description: The sequencing center associated with this record.
+    title: Sequencing Center ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:sequencing_center_id
+    owner: SequencingAssay
+    domain_of:
+    - Aliquot
+    - SequencingAssay
+    range: SequencingCenter
+  external_sample_id:
+    name: external_sample_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/external_sample_id
+    description: The submitter-provided identifier for the Sample this Biospecimen
+      belongs to.
+    title: External Sample ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:external_sample_id
+    owner: Aliquot
+    domain_of:
+    - Aliquot
+    range: string
+  source_text_tissue_type:
+    name: source_text_tissue_type
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/source_text_tissue_type
+    description: The tissue type as reported by the source study.
+    title: Source Text Tissue Type
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:source_text_tissue_type
+    owner: Aliquot
+    domain_of:
+    - Aliquot
+    range: string
+  composition:
+    name: composition
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/composition
+    description: The material composition of the specimen.
+    title: Composition
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:composition
+    owner: Aliquot
+    domain_of:
+    - Aliquot
+    range: EnumSpecimenComposition
+  source_text_anatomical_site:
+    name: source_text_anatomical_site
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/source_text_anatomical_site
+    description: The anatomical site of collection, as reported by the source study.
+    title: Source Text Anatomical Site
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:source_text_anatomical_site
+    range: string
+  source_text_tumor_descriptor:
+    name: source_text_tumor_descriptor
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/source_text_tumor_descriptor
+    description: The tumor descriptor (eg, Primary, Metastatic) as reported by the
+      source study.
+    title: Source Text Tumor Descriptor
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:source_text_tumor_descriptor
+    owner: Aliquot
+    domain_of:
+    - Aliquot
+    range: string
+  ncit_id_tissue_type:
+    name: ncit_id_tissue_type
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/ncit_id_tissue_type
+    description: The NCIT ontology term for the tissue type.
+    title: NCIT ID Tissue Type
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:ncit_id_tissue_type
+    owner: Aliquot
+    domain_of:
+    - Aliquot
+    range: uriorcurie
+  ncit_id_anatomical_site:
+    name: ncit_id_anatomical_site
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/ncit_id_anatomical_site
+    description: The NCIT ontology term for the anatomical site.
+    title: NCIT ID Anatomical Site
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:ncit_id_anatomical_site
+    owner: Aliquot
+    domain_of:
+    - Aliquot
+    range: uriorcurie
+  uberon_id_anatomical_site:
+    name: uberon_id_anatomical_site
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/uberon_id_anatomical_site
+    description: The UBERON ontology term for the anatomical site.
+    title: UBERON ID Anatomical Site
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:uberon_id_anatomical_site
+    owner: Aliquot
+    domain_of:
+    - Aliquot
+    range: uriorcurie
+  shipment_origin:
+    name: shipment_origin
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/shipment_origin
+    description: The origin location of the specimen shipment.
+    title: Shipment Origin
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:shipment_origin
+    owner: Aliquot
+    domain_of:
+    - Aliquot
+    range: string
+  shipment_date:
+    name: shipment_date
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/shipment_date
+    description: The date the specimen was shipped.
+    title: Shipment Date
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:shipment_date
+    owner: Aliquot
+    domain_of:
+    - Aliquot
+    range: date
+  analyte_type:
+    name: analyte_type
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/analyte_type
+    description: The type of analyte extracted from the specimen.
+    title: Analyte Type
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:analyte_type
+    owner: Aliquot
+    domain_of:
+    - Aliquot
+    range: EnumAnalyte
+  specimen_status:
+    name: specimen_status
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/specimen_status
+    description: Whether the specimen is available for further analysis.
+    title: Specimen Status
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:specimen_status
+    owner: Aliquot
+    domain_of:
+    - Aliquot
+    range: EnumAvailabilityStatus
+  dbgap_consent_code:
+    name: dbgap_consent_code
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/dbgap_consent_code
+    description: The dbGaP-style consent short name/code for this specimen.
+    title: dbGaP Consent Code
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:dbgap_consent_code
+    owner: Aliquot
+    domain_of:
+    - Aliquot
+    range: string
+  consent_type:
+    name: consent_type
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/consent_type
+    description: The Data Use Ontology-style consent short name for this specimen.
+    title: Consent Type
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:consent_type
+    owner: Aliquot
+    domain_of:
+    - Aliquot
+    range: EnumConsentType
+  file_id:
+    name: file_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/file_id
+    description: Unique identifier for this File.
+    title: File ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:file_id
+    owner: ReadGroup
+    domain_of:
+    - GenomicFile
+    - Assay
+    - ReadGroup
+    range: GenomicFile
+  filename:
+    name: filename
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/filename
+    description: The name of the file.
+    title: Filename
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:filename
+    owner: GenomicFile
+    domain_of:
+    - GenomicFile
+    range: string
+  format:
+    name: format
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/format
+    description: The format of the file.
+    title: File Format
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:format
+    owner: GenomicFile
+    domain_of:
+    - GenomicFile
+    range: EnumEDAMFormats
+  file_extension:
+    name: file_extension
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/file_extension
+    description: Typically a 3-4 letter code at the end of a filename that identifies
+      the file format. Empty string for no extension.
+    title: File Extension
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:file_extension
+    owner: GenomicFile
+    domain_of:
+    - GenomicFile
+    range: string
+    required: true
+  data_type:
+    name: data_type
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/data_type
+    description: The type of data within this file.
+    title: Data Type
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:data_type
+    owner: GenomicFile
+    domain_of:
+    - GenomicFile
+    range: EnumEDAMDataTypes
+  size:
+    name: size
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/size
+    description: Size of the file, in Bytes. May require BigInt or similar.
+    title: File Size
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:size
+    owner: GenomicFile
+    domain_of:
+    - GenomicFile
+    range: integer
+    unit:
+      ucum_code: By
+  internal_uri:
+    name: internal_uri
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/internal_uri
+    description: URI/URL for internal access to the data. May be temporary.
+    title: Internal Staging Location
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:internal_uri
+    owner: GenomicFile
+    domain_of:
+    - GenomicFile
+    range: uriorcurie
+  release_uri:
+    name: release_uri
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/release_uri
+    description: URI/URL for controlled or open access to the data.
+    title: Release Location
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:release_uri
+    owner: GenomicFile
+    domain_of:
+    - GenomicFile
+    range: uriorcurie
+  drs_uri:
+    name: drs_uri
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/drs_uri
+    description: DRS location to access the data.
+    title: DRS URI
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:drs_uri
+    owner: GenomicFile
+    domain_of:
+    - GenomicFile
+    range: uriorcurie
+  storage_class:
+    name: storage_class
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/storage_class
+    description: Storage class of the object, reflecting cost and access characteristics.
+    title: Storage Class
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:storage_class
+    owner: GenomicFile
+    domain_of:
+    - GenomicFile
+    range: string
+  availability:
+    name: availability
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/availability
+    description: Is or was this file available to users?
+    title: File Availability
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:availability
+    owner: GenomicFile
+    domain_of:
+    - GenomicFile
+    range: EnumGenomicFileAvailability
+  hash:
+    name: hash
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/hash
+    description: File hash information
+    title: File Hash
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:hash
+    owner: GenomicFile
+    domain_of:
+    - GenomicFile
+    range: FileHash
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  hash_type:
+    name: hash_type
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/hash_type
+    description: The type of file hash, eg, md5
+    title: File Hash Type
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:hash_type
+    owner: FileHash
+    domain_of:
+    - FileHash
+    range: EnumFileHashType
+  hash_value:
+    name: hash_value
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/hash_value
+    description: The value of the file hash
+    title: File Hash Value
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:hash_value
+    owner: FileHash
+    domain_of:
+    - FileHash
+    range: string
+  data_category:
+    name: data_category
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/data_category
+    description: General category of data in this Record (e.g. Clinical, Genomics,
+      etc)
+    title: Data Category
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:data_category
+    owner: GenomicFile
+    domain_of:
+    - GenomicFile
+    range: EnumDataCategory
+  controlled_access:
+    name: controlled_access
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/controlled_access
+    description: Whether access to this file is controlled.
+    title: Controlled Access
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:controlled_access
+    owner: GenomicFile
+    domain_of:
+    - GenomicFile
+    range: boolean
+  is_harmonized:
+    name: is_harmonized
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/is_harmonized
+    description: Whether this file was produced by a harmonization workflow.
+    title: Is Harmonized
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:is_harmonized
+    owner: GenomicFile
+    domain_of:
+    - GenomicFile
+    range: boolean
+  urls:
+    name: urls
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/urls
+    description: The location(s) of this file.
+    title: URLs
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:urls
+    range: uri
+    multivalued: true
+  acl:
+    name: acl
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/acl
+    description: Deprecated access control list for this file. See authz.
+    title: ACL
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:acl
+    owner: GenomicFile
+    domain_of:
+    - GenomicFile
+    range: string
+    multivalued: true
+  authz:
+    name: authz
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/authz
+    description: The access control identifiers (eg, dbGaP phs accessions) that gate
+      access to this file.
+    title: Authz
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:authz
+    owner: GenomicFile
+    domain_of:
+    - GenomicFile
+    range: string
+    multivalued: true
+  reference_genome:
+    name: reference_genome
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/reference_genome
+    description: The reference genome build this file is aligned to or was generated
+      against.
+    title: Reference Genome
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:reference_genome
+    owner: GenomicFile
+    domain_of:
+    - GenomicFile
+    range: EnumReferenceGenome
+  workflow_type:
+    name: workflow_type
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/workflow_type
+    description: 'The type of workflow that produced this file. (Kids First Dataservice
+      field: worflow_type)'
+    title: Workflow Type
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:workflow_type
+    owner: GenomicFile
+    domain_of:
+    - GenomicFile
+    range: string
+  workflow_tool:
+    name: workflow_tool
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/workflow_tool
+    description: 'The tool used by the workflow that produced this file. (Kids First
+      Dataservice field: worflow_tool)'
+    title: Workflow Tool
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:workflow_tool
+    owner: GenomicFile
+    domain_of:
+    - GenomicFile
+    range: string
+  workflow_version:
+    name: workflow_version
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/workflow_version
+    description: The version of the workflow tool used to produce this file.
+    title: Workflow Version
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:workflow_version
+    owner: GenomicFile
+    domain_of:
+    - GenomicFile
+    range: string
+  assay_id:
+    name: assay_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/assay_id
+    description: The unique identifier for the Assay.
+    title: Assay ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:assay_id
+    owner: Assay
+    domain_of:
+    - Assay
+    range: Assay
+  assay_type:
+    name: assay_type
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/assay_type
+    description: The type of assay performed.
+    title: Assay Type
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:assay_type
+    owner: Assay
+    domain_of:
+    - Assay
+    range: EnumAssayType
+  assay_source:
+    name: assay_source
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/assay_source
+    description: The original description of the Assay performed.
+    title: Assay Source Text
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:assay_source
+    owner: Assay
+    domain_of:
+    - Assay
+    range: string
+  flow_cell:
+    name: flow_cell
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/flow_cell
+    description: The flow cell identifier for this read group.
+    title: Flow Cell
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:flow_cell
+    owner: ReadGroup
+    domain_of:
+    - ReadGroup
+    range: string
+  lane_number:
+    name: lane_number
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/lane_number
+    description: The lane number for this read group.
+    title: Lane Number
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:lane_number
+    owner: ReadGroup
+    domain_of:
+    - ReadGroup
+    range: integer
+  quality_scale:
+    name: quality_scale
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/quality_scale
+    description: The quality score scale used for this read group.
+    title: Quality Scale
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:quality_scale
+    owner: ReadGroup
+    domain_of:
+    - ReadGroup
+    range: EnumReadGroupQualityScale
+  library_name:
+    name: library_name
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/library_name
+    description: The name of the sequencing library.
+    title: Library Name
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:library_name
+    owner: SequencingAssay
+    domain_of:
+    - SequencingAssay
+    range: string
+  experiment_date:
+    name: experiment_date
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/experiment_date
+    description: The date the sequencing experiment was performed.
+    title: Experiment Date
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:experiment_date
+    owner: SequencingAssay
+    domain_of:
+    - SequencingAssay
+    range: date
+  experiment_strategy:
+    name: experiment_strategy
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/experiment_strategy
+    description: The sequencing strategy used.
+    title: Experiment Strategy
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:experiment_strategy
+    owner: SequencingAssay
+    domain_of:
+    - SequencingAssay
+    range: EnumSequencingStrategy
+  library_strand:
+    name: library_strand
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/library_strand
+    description: The strandedness of the sequencing library.
+    title: Library Strand
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:library_strand
+    owner: SequencingAssay
+    domain_of:
+    - SequencingAssay
+    range: EnumLibraryStrand
+  library_prep:
+    name: library_prep
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/library_prep
+    description: The library preparation method used.
+    title: Library Prep
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:library_prep
+    owner: SequencingAssay
+    domain_of:
+    - SequencingAssay
+    range: EnumLibraryPrep
+  library_selection:
+    name: library_selection
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/library_selection
+    description: The library selection method used.
+    title: Library Selection
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:library_selection
+    owner: SequencingAssay
+    domain_of:
+    - SequencingAssay
+    range: EnumLibrarySelection
+  is_paired_end:
+    name: is_paired_end
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/is_paired_end
+    description: Whether the sequencing reads are paired-end.
+    title: Is Paired End
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:is_paired_end
+    owner: SequencingAssay
+    domain_of:
+    - SequencingAssay
+    range: boolean
+  platform:
+    name: platform
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/platform
+    description: The sequencing platform used.
+    title: Platform
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:platform
+    owner: SequencingAssay
+    domain_of:
+    - SequencingAssay
+    range: EnumSequencingPlatform
+  instrument_model:
+    name: instrument_model
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/instrument_model
+    description: The sequencing instrument model used.
+    title: Instrument Model
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:instrument_model
+    owner: SequencingAssay
+    domain_of:
+    - SequencingAssay
+    range: EnumSequencingInstrument
+  max_insert_size:
+    name: max_insert_size
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/max_insert_size
+    description: The maximum insert size, in base pairs.
+    title: Max Insert Size
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:max_insert_size
+    owner: SequencingAssay
+    domain_of:
+    - SequencingAssay
+    range: integer
+  mean_insert_size:
+    name: mean_insert_size
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/mean_insert_size
+    description: The mean insert size, in base pairs.
+    title: Mean Insert Size
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:mean_insert_size
+    owner: SequencingAssay
+    domain_of:
+    - SequencingAssay
+    range: float
+  mean_depth:
+    name: mean_depth
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/mean_depth
+    description: The mean sequencing depth of coverage.
+    title: Mean Depth
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:mean_depth
+    owner: SequencingAssay
+    domain_of:
+    - SequencingAssay
+    range: float
+  total_reads:
+    name: total_reads
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/total_reads
+    description: The total number of reads generated.
+    title: Total Reads
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:total_reads
+    owner: SequencingAssay
+    domain_of:
+    - SequencingAssay
+    range: integer
+  mean_read_length:
+    name: mean_read_length
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/mean_read_length
+    description: The mean read length, in base pairs.
+    title: Mean Read Length
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:mean_read_length
+    owner: SequencingAssay
+    domain_of:
+    - SequencingAssay
+    range: integer
+  target_capture_kit:
+    name: target_capture_kit
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/target_capture_kit
+    description: The target capture kit used, if any.
+    title: Target Capture Kit
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:target_capture_kit
+    owner: SequencingAssay
+    domain_of:
+    - SequencingAssay
+    range: string
+  read_pair_number:
+    name: read_pair_number
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/read_pair_number
+    description: The read pair number (1 or 2) for this read group, for paired-end
+      sequencing.
+    title: Read Pair Number
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:read_pair_number
+    owner: SequencingAssay
+    domain_of:
+    - SequencingAssay
+    range: integer
+  is_adapter_trimmed:
+    name: is_adapter_trimmed
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/is_adapter_trimmed
+    description: Whether adapter sequences were trimmed.
+    title: Is Adapter Trimmed
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:is_adapter_trimmed
+    owner: SequencingAssay
+    domain_of:
+    - SequencingAssay
+    range: boolean
+  adapter_sequencing:
+    name: adapter_sequencing
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/adapter_sequencing
+    description: The adapter sequence used, if known.
+    title: Adapter Sequence
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slot_uri: kf_access_model:adapter_sequencing
+    owner: SequencingAssay
+    domain_of:
+    - SequencingAssay
+    range: string
+  Record_kf_id:
+    name: Record_kf_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/kf_id
+    description: Kids First Dataservice identifier for this record, eg, PT_00000000.
+    title: KF ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: kf_id
+    domain: Record
+    slot_uri: kf_access_model:kf_id
+    identifier: true
+    alias: kf_id
+    owner: Record
+    domain_of:
+    - Record
+    is_usage_slot: true
+    usage_slot_name: kf_id
+    range: kfID
+    required: true
+    pattern: ^[A-Z]{2}_[A-Z0-9]{8}$
+  Study_parent_study:
+    name: Study_parent_study
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/parent_study
+    description: The parent KFStudy for this study, if it is a nested study.
+    title: Parent Study
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: parent_study
+    domain: Study
+    slot_uri: kf_access_model:parent_study
+    alias: parent_study
+    owner: Study
+    domain_of:
+    - Study
+    is_usage_slot: true
+    usage_slot_name: parent_study
+    range: Study
+    required: false
+    multivalued: false
+  Study_principal_investigator:
+    name: Study_principal_investigator
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/principal_investigator
+    description: The KFInvestigator(s) responsible for the study.
+    title: Principal Investigator
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: principal_investigator
+    domain: Study
+    slot_uri: kf_access_model:principal_investigator
+    alias: principal_investigator
+    owner: Study
+    domain_of:
+    - Study
+    is_usage_slot: true
+    usage_slot_name: principal_investigator
+    range: Investigator
+    required: true
+    multivalued: true
+  Study_contact:
+    name: Study_contact
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/contact
+    description: The KFInvestigator(s) to contact with questions about this study.
+    title: Contact Person
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: contact
+    domain: Study
+    slot_uri: kf_access_model:contact
+    alias: contact
+    owner: Study
+    domain_of:
+    - Study
+    is_usage_slot: true
+    usage_slot_name: contact
+    range: Investigator
+    required: true
+    multivalued: true
+  Participant_participant_id:
+    name: Participant_participant_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/participant_id
+    description: Global ID for the Participant
+    title: Participant ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: participant_id
+    domain: Participant
+    slot_uri: kf_access_model:participant_id
+    alias: participant_id
+    owner: Participant
+    domain_of:
+    - Participant
+    is_usage_slot: true
+    usage_slot_name: participant_id
+    range: ptGlobalID
+    multivalued: false
+  Family_family_id:
+    name: Family_family_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/family_id
+    description: Global ID for the Family
+    title: Family ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: family_id
+    domain: Family
+    slot_uri: kf_access_model:family_id
+    alias: family_id
+    owner: Family
+    domain_of:
+    - Family
+    is_usage_slot: true
+    usage_slot_name: family_id
+    range: grGlobalID
+  FamilyRelationship_family_relationship_id:
+    name: FamilyRelationship_family_relationship_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/family_relationship_id
+    description: Global ID for the Family Relationship
+    title: Family Relationship ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: family_relationship_id
+    domain: FamilyRelationship
+    slot_uri: kf_access_model:family_relationship_id
+    alias: family_relationship_id
+    owner: FamilyRelationship
+    domain_of:
+    - FamilyRelationship
+    is_usage_slot: true
+    usage_slot_name: family_relationship_id
+    range: fmGlobalID
+  FamilyRelationship_subject_id:
+    name: FamilyRelationship_subject_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/subject_id
+    description: The family member Subject who is the relationship "object".
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: subject_id
+    domain: FamilyRelationship
+    slot_uri: kf_access_model:subject_id
+    alias: subject_id
+    owner: FamilyRelationship
+    domain_of:
+    - FamilyRelationship
+    is_usage_slot: true
+    usage_slot_name: subject_id
+    range: Participant
+    required: true
+    inlined: false
+  SubjectAssertion_assertion_id:
+    name: SubjectAssertion_assertion_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/assertion_id
+    description: INCLUDE Global ID for the Assertion
+    title: Assertion ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: assertion_id
+    domain: SubjectAssertion
+    slot_uri: kf_access_model:assertion_id
+    alias: assertion_id
+    owner: SubjectAssertion
+    domain_of:
+    - SubjectAssertion
+    is_usage_slot: true
+    usage_slot_name: assertion_id
+    range: obGlobalID
+    multivalued: false
+    any_of:
+    - range: deGlobalID
+    - range: msGlobalID
+  Concept_concept_curie:
+    name: Concept_concept_curie
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/concept_curie
+    description: The standardized curie for the term.
+    title: Concept Curie
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: concept_curie
+    domain: Concept
+    slot_uri: kf_access_model:concept_curie
+    identifier: true
+    alias: concept_curie
+    owner: Concept
+    domain_of:
+    - Concept
+    is_usage_slot: true
+    usage_slot_name: concept_curie
+    range: uriorcurie
+    required: true
+  Sample_sample_id:
+    name: Sample_sample_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/sample_id
+    description: The unique identifier for this Sample.
+    title: Sample ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: sample_id
+    domain: Sample
+    slot_uri: kf_access_model:sample_id
+    alias: sample_id
+    owner: Sample
+    domain_of:
+    - Sample
+    is_usage_slot: true
+    usage_slot_name: sample_id
+    range: bsGlobalID
+  Sample_biospecimen_collection_id:
+    name: Sample_biospecimen_collection_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/biospecimen_collection_id
+    description: Biospecimen Collection during which this sample was generated.
+    title: Biospecimen Collection ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: biospecimen_collection_id
+    domain: Sample
+    slot_uri: kf_access_model:biospecimen_collection_id
+    alias: biospecimen_collection_id
+    owner: Sample
+    domain_of:
+    - Sample
+    is_usage_slot: true
+    usage_slot_name: biospecimen_collection_id
+    range: BiospecimenCollection
+  BiospecimenCollection_biospecimen_collection_id:
+    name: BiospecimenCollection_biospecimen_collection_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/biospecimen_collection_id
+    description: Unique identifier for this Biospecimen Collection.
+    title: Biospecimen Collection ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: biospecimen_collection_id
+    domain: BiospecimenCollection
+    slot_uri: kf_access_model:biospecimen_collection_id
+    alias: biospecimen_collection_id
+    owner: BiospecimenCollection
+    domain_of:
+    - BiospecimenCollection
+    is_usage_slot: true
+    usage_slot_name: biospecimen_collection_id
+    range: string
+  Aliquot_aliquot_id:
+    name: Aliquot_aliquot_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/aliquot_id
+    description: Unique identifier for an Aliquot.
+    title: Aliquot ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: aliquot_id
+    domain: Aliquot
+    slot_uri: kf_access_model:aliquot_id
+    alias: aliquot_id
+    owner: Aliquot
+    domain_of:
+    - Aliquot
+    is_usage_slot: true
+    usage_slot_name: aliquot_id
+    range: string
+  GenomicFile_file_id:
+    name: GenomicFile_file_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/file_id
+    description: Unique identifier for this File.
+    title: File ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: file_id
+    domain: GenomicFile
+    slot_uri: kf_access_model:file_id
+    alias: file_id
+    owner: GenomicFile
+    domain_of:
+    - GenomicFile
+    is_usage_slot: true
+    usage_slot_name: file_id
+    range: drGlobalID
+  GenomicFile_subject_id:
+    name: GenomicFile_subject_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/subject_id
+    description: The family member Subject who is the relationship "object".
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: subject_id
+    domain: GenomicFile
+    slot_uri: kf_access_model:subject_id
+    alias: subject_id
+    owner: GenomicFile
+    domain_of:
+    - GenomicFile
+    is_usage_slot: true
+    usage_slot_name: subject_id
+    range: Participant
+    required: true
+    multivalued: true
+    inlined: false
+  GenomicFile_sample_id:
+    name: GenomicFile_sample_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/sample_id
+    description: The unique identifier for this Sample.
+    title: Sample ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: sample_id
+    domain: GenomicFile
+    slot_uri: kf_access_model:sample_id
+    alias: sample_id
+    owner: GenomicFile
+    domain_of:
+    - GenomicFile
+    is_usage_slot: true
+    usage_slot_name: sample_id
+    range: Sample
+    multivalued: true
+  GenomicFile_data_type:
+    name: GenomicFile_data_type
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/data_type
+    description: The type of data within this file.
+    title: Data Type
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: data_type
+    domain: GenomicFile
+    slot_uri: kf_access_model:data_type
+    alias: data_type
+    owner: GenomicFile
+    domain_of:
+    - GenomicFile
+    is_usage_slot: true
+    usage_slot_name: data_type
+    range: EnumGenomicFileDataType
+  GenomicFile_availability:
+    name: GenomicFile_availability
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/availability
+    description: Is or was this file available to users?
+    title: File Availability
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: availability
+    domain: GenomicFile
+    slot_uri: kf_access_model:availability
+    alias: availability
+    owner: GenomicFile
+    domain_of:
+    - GenomicFile
+    is_usage_slot: true
+    usage_slot_name: availability
+    range: EnumGenomicFileAvailability
+  Assay_assay_id:
+    name: Assay_assay_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/assay_id
+    description: The unique identifier for the Assay.
+    title: Assay ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: assay_id
+    domain: Assay
+    slot_uri: kf_access_model:assay_id
+    alias: assay_id
+    owner: Assay
+    domain_of:
+    - Assay
+    is_usage_slot: true
+    usage_slot_name: assay_id
+    range: diGlobalID
+  Assay_file_id:
+    name: Assay_file_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/file_id
+    description: Unique identifier for this File.
+    title: File ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: file_id
+    domain: Assay
+    slot_uri: kf_access_model:file_id
+    alias: file_id
+    owner: Assay
+    domain_of:
+    - Assay
+    is_usage_slot: true
+    usage_slot_name: file_id
+    range: GenomicFile
+    multivalued: true
+  Assay_subject_id:
+    name: Assay_subject_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/subject_id
+    description: The family member Subject who is the relationship "object".
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: subject_id
+    domain: Assay
+    slot_uri: kf_access_model:subject_id
+    alias: subject_id
+    owner: Assay
+    domain_of:
+    - Assay
+    is_usage_slot: true
+    usage_slot_name: subject_id
+    range: Participant
+    required: true
+    multivalued: true
+    inlined: false
+  Assay_sample_id:
+    name: Assay_sample_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/sample_id
+    description: The unique identifier for this Sample.
+    title: Sample ID
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: sample_id
+    domain: Assay
+    slot_uri: kf_access_model:sample_id
+    alias: sample_id
+    owner: Assay
+    domain_of:
+    - Assay
+    is_usage_slot: true
+    usage_slot_name: sample_id
+    range: Sample
+    multivalued: true
+  Assay_assay_type:
+    name: Assay_assay_type
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/assay_type
+    description: The type of assay performed.
+    title: Assay Type
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: assay_type
+    domain: Assay
+    slot_uri: kf_access_model:assay_type
+    alias: assay_type
+    owner: Assay
+    domain_of:
+    - Assay
+    is_usage_slot: true
+    usage_slot_name: assay_type
+    range: EnumAssayType
+    required: true
+classes:
+  Any:
+    name: Any
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/Any
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    mappings:
+    - linkml:Any
+    class_uri: linkml:Any
+  Record:
+    name: Record
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/Record
+    description: One row / entity within the dataservice
+    title: Record
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    abstract: true
+    slots:
+    - Record_kf_id
+    - visible
+    - visibility_comment
+    - visibility_reason
+    - external_id
+    - study_id
+    slot_usage:
+      kf_id:
+        name: kf_id
+        identifier: true
+        range: kfID
+        required: true
+    class_uri: kf_access_model:Record
+  Study:
+    name: Study
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/Study
+    description: Study Metadata
+    title: Research Study
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: Record
+    slots:
+    - Record_kf_id
+    - visible
+    - visibility_comment
+    - visibility_reason
+    - external_id
+    - study_id
+    - Study_parent_study
+    - study_title
+    - study_code
+    - study_short_name
+    - program
+    - funding_source
+    - Study_principal_investigator
+    - Study_contact
+    - study_description
+    - website
+    - acknowledgments
+    - citation_statement
+    - data_access_authority
+    - version
+    - file_version_descriptor
+    - attribution
+    - category
+    - status
+    slot_usage:
+      parent_study:
+        name: parent_study
+        description: The parent KFStudy for this study, if it is a nested study.
+        range: Study
+      principal_investigator:
+        name: principal_investigator
+        description: The KFInvestigator(s) responsible for the study.
+        range: Investigator
+      contact:
+        name: contact
+        description: The KFInvestigator(s) to contact with questions about this study.
+        range: Investigator
+    class_uri: kf_access_model:Study
+  Investigator:
+    name: Investigator
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/Investigator
+    description: An individual who made contributions to the collection, analysis,
+      or sharing of data.
+    title: Investigator
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: Record
+    slots:
+    - Record_kf_id
+    - visible
+    - visibility_comment
+    - visibility_reason
+    - external_id
+    - study_id
+    - name
+    - institution
+    - investigator_title
+    - email
+    class_uri: kf_access_model:Investigator
+  Participant:
+    name: Participant
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/Participant
+    description: This entity is the subject about which data or references are recorded.
+      This includes the idea of a human participant in a study, a cell line, an animal
+      model, or any other similar entity.
+    title: Participant
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: Record
+    slots:
+    - Record_kf_id
+    - visible
+    - visibility_comment
+    - visibility_reason
+    - external_id
+    - study_id
+    - Participant_participant_id
+    - subject_type
+    - organism_type
+    - sex
+    - race
+    - ethnicity
+    - age_at_last_vital_status
+    - vital_status
+    - age_at_first_engagement
+    - family_id
+    - is_proband
+    - affected_status
+    slot_usage:
+      participant_id:
+        name: participant_id
+        range: ptGlobalID
+    class_uri: kf_access_model:Participant
+  Family:
+    name: Family
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/Family
+    description: A group of individuals of some relation who are grouped together
+      in a study.
+    title: Family
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: Record
+    slots:
+    - Record_kf_id
+    - visible
+    - visibility_comment
+    - visibility_reason
+    - external_id
+    - study_id
+    - Family_family_id
+    - family_type
+    - family_description
+    - consanguinity
+    - family_study_focus
+    slot_usage:
+      family_id:
+        name: family_id
+        range: grGlobalID
+    class_uri: kf_access_model:Family
+  FamilyRelationship:
+    name: FamilyRelationship
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/FamilyRelationship
+    description: A relationship between two Subjects. Directed as follows <family_member_id>
+      <relationship> <subject_id> <Mother's id> <KIN:027 "isBiologicalMotherOf"> <subject_id>
+    title: Family Member Relationship
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: Record
+    slots:
+    - Record_kf_id
+    - visible
+    - visibility_comment
+    - visibility_reason
+    - external_id
+    - study_id
+    - FamilyRelationship_family_relationship_id
+    - family_member_id
+    - relation
+    - FamilyRelationship_subject_id
+    slot_usage:
+      family_relationship_id:
+        name: family_relationship_id
+        range: fmGlobalID
+      subject_id:
+        name: subject_id
+        description: The family member Subject who is the relationship "object".
+        required: true
+    class_uri: kf_access_model:FamilyRelationship
+  SubjectAssertion:
+    name: SubjectAssertion
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/SubjectAssertion
+    description: Assertion about a particular Subject. Diagnoses, Phenotypes, and
+      other clinical observations can be recorded as Subject Assertions.
+    title: Subject Assertion
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: Record
+    slots:
+    - Record_kf_id
+    - visible
+    - visibility_comment
+    - visibility_reason
+    - external_id
+    - study_id
+    - SubjectAssertion_assertion_id
+    - subject_id
+    - assertion_provenance
+    - age_at_assertion
+    - age_at_event
+    - age_at_resolution
+    - concept
+    - concept_source
+    - value_concept
+    - value_number
+    - value_source
+    - value_unit
+    - value_unit_source
+    slot_usage:
+      assertion_id:
+        name: assertion_id
+        range: obGlobalID
+        any_of:
+        - range: deGlobalID
+        - range: msGlobalID
+    class_uri: kf_access_model:SubjectAssertion
+  KFSubjectAssertion:
+    name: KFSubjectAssertion
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/KFSubjectAssertion
+    description: A Subject Assertion recorded for a Participant.
+    title: Subject Assertion
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: SubjectAssertion
+    slots:
+    - Record_kf_id
+    - visible
+    - visibility_comment
+    - visibility_reason
+    - external_id
+    - study_id
+    - SubjectAssertion_assertion_id
+    - subject_id
+    - assertion_provenance
+    - age_at_assertion
+    - age_at_event
+    - age_at_resolution
+    - concept
+    - concept_source
+    - value_concept
+    - value_number
+    - value_source
+    - value_unit
+    - value_unit_source
+    - source_text_tumor_location
+    - uberon_id_tumor_location
+    - spatial_descriptor
+    - diagnosis_category
+    - disease_related
+    - vital_status
+    class_uri: kf_access_model:KFSubjectAssertion
+  Concept:
+    name: Concept
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/Concept
+    description: A standardized concept with display information.
+    title: Concept
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slots:
+    - Concept_concept_curie
+    - display
+    slot_usage:
+      concept_curie:
+        name: concept_curie
+        identifier: true
+        required: true
+    class_uri: kf_access_model:Concept
+  Sample:
+    name: Sample
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/Sample
+    description: A grouping of Biospecimens collected from a Participant at the same
+      event.
+    title: Sample
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: Record
+    slots:
+    - Record_kf_id
+    - visible
+    - visibility_comment
+    - visibility_reason
+    - external_id
+    - study_id
+    - Sample_sample_id
+    - Sample_biospecimen_collection_id
+    - parent_sample_id
+    - sample_type
+    - processing
+    - availablity_status
+    - storage_method
+    - quantity_number
+    - quantity_unit
+    slot_usage:
+      sample_id:
+        name: sample_id
+        range: bsGlobalID
+      biospecimen_collection_id:
+        name: biospecimen_collection_id
+        description: Biospecimen Collection during which this sample was generated.
+    class_uri: kf_access_model:Sample
+  BiospecimenCollection:
+    name: BiospecimenCollection
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/BiospecimenCollection
+    description: A biospecimen collection event which yields one or more Samples.
+    title: BiospecimenCollection
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: Record
+    slots:
+    - Record_kf_id
+    - visible
+    - visibility_comment
+    - visibility_reason
+    - external_id
+    - study_id
+    - BiospecimenCollection_biospecimen_collection_id
+    - age_at_collection
+    - method
+    - site
+    - spatial_qualifier
+    - laterality
+    slot_usage:
+      biospecimen_collection_id:
+        name: biospecimen_collection_id
+        range: string
+    class_uri: kf_access_model:BiospecimenCollection
+  Aliquot:
+    name: Aliquot
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/Aliquot
+    description: A specific specimen/aliquot derived from a Sample, carrying material,
+      consent, and shipment details.
+    title: Aliquot
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: Record
+    slots:
+    - Record_kf_id
+    - visible
+    - visibility_comment
+    - visibility_reason
+    - external_id
+    - study_id
+    - Aliquot_aliquot_id
+    - sample_id
+    - availablity_status
+    - quantity_number
+    - quantity_unit
+    - concentration_number
+    - concentration_unit
+    - has_matched_normal_sample
+    - cell_entity
+    - external_aliquot_id
+    - sequencing_center_id
+    - participant_id
+    - external_sample_id
+    - source_text_tissue_type
+    - composition
+    - source_text_tumor_descriptor
+    - ncit_id_tissue_type
+    - ncit_id_anatomical_site
+    - uberon_id_anatomical_site
+    - spatial_descriptor
+    - shipment_origin
+    - shipment_date
+    - analyte_type
+    - specimen_status
+    - dbgap_consent_code
+    - consent_type
+    slot_usage:
+      aliquot_id:
+        name: aliquot_id
+        range: string
+    class_uri: kf_access_model:Aliquot
+  GenomicFile:
+    name: GenomicFile
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/GenomicFile
+    description: A data file generated by or associated with sequencing.
+    title: File
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: Record
+    slots:
+    - Record_kf_id
+    - visible
+    - visibility_comment
+    - visibility_reason
+    - external_id
+    - study_id
+    - GenomicFile_file_id
+    - GenomicFile_subject_id
+    - GenomicFile_sample_id
+    - filename
+    - format
+    - file_extension
+    - data_category
+    - GenomicFile_data_type
+    - format
+    - size
+    - internal_uri
+    - release_uri
+    - drs_uri
+    - storage_class
+    - hash
+    - GenomicFile_availability
+    - controlled_access
+    - is_harmonized
+    - acl
+    - authz
+    - reference_genome
+    - workflow_type
+    - workflow_tool
+    - workflow_version
+    - file_version_descriptor
+    slot_usage:
+      file_id:
+        name: file_id
+        range: drGlobalID
+      subject_id:
+        name: subject_id
+        multivalued: true
+      sample_id:
+        name: sample_id
+        multivalued: true
+      data_type:
+        name: data_type
+        description: The type of data within this file.
+        range: EnumGenomicFileDataType
+      availability:
+        name: availability
+        description: Is or was this file available to users?
+        range: EnumGenomicFileAvailability
+    class_uri: kf_access_model:GenomicFile
+  FileHash:
+    name: FileHash
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/FileHash
+    description: Type and value of a file content hash.
+    title: File Hash
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    slots:
+    - hash_type
+    - hash_value
+    class_uri: kf_access_model:FileHash
+  Assay:
+    name: Assay
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/Assay
+    description: A specific assay that was performed on given subject(s) or sample(s).
+    title: Assay
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: Record
+    slots:
+    - Record_kf_id
+    - visible
+    - visibility_comment
+    - visibility_reason
+    - external_id
+    - study_id
+    - Assay_assay_id
+    - Assay_subject_id
+    - Assay_sample_id
+    - Assay_file_id
+    - Assay_assay_type
+    - assay_source
+    slot_usage:
+      assay_id:
+        name: assay_id
+        range: diGlobalID
+      file_id:
+        name: file_id
+        multivalued: true
+      subject_id:
+        name: subject_id
+        multivalued: true
+      sample_id:
+        name: sample_id
+        multivalued: true
+      assay_type:
+        name: assay_type
+        required: true
+    class_uri: kf_access_model:Assay
+  SequencingAssay:
+    name: SequencingAssay
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/SequencingAssay
+    description: A sequencing experiment performed on a Biospecimen.
+    title: Sequencing Experiment Assay
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: Assay
+    slots:
+    - Record_kf_id
+    - visible
+    - visibility_comment
+    - visibility_reason
+    - external_id
+    - study_id
+    - Assay_assay_id
+    - Assay_subject_id
+    - Assay_sample_id
+    - Assay_file_id
+    - Assay_assay_type
+    - assay_source
+    - sequencing_center_id
+    - library_name
+    - experiment_date
+    - experiment_strategy
+    - library_strand
+    - library_prep
+    - library_selection
+    - is_paired_end
+    - platform
+    - instrument_model
+    - max_insert_size
+    - mean_insert_size
+    - mean_depth
+    - total_reads
+    - mean_read_length
+    - target_capture_kit
+    - read_pair_number
+    - is_adapter_trimmed
+    - adapter_sequencing
+    class_uri: kf_access_model:SequencingAssay
+  ReadGroup:
+    name: ReadGroup
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/ReadGroup
+    description: Sequencing read group (flow cell / lane) metadata.
+    title: Read Group
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: Record
+    slots:
+    - Record_kf_id
+    - visible
+    - visibility_comment
+    - visibility_reason
+    - external_id
+    - study_id
+    - file_id
+    - flow_cell
+    - lane_number
+    - quality_scale
+    class_uri: kf_access_model:ReadGroup
+  SequencingCenter:
+    name: SequencingCenter
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/SequencingCenter
+    description: An organization that performs sequencing for a study.
+    title: Sequencing Center
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    is_a: Record
+    slots:
+    - Record_kf_id
+    - visible
+    - visibility_comment
+    - visibility_reason
+    - external_id
+    - study_id
+    - name
+    class_uri: kf_access_model:SequencingCenter
+metamodel_version: 1.11.0
+source_file: kf_access_model.yaml
+source_file_date: '2026-08-19T16:08:36'
+source_file_size: 73320
+generation_date: '2026-08-19T16:09:09'
+
