@@ -185,14 +185,14 @@ classes:
       - investigator_title
       - email
 
-  Participant:
-    title: Participant
+  Subject:
+    title: Subject
     description: This entity is the subject about which data or references are recorded. 
       This includes the idea of a human participant in a study, a cell line, an animal model, 
       or any other similar entity.
     is_a: Record
     slots:
-      - participant_id
+      - subject_id
       - subject_type
       - organism_type
       - sex
@@ -207,7 +207,7 @@ classes:
       - is_proband
       - affected_status
     slot_usage:
-      participant_id:
+      subject_id:
         range: ptGlobalID
 
   Family:
@@ -283,7 +283,7 @@ classes:
     title: Concept
     description: A standardized concept with display information.
     slots:
-      - concept_curie
+      - concept_curie 
       - display
     slot_usage:
       concept_curie:
@@ -345,7 +345,7 @@ classes:
       - cell_entity
       - external_aliquot_id
       - sequencing_center_id
-      - participant_id
+      - subject_id
       - external_sample_id
       - source_text_tissue_type
       - composition
@@ -481,6 +481,7 @@ classes:
       - lane_number
       - quality_scale
 
+#  This could just be an enum
   SequencingCenter:
     title: Sequencing Center
     description: An organization that performs sequencing for a study.
@@ -694,10 +695,10 @@ slots:
 
 
   # --- Participant ---
-  participant_id:
-    title: Participant ID
-    description: Global ID for the Participant
-    range: Participant
+  subject_id:
+    title: Subject ID
+    description: Global ID for the Subject
+    range: Subject
     multivalued: false 
   organism_type:
     title: Organism Type 
@@ -757,11 +758,11 @@ slots:
     maximum_value: 32507
 
   # --- Family / Family Relationship ---
-  subject_id:
-    description: The family member Subject who is the relationship "object".
-    required: true
-    range: Participant
-    inlined: false
+  # subject_id:
+  #   description: The family member Subject who is the relationship "object".
+  #   required: true
+  #   range: Subject
+  #   inlined: false
   family_id:
     title: Family ID
     description: Global ID for the Family
@@ -786,7 +787,7 @@ slots:
   family_member_id:
     description: The family member Subject who is the relationship "subject".
     required: true
-    range: Participant
+    range: Subject
     inlined: false
   relation:
     description: Code definting the relationship predicate. Relationship of the "Family Member" 
