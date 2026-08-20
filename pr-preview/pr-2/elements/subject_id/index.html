@@ -21,7 +21,7 @@
     
     
       
-        <title>Slot: subject_id - kf-access-model</title>
+        <title>Slot: Subject ID (subject_id) - kf-access-model</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-subject_id" class="md-skip">
+        <a href="#slot-subject-id-subject_id" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: subject_id
+              Slot: Subject ID (subject_id)
             
           </span>
         </div>
@@ -512,8 +512,8 @@
   
 
 
-<h1 id="slot-subject_id">Slot: subject_id</h1>
-<p><em>The family member Subject who is the relationship "object".</em></p>
+<h1 id="slot-subject-id-subject_id">Slot: Subject ID (subject_id)</h1>
+<p><em>Global ID for the Subject</em></p>
 <div>
 <p>URI: <a href="https://w3id.org/carrollaboratory/kf-access-model/subject_id">kidsfirst:subject_id</a></p>
 <!-- no inheritance hierarchy -->
@@ -528,6 +528,11 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../Subject/">Subject</a></td>
+<td>This entity is the subject about which data or references are recorded</td>
+<td>yes</td>
+</tr>
+<tr>
 <td><a href="../FamilyRelationship/">FamilyRelationship</a></td>
 <td>A relationship between two Subjects</td>
 <td>yes</td>
@@ -535,6 +540,11 @@
 <tr>
 <td><a href="../SubjectAssertion/">SubjectAssertion</a></td>
 <td>Assertion about a particular Subject</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Aliquot/">Aliquot</a></td>
+<td>A specific specimen/aliquot derived from a Sample, carrying material, consent...</td>
 <td>no</td>
 </tr>
 <tr>
@@ -571,11 +581,11 @@
 <tbody>
 <tr>
 <td>Range</td>
-<td><a href="../Participant/">Participant</a></td>
+<td><a href="../Subject/">Subject</a></td>
 </tr>
 <tr>
 <td>Domain Of</td>
-<td><a href="../FamilyRelationship/">FamilyRelationship</a>, <a href="../SubjectAssertion/">SubjectAssertion</a>, <a href="../GenomicFile/">GenomicFile</a>, <a href="../Assay/">Assay</a></td>
+<td><a href="../Subject/">Subject</a>, <a href="../FamilyRelationship/">FamilyRelationship</a>, <a href="../SubjectAssertion/">SubjectAssertion</a>, <a href="../Aliquot/">Aliquot</a>, <a href="../GenomicFile/">GenomicFile</a>, <a href="../Assay/">Assay</a></td>
 </tr>
 </tbody>
 </table>
@@ -589,8 +599,8 @@
 </thead>
 <tbody>
 <tr>
-<td>Required</td>
-<td>Yes</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -621,17 +631,19 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">subject_id</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The family member Subject who is the relationship &quot;object&quot;.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Global ID for the Subject</span>
+<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Subject ID</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/carrollaboratory/kf-access-model</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">domain_of</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Subject</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FamilyRelationship</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SubjectAssertion</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Aliquot</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenomicFile</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
-<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Participant</span>
-<span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Subject</span>
+<span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 </code></pre></div>
 </details>
 </div>

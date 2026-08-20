@@ -2350,18 +2350,22 @@ slots:
     domain_of:
     - Study
     range: string
-  participant_id:
-    name: participant_id
-    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/participant_id
-    description: Global ID for the Participant
-    title: Participant ID
+  subject_id:
+    name: subject_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/subject_id
+    description: Global ID for the Subject
+    title: Subject ID
     from_schema: https://w3id.org/carrollaboratory/kf-access-model
-    slot_uri: kidsfirst:participant_id
-    owner: Aliquot
+    slot_uri: kidsfirst:subject_id
+    owner: Assay
     domain_of:
-    - Participant
+    - Subject
+    - FamilyRelationship
+    - SubjectAssertion
     - Aliquot
-    range: Participant
+    - GenomicFile
+    - Assay
+    range: Subject
     multivalued: false
   organism_type:
     name: organism_type
@@ -2371,9 +2375,9 @@ slots:
     title: Organism Type
     from_schema: https://w3id.org/carrollaboratory/kf-access-model
     slot_uri: kidsfirst:organism_type
-    owner: Participant
+    owner: Subject
     domain_of:
-    - Participant
+    - Subject
     range: uriorcurie
   subject_type:
     name: subject_type
@@ -2382,9 +2386,9 @@ slots:
     title: Subject Type
     from_schema: https://w3id.org/carrollaboratory/kf-access-model
     slot_uri: kidsfirst:subject_type
-    owner: Participant
+    owner: Subject
     domain_of:
-    - Participant
+    - Subject
     range: EnumSubjectType
     required: true
   sex:
@@ -2394,9 +2398,9 @@ slots:
     title: Sex
     from_schema: https://w3id.org/carrollaboratory/kf-access-model
     slot_uri: kidsfirst:sex
-    owner: Participant
+    owner: Subject
     domain_of:
-    - Participant
+    - Subject
     range: EnumSex
     required: true
   race:
@@ -2406,9 +2410,9 @@ slots:
     title: Race
     from_schema: https://w3id.org/carrollaboratory/kf-access-model
     slot_uri: kidsfirst:race
-    owner: Participant
+    owner: Subject
     domain_of:
-    - Participant
+    - Subject
     range: EnumRace
     required: true
     multivalued: true
@@ -2419,9 +2423,9 @@ slots:
     title: Ethnicity
     from_schema: https://w3id.org/carrollaboratory/kf-access-model
     slot_uri: kidsfirst:ethnicity
-    owner: Participant
+    owner: Subject
     domain_of:
-    - Participant
+    - Subject
     range: EnumEthnicity
     required: true
   is_proband:
@@ -2431,9 +2435,9 @@ slots:
     title: Is Proband
     from_schema: https://w3id.org/carrollaboratory/kf-access-model
     slot_uri: kidsfirst:is_proband
-    owner: Participant
+    owner: Subject
     domain_of:
-    - Participant
+    - Subject
     range: boolean
   affected_status:
     name: affected_status
@@ -2442,9 +2446,9 @@ slots:
     title: Affected Status
     from_schema: https://w3id.org/carrollaboratory/kf-access-model
     slot_uri: kidsfirst:affected_status
-    owner: Participant
+    owner: Subject
     domain_of:
-    - Participant
+    - Subject
     range: boolean
   age_at_first_engagement:
     name: age_at_first_engagement
@@ -2455,9 +2459,9 @@ slots:
     title: Age at First Participant Engagement
     from_schema: https://w3id.org/carrollaboratory/kf-access-model
     slot_uri: kidsfirst:age_at_first_engagement
-    owner: Participant
+    owner: Subject
     domain_of:
-    - Participant
+    - Subject
     range: integer
     minimum_value: -365
     maximum_value: 32507
@@ -2472,7 +2476,7 @@ slots:
     slot_uri: kidsfirst:vital_status
     owner: KFSubjectAssertion
     domain_of:
-    - Participant
+    - Subject
     - KFSubjectAssertion
     range: EnumVitalStatus
   age_at_last_vital_status:
@@ -2482,29 +2486,14 @@ slots:
     title: Age at Last Vital Status
     from_schema: https://w3id.org/carrollaboratory/kf-access-model
     slot_uri: kidsfirst:age_at_last_vital_status
-    owner: Participant
+    owner: Subject
     domain_of:
-    - Participant
+    - Subject
     range: integer
     minimum_value: -365
     maximum_value: 32507
     unit:
       ucum_code: d
-  subject_id:
-    name: subject_id
-    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/subject_id
-    description: The family member Subject who is the relationship "object".
-    from_schema: https://w3id.org/carrollaboratory/kf-access-model
-    slot_uri: kidsfirst:subject_id
-    owner: Assay
-    domain_of:
-    - FamilyRelationship
-    - SubjectAssertion
-    - GenomicFile
-    - Assay
-    range: Participant
-    required: true
-    inlined: false
   family_id:
     name: family_id
     definition_uri: https://w3id.org/carrollaboratory/kf-access-model/family_id
@@ -2514,7 +2503,7 @@ slots:
     slot_uri: kidsfirst:family_id
     owner: Family
     domain_of:
-    - Participant
+    - Subject
     - Family
     range: Family
   family_type:
@@ -2578,7 +2567,7 @@ slots:
     owner: FamilyRelationship
     domain_of:
     - FamilyRelationship
-    range: Participant
+    range: Subject
     required: true
     inlined: false
   relation:
@@ -3851,21 +3840,21 @@ slots:
     range: Investigator
     required: true
     multivalued: true
-  Participant_participant_id:
-    name: Participant_participant_id
-    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/participant_id
-    description: Global ID for the Participant
-    title: Participant ID
+  Subject_subject_id:
+    name: Subject_subject_id
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/subject_id
+    description: Global ID for the Subject
+    title: Subject ID
     from_schema: https://w3id.org/carrollaboratory/kf-access-model
-    is_a: participant_id
-    domain: Participant
-    slot_uri: kidsfirst:participant_id
-    alias: participant_id
-    owner: Participant
+    is_a: subject_id
+    domain: Subject
+    slot_uri: kidsfirst:subject_id
+    alias: subject_id
+    owner: Subject
     domain_of:
-    - Participant
+    - Subject
     is_usage_slot: true
-    usage_slot_name: participant_id
+    usage_slot_name: subject_id
     range: ptGlobalID
     multivalued: false
   Family_family_id:
@@ -3904,6 +3893,7 @@ slots:
     name: FamilyRelationship_subject_id
     definition_uri: https://w3id.org/carrollaboratory/kf-access-model/subject_id
     description: The family member Subject who is the relationship "object".
+    title: Subject ID
     from_schema: https://w3id.org/carrollaboratory/kf-access-model
     is_a: subject_id
     domain: FamilyRelationship
@@ -3914,9 +3904,9 @@ slots:
     - FamilyRelationship
     is_usage_slot: true
     usage_slot_name: subject_id
-    range: Participant
+    range: Subject
     required: true
-    inlined: false
+    multivalued: false
   SubjectAssertion_assertion_id:
     name: SubjectAssertion_assertion_id
     definition_uri: https://w3id.org/carrollaboratory/kf-access-model/assertion_id
@@ -4038,7 +4028,8 @@ slots:
   GenomicFile_subject_id:
     name: GenomicFile_subject_id
     definition_uri: https://w3id.org/carrollaboratory/kf-access-model/subject_id
-    description: The family member Subject who is the relationship "object".
+    description: Global ID for the Subject
+    title: Subject ID
     from_schema: https://w3id.org/carrollaboratory/kf-access-model
     is_a: subject_id
     domain: GenomicFile
@@ -4049,10 +4040,8 @@ slots:
     - GenomicFile
     is_usage_slot: true
     usage_slot_name: subject_id
-    range: Participant
-    required: true
+    range: Subject
     multivalued: true
-    inlined: false
   GenomicFile_sample_id:
     name: GenomicFile_sample_id
     definition_uri: https://w3id.org/carrollaboratory/kf-access-model/sample_id
@@ -4138,7 +4127,8 @@ slots:
   Assay_subject_id:
     name: Assay_subject_id
     definition_uri: https://w3id.org/carrollaboratory/kf-access-model/subject_id
-    description: The family member Subject who is the relationship "object".
+    description: Global ID for the Subject
+    title: Subject ID
     from_schema: https://w3id.org/carrollaboratory/kf-access-model
     is_a: subject_id
     domain: Assay
@@ -4149,10 +4139,8 @@ slots:
     - Assay
     is_usage_slot: true
     usage_slot_name: subject_id
-    range: Participant
-    required: true
+    range: Subject
     multivalued: true
-    inlined: false
   Assay_sample_id:
     name: Assay_sample_id
     definition_uri: https://w3id.org/carrollaboratory/kf-access-model/sample_id
@@ -4280,13 +4268,13 @@ classes:
     - investigator_title
     - email
     class_uri: kidsfirst:Investigator
-  Participant:
-    name: Participant
-    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/Participant
+  Subject:
+    name: Subject
+    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/Subject
     description: This entity is the subject about which data or references are recorded.
       This includes the idea of a human participant in a study, a cell line, an animal
       model, or any other similar entity.
-    title: Participant
+    title: Subject
     from_schema: https://w3id.org/carrollaboratory/kf-access-model
     is_a: Record
     slots:
@@ -4296,7 +4284,7 @@ classes:
     - visibility_reason
     - external_id
     - study_id
-    - Participant_participant_id
+    - Subject_subject_id
     - subject_type
     - organism_type
     - sex
@@ -4309,10 +4297,10 @@ classes:
     - is_proband
     - affected_status
     slot_usage:
-      participant_id:
-        name: participant_id
+      subject_id:
+        name: subject_id
         range: ptGlobalID
-    class_uri: kidsfirst:Participant
+    class_uri: kidsfirst:Subject
   Family:
     name: Family
     definition_uri: https://w3id.org/carrollaboratory/kf-access-model/Family
@@ -4534,7 +4522,7 @@ classes:
     - cell_entity
     - external_aliquot_id
     - sequencing_center_id
-    - participant_id
+    - subject_id
     - external_sample_id
     - source_text_tissue_type
     - composition
@@ -4736,7 +4724,7 @@ classes:
     class_uri: kidsfirst:SequencingCenter
 metamodel_version: 1.11.0
 source_file: kf_access_model.yaml
-source_file_date: '2026-08-19T16:55:26'
-source_file_size: 72876
-generation_date: '2026-08-19T16:55:58'
+source_file_date: '2026-08-20T13:20:32'
+source_file_size: 72873
+generation_date: '2026-08-20T13:21:03'
 
