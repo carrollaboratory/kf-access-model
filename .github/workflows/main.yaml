@@ -54,5 +54,4 @@ jobs:
 
       - name: Run test suite
         run: |
-          just init-submodule
           just test
