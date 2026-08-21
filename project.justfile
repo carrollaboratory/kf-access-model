@@ -23,6 +23,10 @@ gen-ftddd:
 gen-dbtmodel:
   uv run gen-dbtmodel
 
+[group('model development')]
+update-cam:
+  uv run update-cam -d src/kf_access_model/schema/upstream-models
+
 init-submodule: && lint test
   git submodule update --init --recursive
   cd {{source_schema_dir}}/common_access_model && git sparse-checkout init --no-cone && git sparse-checkout set src/common_access_model/schema

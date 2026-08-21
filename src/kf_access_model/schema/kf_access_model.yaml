@@ -37,7 +37,6 @@ default_prefix: kf_access_model
 default_range: string
 
 imports:
-  - linkml:types
-  - common_access_model/src/common_access_model/schema/common_access_model
+  - upstream-models/common_access_model
 
 classes:
