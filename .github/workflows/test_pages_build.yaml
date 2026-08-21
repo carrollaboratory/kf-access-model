@@ -60,7 +60,6 @@ jobs:
 
       - name: Build documentation
         run: |
-          just init-submodule
           just gen-doc
           uv run mkdocs build -d site
           touch site/.nojekyll

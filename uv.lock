@@ -3025,10 +3025,11 @@ wheels = [
 
 [[package]]
 name = "the-caddie"
-version = "0.5.1.dev10"
-source = { git = "https://github.com/carrollaboratory/the-caddie#4465562f9018a17b30b944e837096e854e3d43c5" }
+version = "0.6.1.dev1"
+source = { git = "https://github.com/carrollaboratory/the-caddie#5f615c7a89afa3881a12ee6af85b72441665a7cd" }
 dependencies = [
     { name = "hatchling" },
+    { name = "httpx" },
     { name = "linkml" },
     { name = "linkml-runtime" },
     { name = "rich" },
