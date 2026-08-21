@@ -11,47 +11,23 @@ prefixes:
   kf_access_model:
     prefix_prefix: kf_access_model
     prefix_reference: https://w3id.org/carrollaboratory/kf-access-model/
-  linkml:
-    prefix_prefix: linkml
-    prefix_reference: https://w3id.org/linkml/
-  biolink:
-    prefix_prefix: biolink
-    prefix_reference: https://w3id.org/biolink/vocab/
-  schema:
-    prefix_prefix: schema
-    prefix_reference: http://schema.org/
-  PATO:
-    prefix_prefix: PATO
-    prefix_reference: http://purl.obolibrary.org/obo/PATO_
-  example:
-    prefix_prefix: example
-    prefix_reference: http://www.example.org/rdf#
   cam:
     prefix_prefix: cam
     prefix_reference: https://includedcc.org/common-access-model/
-  cdc_race_eth:
-    prefix_prefix: cdc_race_eth
+  linkml:
+    prefix_prefix: linkml
+    prefix_reference: https://w3id.org/linkml/
+  schema:
+    prefix_prefix: schema
+    prefix_reference: http://schema.org/
+  CDCREC:
+    prefix_prefix: CDCREC
     prefix_reference: urn:oid:2.16.840.1.113883.6.238/
   hl7_null:
     prefix_prefix: hl7_null
     prefix_reference: http://terminology.hl7.org/CodeSystem/v3-NullFlavor/
-  ig_dob_method:
-    prefix_prefix: ig_dob_method
-    prefix_reference: https://nih-ncpi.github.io/ncpi-fhir-ig-2/CodeSystem/research-data-date-of-birth-method/
-  igcondtype:
-    prefix_prefix: igcondtype
-    prefix_reference: https://nih-ncpi.github.io/ncpi-fhir-ig-2/CodeSystem/condition-type/
-  ig2dac:
-    prefix_prefix: ig2dac
-    prefix_reference: https://nih-ncpi.github.io/ncpi-fhir-ig-2/CodeSystem/research-data-access-code/
-  ig2dat:
-    prefix_prefix: ig2dat
-    prefix_reference: https://nih-ncpi.github.io/ncpi-fhir-ig-2/CodeSystem/research-data-access-type/
-  ig2_biospecimen_availability:
-    prefix_prefix: ig2_biospecimen_availability
-    prefix_reference: https://nih-ncpi.github.io/ncpi-fhir-ig-2/CodeSystem/biospecimen-availability/
-  snomed_ct:
-    prefix_prefix: snomed_ct
+  snomedct:
+    prefix_prefix: snomedct
     prefix_reference: http://snomed.info/id/
   MONDO:
     prefix_prefix: MONDO
@@ -65,6 +41,9 @@ prefixes:
   NCIT:
     prefix_prefix: NCIT
     prefix_reference: http://purl.obolibrary.org/obo/NCIT_
+  PATO:
+    prefix_prefix: PATO
+    prefix_reference: http://purl.obolibrary.org/obo/PATO_
   DUO:
     prefix_prefix: DUO
     prefix_reference: http://purl.obolibrary.org/obo/DUO_
@@ -74,6 +53,27 @@ prefixes:
   KIN:
     prefix_prefix: KIN
     prefix_reference: http://purl.org/ga4gh/kin.owl#
+  edam:
+    prefix_prefix: edam
+    prefix_reference: http://edamontology.org
+  OBI:
+    prefix_prefix: OBI
+    prefix_reference: http://purl.obolibrary.org/obo/OBI_
+  MS:
+    prefix_prefix: MS
+    prefix_reference: http://purl.obolibrary.org/obo/MS_
+  CHMO:
+    prefix_prefix: CHMO
+    prefix_reference: http://purl.obolibrary.org/obo/CHMO_
+  NCBITaxon:
+    prefix_prefix: NCBITaxon
+    prefix_reference: http://purl.obolibrary.org/obo/NCBITaxon_
+  xsd:
+    prefix_prefix: xsd
+    prefix_reference: http://www.w3.org/2001/XMLSchema#
+  shex:
+    prefix_prefix: shex
+    prefix_reference: http://www.w3.org/ns/shex#
 default_prefix: kf_access_model
 default_range: string
 types:
@@ -30128,7 +30128,7 @@ classes:
     class_uri: cam:Dataset
 metamodel_version: 1.11.0
 source_file: kf_access_model.yaml
-source_file_date: '2026-08-21T21:57:07'
-source_file_size: 1664
-generation_date: '2026-08-21T21:57:21'
+source_file_date: '2026-08-21T22:01:52'
+source_file_size: 2308
+generation_date: '2026-08-21T22:02:07'
 
