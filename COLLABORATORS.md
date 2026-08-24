@@ -50,6 +50,9 @@ The current version of the common_access_model and the symbolic link should be
 properly managed by git so that all collaborators will be working on the same
 core model.
 
+> [WARNING] This will bring the upstream model to the most current version and,
+> as such, should only be performed according to planned upgrades.
+
 ## Release Artifacts
 
 There are a number of artifacts which are used by various scripts including the
