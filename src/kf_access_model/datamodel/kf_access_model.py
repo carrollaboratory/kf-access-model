@@ -1,5 +1,5 @@
 # Auto generated from kf_access_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-08-21T16:33:08
+# Generation date: 2026-08-24T13:28:03
 # Schema: kf-access-model
 #
 # id: https://w3id.org/carrollaboratory/kf-access-model
@@ -62,29 +62,27 @@ metamodel_version = "1.11.0"
 version = None
 
 # Namespaces
+CDCREC = CurieNamespace('CDCREC', 'urn:oid:2.16.840.1.113883.6.238/')
+CHMO = CurieNamespace('CHMO', 'http://purl.obolibrary.org/obo/CHMO_')
 DUO = CurieNamespace('DUO', 'http://purl.obolibrary.org/obo/DUO_')
 HP = CurieNamespace('HP', 'http://purl.obolibrary.org/obo/HP_')
 KIN = CurieNamespace('KIN', 'http://purl.org/ga4gh/kin.owl#')
 MONDO = CurieNamespace('MONDO', 'http://purl.obolibrary.org/obo/MONDO_')
+MS = CurieNamespace('MS', 'http://purl.obolibrary.org/obo/MS_')
+NCBITAXON = CurieNamespace('NCBITaxon', 'http://purl.obolibrary.org/obo/NCBITaxon_')
 NCIT = CurieNamespace('NCIT', 'http://purl.obolibrary.org/obo/NCIT_')
+OBI = CurieNamespace('OBI', 'http://purl.obolibrary.org/obo/OBI_')
 PATO = CurieNamespace('PATO', 'http://purl.obolibrary.org/obo/PATO_')
-BIOLINK = CurieNamespace('biolink', 'https://w3id.org/biolink/vocab/')
 CAM = CurieNamespace('cam', 'https://includedcc.org/common-access-model/')
-CDC_RACE_ETH = CurieNamespace('cdc_race_eth', 'urn:oid:2.16.840.1.113883.6.238/')
-EXAMPLE = CurieNamespace('example', 'http://www.example.org/rdf#')
+EDAM = CurieNamespace('edam', 'http://edamontology.org')
 HL7_NULL = CurieNamespace('hl7_null', 'http://terminology.hl7.org/CodeSystem/v3-NullFlavor/')
-IG2_BIOSPECIMEN_AVAILABILITY = CurieNamespace('ig2_biospecimen_availability', 'https://nih-ncpi.github.io/ncpi-fhir-ig-2/CodeSystem/biospecimen-availability/')
-IG2DAC = CurieNamespace('ig2dac', 'https://nih-ncpi.github.io/ncpi-fhir-ig-2/CodeSystem/research-data-access-code/')
-IG2DAT = CurieNamespace('ig2dat', 'https://nih-ncpi.github.io/ncpi-fhir-ig-2/CodeSystem/research-data-access-type/')
-IG_DOB_METHOD = CurieNamespace('ig_dob_method', 'https://nih-ncpi.github.io/ncpi-fhir-ig-2/CodeSystem/research-data-date-of-birth-method/')
-IGCONDTYPE = CurieNamespace('igcondtype', 'https://nih-ncpi.github.io/ncpi-fhir-ig-2/CodeSystem/condition-type/')
 KF_ACCESS_MODEL = CurieNamespace('kf_access_model', 'https://w3id.org/carrollaboratory/kf-access-model/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 LOINC = CurieNamespace('loinc', 'https://loinc.org/')
 MESH = CurieNamespace('mesh', 'http://id.nlm.nih.gov/mesh/')
 SCHEMA = CurieNamespace('schema', 'http://schema.org/')
 SHEX = CurieNamespace('shex', 'http://www.w3.org/ns/shex#')
-SNOMED_CT = CurieNamespace('snomed_ct', 'http://snomed.info/id/')
+SNOMEDCT = CurieNamespace('snomedct', 'http://snomed.info/id/')
 XSD = CurieNamespace('xsd', 'http://www.w3.org/2001/XMLSchema#')
 DEFAULT_ = KF_ACCESS_MODEL
 
@@ -12765,13 +12763,13 @@ class EnumAvailabilityStatus(EnumDefinitionImpl):
                 text="snomedct:103328004",
                 title="Available",
                 description="The item is available to users, authorization/request permitting.",
-                meaning=SNOMED_CT["103328004"]))
+                meaning=SNOMEDCT["103328004"]))
         setattr(cls, "snomedct:103329007",
             PermissibleValue(
                 text="snomedct:103329007",
                 title="Unavailable",
                 description="The item is not available to users.",
-                meaning=SNOMED_CT["103329007"]))
+                meaning=SNOMEDCT["103329007"]))
 
 class EnumDataCategory(EnumDefinitionImpl):
     """
@@ -24452,57 +24450,57 @@ class EnumPresentAbsent(EnumDefinitionImpl):
             PermissibleValue(
                 text="snomedct:410515003",
                 title="Known present",
-                meaning=SNOMED_CT["410515003"]))
+                meaning=SNOMEDCT["410515003"]))
         setattr(cls, "snomedct:410516002",
             PermissibleValue(
                 text="snomedct:410516002",
                 title="Known absent",
-                meaning=SNOMED_CT["410516002"]))
+                meaning=SNOMEDCT["410516002"]))
         setattr(cls, "snomedct:410590009",
             PermissibleValue(
                 text="snomedct:410590009",
                 title="Known possible",
-                meaning=SNOMED_CT["410590009"]))
+                meaning=SNOMEDCT["410590009"]))
         setattr(cls, "snomedct:410591008",
             PermissibleValue(
                 text="snomedct:410591008",
                 title="Definitely present",
-                meaning=SNOMED_CT["410591008"]))
+                meaning=SNOMEDCT["410591008"]))
         setattr(cls, "snomedct:410592001",
             PermissibleValue(
                 text="snomedct:410592001",
                 title="Probably present",
-                meaning=SNOMED_CT["410592001"]))
+                meaning=SNOMEDCT["410592001"]))
         setattr(cls, "snomedct:410593006",
             PermissibleValue(
                 text="snomedct:410593006",
                 title="Probably not present",
-                meaning=SNOMED_CT["410593006"]))
+                meaning=SNOMEDCT["410593006"]))
         setattr(cls, "snomedct:410594000",
             PermissibleValue(
                 text="snomedct:410594000",
                 title="Definitely not present",
-                meaning=SNOMED_CT["410594000"]))
+                meaning=SNOMEDCT["410594000"]))
         setattr(cls, "snomedct:410605003",
             PermissibleValue(
                 text="snomedct:410605003",
                 title="Confirmed present",
-                meaning=SNOMED_CT["410605003"]))
+                meaning=SNOMEDCT["410605003"]))
         setattr(cls, "snomedct:415684004",
             PermissibleValue(
                 text="snomedct:415684004",
                 title="Suspected",
-                meaning=SNOMED_CT["415684004"]))
+                meaning=SNOMEDCT["415684004"]))
         setattr(cls, "snomedct:428263003",
             PermissibleValue(
                 text="snomedct:428263003",
                 title="Not suspected",
-                meaning=SNOMED_CT["428263003"]))
+                meaning=SNOMEDCT["428263003"]))
         setattr(cls, "snomedct:723511001",
             PermissibleValue(
                 text="snomedct:723511001",
                 title="Refuted",
-                meaning=SNOMED_CT["723511001"]))
+                meaning=SNOMEDCT["723511001"]))
 
 class EnumProgram(EnumDefinitionImpl):
     """
@@ -24659,3882 +24657,3882 @@ class EnumSpatialQualifiers(EnumDefinitionImpl):
             PermissibleValue(
                 text="snomedct:103339001",
                 title="Long axis",
-                meaning=SNOMED_CT["103339001"]))
+                meaning=SNOMEDCT["103339001"]))
         setattr(cls, "snomedct:103340004",
             PermissibleValue(
                 text="snomedct:103340004",
                 title="Short axis",
-                meaning=SNOMED_CT["103340004"]))
+                meaning=SNOMEDCT["103340004"]))
         setattr(cls, "snomedct:103341000",
             PermissibleValue(
                 text="snomedct:103341000",
                 title="Off axis",
-                meaning=SNOMED_CT["103341000"]))
+                meaning=SNOMEDCT["103341000"]))
         setattr(cls, "snomedct:103342007",
             PermissibleValue(
                 text="snomedct:103342007",
                 title="Mid-longitudinal",
-                meaning=SNOMED_CT["103342007"]))
+                meaning=SNOMEDCT["103342007"]))
         setattr(cls, "snomedct:103343002",
             PermissibleValue(
                 text="snomedct:103343002",
                 title="Parasagittal",
-                meaning=SNOMED_CT["103343002"]))
+                meaning=SNOMEDCT["103343002"]))
         setattr(cls, "snomedct:103344008",
             PermissibleValue(
                 text="snomedct:103344008",
                 title="Transvesical",
-                meaning=SNOMED_CT["103344008"]))
+                meaning=SNOMEDCT["103344008"]))
         setattr(cls, "snomedct:103345009",
             PermissibleValue(
                 text="snomedct:103345009",
                 title="Transthecal",
-                meaning=SNOMED_CT["103345009"]))
+                meaning=SNOMEDCT["103345009"]))
         setattr(cls, "snomedct:103346005",
             PermissibleValue(
                 text="snomedct:103346005",
                 title="Transsplenic",
-                meaning=SNOMED_CT["103346005"]))
+                meaning=SNOMEDCT["103346005"]))
         setattr(cls, "snomedct:103347001",
             PermissibleValue(
                 text="snomedct:103347001",
                 title="Transrenal",
-                meaning=SNOMED_CT["103347001"]))
+                meaning=SNOMEDCT["103347001"]))
         setattr(cls, "snomedct:103348006",
             PermissibleValue(
                 text="snomedct:103348006",
                 title="Transpleural",
-                meaning=SNOMED_CT["103348006"]))
+                meaning=SNOMEDCT["103348006"]))
         setattr(cls, "snomedct:103349003",
             PermissibleValue(
                 text="snomedct:103349003",
                 title="Transpancreatic",
-                meaning=SNOMED_CT["103349003"]))
+                meaning=SNOMEDCT["103349003"]))
         setattr(cls, "snomedct:103353001",
             PermissibleValue(
                 text="snomedct:103353001",
                 title="Transgastric",
-                meaning=SNOMED_CT["103353001"]))
+                meaning=SNOMEDCT["103353001"]))
         setattr(cls, "snomedct:103354007",
             PermissibleValue(
                 text="snomedct:103354007",
                 title="Transmural",
-                meaning=SNOMED_CT["103354007"]))
+                meaning=SNOMEDCT["103354007"]))
         setattr(cls, "snomedct:11070000",
             PermissibleValue(
                 text="snomedct:11070000",
                 title="Capsular",
-                meaning=SNOMED_CT["11070000"]))
+                meaning=SNOMEDCT["11070000"]))
         setattr(cls, "snomedct:1146002",
             PermissibleValue(
                 text="snomedct:1146002",
                 title="Arcuate",
-                meaning=SNOMED_CT["1146002"]))
+                meaning=SNOMEDCT["1146002"]))
         setattr(cls, "snomedct:11896004",
             PermissibleValue(
                 text="snomedct:11896004",
                 title="Intermediate",
-                meaning=SNOMED_CT["11896004"]))
+                meaning=SNOMEDCT["11896004"]))
         setattr(cls, "snomedct:1217011006",
             PermissibleValue(
                 text="snomedct:1217011006",
                 title="Non-adjacent",
-                meaning=SNOMED_CT["1217011006"]))
+                meaning=SNOMEDCT["1217011006"]))
         setattr(cls, "snomedct:131183008",
             PermissibleValue(
                 text="snomedct:131183008",
                 title="Intra-articular",
-                meaning=SNOMED_CT["131183008"]))
+                meaning=SNOMEDCT["131183008"]))
         setattr(cls, "snomedct:131184002",
             PermissibleValue(
                 text="snomedct:131184002",
                 title="Area of defined region",
-                meaning=SNOMED_CT["131184002"]))
+                meaning=SNOMEDCT["131184002"]))
         setattr(cls, "snomedct:131185001",
             PermissibleValue(
                 text="snomedct:131185001",
                 title="Vertical long axis",
-                meaning=SNOMED_CT["131185001"]))
+                meaning=SNOMEDCT["131185001"]))
         setattr(cls, "snomedct:131186000",
             PermissibleValue(
                 text="snomedct:131186000",
                 title="Horizontal long axis",
-                meaning=SNOMED_CT["131186000"]))
+                meaning=SNOMEDCT["131186000"]))
         setattr(cls, "snomedct:131187009",
             PermissibleValue(
                 text="snomedct:131187009",
                 title="Major Axis",
-                meaning=SNOMED_CT["131187009"]))
+                meaning=SNOMEDCT["131187009"]))
         setattr(cls, "snomedct:131188004",
             PermissibleValue(
                 text="snomedct:131188004",
                 title="Minor Axis",
-                meaning=SNOMED_CT["131188004"]))
+                meaning=SNOMEDCT["131188004"]))
         setattr(cls, "snomedct:131189007",
             PermissibleValue(
                 text="snomedct:131189007",
                 title="Perpendicular axis",
-                meaning=SNOMED_CT["131189007"]))
+                meaning=SNOMEDCT["131189007"]))
         setattr(cls, "snomedct:131190003",
             PermissibleValue(
                 text="snomedct:131190003",
                 title="Radius",
-                meaning=SNOMED_CT["131190003"]))
+                meaning=SNOMEDCT["131190003"]))
         setattr(cls, "snomedct:131191004",
             PermissibleValue(
                 text="snomedct:131191004",
                 title="Perimeter",
-                meaning=SNOMED_CT["131191004"]))
+                meaning=SNOMEDCT["131191004"]))
         setattr(cls, "snomedct:14414005",
             PermissibleValue(
                 text="snomedct:14414005",
                 title="Peripheral",
-                meaning=SNOMED_CT["14414005"]))
+                meaning=SNOMEDCT["14414005"]))
         setattr(cls, "snomedct:1483009",
             PermissibleValue(
                 text="snomedct:1483009",
                 title="Angular",
-                meaning=SNOMED_CT["1483009"]))
+                meaning=SNOMEDCT["1483009"]))
         setattr(cls, "snomedct:18769003",
             PermissibleValue(
                 text="snomedct:18769003",
                 title="Juxta-posed",
-                meaning=SNOMED_CT["18769003"]))
+                meaning=SNOMEDCT["18769003"]))
         setattr(cls, "snomedct:21006006",
             PermissibleValue(
                 text="snomedct:21006006",
                 title="Hemispheric",
-                meaning=SNOMED_CT["21006006"]))
+                meaning=SNOMEDCT["21006006"]))
         setattr(cls, "snomedct:21481007",
             PermissibleValue(
                 text="snomedct:21481007",
                 title="Over",
-                meaning=SNOMED_CT["21481007"]))
+                meaning=SNOMEDCT["21481007"]))
         setattr(cls, "snomedct:24020000",
             PermissibleValue(
                 text="snomedct:24020000",
                 title="Horizontal",
-                meaning=SNOMED_CT["24020000"]))
+                meaning=SNOMEDCT["24020000"]))
         setattr(cls, "snomedct:24028007",
             PermissibleValue(
                 text="snomedct:24028007",
                 title="Right",
-                meaning=SNOMED_CT["24028007"]))
+                meaning=SNOMEDCT["24028007"]))
         setattr(cls, "snomedct:24422004",
             PermissibleValue(
                 text="snomedct:24422004",
                 title="Axial",
-                meaning=SNOMED_CT["24422004"]))
+                meaning=SNOMEDCT["24422004"]))
         setattr(cls, "snomedct:255527003",
             PermissibleValue(
                 text="snomedct:255527003",
                 title="Horizontal - 3 and 9",
-                meaning=SNOMED_CT["255527003"]))
+                meaning=SNOMEDCT["255527003"]))
         setattr(cls, "snomedct:255528008",
             PermissibleValue(
                 text="snomedct:255528008",
                 title="Horizontal and vertical",
-                meaning=SNOMED_CT["255528008"]))
+                meaning=SNOMEDCT["255528008"]))
         setattr(cls, "snomedct:261129000",
             PermissibleValue(
                 text="snomedct:261129000",
                 title="Mediolateral",
-                meaning=SNOMED_CT["261129000"]))
+                meaning=SNOMEDCT["261129000"]))
         setattr(cls, "snomedct:26216008",
             PermissibleValue(
                 text="snomedct:26216008",
                 title="Central",
-                meaning=SNOMED_CT["26216008"]))
+                meaning=SNOMEDCT["26216008"]))
         setattr(cls, "snomedct:26283006",
             PermissibleValue(
                 text="snomedct:26283006",
                 title="Superficial",
-                meaning=SNOMED_CT["26283006"]))
+                meaning=SNOMEDCT["26283006"]))
         setattr(cls, "snomedct:263687007",
             PermissibleValue(
                 text="snomedct:263687007",
                 title="Bony extra-articular",
-                meaning=SNOMED_CT["263687007"]))
+                meaning=SNOMEDCT["263687007"]))
         setattr(cls, "snomedct:263688002",
             PermissibleValue(
                 text="snomedct:263688002",
                 title="Bony intra-articular",
-                meaning=SNOMED_CT["263688002"]))
+                meaning=SNOMEDCT["263688002"]))
         setattr(cls, "snomedct:264731004",
             PermissibleValue(
                 text="snomedct:264731004",
                 title="Lateral to the left",
-                meaning=SNOMED_CT["264731004"]))
+                meaning=SNOMEDCT["264731004"]))
         setattr(cls, "snomedct:264732006",
             PermissibleValue(
                 text="snomedct:264732006",
                 title="Lateral to the right",
-                meaning=SNOMED_CT["264732006"]))
+                meaning=SNOMEDCT["264732006"]))
         setattr(cls, "snomedct:264733001",
             PermissibleValue(
                 text="snomedct:264733001",
                 title="Linear longitudinal",
-                meaning=SNOMED_CT["264733001"]))
+                meaning=SNOMEDCT["264733001"]))
         setattr(cls, "snomedct:264737000",
             PermissibleValue(
                 text="snomedct:264737000",
                 title="Linear transverse",
-                meaning=SNOMED_CT["264737000"]))
+                meaning=SNOMEDCT["264737000"]))
         setattr(cls, "snomedct:264741001",
             PermissibleValue(
                 text="snomedct:264741001",
                 title="Posterolateral to the left",
-                meaning=SNOMED_CT["264741001"]))
+                meaning=SNOMEDCT["264741001"]))
         setattr(cls, "snomedct:264742008",
             PermissibleValue(
                 text="snomedct:264742008",
                 title="Posterolateral to the right",
-                meaning=SNOMED_CT["264742008"]))
+                meaning=SNOMEDCT["264742008"]))
         setattr(cls, "snomedct:264839005",
             PermissibleValue(
                 text="snomedct:264839005",
                 title="Horizontal cleavage",
-                meaning=SNOMED_CT["264839005"]))
+                meaning=SNOMEDCT["264839005"]))
         setattr(cls, "snomedct:27237009",
             PermissibleValue(
                 text="snomedct:27237009",
                 title="Triangular",
-                meaning=SNOMED_CT["27237009"]))
+                meaning=SNOMEDCT["27237009"]))
         setattr(cls, "snomedct:28241006",
             PermissibleValue(
                 text="snomedct:28241006",
                 title="Rhomboid",
-                meaning=SNOMED_CT["28241006"]))
+                meaning=SNOMEDCT["28241006"]))
         setattr(cls, "snomedct:28947002",
             PermissibleValue(
                 text="snomedct:28947002",
                 title="Right curve",
-                meaning=SNOMED_CT["28947002"]))
+                meaning=SNOMEDCT["28947002"]))
         setattr(cls, "snomedct:30730003",
             PermissibleValue(
                 text="snomedct:30730003",
                 title="Sagittal",
-                meaning=SNOMED_CT["30730003"]))
+                meaning=SNOMEDCT["30730003"]))
         setattr(cls, "snomedct:30899007",
             PermissibleValue(
                 text="snomedct:30899007",
                 title="Quadrangular",
-                meaning=SNOMED_CT["30899007"]))
+                meaning=SNOMEDCT["30899007"]))
         setattr(cls, "snomedct:32381004",
             PermissibleValue(
                 text="snomedct:32381004",
                 title="Portal",
-                meaning=SNOMED_CT["32381004"]))
+                meaning=SNOMEDCT["32381004"]))
         setattr(cls, "snomedct:32400000",
             PermissibleValue(
                 text="snomedct:32400000",
                 title="Preaxial",
-                meaning=SNOMED_CT["32400000"]))
+                meaning=SNOMEDCT["32400000"]))
         setattr(cls, "snomedct:33096000",
             PermissibleValue(
                 text="snomedct:33096000",
                 title="Vertical",
-                meaning=SNOMED_CT["33096000"]))
+                meaning=SNOMEDCT["33096000"]))
         setattr(cls, "snomedct:33843005",
             PermissibleValue(
                 text="snomedct:33843005",
                 title="Efferent",
-                meaning=SNOMED_CT["33843005"]))
+                meaning=SNOMEDCT["33843005"]))
         setattr(cls, "snomedct:350722008",
             PermissibleValue(
                 text="snomedct:350722008",
                 title="Behind",
-                meaning=SNOMED_CT["350722008"]))
+                meaning=SNOMEDCT["350722008"]))
         setattr(cls, "snomedct:351726001",
             PermissibleValue(
                 text="snomedct:351726001",
                 title="Below",
-                meaning=SNOMED_CT["351726001"]))
+                meaning=SNOMEDCT["351726001"]))
         setattr(cls, "snomedct:352730000",
             PermissibleValue(
                 text="snomedct:352730000",
                 title="Supra-",
-                meaning=SNOMED_CT["352730000"]))
+                meaning=SNOMEDCT["352730000"]))
         setattr(cls, "snomedct:353734004",
             PermissibleValue(
                 text="snomedct:353734004",
                 title="Upward",
-                meaning=SNOMED_CT["353734004"]))
+                meaning=SNOMEDCT["353734004"]))
         setattr(cls, "snomedct:354652004",
             PermissibleValue(
                 text="snomedct:354652004",
                 title="Circular",
-                meaning=SNOMED_CT["354652004"]))
+                meaning=SNOMEDCT["354652004"]))
         setattr(cls, "snomedct:355648006",
             PermissibleValue(
                 text="snomedct:355648006",
                 title="Surrounding",
-                meaning=SNOMED_CT["355648006"]))
+                meaning=SNOMEDCT["355648006"]))
         setattr(cls, "snomedct:37197008",
             PermissibleValue(
                 text="snomedct:37197008",
                 title="Anterolateral",
-                meaning=SNOMED_CT["37197008"]))
+                meaning=SNOMEDCT["37197008"]))
         setattr(cls, "snomedct:38717003",
             PermissibleValue(
                 text="snomedct:38717003",
                 title="Longitudinal",
-                meaning=SNOMED_CT["38717003"]))
+                meaning=SNOMEDCT["38717003"]))
         setattr(cls, "snomedct:39187007",
             PermissibleValue(
                 text="snomedct:39187007",
                 title="Bent",
-                meaning=SNOMED_CT["39187007"]))
+                meaning=SNOMEDCT["39187007"]))
         setattr(cls, "snomedct:40415009",
             PermissibleValue(
                 text="snomedct:40415009",
                 title="Proximal",
-                meaning=SNOMED_CT["40415009"]))
+                meaning=SNOMEDCT["40415009"]))
         setattr(cls, "snomedct:410674003",
             PermissibleValue(
                 text="snomedct:410674003",
                 title="Regional",
-                meaning=SNOMED_CT["410674003"]))
+                meaning=SNOMEDCT["410674003"]))
         setattr(cls, "snomedct:410679008",
             PermissibleValue(
                 text="snomedct:410679008",
                 title="Surface",
-                meaning=SNOMED_CT["410679008"]))
+                meaning=SNOMEDCT["410679008"]))
         setattr(cls, "snomedct:42798000",
             PermissibleValue(
                 text="snomedct:42798000",
                 title="Area",
-                meaning=SNOMED_CT["42798000"]))
+                meaning=SNOMEDCT["42798000"]))
         setattr(cls, "snomedct:43674008",
             PermissibleValue(
                 text="snomedct:43674008",
                 title="Apical",
-                meaning=SNOMED_CT["43674008"]))
+                meaning=SNOMEDCT["43674008"]))
         setattr(cls, "snomedct:45226003",
             PermissibleValue(
                 text="snomedct:45226003",
                 title="Cylindrical",
-                meaning=SNOMED_CT["45226003"]))
+                meaning=SNOMEDCT["45226003"]))
         setattr(cls, "snomedct:46053002",
             PermissibleValue(
                 text="snomedct:46053002",
                 title="Distal",
-                meaning=SNOMED_CT["46053002"]))
+                meaning=SNOMEDCT["46053002"]))
         setattr(cls, "snomedct:47021000",
             PermissibleValue(
                 text="snomedct:47021000",
                 title="Left curve",
-                meaning=SNOMED_CT["47021000"]))
+                meaning=SNOMEDCT["47021000"]))
         setattr(cls, "snomedct:49370004",
             PermissibleValue(
                 text="snomedct:49370004",
                 title="Lateral",
-                meaning=SNOMED_CT["49370004"]))
+                meaning=SNOMEDCT["49370004"]))
         setattr(cls, "snomedct:49530007",
             PermissibleValue(
                 text="snomedct:49530007",
                 title="Afferent",
-                meaning=SNOMED_CT["49530007"]))
+                meaning=SNOMEDCT["49530007"]))
         setattr(cls, "snomedct:50009006",
             PermissibleValue(
                 text="snomedct:50009006",
                 title="Linear",
-                meaning=SNOMED_CT["50009006"]))
+                meaning=SNOMEDCT["50009006"]))
         setattr(cls, "snomedct:50362007",
             PermissibleValue(
                 text="snomedct:50362007",
                 title="Stellate",
-                meaning=SNOMED_CT["50362007"]))
+                meaning=SNOMEDCT["50362007"]))
         setattr(cls, "snomedct:50974003",
             PermissibleValue(
                 text="snomedct:50974003",
                 title="Junctional",
-                meaning=SNOMED_CT["50974003"]))
+                meaning=SNOMEDCT["50974003"]))
         setattr(cls, "snomedct:51440002",
             PermissibleValue(
                 text="snomedct:51440002",
                 title="Right and left",
-                meaning=SNOMED_CT["51440002"]))
+                meaning=SNOMEDCT["51440002"]))
         setattr(cls, "snomedct:5686001",
             PermissibleValue(
                 text="snomedct:5686001",
                 title="Remote",
-                meaning=SNOMED_CT["5686001"]))
+                meaning=SNOMEDCT["5686001"]))
         setattr(cls, "snomedct:56924007",
             PermissibleValue(
                 text="snomedct:56924007",
                 title="Square",
-                meaning=SNOMED_CT["56924007"]))
+                meaning=SNOMEDCT["56924007"]))
         setattr(cls, "snomedct:57183005",
             PermissibleValue(
                 text="snomedct:57183005",
                 title="Along edge",
-                meaning=SNOMED_CT["57183005"]))
+                meaning=SNOMEDCT["57183005"]))
         setattr(cls, "snomedct:57195005",
             PermissibleValue(
                 text="snomedct:57195005",
                 title="Basal",
-                meaning=SNOMED_CT["57195005"]))
+                meaning=SNOMEDCT["57195005"]))
         setattr(cls, "snomedct:59410002",
             PermissibleValue(
                 text="snomedct:59410002",
                 title="Rectangular",
-                meaning=SNOMED_CT["59410002"]))
+                meaning=SNOMEDCT["59410002"]))
         setattr(cls, "snomedct:60301000",
             PermissibleValue(
                 text="snomedct:60301000",
                 title="Curved",
-                meaning=SNOMED_CT["60301000"]))
+                meaning=SNOMEDCT["60301000"]))
         setattr(cls, "snomedct:60583000",
             PermissibleValue(
                 text="snomedct:60583000",
                 title="Postaxial",
-                meaning=SNOMED_CT["60583000"]))
+                meaning=SNOMEDCT["60583000"]))
         setattr(cls, "snomedct:61397002",
             PermissibleValue(
                 text="snomedct:61397002",
                 title="Subcapsular",
-                meaning=SNOMED_CT["61397002"]))
+                meaning=SNOMEDCT["61397002"]))
         setattr(cls, "snomedct:62083003",
             PermissibleValue(
                 text="snomedct:62083003",
                 title="Sectional",
-                meaning=SNOMED_CT["62083003"]))
+                meaning=SNOMEDCT["62083003"]))
         setattr(cls, "snomedct:62372003",
             PermissibleValue(
                 text="snomedct:62372003",
                 title="Segmental",
-                meaning=SNOMED_CT["62372003"]))
+                meaning=SNOMEDCT["62372003"]))
         setattr(cls, "snomedct:62824007",
             PermissibleValue(
                 text="snomedct:62824007",
                 title="Transverse",
-                meaning=SNOMED_CT["62824007"]))
+                meaning=SNOMEDCT["62824007"]))
         setattr(cls, "snomedct:66787007",
             PermissibleValue(
                 text="snomedct:66787007",
                 title="Cephalic",
-                meaning=SNOMED_CT["66787007"]))
+                meaning=SNOMEDCT["66787007"]))
         setattr(cls, "snomedct:68493006",
             PermissibleValue(
                 text="snomedct:68493006",
                 title="Gutter",
-                meaning=SNOMED_CT["68493006"]))
+                meaning=SNOMEDCT["68493006"]))
         setattr(cls, "snomedct:69320009",
             PermissibleValue(
                 text="snomedct:69320009",
                 title="Extracellular",
-                meaning=SNOMED_CT["69320009"]))
+                meaning=SNOMEDCT["69320009"]))
         setattr(cls, "snomedct:69389007",
             PermissibleValue(
                 text="snomedct:69389007",
                 title="Saccular",
-                meaning=SNOMED_CT["69389007"]))
+                meaning=SNOMEDCT["69389007"]))
         setattr(cls, "snomedct:710097009",
             PermissibleValue(
                 text="snomedct:710097009",
                 title="Incisal",
-                meaning=SNOMED_CT["710097009"]))
+                meaning=SNOMEDCT["710097009"]))
         setattr(cls, "snomedct:710098004",
             PermissibleValue(
                 text="snomedct:710098004",
                 title="Occlusal",
-                meaning=SNOMED_CT["710098004"]))
+                meaning=SNOMEDCT["710098004"]))
         setattr(cls, "snomedct:710099007",
             PermissibleValue(
                 text="snomedct:710099007",
                 title="Mesial",
-                meaning=SNOMED_CT["710099007"]))
+                meaning=SNOMEDCT["710099007"]))
         setattr(cls, "snomedct:7771000",
             PermissibleValue(
                 text="snomedct:7771000",
                 title="Left",
-                meaning=SNOMED_CT["7771000"]))
+                meaning=SNOMEDCT["7771000"]))
         setattr(cls, "snomedct:795002",
             PermissibleValue(
                 text="snomedct:795002",
                 title="Deep",
-                meaning=SNOMED_CT["795002"]))
+                meaning=SNOMEDCT["795002"]))
         setattr(cls, "snomedct:81654009",
             PermissibleValue(
                 text="snomedct:81654009",
                 title="Coronal",
-                meaning=SNOMED_CT["81654009"]))
+                meaning=SNOMEDCT["81654009"]))
         setattr(cls, "snomedct:83167003",
             PermissibleValue(
                 text="snomedct:83167003",
                 title="Intracellular",
-                meaning=SNOMED_CT["83167003"]))
+                meaning=SNOMEDCT["83167003"]))
         setattr(cls, "snomedct:84177009",
             PermissibleValue(
                 text="snomedct:84177009",
                 title="Straddling",
-                meaning=SNOMED_CT["84177009"]))
+                meaning=SNOMEDCT["84177009"]))
         setattr(cls, "snomedct:87687004",
             PermissibleValue(
                 text="snomedct:87687004",
                 title="Extra-articular",
-                meaning=SNOMED_CT["87687004"]))
+                meaning=SNOMEDCT["87687004"]))
         setattr(cls, "snomedct:90069004",
             PermissibleValue(
                 text="snomedct:90069004",
                 title="Posterolateral",
-                meaning=SNOMED_CT["90069004"]))
+                meaning=SNOMEDCT["90069004"]))
         setattr(cls, "snomedct:112233002",
             PermissibleValue(
                 text="snomedct:112233002",
                 title="Marginal",
-                meaning=SNOMED_CT["112233002"]))
+                meaning=SNOMEDCT["112233002"]))
         setattr(cls, "snomedct:1197041002",
             PermissibleValue(
                 text="snomedct:1197041002",
                 title="Intercostal",
-                meaning=SNOMED_CT["1197041002"]))
+                meaning=SNOMEDCT["1197041002"]))
         setattr(cls, "snomedct:1285325005",
             PermissibleValue(
                 text="snomedct:1285325005",
                 title="Intralobular",
-                meaning=SNOMED_CT["1285325005"]))
+                meaning=SNOMEDCT["1285325005"]))
         setattr(cls, "snomedct:128590009",
             PermissibleValue(
                 text="snomedct:128590009",
                 title="Anatomical reference point of right atrium",
-                meaning=SNOMED_CT["128590009"]))
+                meaning=SNOMEDCT["128590009"]))
         setattr(cls, "snomedct:1362012009",
             PermissibleValue(
                 text="snomedct:1362012009",
                 title="Inlet projection",
-                meaning=SNOMED_CT["1362012009"]))
+                meaning=SNOMEDCT["1362012009"]))
         setattr(cls, "snomedct:1363295008",
             PermissibleValue(
                 text="snomedct:1363295008",
                 title="Unilobar",
-                meaning=SNOMED_CT["1363295008"]))
+                meaning=SNOMEDCT["1363295008"]))
         setattr(cls, "snomedct:1363296009",
             PermissibleValue(
                 text="snomedct:1363296009",
                 title="Ipsilateral multilobar",
-                meaning=SNOMED_CT["1363296009"]))
+                meaning=SNOMEDCT["1363296009"]))
         setattr(cls, "snomedct:182353008",
             PermissibleValue(
                 text="snomedct:182353008",
                 title="Side",
-                meaning=SNOMED_CT["182353008"]))
+                meaning=SNOMEDCT["182353008"]))
         setattr(cls, "snomedct:225780003",
             PermissibleValue(
                 text="snomedct:225780003",
                 title="Sublingual",
-                meaning=SNOMED_CT["225780003"]))
+                meaning=SNOMEDCT["225780003"]))
         setattr(cls, "snomedct:229801003",
             PermissibleValue(
                 text="snomedct:229801003",
                 title="Intra-arterial",
-                meaning=SNOMED_CT["229801003"]))
+                meaning=SNOMEDCT["229801003"]))
         setattr(cls, "snomedct:255208005",
             PermissibleValue(
                 text="snomedct:255208005",
                 title="Ipsilateral",
-                meaning=SNOMED_CT["255208005"]))
+                meaning=SNOMEDCT["255208005"]))
         setattr(cls, "snomedct:255209002",
             PermissibleValue(
                 text="snomedct:255209002",
                 title="Contralateral",
-                meaning=SNOMED_CT["255209002"]))
+                meaning=SNOMEDCT["255209002"]))
         setattr(cls, "snomedct:255348000",
             PermissibleValue(
                 text="snomedct:255348000",
                 title="Inframammary",
-                meaning=SNOMED_CT["255348000"]))
+                meaning=SNOMEDCT["255348000"]))
         setattr(cls, "snomedct:255472009",
             PermissibleValue(
                 text="snomedct:255472009",
                 title="Panretinal",
-                meaning=SNOMED_CT["255472009"]))
+                meaning=SNOMEDCT["255472009"]))
         setattr(cls, "snomedct:255482005",
             PermissibleValue(
                 text="snomedct:255482005",
                 title="Left upper segment",
-                meaning=SNOMED_CT["255482005"]))
+                meaning=SNOMEDCT["255482005"]))
         setattr(cls, "snomedct:255486008",
             PermissibleValue(
                 text="snomedct:255486008",
                 title="Lower segment",
-                meaning=SNOMED_CT["255486008"]))
+                meaning=SNOMEDCT["255486008"]))
         setattr(cls, "snomedct:255496004",
             PermissibleValue(
                 text="snomedct:255496004",
                 title="Right lower segment",
-                meaning=SNOMED_CT["255496004"]))
+                meaning=SNOMEDCT["255496004"]))
         setattr(cls, "snomedct:255499006",
             PermissibleValue(
                 text="snomedct:255499006",
                 title="Right upper segment",
-                meaning=SNOMED_CT["255499006"]))
+                meaning=SNOMEDCT["255499006"]))
         setattr(cls, "snomedct:255501003",
             PermissibleValue(
                 text="snomedct:255501003",
                 title="Upper segment",
-                meaning=SNOMED_CT["255501003"]))
+                meaning=SNOMEDCT["255501003"]))
         setattr(cls, "snomedct:255546002",
             PermissibleValue(
                 text="snomedct:255546002",
                 title="Underlay",
-                meaning=SNOMED_CT["255546002"]))
+                meaning=SNOMEDCT["255546002"]))
         setattr(cls, "snomedct:255547006",
             PermissibleValue(
                 text="snomedct:255547006",
                 title="Overlay",
-                meaning=SNOMED_CT["255547006"]))
+                meaning=SNOMEDCT["255547006"]))
         setattr(cls, "snomedct:255548001",
             PermissibleValue(
                 text="snomedct:255548001",
                 title="Sandwich graft",
-                meaning=SNOMED_CT["255548001"]))
+                meaning=SNOMEDCT["255548001"]))
         setattr(cls, "snomedct:255549009",
             PermissibleValue(
                 text="snomedct:255549009",
                 title="Anterior",
-                meaning=SNOMED_CT["255549009"]))
+                meaning=SNOMEDCT["255549009"]))
         setattr(cls, "snomedct:255550009",
             PermissibleValue(
                 text="snomedct:255550009",
                 title="Anterior to epiglottis",
-                meaning=SNOMED_CT["255550009"]))
+                meaning=SNOMEDCT["255550009"]))
         setattr(cls, "snomedct:255551008",
             PermissibleValue(
                 text="snomedct:255551008",
                 title="Posterior",
-                meaning=SNOMED_CT["255551008"]))
+                meaning=SNOMEDCT["255551008"]))
         setattr(cls, "snomedct:255552001",
             PermissibleValue(
                 text="snomedct:255552001",
                 title="Posterior to epiglottis",
-                meaning=SNOMED_CT["255552001"]))
+                meaning=SNOMEDCT["255552001"]))
         setattr(cls, "snomedct:255554000",
             PermissibleValue(
                 text="snomedct:255554000",
                 title="Dorsal",
-                meaning=SNOMED_CT["255554000"]))
+                meaning=SNOMEDCT["255554000"]))
         setattr(cls, "snomedct:255557007",
             PermissibleValue(
                 text="snomedct:255557007",
                 title="Intracerebral",
-                meaning=SNOMED_CT["255557007"]))
+                meaning=SNOMEDCT["255557007"]))
         setattr(cls, "snomedct:255558002",
             PermissibleValue(
                 text="snomedct:255558002",
                 title="Intragastric",
-                meaning=SNOMED_CT["255558002"]))
+                meaning=SNOMEDCT["255558002"]))
         setattr(cls, "snomedct:255559005",
             PermissibleValue(
                 text="snomedct:255559005",
                 title="Intramuscular",
-                meaning=SNOMED_CT["255559005"]))
+                meaning=SNOMEDCT["255559005"]))
         setattr(cls, "snomedct:255560000",
             PermissibleValue(
                 text="snomedct:255560000",
                 title="Intravenous",
-                meaning=SNOMED_CT["255560000"]))
+                meaning=SNOMEDCT["255560000"]))
         setattr(cls, "snomedct:255561001",
             PermissibleValue(
                 text="snomedct:255561001",
                 title="Medial",
-                meaning=SNOMED_CT["255561001"]))
+                meaning=SNOMEDCT["255561001"]))
         setattr(cls, "snomedct:255562008",
             PermissibleValue(
                 text="snomedct:255562008",
                 title="Mid",
-                meaning=SNOMED_CT["255562008"]))
+                meaning=SNOMEDCT["255562008"]))
         setattr(cls, "snomedct:255563003",
             PermissibleValue(
                 text="snomedct:255563003",
                 title="Mid-zone",
-                meaning=SNOMED_CT["255563003"]))
+                meaning=SNOMEDCT["255563003"]))
         setattr(cls, "snomedct:255564009",
             PermissibleValue(
                 text="snomedct:255564009",
                 title="Perivascular",
-                meaning=SNOMED_CT["255564009"]))
+                meaning=SNOMEDCT["255564009"]))
         setattr(cls, "snomedct:255565005",
             PermissibleValue(
                 text="snomedct:255565005",
                 title="Peripapillary",
-                meaning=SNOMED_CT["255565005"]))
+                meaning=SNOMEDCT["255565005"]))
         setattr(cls, "snomedct:255567002",
             PermissibleValue(
                 text="snomedct:255567002",
                 title="Postauricular",
-                meaning=SNOMED_CT["255567002"]))
+                meaning=SNOMEDCT["255567002"]))
         setattr(cls, "snomedct:255568007",
             PermissibleValue(
                 text="snomedct:255568007",
                 title="Retrosternal",
-                meaning=SNOMED_CT["255568007"]))
+                meaning=SNOMEDCT["255568007"]))
         setattr(cls, "snomedct:255569004",
             PermissibleValue(
                 text="snomedct:255569004",
                 title="Suprasternal",
-                meaning=SNOMED_CT["255569004"]))
+                meaning=SNOMEDCT["255569004"]))
         setattr(cls, "snomedct:255579002",
             PermissibleValue(
                 text="snomedct:255579002",
                 title="Palatal-lingual",
-                meaning=SNOMED_CT["255579002"]))
+                meaning=SNOMEDCT["255579002"]))
         setattr(cls, "snomedct:255584008",
             PermissibleValue(
                 text="snomedct:255584008",
                 title="Septal",
-                meaning=SNOMED_CT["255584008"]))
+                meaning=SNOMEDCT["255584008"]))
         setattr(cls, "snomedct:255690001",
             PermissibleValue(
                 text="snomedct:255690001",
                 title="Drug in contact with skin",
-                meaning=SNOMED_CT["255690001"]))
+                meaning=SNOMEDCT["255690001"]))
         setattr(cls, "snomedct:258186003",
             PermissibleValue(
                 text="snomedct:258186003",
                 title="Via collaterals",
-                meaning=SNOMED_CT["258186003"]))
+                meaning=SNOMEDCT["258186003"]))
         setattr(cls, "snomedct:258187007",
             PermissibleValue(
                 text="snomedct:258187007",
                 title="Via native vessel - graft impaired",
-                meaning=SNOMED_CT["258187007"]))
+                meaning=SNOMEDCT["258187007"]))
         setattr(cls, "snomedct:258188002",
             PermissibleValue(
                 text="snomedct:258188002",
                 title="Via native vessel - graft occluded",
-                meaning=SNOMED_CT["258188002"]))
+                meaning=SNOMEDCT["258188002"]))
         setattr(cls, "snomedct:258189005",
             PermissibleValue(
                 text="snomedct:258189005",
                 title="Via skip graft",
-                meaning=SNOMED_CT["258189005"]))
+                meaning=SNOMEDCT["258189005"]))
         setattr(cls, "snomedct:258329003",
             PermissibleValue(
                 text="snomedct:258329003",
                 title="Supratentorial",
-                meaning=SNOMED_CT["258329003"]))
+                meaning=SNOMEDCT["258329003"]))
         setattr(cls, "snomedct:258330008",
             PermissibleValue(
                 text="snomedct:258330008",
                 title="Infratentorial",
-                meaning=SNOMED_CT["258330008"]))
+                meaning=SNOMEDCT["258330008"]))
         setattr(cls, "snomedct:260240005",
             PermissibleValue(
                 text="snomedct:260240005",
                 title="Interdental",
-                meaning=SNOMED_CT["260240005"]))
+                meaning=SNOMEDCT["260240005"]))
         setattr(cls, "snomedct:260318004",
             PermissibleValue(
                 text="snomedct:260318004",
                 title="1 o'clock position",
-                meaning=SNOMED_CT["260318004"]))
+                meaning=SNOMEDCT["260318004"]))
         setattr(cls, "snomedct:260319007",
             PermissibleValue(
                 text="snomedct:260319007",
                 title="1.30 o'clock position",
-                meaning=SNOMED_CT["260319007"]))
+                meaning=SNOMEDCT["260319007"]))
         setattr(cls, "snomedct:260322009",
             PermissibleValue(
                 text="snomedct:260322009",
                 title="10 o'clock position",
-                meaning=SNOMED_CT["260322009"]))
+                meaning=SNOMEDCT["260322009"]))
         setattr(cls, "snomedct:260323004",
             PermissibleValue(
                 text="snomedct:260323004",
                 title="10.30 o'clock position",
-                meaning=SNOMED_CT["260323004"]))
+                meaning=SNOMEDCT["260323004"]))
         setattr(cls, "snomedct:260324005",
             PermissibleValue(
                 text="snomedct:260324005",
                 title="11 o'clock position",
-                meaning=SNOMED_CT["260324005"]))
+                meaning=SNOMEDCT["260324005"]))
         setattr(cls, "snomedct:260325006",
             PermissibleValue(
                 text="snomedct:260325006",
                 title="11.30 o'clock position",
-                meaning=SNOMED_CT["260325006"]))
+                meaning=SNOMEDCT["260325006"]))
         setattr(cls, "snomedct:260326007",
             PermissibleValue(
                 text="snomedct:260326007",
                 title="12 o'clock position",
-                meaning=SNOMED_CT["260326007"]))
+                meaning=SNOMEDCT["260326007"]))
         setattr(cls, "snomedct:260327003",
             PermissibleValue(
                 text="snomedct:260327003",
                 title="12.30 o'clock position",
-                meaning=SNOMED_CT["260327003"]))
+                meaning=SNOMEDCT["260327003"]))
         setattr(cls, "snomedct:260328008",
             PermissibleValue(
                 text="snomedct:260328008",
                 title="2 o'clock position",
-                meaning=SNOMED_CT["260328008"]))
+                meaning=SNOMEDCT["260328008"]))
         setattr(cls, "snomedct:260329000",
             PermissibleValue(
                 text="snomedct:260329000",
                 title="2.30 o'clock position",
-                meaning=SNOMED_CT["260329000"]))
+                meaning=SNOMEDCT["260329000"]))
         setattr(cls, "snomedct:260330005",
             PermissibleValue(
                 text="snomedct:260330005",
                 title="3 o'clock position",
-                meaning=SNOMED_CT["260330005"]))
+                meaning=SNOMEDCT["260330005"]))
         setattr(cls, "snomedct:260331009",
             PermissibleValue(
                 text="snomedct:260331009",
                 title="3.30 o'clock position",
-                meaning=SNOMED_CT["260331009"]))
+                meaning=SNOMEDCT["260331009"]))
         setattr(cls, "snomedct:260333007",
             PermissibleValue(
                 text="snomedct:260333007",
                 title="4 o'clock position",
-                meaning=SNOMED_CT["260333007"]))
+                meaning=SNOMEDCT["260333007"]))
         setattr(cls, "snomedct:260334001",
             PermissibleValue(
                 text="snomedct:260334001",
                 title="4.30 o'clock position",
-                meaning=SNOMED_CT["260334001"]))
+                meaning=SNOMEDCT["260334001"]))
         setattr(cls, "snomedct:260335000",
             PermissibleValue(
                 text="snomedct:260335000",
                 title="5 o'clock position",
-                meaning=SNOMED_CT["260335000"]))
+                meaning=SNOMEDCT["260335000"]))
         setattr(cls, "snomedct:260336004",
             PermissibleValue(
                 text="snomedct:260336004",
                 title="5.30 o'clock position",
-                meaning=SNOMED_CT["260336004"]))
+                meaning=SNOMEDCT["260336004"]))
         setattr(cls, "snomedct:260337008",
             PermissibleValue(
                 text="snomedct:260337008",
                 title="6 o'clock position",
-                meaning=SNOMED_CT["260337008"]))
+                meaning=SNOMEDCT["260337008"]))
         setattr(cls, "snomedct:260338003",
             PermissibleValue(
                 text="snomedct:260338003",
                 title="6.30 o'clock position",
-                meaning=SNOMED_CT["260338003"]))
+                meaning=SNOMEDCT["260338003"]))
         setattr(cls, "snomedct:260339006",
             PermissibleValue(
                 text="snomedct:260339006",
                 title="7 o'clock position",
-                meaning=SNOMED_CT["260339006"]))
+                meaning=SNOMEDCT["260339006"]))
         setattr(cls, "snomedct:260340008",
             PermissibleValue(
                 text="snomedct:260340008",
                 title="7.30 o'clock position",
-                meaning=SNOMED_CT["260340008"]))
+                meaning=SNOMEDCT["260340008"]))
         setattr(cls, "snomedct:260341007",
             PermissibleValue(
                 text="snomedct:260341007",
                 title="8 o'clock position",
-                meaning=SNOMED_CT["260341007"]))
+                meaning=SNOMEDCT["260341007"]))
         setattr(cls, "snomedct:260342000",
             PermissibleValue(
                 text="snomedct:260342000",
                 title="8.30 o'clock position",
-                meaning=SNOMED_CT["260342000"]))
+                meaning=SNOMEDCT["260342000"]))
         setattr(cls, "snomedct:260343005",
             PermissibleValue(
                 text="snomedct:260343005",
                 title="9 o'clock position",
-                meaning=SNOMED_CT["260343005"]))
+                meaning=SNOMEDCT["260343005"]))
         setattr(cls, "snomedct:260344004",
             PermissibleValue(
                 text="snomedct:260344004",
                 title="9.30 o'clock position",
-                meaning=SNOMED_CT["260344004"]))
+                meaning=SNOMEDCT["260344004"]))
         setattr(cls, "snomedct:260419006",
             PermissibleValue(
                 text="snomedct:260419006",
                 title="Projection",
-                meaning=SNOMED_CT["260419006"]))
+                meaning=SNOMEDCT["260419006"]))
         setattr(cls, "snomedct:260421001",
             PermissibleValue(
                 text="snomedct:260421001",
                 title="Left lateral oblique",
-                meaning=SNOMED_CT["260421001"]))
+                meaning=SNOMEDCT["260421001"]))
         setattr(cls, "snomedct:260422008",
             PermissibleValue(
                 text="snomedct:260422008",
                 title="C1-C2 left oblique",
-                meaning=SNOMED_CT["260422008"]))
+                meaning=SNOMEDCT["260422008"]))
         setattr(cls, "snomedct:260424009",
             PermissibleValue(
                 text="snomedct:260424009",
                 title="Right lateral oblique",
-                meaning=SNOMED_CT["260424009"]))
+                meaning=SNOMEDCT["260424009"]))
         setattr(cls, "snomedct:260425005",
             PermissibleValue(
                 text="snomedct:260425005",
                 title="C1-C2 right oblique",
-                meaning=SNOMED_CT["260425005"]))
+                meaning=SNOMEDCT["260425005"]))
         setattr(cls, "snomedct:260426006",
             PermissibleValue(
                 text="snomedct:260426006",
                 title="Medial oblique",
-                meaning=SNOMED_CT["260426006"]))
+                meaning=SNOMEDCT["260426006"]))
         setattr(cls, "snomedct:260427002",
             PermissibleValue(
                 text="snomedct:260427002",
                 title="Oblique lateral",
-                meaning=SNOMED_CT["260427002"]))
+                meaning=SNOMEDCT["260427002"]))
         setattr(cls, "snomedct:260428007",
             PermissibleValue(
                 text="snomedct:260428007",
                 title="Mandible X-ray - lateral oblique",
-                meaning=SNOMED_CT["260428007"]))
+                meaning=SNOMEDCT["260428007"]))
         setattr(cls, "snomedct:260430009",
             PermissibleValue(
                 text="snomedct:260430009",
                 title="Anteroposterior left lateral decubitus",
-                meaning=SNOMED_CT["260430009"]))
+                meaning=SNOMEDCT["260430009"]))
         setattr(cls, "snomedct:260431008",
             PermissibleValue(
                 text="snomedct:260431008",
                 title="C1-C2 left lateral",
-                meaning=SNOMED_CT["260431008"]))
+                meaning=SNOMEDCT["260431008"]))
         setattr(cls, "snomedct:260432001",
             PermissibleValue(
                 text="snomedct:260432001",
                 title="Left true lateral",
-                meaning=SNOMED_CT["260432001"]))
+                meaning=SNOMEDCT["260432001"]))
         setattr(cls, "snomedct:260434000",
             PermissibleValue(
                 text="snomedct:260434000",
                 title="Anteroposterior right lateral decubitus",
-                meaning=SNOMED_CT["260434000"]))
+                meaning=SNOMEDCT["260434000"]))
         setattr(cls, "snomedct:260435004",
             PermissibleValue(
                 text="snomedct:260435004",
                 title="C1-C2 right lateral",
-                meaning=SNOMED_CT["260435004"]))
+                meaning=SNOMEDCT["260435004"]))
         setattr(cls, "snomedct:260436003",
             PermissibleValue(
                 text="snomedct:260436003",
                 title="Right true lateral",
-                meaning=SNOMED_CT["260436003"]))
+                meaning=SNOMEDCT["260436003"]))
         setattr(cls, "snomedct:260437007",
             PermissibleValue(
                 text="snomedct:260437007",
                 title="Lateral vertical beam",
-                meaning=SNOMED_CT["260437007"]))
+                meaning=SNOMEDCT["260437007"]))
         setattr(cls, "snomedct:260438002",
             PermissibleValue(
                 text="snomedct:260438002",
                 title="Lateral horizontal beam",
-                meaning=SNOMED_CT["260438002"]))
+                meaning=SNOMEDCT["260438002"]))
         setattr(cls, "snomedct:260439005",
             PermissibleValue(
                 text="snomedct:260439005",
                 title="Lateral inverted",
-                meaning=SNOMED_CT["260439005"]))
+                meaning=SNOMEDCT["260439005"]))
         setattr(cls, "snomedct:260440007",
             PermissibleValue(
                 text="snomedct:260440007",
                 title="True lateral of mandible",
-                meaning=SNOMED_CT["260440007"]))
+                meaning=SNOMEDCT["260440007"]))
         setattr(cls, "snomedct:260441006",
             PermissibleValue(
                 text="snomedct:260441006",
                 title="Frog lateral",
-                meaning=SNOMED_CT["260441006"]))
+                meaning=SNOMEDCT["260441006"]))
         setattr(cls, "snomedct:260442004",
             PermissibleValue(
                 text="snomedct:260442004",
                 title="Erect lateral",
-                meaning=SNOMED_CT["260442004"]))
+                meaning=SNOMEDCT["260442004"]))
         setattr(cls, "snomedct:260443009",
             PermissibleValue(
                 text="snomedct:260443009",
                 title="Anteroposterior inverted",
-                meaning=SNOMED_CT["260443009"]))
+                meaning=SNOMEDCT["260443009"]))
         setattr(cls, "snomedct:260444003",
             PermissibleValue(
                 text="snomedct:260444003",
                 title="Rotated posteroanterior",
-                meaning=SNOMED_CT["260444003"]))
+                meaning=SNOMEDCT["260444003"]))
         setattr(cls, "snomedct:260445002",
             PermissibleValue(
                 text="snomedct:260445002",
                 title="Posteroanterior 20 degree",
-                meaning=SNOMED_CT["260445002"]))
+                meaning=SNOMEDCT["260445002"]))
         setattr(cls, "snomedct:260446001",
             PermissibleValue(
                 text="snomedct:260446001",
                 title="Posteroanterior in ulnar deviation",
-                meaning=SNOMED_CT["260446001"]))
+                meaning=SNOMEDCT["260446001"]))
         setattr(cls, "snomedct:260447005",
             PermissibleValue(
                 text="snomedct:260447005",
                 title="Penetrated posteroanterior",
-                meaning=SNOMED_CT["260447005"]))
+                meaning=SNOMEDCT["260447005"]))
         setattr(cls, "snomedct:260450008",
             PermissibleValue(
                 text="snomedct:260450008",
                 title="Lordotic projection",
-                meaning=SNOMED_CT["260450008"]))
+                meaning=SNOMEDCT["260450008"]))
         setattr(cls, "snomedct:260451007",
             PermissibleValue(
                 text="snomedct:260451007",
                 title="Supine decubitus",
-                meaning=SNOMED_CT["260451007"]))
+                meaning=SNOMEDCT["260451007"]))
         setattr(cls, "snomedct:260452000",
             PermissibleValue(
                 text="snomedct:260452000",
                 title="Decubitus",
-                meaning=SNOMED_CT["260452000"]))
+                meaning=SNOMEDCT["260452000"]))
         setattr(cls, "snomedct:260453005",
             PermissibleValue(
                 text="snomedct:260453005",
                 title="Internal/external rotation",
-                meaning=SNOMED_CT["260453005"]))
+                meaning=SNOMEDCT["260453005"]))
         setattr(cls, "snomedct:260454004",
             PermissibleValue(
                 text="snomedct:260454004",
                 title="45 degree projection",
-                meaning=SNOMED_CT["260454004"]))
+                meaning=SNOMEDCT["260454004"]))
         setattr(cls, "snomedct:260455003",
             PermissibleValue(
                 text="snomedct:260455003",
                 title="Head and neck projection",
-                meaning=SNOMED_CT["260455003"]))
+                meaning=SNOMEDCT["260455003"]))
         setattr(cls, "snomedct:260458001",
             PermissibleValue(
                 text="snomedct:260458001",
                 title="Slit Towne's",
-                meaning=SNOMED_CT["260458001"]))
+                meaning=SNOMEDCT["260458001"]))
         setattr(cls, "snomedct:260459009",
             PermissibleValue(
                 text="snomedct:260459009",
                 title="Reverse Towne's",
-                meaning=SNOMED_CT["260459009"]))
+                meaning=SNOMEDCT["260459009"]))
         setattr(cls, "snomedct:260460004",
             PermissibleValue(
                 text="snomedct:260460004",
                 title="Slit 35 degree fronto-occipital",
-                meaning=SNOMED_CT["260460004"]))
+                meaning=SNOMEDCT["260460004"]))
         setattr(cls, "snomedct:260461000",
             PermissibleValue(
                 text="snomedct:260461000",
                 title="Vertex projection",
-                meaning=SNOMED_CT["260461000"]))
+                meaning=SNOMEDCT["260461000"]))
         setattr(cls, "snomedct:260463002",
             PermissibleValue(
                 text="snomedct:260463002",
                 title="Left Stenver's",
-                meaning=SNOMED_CT["260463002"]))
+                meaning=SNOMEDCT["260463002"]))
         setattr(cls, "snomedct:260464008",
             PermissibleValue(
                 text="snomedct:260464008",
                 title="Right Stenver's",
-                meaning=SNOMED_CT["260464008"]))
+                meaning=SNOMEDCT["260464008"]))
         setattr(cls, "snomedct:260465009",
             PermissibleValue(
                 text="snomedct:260465009",
                 title="Occipitofrontal projection",
-                meaning=SNOMED_CT["260465009"]))
+                meaning=SNOMEDCT["260465009"]))
         setattr(cls, "snomedct:260466005",
             PermissibleValue(
                 text="snomedct:260466005",
                 title="Occipitomental projection",
-                meaning=SNOMED_CT["260466005"]))
+                meaning=SNOMEDCT["260466005"]))
         setattr(cls, "snomedct:260467001",
             PermissibleValue(
                 text="snomedct:260467001",
                 title="Occipitomental - erect",
-                meaning=SNOMED_CT["260467001"]))
+                meaning=SNOMEDCT["260467001"]))
         setattr(cls, "snomedct:260468006",
             PermissibleValue(
                 text="snomedct:260468006",
                 title="Occipitomental - tilted",
-                meaning=SNOMED_CT["260468006"]))
+                meaning=SNOMEDCT["260468006"]))
         setattr(cls, "snomedct:260469003",
             PermissibleValue(
                 text="snomedct:260469003",
                 title="Occipitomental - prone",
-                meaning=SNOMED_CT["260469003"]))
+                meaning=SNOMEDCT["260469003"]))
         setattr(cls, "snomedct:260470002",
             PermissibleValue(
                 text="snomedct:260470002",
                 title="Occipitomental - 15 degree",
-                meaning=SNOMED_CT["260470002"]))
+                meaning=SNOMEDCT["260470002"]))
         setattr(cls, "snomedct:260471003",
             PermissibleValue(
                 text="snomedct:260471003",
                 title="Occipitomental - 30 degree",
-                meaning=SNOMED_CT["260471003"]))
+                meaning=SNOMEDCT["260471003"]))
         setattr(cls, "snomedct:260472005",
             PermissibleValue(
                 text="snomedct:260472005",
                 title="Occipitomental - 45 degree",
-                meaning=SNOMED_CT["260472005"]))
+                meaning=SNOMEDCT["260472005"]))
         setattr(cls, "snomedct:260473000",
             PermissibleValue(
                 text="snomedct:260473000",
                 title="Waters - 35 degree tilt to radiographic baseline",
-                meaning=SNOMED_CT["260473000"]))
+                meaning=SNOMEDCT["260473000"]))
         setattr(cls, "snomedct:260475007",
             PermissibleValue(
                 text="snomedct:260475007",
                 title="Submentovertical reduced exposure for zygomatic arches",
-                meaning=SNOMED_CT["260475007"]))
+                meaning=SNOMEDCT["260475007"]))
         setattr(cls, "snomedct:260476008",
             PermissibleValue(
                 text="snomedct:260476008",
                 title="Slit submentovertical",
-                meaning=SNOMED_CT["260476008"]))
+                meaning=SNOMEDCT["260476008"]))
         setattr(cls, "snomedct:260477004",
             PermissibleValue(
                 text="snomedct:260477004",
                 title="Dental/oral projection",
-                meaning=SNOMED_CT["260477004"]))
+                meaning=SNOMEDCT["260477004"]))
         setattr(cls, "snomedct:260478009",
             PermissibleValue(
                 text="snomedct:260478009",
                 title="Body - molar",
-                meaning=SNOMED_CT["260478009"]))
+                meaning=SNOMEDCT["260478009"]))
         setattr(cls, "snomedct:260479001",
             PermissibleValue(
                 text="snomedct:260479001",
                 title="Body - premolar",
-                meaning=SNOMED_CT["260479001"]))
+                meaning=SNOMEDCT["260479001"]))
         setattr(cls, "snomedct:260481004",
             PermissibleValue(
                 text="snomedct:260481004",
                 title="Ramus projection",
-                meaning=SNOMED_CT["260481004"]))
+                meaning=SNOMEDCT["260481004"]))
         setattr(cls, "snomedct:260482006",
             PermissibleValue(
                 text="snomedct:260482006",
                 title="Bimolar projection",
-                meaning=SNOMED_CT["260482006"]))
+                meaning=SNOMEDCT["260482006"]))
         setattr(cls, "snomedct:260483001",
             PermissibleValue(
                 text="snomedct:260483001",
                 title="Transpharyngeal projection",
-                meaning=SNOMED_CT["260483001"]))
+                meaning=SNOMEDCT["260483001"]))
         setattr(cls, "snomedct:260484007",
             PermissibleValue(
                 text="snomedct:260484007",
                 title="Transmaxillary projection",
-                meaning=SNOMED_CT["260484007"]))
+                meaning=SNOMEDCT["260484007"]))
         setattr(cls, "snomedct:260485008",
             PermissibleValue(
                 text="snomedct:260485008",
                 title="Temporomandibular joint setting",
-                meaning=SNOMED_CT["260485008"]))
+                meaning=SNOMEDCT["260485008"]))
         setattr(cls, "snomedct:260486009",
             PermissibleValue(
                 text="snomedct:260486009",
                 title="Maxillary sinus setting",
-                meaning=SNOMED_CT["260486009"]))
+                meaning=SNOMEDCT["260486009"]))
         setattr(cls, "snomedct:260487000",
             PermissibleValue(
                 text="snomedct:260487000",
                 title="Dental panoramic",
-                meaning=SNOMED_CT["260487000"]))
+                meaning=SNOMEDCT["260487000"]))
         setattr(cls, "snomedct:260489002",
             PermissibleValue(
                 text="snomedct:260489002",
                 title="Implant setting projection",
-                meaning=SNOMED_CT["260489002"]))
+                meaning=SNOMEDCT["260489002"]))
         setattr(cls, "snomedct:260490006",
             PermissibleValue(
                 text="snomedct:260490006",
                 title="Segmental setting",
-                meaning=SNOMED_CT["260490006"]))
+                meaning=SNOMEDCT["260490006"]))
         setattr(cls, "snomedct:260491005",
             PermissibleValue(
                 text="snomedct:260491005",
                 title="Axial view for sesamoid bones",
-                meaning=SNOMED_CT["260491005"]))
+                meaning=SNOMEDCT["260491005"]))
         setattr(cls, "snomedct:260492003",
             PermissibleValue(
                 text="snomedct:260492003",
                 title="Brewerton's projection",
-                meaning=SNOMED_CT["260492003"]))
+                meaning=SNOMEDCT["260492003"]))
         setattr(cls, "snomedct:260493008",
             PermissibleValue(
                 text="snomedct:260493008",
                 title="Harris Beath axial projection",
-                meaning=SNOMED_CT["260493008"]))
+                meaning=SNOMEDCT["260493008"]))
         setattr(cls, "snomedct:260494002",
             PermissibleValue(
                 text="snomedct:260494002",
                 title="Intercondylar projection",
-                meaning=SNOMED_CT["260494002"]))
+                meaning=SNOMEDCT["260494002"]))
         setattr(cls, "snomedct:260496000",
             PermissibleValue(
                 text="snomedct:260496000",
                 title="Judet projection",
-                meaning=SNOMED_CT["260496000"]))
+                meaning=SNOMEDCT["260496000"]))
         setattr(cls, "snomedct:260497009",
             PermissibleValue(
                 text="snomedct:260497009",
                 title="Mortice projection",
-                meaning=SNOMED_CT["260497009"]))
+                meaning=SNOMEDCT["260497009"]))
         setattr(cls, "snomedct:260499007",
             PermissibleValue(
                 text="snomedct:260499007",
                 title="Occlusal projection",
-                meaning=SNOMED_CT["260499007"]))
+                meaning=SNOMEDCT["260499007"]))
         setattr(cls, "snomedct:260500003",
             PermissibleValue(
                 text="snomedct:260500003",
                 title="Projected oblique occlusal",
-                meaning=SNOMED_CT["260500003"]))
+                meaning=SNOMEDCT["260500003"]))
         setattr(cls, "snomedct:260501004",
             PermissibleValue(
                 text="snomedct:260501004",
                 title="Lower true occlusal",
-                meaning=SNOMED_CT["260501004"]))
+                meaning=SNOMEDCT["260501004"]))
         setattr(cls, "snomedct:260502006",
             PermissibleValue(
                 text="snomedct:260502006",
                 title="Power grip series",
-                meaning=SNOMED_CT["260502006"]))
+                meaning=SNOMEDCT["260502006"]))
         setattr(cls, "snomedct:260503001",
             PermissibleValue(
                 text="snomedct:260503001",
                 title="Radial head projection",
-                meaning=SNOMED_CT["260503001"]))
+                meaning=SNOMEDCT["260503001"]))
         setattr(cls, "snomedct:260504007",
             PermissibleValue(
                 text="snomedct:260504007",
                 title="Skyline projection",
-                meaning=SNOMED_CT["260504007"]))
+                meaning=SNOMEDCT["260504007"]))
         setattr(cls, "snomedct:260506009",
             PermissibleValue(
                 text="snomedct:260506009",
                 title="Van Rosen projection",
-                meaning=SNOMED_CT["260506009"]))
+                meaning=SNOMEDCT["260506009"]))
         setattr(cls, "snomedct:260514003",
             PermissibleValue(
                 text="snomedct:260514003",
                 title="Via body reference line",
-                meaning=SNOMED_CT["260514003"]))
+                meaning=SNOMEDCT["260514003"]))
         setattr(cls, "snomedct:260520002",
             PermissibleValue(
                 text="snomedct:260520002",
                 title="Extracorporeal",
-                meaning=SNOMED_CT["260520002"]))
+                meaning=SNOMEDCT["260520002"]))
         setattr(cls, "snomedct:260521003",
             PermissibleValue(
                 text="snomedct:260521003",
                 title="Internal",
-                meaning=SNOMED_CT["260521003"]))
+                meaning=SNOMEDCT["260521003"]))
         setattr(cls, "snomedct:260528009",
             PermissibleValue(
                 text="snomedct:260528009",
                 title="Median",
-                meaning=SNOMED_CT["260528009"]))
+                meaning=SNOMEDCT["260528009"]))
         setattr(cls, "snomedct:260529001",
             PermissibleValue(
                 text="snomedct:260529001",
                 title="Vectors",
-                meaning=SNOMED_CT["260529001"]))
+                meaning=SNOMEDCT["260529001"]))
         setattr(cls, "snomedct:260530006",
             PermissibleValue(
                 text="snomedct:260530006",
                 title="Via body region",
-                meaning=SNOMED_CT["260530006"]))
+                meaning=SNOMEDCT["260530006"]))
         setattr(cls, "snomedct:260532003",
             PermissibleValue(
                 text="snomedct:260532003",
                 title="Thoracoabdominal",
-                meaning=SNOMED_CT["260532003"]))
+                meaning=SNOMEDCT["260532003"]))
         setattr(cls, "snomedct:260535001",
             PermissibleValue(
                 text="snomedct:260535001",
                 title="Lateral extrapleural",
-                meaning=SNOMED_CT["260535001"]))
+                meaning=SNOMEDCT["260535001"]))
         setattr(cls, "snomedct:260541008",
             PermissibleValue(
                 text="snomedct:260541008",
                 title="Nasopancreatic",
-                meaning=SNOMED_CT["260541008"]))
+                meaning=SNOMEDCT["260541008"]))
         setattr(cls, "snomedct:260544000",
             PermissibleValue(
                 text="snomedct:260544000",
                 title="Endobronchial",
-                meaning=SNOMED_CT["260544000"]))
+                meaning=SNOMEDCT["260544000"]))
         setattr(cls, "snomedct:260549005",
             PermissibleValue(
                 text="snomedct:260549005",
                 title="Orogastric",
-                meaning=SNOMED_CT["260549005"]))
+                meaning=SNOMEDCT["260549005"]))
         setattr(cls, "snomedct:260568008",
             PermissibleValue(
                 text="snomedct:260568008",
                 title="Via cardiovascular system",
-                meaning=SNOMED_CT["260568008"]))
+                meaning=SNOMEDCT["260568008"]))
         setattr(cls, "snomedct:260602004",
             PermissibleValue(
                 text="snomedct:260602004",
                 title="Via superficialized vessel (qualifier value)",
-                meaning=SNOMED_CT["260602004"]))
+                meaning=SNOMEDCT["260602004"]))
         setattr(cls, "snomedct:260620008",
             PermissibleValue(
                 text="snomedct:260620008",
                 title="Postaural approach",
-                meaning=SNOMED_CT["260620008"]))
+                meaning=SNOMEDCT["260620008"]))
         setattr(cls, "snomedct:260637001",
             PermissibleValue(
                 text="snomedct:260637001",
                 title="Sublabial transseptal",
-                meaning=SNOMED_CT["260637001"]))
+                meaning=SNOMEDCT["260637001"]))
         setattr(cls, "snomedct:260641002",
             PermissibleValue(
                 text="snomedct:260641002",
                 title="Extraperitoneal",
-                meaning=SNOMED_CT["260641002"]))
+                meaning=SNOMEDCT["260641002"]))
         setattr(cls, "snomedct:260642009",
             PermissibleValue(
                 text="snomedct:260642009",
                 title="Retroperitoneal",
-                meaning=SNOMED_CT["260642009"]))
+                meaning=SNOMEDCT["260642009"]))
         setattr(cls, "snomedct:260668002",
             PermissibleValue(
                 text="snomedct:260668002",
                 title="Venovenous",
-                meaning=SNOMED_CT["260668002"]))
+                meaning=SNOMEDCT["260668002"]))
         setattr(cls, "snomedct:261045000",
             PermissibleValue(
                 text="snomedct:261045000",
                 title="Anterior dorsal",
-                meaning=SNOMED_CT["261045000"]))
+                meaning=SNOMEDCT["261045000"]))
         setattr(cls, "snomedct:261052003",
             PermissibleValue(
                 text="snomedct:261052003",
                 title="Aortocoronary",
-                meaning=SNOMED_CT["261052003"]))
+                meaning=SNOMEDCT["261052003"]))
         setattr(cls, "snomedct:261054002",
             PermissibleValue(
                 text="snomedct:261054002",
                 title="Arterio-arterial",
-                meaning=SNOMED_CT["261054002"]))
+                meaning=SNOMEDCT["261054002"]))
         setattr(cls, "snomedct:261055001",
             PermissibleValue(
                 text="snomedct:261055001",
                 title="Arteriovenous",
-                meaning=SNOMED_CT["261055001"]))
+                meaning=SNOMEDCT["261055001"]))
         setattr(cls, "snomedct:261057009",
             PermissibleValue(
                 text="snomedct:261057009",
                 title="Between intestinal loops",
-                meaning=SNOMED_CT["261057009"]))
+                meaning=SNOMEDCT["261057009"]))
         setattr(cls, "snomedct:261059007",
             PermissibleValue(
                 text="snomedct:261059007",
                 title="Bicoronal",
-                meaning=SNOMED_CT["261059007"]))
+                meaning=SNOMEDCT["261059007"]))
         setattr(cls, "snomedct:261065007",
             PermissibleValue(
                 text="snomedct:261065007",
                 title="Circumareolar",
-                meaning=SNOMED_CT["261065007"]))
+                meaning=SNOMEDCT["261065007"]))
         setattr(cls, "snomedct:261067004",
             PermissibleValue(
                 text="snomedct:261067004",
                 title="Dorsal part",
-                meaning=SNOMED_CT["261067004"]))
+                meaning=SNOMEDCT["261067004"]))
         setattr(cls, "snomedct:261073003",
             PermissibleValue(
                 text="snomedct:261073003",
                 title="Epicardial",
-                meaning=SNOMED_CT["261073003"]))
+                meaning=SNOMEDCT["261073003"]))
         setattr(cls, "snomedct:261074009",
             PermissibleValue(
                 text="snomedct:261074009",
                 title="External",
-                meaning=SNOMED_CT["261074009"]))
+                meaning=SNOMEDCT["261074009"]))
         setattr(cls, "snomedct:261075005",
             PermissibleValue(
                 text="snomedct:261075005",
                 title="Extra-amniotic",
-                meaning=SNOMED_CT["261075005"]))
+                meaning=SNOMEDCT["261075005"]))
         setattr(cls, "snomedct:261076006",
             PermissibleValue(
                 text="snomedct:261076006",
                 title="Extracoronal",
-                meaning=SNOMED_CT["261076006"]))
+                meaning=SNOMEDCT["261076006"]))
         setattr(cls, "snomedct:261089000",
             PermissibleValue(
                 text="snomedct:261089000",
                 title="Inferior",
-                meaning=SNOMED_CT["261089000"]))
+                meaning=SNOMEDCT["261089000"]))
         setattr(cls, "snomedct:261094000",
             PermissibleValue(
                 text="snomedct:261094000",
                 title="Into urinary bladder",
-                meaning=SNOMED_CT["261094000"]))
+                meaning=SNOMEDCT["261094000"]))
         setattr(cls, "snomedct:261095004",
             PermissibleValue(
                 text="snomedct:261095004",
                 title="Into ureter",
-                meaning=SNOMED_CT["261095004"]))
+                meaning=SNOMEDCT["261095004"]))
         setattr(cls, "snomedct:261097007",
             PermissibleValue(
                 text="snomedct:261097007",
                 title="Intracoronal",
-                meaning=SNOMED_CT["261097007"]))
+                meaning=SNOMEDCT["261097007"]))
         setattr(cls, "snomedct:261100002",
             PermissibleValue(
                 text="snomedct:261100002",
                 title="Intraperitoneal",
-                meaning=SNOMED_CT["261100002"]))
+                meaning=SNOMEDCT["261100002"]))
         setattr(cls, "snomedct:261101003",
             PermissibleValue(
                 text="snomedct:261101003",
                 title="Intravascular",
-                meaning=SNOMED_CT["261101003"]))
+                meaning=SNOMEDCT["261101003"]))
         setattr(cls, "snomedct:261117009",
             PermissibleValue(
                 text="snomedct:261117009",
                 title="Laryngotracheal",
-                meaning=SNOMED_CT["261117009"]))
+                meaning=SNOMEDCT["261117009"]))
         setattr(cls, "snomedct:261119007",
             PermissibleValue(
                 text="snomedct:261119007",
                 title="Lateral part",
-                meaning=SNOMED_CT["261119007"]))
+                meaning=SNOMEDCT["261119007"]))
         setattr(cls, "snomedct:261122009",
             PermissibleValue(
                 text="snomedct:261122009",
                 title="Lower",
-                meaning=SNOMED_CT["261122009"]))
+                meaning=SNOMEDCT["261122009"]))
         setattr(cls, "snomedct:261123004",
             PermissibleValue(
                 text="snomedct:261123004",
                 title="Lower anterior",
-                meaning=SNOMED_CT["261123004"]))
+                meaning=SNOMEDCT["261123004"]))
         setattr(cls, "snomedct:261128008",
             PermissibleValue(
                 text="snomedct:261128008",
                 title="Medial part",
-                meaning=SNOMED_CT["261128008"]))
+                meaning=SNOMEDCT["261128008"]))
         setattr(cls, "snomedct:261131009",
             PermissibleValue(
                 text="snomedct:261131009",
                 title="Midaxillary",
-                meaning=SNOMED_CT["261131009"]))
+                meaning=SNOMEDCT["261131009"]))
         setattr(cls, "snomedct:261132002",
             PermissibleValue(
                 text="snomedct:261132002",
                 title="Midclavicular",
-                meaning=SNOMED_CT["261132002"]))
+                meaning=SNOMEDCT["261132002"]))
         setattr(cls, "snomedct:261133007",
             PermissibleValue(
                 text="snomedct:261133007",
                 title="Middle third",
-                meaning=SNOMED_CT["261133007"]))
+                meaning=SNOMEDCT["261133007"]))
         setattr(cls, "snomedct:261136004",
             PermissibleValue(
                 text="snomedct:261136004",
                 title="Mural",
-                meaning=SNOMED_CT["261136004"]))
+                meaning=SNOMEDCT["261136004"]))
         setattr(cls, "snomedct:261137008",
             PermissibleValue(
                 text="snomedct:261137008",
                 title="Musculocutaneous",
-                meaning=SNOMED_CT["261137008"]))
+                meaning=SNOMEDCT["261137008"]))
         setattr(cls, "snomedct:261146002",
             PermissibleValue(
                 text="snomedct:261146002",
                 title="Para-aortic",
-                meaning=SNOMED_CT["261146002"]))
+                meaning=SNOMEDCT["261146002"]))
         setattr(cls, "snomedct:261147006",
             PermissibleValue(
                 text="snomedct:261147006",
                 title="Paracolic",
-                meaning=SNOMED_CT["261147006"]))
+                meaning=SNOMEDCT["261147006"]))
         setattr(cls, "snomedct:261148001",
             PermissibleValue(
                 text="snomedct:261148001",
                 title="Paraspinal",
-                meaning=SNOMED_CT["261148001"]))
+                meaning=SNOMEDCT["261148001"]))
         setattr(cls, "snomedct:261149009",
             PermissibleValue(
                 text="snomedct:261149009",
                 title="Parasternal",
-                meaning=SNOMED_CT["261149009"]))
+                meaning=SNOMEDCT["261149009"]))
         setattr(cls, "snomedct:261154000",
             PermissibleValue(
                 text="snomedct:261154000",
                 title="Penis and urinary bladder neck",
-                meaning=SNOMED_CT["261154000"]))
+                meaning=SNOMEDCT["261154000"]))
         setattr(cls, "snomedct:261156003",
             PermissibleValue(
                 text="snomedct:261156003",
                 title="Periadrenal",
-                meaning=SNOMED_CT["261156003"]))
+                meaning=SNOMEDCT["261156003"]))
         setattr(cls, "snomedct:261165005",
             PermissibleValue(
                 text="snomedct:261165005",
                 title="Posterior dorsal",
-                meaning=SNOMED_CT["261165005"]))
+                meaning=SNOMEDCT["261165005"]))
         setattr(cls, "snomedct:261172006",
             PermissibleValue(
                 text="snomedct:261172006",
                 title="Proximal third",
-                meaning=SNOMED_CT["261172006"]))
+                meaning=SNOMEDCT["261172006"]))
         setattr(cls, "snomedct:261174007",
             PermissibleValue(
                 text="snomedct:261174007",
                 title="Retrocecal (qualifier value)",
-                meaning=SNOMED_CT["261174007"]))
+                meaning=SNOMEDCT["261174007"]))
         setattr(cls, "snomedct:261175008",
             PermissibleValue(
                 text="snomedct:261175008",
                 title="Retroduodenal",
-                meaning=SNOMED_CT["261175008"]))
+                meaning=SNOMEDCT["261175008"]))
         setattr(cls, "snomedct:261181000",
             PermissibleValue(
                 text="snomedct:261181000",
                 title="Tracheobronchial",
-                meaning=SNOMED_CT["261181000"]))
+                meaning=SNOMEDCT["261181000"]))
         setattr(cls, "snomedct:261183002",
             PermissibleValue(
                 text="snomedct:261183002",
                 title="Upper",
-                meaning=SNOMED_CT["261183002"]))
+                meaning=SNOMEDCT["261183002"]))
         setattr(cls, "snomedct:261184008",
             PermissibleValue(
                 text="snomedct:261184008",
                 title="Upper anterior",
-                meaning=SNOMED_CT["261184008"]))
+                meaning=SNOMEDCT["261184008"]))
         setattr(cls, "snomedct:261185009",
             PermissibleValue(
                 text="snomedct:261185009",
                 title="Venoarterial",
-                meaning=SNOMED_CT["261185009"]))
+                meaning=SNOMEDCT["261185009"]))
         setattr(cls, "snomedct:261186005",
             PermissibleValue(
                 text="snomedct:261186005",
                 title="Ventral part",
-                meaning=SNOMED_CT["261186005"]))
+                meaning=SNOMEDCT["261186005"]))
         setattr(cls, "snomedct:261411001",
             PermissibleValue(
                 text="snomedct:261411001",
                 title="Distal third",
-                meaning=SNOMED_CT["261411001"]))
+                meaning=SNOMEDCT["261411001"]))
         setattr(cls, "snomedct:261446009",
             PermissibleValue(
                 text="snomedct:261446009",
                 title="Transpulmonary annulus",
-                meaning=SNOMED_CT["261446009"]))
+                meaning=SNOMEDCT["261446009"]))
         setattr(cls, "snomedct:261466000",
             PermissibleValue(
                 text="snomedct:261466000",
                 title="Via intrapulmonary trunk tunnel",
-                meaning=SNOMED_CT["261466000"]))
+                meaning=SNOMEDCT["261466000"]))
         setattr(cls, "snomedct:261469007",
             PermissibleValue(
                 text="snomedct:261469007",
                 title="Via orbitotomy",
-                meaning=SNOMED_CT["261469007"]))
+                meaning=SNOMEDCT["261469007"]))
         setattr(cls, "snomedct:261760007",
             PermissibleValue(
                 text="snomedct:261760007",
                 title="Deep to rectus abdominis",
-                meaning=SNOMED_CT["261760007"]))
+                meaning=SNOMEDCT["261760007"]))
         setattr(cls, "snomedct:261788001",
             PermissibleValue(
                 text="snomedct:261788001",
                 title="Exteriorized (qualifier value)",
-                meaning=SNOMED_CT["261788001"]))
+                meaning=SNOMEDCT["261788001"]))
         setattr(cls, "snomedct:261799004",
             PermissibleValue(
                 text="snomedct:261799004",
                 title="From existing graft to coronary artery",
-                meaning=SNOMED_CT["261799004"]))
+                meaning=SNOMEDCT["261799004"]))
         setattr(cls, "snomedct:261847009",
             PermissibleValue(
                 text="snomedct:261847009",
                 title="Intracervical",
-                meaning=SNOMED_CT["261847009"]))
+                meaning=SNOMEDCT["261847009"]))
         setattr(cls, "snomedct:261851006",
             PermissibleValue(
                 text="snomedct:261851006",
                 title="Internally to bladder",
-                meaning=SNOMED_CT["261851006"]))
+                meaning=SNOMEDCT["261851006"]))
         setattr(cls, "snomedct:261945002",
             PermissibleValue(
                 text="snomedct:261945002",
                 title="Mixed venoarterial and venovenous",
-                meaning=SNOMED_CT["261945002"]))
+                meaning=SNOMEDCT["261945002"]))
         setattr(cls, "snomedct:261964008",
             PermissibleValue(
                 text="snomedct:261964008",
                 title="Muscle fibers only (qualifier value)",
-                meaning=SNOMED_CT["261964008"]))
+                meaning=SNOMEDCT["261964008"]))
         setattr(cls, "snomedct:261980003",
             PermissibleValue(
                 text="snomedct:261980003",
                 title="Neuromuscular junction only",
-                meaning=SNOMED_CT["261980003"]))
+                meaning=SNOMEDCT["261980003"]))
         setattr(cls, "snomedct:262379005",
             PermissibleValue(
                 text="snomedct:262379005",
                 title="Dominant side",
-                meaning=SNOMED_CT["262379005"]))
+                meaning=SNOMEDCT["262379005"]))
         setattr(cls, "snomedct:262458006",
             PermissibleValue(
                 text="snomedct:262458006",
                 title="Non-dominant side",
-                meaning=SNOMED_CT["262458006"]))
+                meaning=SNOMEDCT["262458006"]))
         setattr(cls, "snomedct:263672002",
             PermissibleValue(
                 text="snomedct:263672002",
                 title="Anocutaneous",
-                meaning=SNOMED_CT["263672002"]))
+                meaning=SNOMEDCT["263672002"]))
         setattr(cls, "snomedct:263674001",
             PermissibleValue(
                 text="snomedct:263674001",
                 title="Anovestibular",
-                meaning=SNOMED_CT["263674001"]))
+                meaning=SNOMEDCT["263674001"]))
         setattr(cls, "snomedct:263759007",
             PermissibleValue(
                 text="snomedct:263759007",
                 title="Foraminal",
-                meaning=SNOMED_CT["263759007"]))
+                meaning=SNOMEDCT["263759007"]))
         setattr(cls, "snomedct:263794000",
             PermissibleValue(
                 text="snomedct:263794000",
                 title="Left side-by-side",
-                meaning=SNOMED_CT["263794000"]))
+                meaning=SNOMEDCT["263794000"]))
         setattr(cls, "snomedct:263795004",
             PermissibleValue(
                 text="snomedct:263795004",
                 title="Left sided",
-                meaning=SNOMED_CT["263795004"]))
+                meaning=SNOMEDCT["263795004"]))
         setattr(cls, "snomedct:263830001",
             PermissibleValue(
                 text="snomedct:263830001",
                 title="Panacinar",
-                meaning=SNOMED_CT["263830001"]))
+                meaning=SNOMEDCT["263830001"]))
         setattr(cls, "snomedct:263831002",
             PermissibleValue(
                 text="snomedct:263831002",
                 title="Panlobular",
-                meaning=SNOMED_CT["263831002"]))
+                meaning=SNOMEDCT["263831002"]))
         setattr(cls, "snomedct:263838008",
             PermissibleValue(
                 text="snomedct:263838008",
                 title="Periacinar",
-                meaning=SNOMED_CT["263838008"]))
+                meaning=SNOMEDCT["263838008"]))
         setattr(cls, "snomedct:263846009",
             PermissibleValue(
                 text="snomedct:263846009",
                 title="Prevascular",
-                meaning=SNOMED_CT["263846009"]))
+                meaning=SNOMEDCT["263846009"]))
         setattr(cls, "snomedct:263848005",
             PermissibleValue(
                 text="snomedct:263848005",
                 title="Proximal acinar",
-                meaning=SNOMED_CT["263848005"]))
+                meaning=SNOMEDCT["263848005"]))
         setattr(cls, "snomedct:263869007",
             PermissibleValue(
                 text="snomedct:263869007",
                 title="Separate",
-                meaning=SNOMED_CT["263869007"]))
+                meaning=SNOMEDCT["263869007"]))
         setattr(cls, "snomedct:263887005",
             PermissibleValue(
                 text="snomedct:263887005",
                 title="Subcutaneous",
-                meaning=SNOMED_CT["263887005"]))
+                meaning=SNOMEDCT["263887005"]))
         setattr(cls, "snomedct:263938007",
             PermissibleValue(
                 text="snomedct:263938007",
                 title="Above middle turbinate",
-                meaning=SNOMED_CT["263938007"]))
+                meaning=SNOMEDCT["263938007"]))
         setattr(cls, "snomedct:263942005",
             PermissibleValue(
                 text="snomedct:263942005",
                 title="Anterior segment",
-                meaning=SNOMED_CT["263942005"]))
+                meaning=SNOMEDCT["263942005"]))
         setattr(cls, "snomedct:263943000",
             PermissibleValue(
                 text="snomedct:263943000",
                 title="Anterior wall",
-                meaning=SNOMED_CT["263943000"]))
+                meaning=SNOMEDCT["263943000"]))
         setattr(cls, "snomedct:263952009",
             PermissibleValue(
                 text="snomedct:263952009",
                 title="Periorbital",
-                meaning=SNOMED_CT["263952009"]))
+                meaning=SNOMEDCT["263952009"]))
         setattr(cls, "snomedct:263953004",
             PermissibleValue(
                 text="snomedct:263953004",
                 title="Perioral",
-                meaning=SNOMED_CT["263953004"]))
+                meaning=SNOMEDCT["263953004"]))
         setattr(cls, "snomedct:263955006",
             PermissibleValue(
                 text="snomedct:263955006",
                 title="Atlantoaxial",
-                meaning=SNOMED_CT["263955006"]))
+                meaning=SNOMEDCT["263955006"]))
         setattr(cls, "snomedct:263958008",
             PermissibleValue(
                 text="snomedct:263958008",
                 title="Between left common carotid and brachiocephalic arteries",
-                meaning=SNOMED_CT["263958008"]))
+                meaning=SNOMEDCT["263958008"]))
         setattr(cls, "snomedct:263959000",
             PermissibleValue(
                 text="snomedct:263959000",
                 title="Between left subclavian and common carotid arteries",
-                meaning=SNOMED_CT["263959000"]))
+                meaning=SNOMEDCT["263959000"]))
         setattr(cls, "snomedct:263965000",
             PermissibleValue(
                 text="snomedct:263965000",
                 title="Bronchocutaneous",
-                meaning=SNOMED_CT["263965000"]))
+                meaning=SNOMEDCT["263965000"]))
         setattr(cls, "snomedct:263966004",
             PermissibleValue(
                 text="snomedct:263966004",
                 title="Bronchopleural",
-                meaning=SNOMED_CT["263966004"]))
+                meaning=SNOMEDCT["263966004"]))
         setattr(cls, "snomedct:263969006",
             PermissibleValue(
                 text="snomedct:263969006",
                 title="Centriacinar",
-                meaning=SNOMED_CT["263969006"]))
+                meaning=SNOMEDCT["263969006"]))
         setattr(cls, "snomedct:263970007",
             PermissibleValue(
                 text="snomedct:263970007",
                 title="Centrilobular",
-                meaning=SNOMED_CT["263970007"]))
+                meaning=SNOMEDCT["263970007"]))
         setattr(cls, "snomedct:263974003",
             PermissibleValue(
                 text="snomedct:263974003",
                 title="Cervicothoracic",
-                meaning=SNOMED_CT["263974003"]))
+                meaning=SNOMEDCT["263974003"]))
         setattr(cls, "snomedct:263975002",
             PermissibleValue(
                 text="snomedct:263975002",
                 title="Cervicothoracolumbar",
-                meaning=SNOMED_CT["263975002"]))
+                meaning=SNOMEDCT["263975002"]))
         setattr(cls, "snomedct:263981005",
             PermissibleValue(
                 text="snomedct:263981005",
                 title="Distal to left subclavian artery",
-                meaning=SNOMED_CT["263981005"]))
+                meaning=SNOMEDCT["263981005"]))
         setattr(cls, "snomedct:263990003",
             PermissibleValue(
                 text="snomedct:263990003",
                 title="Duodenoduodenal",
-                meaning=SNOMED_CT["263990003"]))
+                meaning=SNOMEDCT["263990003"]))
         setattr(cls, "snomedct:263991004",
             PermissibleValue(
                 text="snomedct:263991004",
                 title="Duodenojejunal",
-                meaning=SNOMED_CT["263991004"]))
+                meaning=SNOMEDCT["263991004"]))
         setattr(cls, "snomedct:263996009",
             PermissibleValue(
                 text="snomedct:263996009",
                 title="Extrafoveal",
-                meaning=SNOMED_CT["263996009"]))
+                meaning=SNOMEDCT["263996009"]))
         setattr(cls, "snomedct:263997000",
             PermissibleValue(
                 text="snomedct:263997000",
                 title="Extraureteric",
-                meaning=SNOMED_CT["263997000"]))
+                meaning=SNOMEDCT["263997000"]))
         setattr(cls, "snomedct:263998005",
             PermissibleValue(
                 text="snomedct:263998005",
                 title="Extravaginal",
-                meaning=SNOMED_CT["263998005"]))
+                meaning=SNOMEDCT["263998005"]))
         setattr(cls, "snomedct:263999002",
             PermissibleValue(
                 text="snomedct:263999002",
                 title="From anterosuperior-superior bridging leaflet commissure",
-                meaning=SNOMED_CT["263999002"]))
+                meaning=SNOMEDCT["263999002"]))
         setattr(cls, "snomedct:264000000",
             PermissibleValue(
                 text="snomedct:264000000",
                 title="From left inferior bridging leaflet-lateral commissure",
-                meaning=SNOMED_CT["264000000"]))
+                meaning=SNOMEDCT["264000000"]))
         setattr(cls, "snomedct:264001001",
             PermissibleValue(
                 text="snomedct:264001001",
                 title="From left septal commissure",
-                meaning=SNOMED_CT["264001001"]))
+                meaning=SNOMEDCT["264001001"]))
         setattr(cls, "snomedct:264002008",
             PermissibleValue(
                 text="snomedct:264002008",
                 title="From left superior bridging leaflet-lateral commissure",
-                meaning=SNOMED_CT["264002008"]))
+                meaning=SNOMEDCT["264002008"]))
         setattr(cls, "snomedct:264004009",
             PermissibleValue(
                 text="snomedct:264004009",
                 title="From left ventricular component",
-                meaning=SNOMED_CT["264004009"]))
+                meaning=SNOMEDCT["264004009"]))
         setattr(cls, "snomedct:264005005",
             PermissibleValue(
                 text="snomedct:264005005",
                 title="From right anterosuperior-inferior commissure",
-                meaning=SNOMED_CT["264005005"]))
+                meaning=SNOMEDCT["264005005"]))
         setattr(cls, "snomedct:264006006",
             PermissibleValue(
                 text="snomedct:264006006",
                 title="From right inferior bridging leaflet-inferior commissure",
-                meaning=SNOMED_CT["264006006"]))
+                meaning=SNOMEDCT["264006006"]))
         setattr(cls, "snomedct:264007002",
             PermissibleValue(
                 text="snomedct:264007002",
                 title="From right septal commissure",
-                meaning=SNOMED_CT["264007002"]))
+                meaning=SNOMEDCT["264007002"]))
         setattr(cls, "snomedct:264008007",
             PermissibleValue(
                 text="snomedct:264008007",
                 title="From right ventricular component",
-                meaning=SNOMED_CT["264008007"]))
+                meaning=SNOMEDCT["264008007"]))
         setattr(cls, "snomedct:264011008",
             PermissibleValue(
                 text="snomedct:264011008",
                 title="Gastroduodenal",
-                meaning=SNOMED_CT["264011008"]))
+                meaning=SNOMEDCT["264011008"]))
         setattr(cls, "snomedct:264012001",
             PermissibleValue(
                 text="snomedct:264012001",
                 title="Gastrogastric",
-                meaning=SNOMED_CT["264012001"]))
+                meaning=SNOMEDCT["264012001"]))
         setattr(cls, "snomedct:264015004",
             PermissibleValue(
                 text="snomedct:264015004",
                 title="Hepatopleural",
-                meaning=SNOMED_CT["264015004"]))
+                meaning=SNOMEDCT["264015004"]))
         setattr(cls, "snomedct:264023002",
             PermissibleValue(
                 text="snomedct:264023002",
                 title="Ileocecal (qualifier value)",
-                meaning=SNOMED_CT["264023002"]))
+                meaning=SNOMEDCT["264023002"]))
         setattr(cls, "snomedct:264024008",
             PermissibleValue(
                 text="snomedct:264024008",
                 title="Ileocolic",
-                meaning=SNOMED_CT["264024008"]))
+                meaning=SNOMEDCT["264024008"]))
         setattr(cls, "snomedct:264025009",
             PermissibleValue(
                 text="snomedct:264025009",
                 title="Iliofemoral vein zone",
-                meaning=SNOMED_CT["264025009"]))
+                meaning=SNOMEDCT["264025009"]))
         setattr(cls, "snomedct:264026005",
             PermissibleValue(
                 text="snomedct:264026005",
                 title="Ileo-ileal",
-                meaning=SNOMED_CT["264026005"]))
+                meaning=SNOMEDCT["264026005"]))
         setattr(cls, "snomedct:264027001",
             PermissibleValue(
                 text="snomedct:264027001",
                 title="Ileorectal",
-                meaning=SNOMED_CT["264027001"]))
+                meaning=SNOMEDCT["264027001"]))
         setattr(cls, "snomedct:264030008",
             PermissibleValue(
                 text="snomedct:264030008",
                 title="In joint",
-                meaning=SNOMED_CT["264030008"]))
+                meaning=SNOMEDCT["264030008"]))
         setattr(cls, "snomedct:264031007",
             PermissibleValue(
                 text="snomedct:264031007",
                 title="In situ",
-                meaning=SNOMED_CT["264031007"]))
+                meaning=SNOMEDCT["264031007"]))
         setattr(cls, "snomedct:264034004",
             PermissibleValue(
                 text="snomedct:264034004",
                 title="Infracardiac",
-                meaning=SNOMED_CT["264034004"]))
+                meaning=SNOMEDCT["264034004"]))
         setattr(cls, "snomedct:264035003",
             PermissibleValue(
                 text="snomedct:264035003",
                 title="Infravesical",
-                meaning=SNOMED_CT["264035003"]))
+                meaning=SNOMEDCT["264035003"]))
         setattr(cls, "snomedct:264040006",
             PermissibleValue(
                 text="snomedct:264040006",
                 title="Interchordal",
-                meaning=SNOMED_CT["264040006"]))
+                meaning=SNOMEDCT["264040006"]))
         setattr(cls, "snomedct:264041005",
             PermissibleValue(
                 text="snomedct:264041005",
                 title="Interdigital",
-                meaning=SNOMED_CT["264041005"]))
+                meaning=SNOMEDCT["264041005"]))
         setattr(cls, "snomedct:264042003",
             PermissibleValue(
                 text="snomedct:264042003",
                 title="Intervertebral",
-                meaning=SNOMED_CT["264042003"]))
+                meaning=SNOMEDCT["264042003"]))
         setattr(cls, "snomedct:264043008",
             PermissibleValue(
                 text="snomedct:264043008",
                 title="Intraligamentous",
-                meaning=SNOMED_CT["264043008"]))
+                meaning=SNOMEDCT["264043008"]))
         setattr(cls, "snomedct:264044002",
             PermissibleValue(
                 text="snomedct:264044002",
                 title="Intracardiac",
-                meaning=SNOMED_CT["264044002"]))
+                meaning=SNOMEDCT["264044002"]))
         setattr(cls, "snomedct:264045001",
             PermissibleValue(
                 text="snomedct:264045001",
                 title="Intraluminal",
-                meaning=SNOMED_CT["264045001"]))
+                meaning=SNOMEDCT["264045001"]))
         setattr(cls, "snomedct:264046000",
             PermissibleValue(
                 text="snomedct:264046000",
                 title="Intramammary",
-                meaning=SNOMED_CT["264046000"]))
+                meaning=SNOMEDCT["264046000"]))
         setattr(cls, "snomedct:264047009",
             PermissibleValue(
                 text="snomedct:264047009",
                 title="Intrapulmonary",
-                meaning=SNOMED_CT["264047009"]))
+                meaning=SNOMEDCT["264047009"]))
         setattr(cls, "snomedct:264049007",
             PermissibleValue(
                 text="snomedct:264049007",
                 title="Intravaginal",
-                meaning=SNOMED_CT["264049007"]))
+                meaning=SNOMEDCT["264049007"]))
         setattr(cls, "snomedct:264056001",
             PermissibleValue(
                 text="snomedct:264056001",
                 title="Lateral column",
-                meaning=SNOMED_CT["264056001"]))
+                meaning=SNOMEDCT["264056001"]))
         setattr(cls, "snomedct:264060003",
             PermissibleValue(
                 text="snomedct:264060003",
                 title="Lateral segment",
-                meaning=SNOMED_CT["264060003"]))
+                meaning=SNOMEDCT["264060003"]))
         setattr(cls, "snomedct:264065008",
             PermissibleValue(
                 text="snomedct:264065008",
                 title="Left anterior",
-                meaning=SNOMED_CT["264065008"]))
+                meaning=SNOMEDCT["264065008"]))
         setattr(cls, "snomedct:264067000",
             PermissibleValue(
                 text="snomedct:264067000",
                 title="Left lateral wall",
-                meaning=SNOMED_CT["264067000"]))
+                meaning=SNOMEDCT["264067000"]))
         setattr(cls, "snomedct:264068005",
             PermissibleValue(
                 text="snomedct:264068005",
                 title="Left lower segment",
-                meaning=SNOMED_CT["264068005"]))
+                meaning=SNOMEDCT["264068005"]))
         setattr(cls, "snomedct:264076007",
             PermissibleValue(
                 text="snomedct:264076007",
                 title="Lower left parasternal",
-                meaning=SNOMED_CT["264076007"]))
+                meaning=SNOMEDCT["264076007"]))
         setattr(cls, "snomedct:264081003",
             PermissibleValue(
                 text="snomedct:264081003",
                 title="Lower third",
-                meaning=SNOMED_CT["264081003"]))
+                meaning=SNOMEDCT["264081003"]))
         setattr(cls, "snomedct:264083000",
             PermissibleValue(
                 text="snomedct:264083000",
                 title="Lumbosacral",
-                meaning=SNOMED_CT["264083000"]))
+                meaning=SNOMEDCT["264083000"]))
         setattr(cls, "snomedct:264096004",
             PermissibleValue(
                 text="snomedct:264096004",
                 title="Medial segment",
-                meaning=SNOMED_CT["264096004"]))
+                meaning=SNOMEDCT["264096004"]))
         setattr(cls, "snomedct:264103001",
             PermissibleValue(
                 text="snomedct:264103001",
                 title="Midtarsal",
-                meaning=SNOMED_CT["264103001"]))
+                meaning=SNOMEDCT["264103001"]))
         setattr(cls, "snomedct:264107000",
             PermissibleValue(
                 text="snomedct:264107000",
                 title="Paravertebral",
-                meaning=SNOMED_CT["264107000"]))
+                meaning=SNOMEDCT["264107000"]))
         setattr(cls, "snomedct:264110007",
             PermissibleValue(
                 text="snomedct:264110007",
                 title="Esophagocolonic (qualifier value)",
-                meaning=SNOMED_CT["264110007"]))
+                meaning=SNOMEDCT["264110007"]))
         setattr(cls, "snomedct:264111006",
             PermissibleValue(
                 text="snomedct:264111006",
                 title="Esophagogastric (qualifier value)",
-                meaning=SNOMED_CT["264111006"]))
+                meaning=SNOMEDCT["264111006"]))
         setattr(cls, "snomedct:264112004",
             PermissibleValue(
                 text="snomedct:264112004",
                 title="Esophagojejunal (qualifier value)",
-                meaning=SNOMED_CT["264112004"]))
+                meaning=SNOMEDCT["264112004"]))
         setattr(cls, "snomedct:264114003",
             PermissibleValue(
                 text="snomedct:264114003",
                 title="Ostium",
-                meaning=SNOMED_CT["264114003"]))
+                meaning=SNOMEDCT["264114003"]))
         setattr(cls, "snomedct:264117005",
             PermissibleValue(
                 text="snomedct:264117005",
                 title="Paraesophageal (qualifier value)",
-                meaning=SNOMED_CT["264117005"]))
+                meaning=SNOMEDCT["264117005"]))
         setattr(cls, "snomedct:264118000",
             PermissibleValue(
                 text="snomedct:264118000",
                 title="Paraduodenal",
-                meaning=SNOMED_CT["264118000"]))
+                meaning=SNOMEDCT["264118000"]))
         setattr(cls, "snomedct:264119008",
             PermissibleValue(
                 text="snomedct:264119008",
                 title="Parafoveal",
-                meaning=SNOMED_CT["264119008"]))
+                meaning=SNOMEDCT["264119008"]))
         setattr(cls, "snomedct:264121003",
             PermissibleValue(
                 text="snomedct:264121003",
                 title="Paramacular",
-                meaning=SNOMED_CT["264121003"]))
+                meaning=SNOMEDCT["264121003"]))
         setattr(cls, "snomedct:264123000",
             PermissibleValue(
                 text="snomedct:264123000",
                 title="Paraseptal",
-                meaning=SNOMED_CT["264123000"]))
+                meaning=SNOMEDCT["264123000"]))
         setattr(cls, "snomedct:264124006",
             PermissibleValue(
                 text="snomedct:264124006",
                 title="Paraumbilical",
-                meaning=SNOMED_CT["264124006"]))
+                meaning=SNOMEDCT["264124006"]))
         setattr(cls, "snomedct:264126008",
             PermissibleValue(
                 text="snomedct:264126008",
                 title="Paravascular",
-                meaning=SNOMED_CT["264126008"]))
+                meaning=SNOMEDCT["264126008"]))
         setattr(cls, "snomedct:264127004",
             PermissibleValue(
                 text="snomedct:264127004",
                 title="Paraovarian",
-                meaning=SNOMED_CT["264127004"]))
+                meaning=SNOMEDCT["264127004"]))
         setattr(cls, "snomedct:264128009",
             PermissibleValue(
                 text="snomedct:264128009",
                 title="Paratracheal",
-                meaning=SNOMED_CT["264128009"]))
+                meaning=SNOMEDCT["264128009"]))
         setattr(cls, "snomedct:264131005",
             PermissibleValue(
                 text="snomedct:264131005",
                 title="Peri-intestinal",
-                meaning=SNOMED_CT["264131005"]))
+                meaning=SNOMEDCT["264131005"]))
         setattr(cls, "snomedct:264133008",
             PermissibleValue(
                 text="snomedct:264133008",
                 title="Perianal",
-                meaning=SNOMED_CT["264133008"]))
+                meaning=SNOMEDCT["264133008"]))
         setattr(cls, "snomedct:264136000",
             PermissibleValue(
                 text="snomedct:264136000",
                 title="Perihepatic",
-                meaning=SNOMED_CT["264136000"]))
+                meaning=SNOMEDCT["264136000"]))
         setattr(cls, "snomedct:264137009",
             PermissibleValue(
                 text="snomedct:264137009",
                 title="Perinephric",
-                meaning=SNOMED_CT["264137009"]))
+                meaning=SNOMEDCT["264137009"]))
         setattr(cls, "snomedct:264139007",
             PermissibleValue(
                 text="snomedct:264139007",
                 title="Peripancreatic",
-                meaning=SNOMED_CT["264139007"]))
+                meaning=SNOMEDCT["264139007"]))
         setattr(cls, "snomedct:264142001",
             PermissibleValue(
                 text="snomedct:264142001",
                 title="Perisplenic",
-                meaning=SNOMED_CT["264142001"]))
+                meaning=SNOMEDCT["264142001"]))
         setattr(cls, "snomedct:264153007",
             PermissibleValue(
                 text="snomedct:264153007",
                 title="Posterior pole",
-                meaning=SNOMED_CT["264153007"]))
+                meaning=SNOMEDCT["264153007"]))
         setattr(cls, "snomedct:264154001",
             PermissibleValue(
                 text="snomedct:264154001",
                 title="Posterior segment",
-                meaning=SNOMED_CT["264154001"]))
+                meaning=SNOMEDCT["264154001"]))
         setattr(cls, "snomedct:264159006",
             PermissibleValue(
                 text="snomedct:264159006",
                 title="Posterior wall",
-                meaning=SNOMED_CT["264159006"]))
+                meaning=SNOMEDCT["264159006"]))
         setattr(cls, "snomedct:264168008",
             PermissibleValue(
                 text="snomedct:264168008",
                 title="Rectocloacal",
-                meaning=SNOMED_CT["264168008"]))
+                meaning=SNOMEDCT["264168008"]))
         setattr(cls, "snomedct:264169000",
             PermissibleValue(
                 text="snomedct:264169000",
                 title="Rectocutaneous",
-                meaning=SNOMED_CT["264169000"]))
+                meaning=SNOMEDCT["264169000"]))
         setattr(cls, "snomedct:264170004",
             PermissibleValue(
                 text="snomedct:264170004",
                 title="Rectourethral",
-                meaning=SNOMED_CT["264170004"]))
+                meaning=SNOMEDCT["264170004"]))
         setattr(cls, "snomedct:264171000",
             PermissibleValue(
                 text="snomedct:264171000",
                 title="Rectovaginal",
-                meaning=SNOMED_CT["264171000"]))
+                meaning=SNOMEDCT["264171000"]))
         setattr(cls, "snomedct:264172007",
             PermissibleValue(
                 text="snomedct:264172007",
                 title="Rectovesical",
-                meaning=SNOMED_CT["264172007"]))
+                meaning=SNOMEDCT["264172007"]))
         setattr(cls, "snomedct:264173002",
             PermissibleValue(
                 text="snomedct:264173002",
                 title="Rectovulval",
-                meaning=SNOMED_CT["264173002"]))
+                meaning=SNOMEDCT["264173002"]))
         setattr(cls, "snomedct:264174008",
             PermissibleValue(
                 text="snomedct:264174008",
                 title="Retromammary",
-                meaning=SNOMED_CT["264174008"]))
+                meaning=SNOMEDCT["264174008"]))
         setattr(cls, "snomedct:264175009",
             PermissibleValue(
                 text="snomedct:264175009",
                 title="Retrocolumellar",
-                meaning=SNOMED_CT["264175009"]))
+                meaning=SNOMEDCT["264175009"]))
         setattr(cls, "snomedct:264176005",
             PermissibleValue(
                 text="snomedct:264176005",
                 title="Right anterior",
-                meaning=SNOMED_CT["264176005"]))
+                meaning=SNOMEDCT["264176005"]))
         setattr(cls, "snomedct:264178006",
             PermissibleValue(
                 text="snomedct:264178006",
                 title="Right lateral wall",
-                meaning=SNOMED_CT["264178006"]))
+                meaning=SNOMEDCT["264178006"]))
         setattr(cls, "snomedct:264179003",
             PermissibleValue(
                 text="snomedct:264179003",
                 title="Right side-by-side",
-                meaning=SNOMED_CT["264179003"]))
+                meaning=SNOMEDCT["264179003"]))
         setattr(cls, "snomedct:264180000",
             PermissibleValue(
                 text="snomedct:264180000",
                 title="Right sided",
-                meaning=SNOMED_CT["264180000"]))
+                meaning=SNOMEDCT["264180000"]))
         setattr(cls, "snomedct:264193005",
             PermissibleValue(
                 text="snomedct:264193005",
                 title="Segment",
-                meaning=SNOMED_CT["264193005"]))
+                meaning=SNOMEDCT["264193005"]))
         setattr(cls, "snomedct:264201006",
             PermissibleValue(
                 text="snomedct:264201006",
                 title="Sternocostal",
-                meaning=SNOMED_CT["264201006"]))
+                meaning=SNOMEDCT["264201006"]))
         setattr(cls, "snomedct:264202004",
             PermissibleValue(
                 text="snomedct:264202004",
                 title="Subaortic",
-                meaning=SNOMED_CT["264202004"]))
+                meaning=SNOMEDCT["264202004"]))
         setattr(cls, "snomedct:264205002",
             PermissibleValue(
                 text="snomedct:264205002",
                 title="Subareolar",
-                meaning=SNOMED_CT["264205002"]))
+                meaning=SNOMEDCT["264205002"]))
         setattr(cls, "snomedct:264206001",
             PermissibleValue(
                 text="snomedct:264206001",
                 title="Subconjunctival",
-                meaning=SNOMED_CT["264206001"]))
+                meaning=SNOMEDCT["264206001"]))
         setattr(cls, "snomedct:264208000",
             PermissibleValue(
                 text="snomedct:264208000",
                 title="Subcostal",
-                meaning=SNOMED_CT["264208000"]))
+                meaning=SNOMEDCT["264208000"]))
         setattr(cls, "snomedct:264209008",
             PermissibleValue(
                 text="snomedct:264209008",
                 title="Subfoveal",
-                meaning=SNOMED_CT["264209008"]))
+                meaning=SNOMEDCT["264209008"]))
         setattr(cls, "snomedct:264216009",
             PermissibleValue(
                 text="snomedct:264216009",
                 title="Superficial to rectus abdominis",
-                meaning=SNOMED_CT["264216009"]))
+                meaning=SNOMEDCT["264216009"]))
         setattr(cls, "snomedct:264217000",
             PermissibleValue(
                 text="snomedct:264217000",
                 title="Superior",
-                meaning=SNOMED_CT["264217000"]))
+                meaning=SNOMEDCT["264217000"]))
         setattr(cls, "snomedct:264221007",
             PermissibleValue(
                 text="snomedct:264221007",
                 title="Supraumbilical",
-                meaning=SNOMED_CT["264221007"]))
+                meaning=SNOMEDCT["264221007"]))
         setattr(cls, "snomedct:264222000",
             PermissibleValue(
                 text="snomedct:264222000",
                 title="Supracardiac",
-                meaning=SNOMED_CT["264222000"]))
+                meaning=SNOMEDCT["264222000"]))
         setattr(cls, "snomedct:264224004",
             PermissibleValue(
                 text="snomedct:264224004",
                 title="Supraglottic",
-                meaning=SNOMED_CT["264224004"]))
+                meaning=SNOMEDCT["264224004"]))
         setattr(cls, "snomedct:264225003",
             PermissibleValue(
                 text="snomedct:264225003",
                 title="Suprahepatic",
-                meaning=SNOMED_CT["264225003"]))
+                meaning=SNOMEDCT["264225003"]))
         setattr(cls, "snomedct:264227006",
             PermissibleValue(
                 text="snomedct:264227006",
                 title="Tarsometatarsal",
-                meaning=SNOMED_CT["264227006"]))
+                meaning=SNOMEDCT["264227006"]))
         setattr(cls, "snomedct:264232007",
             PermissibleValue(
                 text="snomedct:264232007",
                 title="Thoracolumbar",
-                meaning=SNOMED_CT["264232007"]))
+                meaning=SNOMEDCT["264232007"]))
         setattr(cls, "snomedct:264245006",
             PermissibleValue(
                 text="snomedct:264245006",
                 title="Upper left parasternal",
-                meaning=SNOMED_CT["264245006"]))
+                meaning=SNOMEDCT["264245006"]))
         setattr(cls, "snomedct:264253003",
             PermissibleValue(
                 text="snomedct:264253003",
                 title="Upper third",
-                meaning=SNOMED_CT["264253003"]))
+                meaning=SNOMEDCT["264253003"]))
         setattr(cls, "snomedct:264261008",
             PermissibleValue(
                 text="snomedct:264261008",
                 title="Cholecystoduodenal",
-                meaning=SNOMED_CT["264261008"]))
+                meaning=SNOMEDCT["264261008"]))
         setattr(cls, "snomedct:264262001",
             PermissibleValue(
                 text="snomedct:264262001",
                 title="Cholecystenteric (qualifier value)",
-                meaning=SNOMED_CT["264262001"]))
+                meaning=SNOMEDCT["264262001"]))
         setattr(cls, "snomedct:264263006",
             PermissibleValue(
                 text="snomedct:264263006",
                 title="Cholecystogastric",
-                meaning=SNOMED_CT["264263006"]))
+                meaning=SNOMEDCT["264263006"]))
         setattr(cls, "snomedct:264264000",
             PermissibleValue(
                 text="snomedct:264264000",
                 title="Choledochoduodenal",
-                meaning=SNOMED_CT["264264000"]))
+                meaning=SNOMEDCT["264264000"]))
         setattr(cls, "snomedct:264266003",
             PermissibleValue(
                 text="snomedct:264266003",
                 title="Colocolic",
-                meaning=SNOMED_CT["264266003"]))
+                meaning=SNOMEDCT["264266003"]))
         setattr(cls, "snomedct:264267007",
             PermissibleValue(
                 text="snomedct:264267007",
                 title="Colorectal",
-                meaning=SNOMED_CT["264267007"]))
+                meaning=SNOMEDCT["264267007"]))
         setattr(cls, "snomedct:264463009",
             PermissibleValue(
                 text="snomedct:264463009",
                 title="Epitrochlear",
-                meaning=SNOMED_CT["264463009"]))
+                meaning=SNOMEDCT["264463009"]))
         setattr(cls, "snomedct:264940008",
             PermissibleValue(
                 text="snomedct:264940008",
                 title="Under inferior bridging leaflet",
-                meaning=SNOMED_CT["264940008"]))
+                meaning=SNOMEDCT["264940008"]))
         setattr(cls, "snomedct:264941007",
             PermissibleValue(
                 text="snomedct:264941007",
                 title="Under superior bridging leaflet",
-                meaning=SNOMED_CT["264941007"]))
+                meaning=SNOMEDCT["264941007"]))
         setattr(cls, "snomedct:272288000",
             PermissibleValue(
                 text="snomedct:272288000",
                 title="Onlay",
-                meaning=SNOMED_CT["272288000"]))
+                meaning=SNOMEDCT["272288000"]))
         setattr(cls, "snomedct:272425003",
             PermissibleValue(
                 text="snomedct:272425003",
                 title="General site descriptor",
-                meaning=SNOMED_CT["272425003"]))
+                meaning=SNOMEDCT["272425003"]))
         setattr(cls, "snomedct:272427006",
             PermissibleValue(
                 text="snomedct:272427006",
                 title="Anatomical part descriptor",
-                meaning=SNOMED_CT["272427006"]))
+                meaning=SNOMEDCT["272427006"]))
         setattr(cls, "snomedct:272428001",
             PermissibleValue(
                 text="snomedct:272428001",
                 title="Anatomical third",
-                meaning=SNOMED_CT["272428001"]))
+                meaning=SNOMEDCT["272428001"]))
         setattr(cls, "snomedct:272429009",
             PermissibleValue(
                 text="snomedct:272429009",
                 title="Part structure",
-                meaning=SNOMED_CT["272429009"]))
+                meaning=SNOMEDCT["272429009"]))
         setattr(cls, "snomedct:272430004",
             PermissibleValue(
                 text="snomedct:272430004",
                 title="Column structure",
-                meaning=SNOMED_CT["272430004"]))
+                meaning=SNOMEDCT["272430004"]))
         setattr(cls, "snomedct:272431000",
             PermissibleValue(
                 text="snomedct:272431000",
                 title="Segment structure",
-                meaning=SNOMED_CT["272431000"]))
+                meaning=SNOMEDCT["272431000"]))
         setattr(cls, "snomedct:272432007",
             PermissibleValue(
                 text="snomedct:272432007",
                 title="Wall structure",
-                meaning=SNOMED_CT["272432007"]))
+                meaning=SNOMEDCT["272432007"]))
         setattr(cls, "snomedct:272434008",
             PermissibleValue(
                 text="snomedct:272434008",
                 title="Anatomical relationship descriptor",
-                meaning=SNOMED_CT["272434008"]))
+                meaning=SNOMEDCT["272434008"]))
         setattr(cls, "snomedct:272435009",
             PermissibleValue(
                 text="snomedct:272435009",
                 title="Centri-location",
-                meaning=SNOMED_CT["272435009"]))
+                meaning=SNOMEDCT["272435009"]))
         setattr(cls, "snomedct:272436005",
             PermissibleValue(
                 text="snomedct:272436005",
                 title="Circum-location",
-                meaning=SNOMED_CT["272436005"]))
+                meaning=SNOMEDCT["272436005"]))
         setattr(cls, "snomedct:272437001",
             PermissibleValue(
                 text="snomedct:272437001",
                 title="Extra-location",
-                meaning=SNOMED_CT["272437001"]))
+                meaning=SNOMEDCT["272437001"]))
         setattr(cls, "snomedct:272438006",
             PermissibleValue(
                 text="snomedct:272438006",
                 title="Extrapleural",
-                meaning=SNOMED_CT["272438006"]))
+                meaning=SNOMEDCT["272438006"]))
         setattr(cls, "snomedct:272439003",
             PermissibleValue(
                 text="snomedct:272439003",
                 title="Infra-location",
-                meaning=SNOMED_CT["272439003"]))
+                meaning=SNOMEDCT["272439003"]))
         setattr(cls, "snomedct:272440001",
             PermissibleValue(
                 text="snomedct:272440001",
                 title="Inter-location",
-                meaning=SNOMED_CT["272440001"]))
+                meaning=SNOMEDCT["272440001"]))
         setattr(cls, "snomedct:272441002",
             PermissibleValue(
                 text="snomedct:272441002",
                 title="Intra-location",
-                meaning=SNOMED_CT["272441002"]))
+                meaning=SNOMEDCT["272441002"]))
         setattr(cls, "snomedct:272442009",
             PermissibleValue(
                 text="snomedct:272442009",
                 title="Mid-location",
-                meaning=SNOMED_CT["272442009"]))
+                meaning=SNOMEDCT["272442009"]))
         setattr(cls, "snomedct:272443004",
             PermissibleValue(
                 text="snomedct:272443004",
                 title="Pan-location",
-                meaning=SNOMED_CT["272443004"]))
+                meaning=SNOMEDCT["272443004"]))
         setattr(cls, "snomedct:272444005",
             PermissibleValue(
                 text="snomedct:272444005",
                 title="Para-location",
-                meaning=SNOMED_CT["272444005"]))
+                meaning=SNOMEDCT["272444005"]))
         setattr(cls, "snomedct:272446007",
             PermissibleValue(
                 text="snomedct:272446007",
                 title="Per-location",
-                meaning=SNOMED_CT["272446007"]))
+                meaning=SNOMEDCT["272446007"]))
         setattr(cls, "snomedct:272447003",
             PermissibleValue(
                 text="snomedct:272447003",
                 title="Peri-location",
-                meaning=SNOMED_CT["272447003"]))
+                meaning=SNOMEDCT["272447003"]))
         setattr(cls, "snomedct:272448008",
             PermissibleValue(
                 text="snomedct:272448008",
                 title="Post-location",
-                meaning=SNOMED_CT["272448008"]))
+                meaning=SNOMEDCT["272448008"]))
         setattr(cls, "snomedct:272449000",
             PermissibleValue(
                 text="snomedct:272449000",
                 title="Pre-location",
-                meaning=SNOMED_CT["272449000"]))
+                meaning=SNOMEDCT["272449000"]))
         setattr(cls, "snomedct:272450000",
             PermissibleValue(
                 text="snomedct:272450000",
                 title="Retro-location",
-                meaning=SNOMED_CT["272450000"]))
+                meaning=SNOMEDCT["272450000"]))
         setattr(cls, "snomedct:272451001",
             PermissibleValue(
                 text="snomedct:272451001",
                 title="Sub-location",
-                meaning=SNOMED_CT["272451001"]))
+                meaning=SNOMEDCT["272451001"]))
         setattr(cls, "snomedct:272452008",
             PermissibleValue(
                 text="snomedct:272452008",
                 title="Supra-location",
-                meaning=SNOMED_CT["272452008"]))
+                meaning=SNOMEDCT["272452008"]))
         setattr(cls, "snomedct:272455005",
             PermissibleValue(
                 text="snomedct:272455005",
                 title="Inferosuperior projection",
-                meaning=SNOMED_CT["272455005"]))
+                meaning=SNOMEDCT["272455005"]))
         setattr(cls, "snomedct:272456006",
             PermissibleValue(
                 text="snomedct:272456006",
                 title="Apical projection",
-                meaning=SNOMED_CT["272456006"]))
+                meaning=SNOMEDCT["272456006"]))
         setattr(cls, "snomedct:272457002",
             PermissibleValue(
                 text="snomedct:272457002",
                 title="Vertical projection",
-                meaning=SNOMED_CT["272457002"]))
+                meaning=SNOMEDCT["272457002"]))
         setattr(cls, "snomedct:272458007",
             PermissibleValue(
                 text="snomedct:272458007",
                 title="Prone projection",
-                meaning=SNOMED_CT["272458007"]))
+                meaning=SNOMEDCT["272458007"]))
         setattr(cls, "snomedct:272459004",
             PermissibleValue(
                 text="snomedct:272459004",
                 title="Supine projection",
-                meaning=SNOMED_CT["272459004"]))
+                meaning=SNOMEDCT["272459004"]))
         setattr(cls, "snomedct:272460009",
             PermissibleValue(
                 text="snomedct:272460009",
                 title="Anterior projection",
-                meaning=SNOMED_CT["272460009"]))
+                meaning=SNOMEDCT["272460009"]))
         setattr(cls, "snomedct:272461008",
             PermissibleValue(
                 text="snomedct:272461008",
                 title="Right posterior projection",
-                meaning=SNOMED_CT["272461008"]))
+                meaning=SNOMEDCT["272461008"]))
         setattr(cls, "snomedct:272462001",
             PermissibleValue(
                 text="snomedct:272462001",
                 title="Left posterior projection",
-                meaning=SNOMED_CT["272462001"]))
+                meaning=SNOMEDCT["272462001"]))
         setattr(cls, "snomedct:272464000",
             PermissibleValue(
                 text="snomedct:272464000",
                 title="Perorbital projection",
-                meaning=SNOMED_CT["272464000"]))
+                meaning=SNOMEDCT["272464000"]))
         setattr(cls, "snomedct:272465004",
             PermissibleValue(
                 text="snomedct:272465004",
                 title="Temporomandibular joint projection",
-                meaning=SNOMED_CT["272465004"]))
+                meaning=SNOMEDCT["272465004"]))
         setattr(cls, "snomedct:272466003",
             PermissibleValue(
                 text="snomedct:272466003",
                 title="Optic foramen projection",
-                meaning=SNOMED_CT["272466003"]))
+                meaning=SNOMEDCT["272466003"]))
         setattr(cls, "snomedct:272467007",
             PermissibleValue(
                 text="snomedct:272467007",
                 title="Lateral facial skeleton projection",
-                meaning=SNOMED_CT["272467007"]))
+                meaning=SNOMEDCT["272467007"]))
         setattr(cls, "snomedct:272468002",
             PermissibleValue(
                 text="snomedct:272468002",
                 title="Ear projection",
-                meaning=SNOMED_CT["272468002"]))
+                meaning=SNOMEDCT["272468002"]))
         setattr(cls, "snomedct:272469005",
             PermissibleValue(
                 text="snomedct:272469005",
                 title="Mid face projection",
-                meaning=SNOMED_CT["272469005"]))
+                meaning=SNOMEDCT["272469005"]))
         setattr(cls, "snomedct:272470006",
             PermissibleValue(
                 text="snomedct:272470006",
                 title="Cervical spine projection",
-                meaning=SNOMED_CT["272470006"]))
+                meaning=SNOMEDCT["272470006"]))
         setattr(cls, "snomedct:272472003",
             PermissibleValue(
                 text="snomedct:272472003",
                 title="Macro projection",
-                meaning=SNOMED_CT["272472003"]))
+                meaning=SNOMEDCT["272472003"]))
         setattr(cls, "snomedct:272473008",
             PermissibleValue(
                 text="snomedct:272473008",
                 title="Outlet projection",
-                meaning=SNOMED_CT["272473008"]))
+                meaning=SNOMEDCT["272473008"]))
         setattr(cls, "snomedct:272474002",
             PermissibleValue(
                 text="snomedct:272474002",
                 title="Swimmer's projection",
-                meaning=SNOMED_CT["272474002"]))
+                meaning=SNOMEDCT["272474002"]))
         setattr(cls, "snomedct:272475001",
             PermissibleValue(
                 text="snomedct:272475001",
                 title="Tibial tuberosity projection",
-                meaning=SNOMED_CT["272475001"]))
+                meaning=SNOMEDCT["272475001"]))
         setattr(cls, "snomedct:272476000",
             PermissibleValue(
                 text="snomedct:272476000",
                 title="Transthoracic projection",
-                meaning=SNOMED_CT["272476000"]))
+                meaning=SNOMEDCT["272476000"]))
         setattr(cls, "snomedct:272478004",
             PermissibleValue(
                 text="snomedct:272478004",
                 title="Transcranial projection",
-                meaning=SNOMED_CT["272478004"]))
+                meaning=SNOMEDCT["272478004"]))
         setattr(cls, "snomedct:272479007",
             PermissibleValue(
                 text="snomedct:272479007",
                 title="Posteroanterior projection",
-                meaning=SNOMED_CT["272479007"]))
+                meaning=SNOMEDCT["272479007"]))
         setattr(cls, "snomedct:272480005",
             PermissibleValue(
                 text="snomedct:272480005",
                 title="Horizontal projection",
-                meaning=SNOMED_CT["272480005"]))
+                meaning=SNOMEDCT["272480005"]))
         setattr(cls, "snomedct:272481009",
             PermissibleValue(
                 text="snomedct:272481009",
                 title="Erect projection",
-                meaning=SNOMED_CT["272481009"]))
+                meaning=SNOMEDCT["272481009"]))
         setattr(cls, "snomedct:272482002",
             PermissibleValue(
                 text="snomedct:272482002",
                 title="Adduction projection",
-                meaning=SNOMED_CT["272482002"]))
+                meaning=SNOMEDCT["272482002"]))
         setattr(cls, "snomedct:272483007",
             PermissibleValue(
                 text="snomedct:272483007",
                 title="True projection",
-                meaning=SNOMED_CT["272483007"]))
+                meaning=SNOMEDCT["272483007"]))
         setattr(cls, "snomedct:272484001",
             PermissibleValue(
                 text="snomedct:272484001",
                 title="Contralateral projection",
-                meaning=SNOMED_CT["272484001"]))
+                meaning=SNOMEDCT["272484001"]))
         setattr(cls, "snomedct:272485000",
             PermissibleValue(
                 text="snomedct:272485000",
                 title="Clockface position",
-                meaning=SNOMED_CT["272485000"]))
+                meaning=SNOMEDCT["272485000"]))
         setattr(cls, "snomedct:272486004",
             PermissibleValue(
                 text="snomedct:272486004",
                 title="Trans-direction",
-                meaning=SNOMED_CT["272486004"]))
+                meaning=SNOMEDCT["272486004"]))
         setattr(cls, "snomedct:272487008",
             PermissibleValue(
                 text="snomedct:272487008",
                 title="Into-structure",
-                meaning=SNOMED_CT["272487008"]))
+                meaning=SNOMEDCT["272487008"]))
         setattr(cls, "snomedct:272488003",
             PermissibleValue(
                 text="snomedct:272488003",
                 title="From-structure",
-                meaning=SNOMED_CT["272488003"]))
+                meaning=SNOMEDCT["272488003"]))
         setattr(cls, "snomedct:272489006",
             PermissibleValue(
                 text="snomedct:272489006",
                 title="Via values",
-                meaning=SNOMED_CT["272489006"]))
+                meaning=SNOMEDCT["272489006"]))
         setattr(cls, "snomedct:272496008",
             PermissibleValue(
                 text="snomedct:272496008",
                 title="Via incision",
-                meaning=SNOMED_CT["272496008"]))
+                meaning=SNOMEDCT["272496008"]))
         setattr(cls, "snomedct:276749003",
             PermissibleValue(
                 text="snomedct:276749003",
                 title="Epi-location",
-                meaning=SNOMED_CT["276749003"]))
+                meaning=SNOMEDCT["276749003"]))
         setattr(cls, "snomedct:276825009",
             PermissibleValue(
                 text="snomedct:276825009",
                 title="Overlapping sites",
-                meaning=SNOMED_CT["276825009"]))
+                meaning=SNOMEDCT["276825009"]))
         setattr(cls, "snomedct:276979001",
             PermissibleValue(
                 text="snomedct:276979001",
                 title="Aortoiliac",
-                meaning=SNOMED_CT["276979001"]))
+                meaning=SNOMEDCT["276979001"]))
         setattr(cls, "snomedct:277292000",
             PermissibleValue(
                 text="snomedct:277292000",
                 title="Endo-location",
-                meaning=SNOMED_CT["277292000"]))
+                meaning=SNOMEDCT["277292000"]))
         setattr(cls, "snomedct:277407002",
             PermissibleValue(
                 text="snomedct:277407002",
                 title="Deep locations",
-                meaning=SNOMED_CT["277407002"]))
+                meaning=SNOMEDCT["277407002"]))
         setattr(cls, "snomedct:277409004",
             PermissibleValue(
                 text="snomedct:277409004",
                 title="Superficial locations",
-                meaning=SNOMED_CT["277409004"]))
+                meaning=SNOMEDCT["277409004"]))
         setattr(cls, "snomedct:277410009",
             PermissibleValue(
                 text="snomedct:277410009",
                 title="Anterior locations",
-                meaning=SNOMED_CT["277410009"]))
+                meaning=SNOMEDCT["277410009"]))
         setattr(cls, "snomedct:277411008",
             PermissibleValue(
                 text="snomedct:277411008",
                 title="Posterior locations",
-                meaning=SNOMED_CT["277411008"]))
+                meaning=SNOMEDCT["277411008"]))
         setattr(cls, "snomedct:277412001",
             PermissibleValue(
                 text="snomedct:277412001",
                 title="Proximal locations",
-                meaning=SNOMED_CT["277412001"]))
+                meaning=SNOMEDCT["277412001"]))
         setattr(cls, "snomedct:277413006",
             PermissibleValue(
                 text="snomedct:277413006",
                 title="Distal locations",
-                meaning=SNOMED_CT["277413006"]))
+                meaning=SNOMEDCT["277413006"]))
         setattr(cls, "snomedct:277414000",
             PermissibleValue(
                 text="snomedct:277414000",
                 title="Between locations",
-                meaning=SNOMED_CT["277414000"]))
+                meaning=SNOMEDCT["277414000"]))
         setattr(cls, "snomedct:277415004",
             PermissibleValue(
                 text="snomedct:277415004",
                 title="Above locations",
-                meaning=SNOMED_CT["277415004"]))
+                meaning=SNOMEDCT["277415004"]))
         setattr(cls, "snomedct:277593009",
             PermissibleValue(
                 text="snomedct:277593009",
                 title="Right posterior",
-                meaning=SNOMED_CT["277593009"]))
+                meaning=SNOMEDCT["277593009"]))
         setattr(cls, "snomedct:277594003",
             PermissibleValue(
                 text="snomedct:277594003",
                 title="Left posterior",
-                meaning=SNOMED_CT["277594003"]))
+                meaning=SNOMEDCT["277594003"]))
         setattr(cls, "snomedct:277681008",
             PermissibleValue(
                 text="snomedct:277681008",
                 title="Intrastomal",
-                meaning=SNOMED_CT["277681008"]))
+                meaning=SNOMEDCT["277681008"]))
         setattr(cls, "snomedct:277685004",
             PermissibleValue(
                 text="snomedct:277685004",
                 title="Tubo-ovarian",
-                meaning=SNOMED_CT["277685004"]))
+                meaning=SNOMEDCT["277685004"]))
         setattr(cls, "snomedct:277686003",
             PermissibleValue(
                 text="snomedct:277686003",
                 title="Peritubular",
-                meaning=SNOMED_CT["277686003"]))
+                meaning=SNOMEDCT["277686003"]))
         setattr(cls, "snomedct:277806003",
             PermissibleValue(
                 text="snomedct:277806003",
                 title="Sidedness",
-                meaning=SNOMED_CT["277806003"]))
+                meaning=SNOMEDCT["277806003"]))
         setattr(cls, "snomedct:278227002",
             PermissibleValue(
                 text="snomedct:278227002",
                 title="Limited structures",
-                meaning=SNOMED_CT["278227002"]))
+                meaning=SNOMEDCT["278227002"]))
         setattr(cls, "snomedct:278255003",
             PermissibleValue(
                 text="snomedct:278255003",
                 title="Posterior projection",
-                meaning=SNOMED_CT["278255003"]))
+                meaning=SNOMEDCT["278255003"]))
         setattr(cls, "snomedct:278267001",
             PermissibleValue(
                 text="snomedct:278267001",
                 title="Abduction projection",
-                meaning=SNOMED_CT["278267001"]))
+                meaning=SNOMEDCT["278267001"]))
         setattr(cls, "snomedct:278318001",
             PermissibleValue(
                 text="snomedct:278318001",
                 title="Transorbital projection",
-                meaning=SNOMED_CT["278318001"]))
+                meaning=SNOMEDCT["278318001"]))
         setattr(cls, "snomedct:278701003",
             PermissibleValue(
                 text="snomedct:278701003",
                 title="Periumbilical",
-                meaning=SNOMED_CT["278701003"]))
+                meaning=SNOMEDCT["278701003"]))
         setattr(cls, "snomedct:278702005",
             PermissibleValue(
                 text="snomedct:278702005",
                 title="Transumbilical",
-                meaning=SNOMED_CT["278702005"]))
+                meaning=SNOMEDCT["278702005"]))
         setattr(cls, "snomedct:285418008",
             PermissibleValue(
                 text="snomedct:285418008",
                 title="Subcuticular",
-                meaning=SNOMED_CT["285418008"]))
+                meaning=SNOMEDCT["285418008"]))
         setattr(cls, "snomedct:298107004",
             PermissibleValue(
                 text="snomedct:298107004",
                 title="Orthotopic",
-                meaning=SNOMED_CT["298107004"]))
+                meaning=SNOMEDCT["298107004"]))
         setattr(cls, "snomedct:298108009",
             PermissibleValue(
                 text="snomedct:298108009",
                 title="Heterotopic",
-                meaning=SNOMED_CT["298108009"]))
+                meaning=SNOMEDCT["298108009"]))
         setattr(cls, "snomedct:298109001",
             PermissibleValue(
                 text="snomedct:298109001",
                 title="Ectopic",
-                meaning=SNOMED_CT["298109001"]))
+                meaning=SNOMEDCT["298109001"]))
         setattr(cls, "snomedct:303218009",
             PermissibleValue(
                 text="snomedct:303218009",
                 title="Subfascial",
-                meaning=SNOMED_CT["303218009"]))
+                meaning=SNOMEDCT["303218009"]))
         setattr(cls, "snomedct:303231004",
             PermissibleValue(
                 text="snomedct:303231004",
                 title="Intracranial",
-                meaning=SNOMED_CT["303231004"]))
+                meaning=SNOMEDCT["303231004"]))
         setattr(cls, "snomedct:303232006",
             PermissibleValue(
                 text="snomedct:303232006",
                 title="Extracranial",
-                meaning=SNOMED_CT["303232006"]))
+                meaning=SNOMEDCT["303232006"]))
         setattr(cls, "snomedct:303483009",
             PermissibleValue(
                 text="snomedct:303483009",
                 title="Subcranial",
-                meaning=SNOMED_CT["303483009"]))
+                meaning=SNOMEDCT["303483009"]))
         setattr(cls, "snomedct:304047000",
             PermissibleValue(
                 text="snomedct:304047000",
                 title="Transannular",
-                meaning=SNOMED_CT["304047000"]))
+                meaning=SNOMEDCT["304047000"]))
         setattr(cls, "snomedct:304059001",
             PermissibleValue(
                 text="snomedct:304059001",
                 title="Endocardial",
-                meaning=SNOMED_CT["304059001"]))
+                meaning=SNOMEDCT["304059001"]))
         setattr(cls, "snomedct:306766009",
             PermissibleValue(
                 text="snomedct:306766009",
                 title="Low - site descriptor",
-                meaning=SNOMED_CT["306766009"]))
+                meaning=SNOMEDCT["306766009"]))
         setattr(cls, "snomedct:306767000",
             PermissibleValue(
                 text="snomedct:306767000",
                 title="High - site descriptor",
-                meaning=SNOMED_CT["306767000"]))
+                meaning=SNOMEDCT["306767000"]))
         setattr(cls, "snomedct:312206004",
             PermissibleValue(
                 text="snomedct:312206004",
                 title="Periapical",
-                meaning=SNOMED_CT["312206004"]))
+                meaning=SNOMEDCT["312206004"]))
         setattr(cls, "snomedct:3583002",
             PermissibleValue(
                 text="snomedct:3583002",
                 title="Caudal",
-                meaning=SNOMED_CT["3583002"]))
+                meaning=SNOMEDCT["3583002"]))
         setattr(cls, "snomedct:373863008",
             PermissibleValue(
                 text="snomedct:373863008",
                 title="Intracavitary",
-                meaning=SNOMED_CT["373863008"]))
+                meaning=SNOMEDCT["373863008"]))
         setattr(cls, "snomedct:397406000",
             PermissibleValue(
                 text="snomedct:397406000",
                 title="Collateral branch of vessel",
-                meaning=SNOMED_CT["397406000"]))
+                meaning=SNOMEDCT["397406000"]))
         setattr(cls, "snomedct:397421006",
             PermissibleValue(
                 text="snomedct:397421006",
                 title="Vessel origin",
-                meaning=SNOMED_CT["397421006"]))
+                meaning=SNOMEDCT["397421006"]))
         setattr(cls, "snomedct:398236008",
             PermissibleValue(
                 text="snomedct:398236008",
                 title="Intrauterine",
-                meaning=SNOMED_CT["398236008"]))
+                meaning=SNOMEDCT["398236008"]))
         setattr(cls, "snomedct:398994001",
             PermissibleValue(
                 text="snomedct:398994001",
                 title="Five chamber view",
-                meaning=SNOMED_CT["398994001"]))
+                meaning=SNOMEDCT["398994001"]))
         setattr(cls, "snomedct:398996004",
             PermissibleValue(
                 text="snomedct:398996004",
                 title="Leonard-George projection",
-                meaning=SNOMED_CT["398996004"]))
+                meaning=SNOMEDCT["398996004"]))
         setattr(cls, "snomedct:398998003",
             PermissibleValue(
                 text="snomedct:398998003",
                 title="Right ventricular inflow tract view",
-                meaning=SNOMED_CT["398998003"]))
+                meaning=SNOMEDCT["398998003"]))
         setattr(cls, "snomedct:399000008",
             PermissibleValue(
                 text="snomedct:399000008",
                 title="Mayer projection",
-                meaning=SNOMED_CT["399000008"]))
+                meaning=SNOMEDCT["399000008"]))
         setattr(cls, "snomedct:399001007",
             PermissibleValue(
                 text="snomedct:399001007",
                 title="Posterior emissive projection",
-                meaning=SNOMED_CT["399001007"]))
+                meaning=SNOMEDCT["399001007"]))
         setattr(cls, "snomedct:399002000",
             PermissibleValue(
                 text="snomedct:399002000",
                 title="Nolke projection",
-                meaning=SNOMED_CT["399002000"]))
+                meaning=SNOMEDCT["399002000"]))
         setattr(cls, "snomedct:399003005",
             PermissibleValue(
                 text="snomedct:399003005",
                 title="Hughston projection",
-                meaning=SNOMED_CT["399003005"]))
+                meaning=SNOMEDCT["399003005"]))
         setattr(cls, "snomedct:399004004",
             PermissibleValue(
                 text="snomedct:399004004",
                 title="Oblique axial projection",
-                meaning=SNOMED_CT["399004004"]))
+                meaning=SNOMEDCT["399004004"]))
         setattr(cls, "snomedct:399005003",
             PermissibleValue(
                 text="snomedct:399005003",
                 title="Miller projection",
-                meaning=SNOMED_CT["399005003"]))
+                meaning=SNOMEDCT["399005003"]))
         setattr(cls, "snomedct:399006002",
             PermissibleValue(
                 text="snomedct:399006002",
                 title="Left posterior oblique projection",
-                meaning=SNOMED_CT["399006002"]))
+                meaning=SNOMEDCT["399006002"]))
         setattr(cls, "snomedct:399011000",
             PermissibleValue(
                 text="snomedct:399011000",
                 title="Axillary tail mammography view",
-                meaning=SNOMED_CT["399011000"]))
+                meaning=SNOMEDCT["399011000"]))
         setattr(cls, "snomedct:399012007",
             PermissibleValue(
                 text="snomedct:399012007",
                 title="Medial-lateral emissive projection",
-                meaning=SNOMED_CT["399012007"]))
+                meaning=SNOMEDCT["399012007"]))
         setattr(cls, "snomedct:399013002",
             PermissibleValue(
                 text="snomedct:399013002",
                 title="Chassard-Lapin projection",
-                meaning=SNOMED_CT["399013002"]))
+                meaning=SNOMEDCT["399013002"]))
         setattr(cls, "snomedct:399022001",
             PermissibleValue(
                 text="snomedct:399022001",
                 title="Pirie projection",
-                meaning=SNOMED_CT["399022001"]))
+                meaning=SNOMEDCT["399022001"]))
         setattr(cls, "snomedct:399024000",
             PermissibleValue(
                 text="snomedct:399024000",
                 title="May projection",
-                meaning=SNOMED_CT["399024000"]))
+                meaning=SNOMEDCT["399024000"]))
         setattr(cls, "snomedct:399025004",
             PermissibleValue(
                 text="snomedct:399025004",
                 title="Ischerwood projection",
-                meaning=SNOMED_CT["399025004"]))
+                meaning=SNOMEDCT["399025004"]))
         setattr(cls, "snomedct:399026003",
             PermissibleValue(
                 text="snomedct:399026003",
                 title="Zanelli projection",
-                meaning=SNOMED_CT["399026003"]))
+                meaning=SNOMEDCT["399026003"]))
         setattr(cls, "snomedct:399028002",
             PermissibleValue(
                 text="snomedct:399028002",
                 title="Clements projection",
-                meaning=SNOMED_CT["399028002"]))
+                meaning=SNOMEDCT["399028002"]))
         setattr(cls, "snomedct:399033003",
             PermissibleValue(
                 text="snomedct:399033003",
                 title="Frontal projection",
-                meaning=SNOMED_CT["399033003"]))
+                meaning=SNOMEDCT["399033003"]))
         setattr(cls, "snomedct:399036006",
             PermissibleValue(
                 text="snomedct:399036006",
                 title="Parasternal short axis view at the mitral valve level",
-                meaning=SNOMED_CT["399036006"]))
+                meaning=SNOMEDCT["399036006"]))
         setattr(cls, "snomedct:399037002",
             PermissibleValue(
                 text="snomedct:399037002",
                 title="Lewis projection",
-                meaning=SNOMED_CT["399037002"]))
+                meaning=SNOMEDCT["399037002"]))
         setattr(cls, "snomedct:399038007",
             PermissibleValue(
                 text="snomedct:399038007",
                 title="Right posterior oblique projection",
-                meaning=SNOMED_CT["399038007"]))
+                meaning=SNOMEDCT["399038007"]))
         setattr(cls, "snomedct:399043000",
             PermissibleValue(
                 text="snomedct:399043000",
                 title="Cardiac imaging views",
-                meaning=SNOMED_CT["399043000"]))
+                meaning=SNOMEDCT["399043000"]))
         setattr(cls, "snomedct:399059000",
             PermissibleValue(
                 text="snomedct:399059000",
                 title="Postero-anterior oblique projection",
-                meaning=SNOMED_CT["399059000"]))
+                meaning=SNOMEDCT["399059000"]))
         setattr(cls, "snomedct:399061009",
             PermissibleValue(
                 text="snomedct:399061009",
                 title="Axial projection",
-                meaning=SNOMED_CT["399061009"]))
+                meaning=SNOMEDCT["399061009"]))
         setattr(cls, "snomedct:399065000",
             PermissibleValue(
                 text="snomedct:399065000",
                 title="Causton projection",
-                meaning=SNOMED_CT["399065000"]))
+                meaning=SNOMEDCT["399065000"]))
         setattr(cls, "snomedct:399067008",
             PermissibleValue(
                 text="snomedct:399067008",
                 title="Lateral projection",
-                meaning=SNOMED_CT["399067008"]))
+                meaning=SNOMEDCT["399067008"]))
         setattr(cls, "snomedct:399071006",
             PermissibleValue(
                 text="snomedct:399071006",
                 title="Plantodorsal projection",
-                meaning=SNOMED_CT["399071006"]))
+                meaning=SNOMEDCT["399071006"]))
         setattr(cls, "snomedct:399073009",
             PermissibleValue(
                 text="snomedct:399073009",
                 title="Fuchs projection",
-                meaning=SNOMED_CT["399073009"]))
+                meaning=SNOMEDCT["399073009"]))
         setattr(cls, "snomedct:399074003",
             PermissibleValue(
                 text="snomedct:399074003",
                 title="Left anterior oblique emissive projection",
-                meaning=SNOMED_CT["399074003"]))
+                meaning=SNOMEDCT["399074003"]))
         setattr(cls, "snomedct:399075002",
             PermissibleValue(
                 text="snomedct:399075002",
                 title="Right posterior oblique emissive projection",
-                meaning=SNOMED_CT["399075002"]))
+                meaning=SNOMEDCT["399075002"]))
         setattr(cls, "snomedct:399080006",
             PermissibleValue(
                 text="snomedct:399080006",
                 title="Kuchendorf projection",
-                meaning=SNOMED_CT["399080006"]))
+                meaning=SNOMEDCT["399080006"]))
         setattr(cls, "snomedct:399082003",
             PermissibleValue(
                 text="snomedct:399082003",
                 title="Gaynor-Hart projection",
-                meaning=SNOMED_CT["399082003"]))
+                meaning=SNOMEDCT["399082003"]))
         setattr(cls, "snomedct:399083008",
             PermissibleValue(
                 text="snomedct:399083008",
                 title="Hsieh projection",
-                meaning=SNOMED_CT["399083008"]))
+                meaning=SNOMEDCT["399083008"]))
         setattr(cls, "snomedct:399089007",
             PermissibleValue(
                 text="snomedct:399089007",
                 title="Oblique axial emissive projection",
-                meaning=SNOMED_CT["399089007"]))
+                meaning=SNOMEDCT["399089007"]))
         setattr(cls, "snomedct:399098005",
             PermissibleValue(
                 text="snomedct:399098005",
                 title="Staunig projection",
-                meaning=SNOMED_CT["399098005"]))
+                meaning=SNOMEDCT["399098005"]))
         setattr(cls, "snomedct:399099002",
             PermissibleValue(
                 text="snomedct:399099002",
                 title="Latero-medial oblique projection",
-                meaning=SNOMED_CT["399099002"]))
+                meaning=SNOMEDCT["399099002"]))
         setattr(cls, "snomedct:399101009",
             PermissibleValue(
                 text="snomedct:399101009",
                 title="Cranio-caudal projection exaggerated medially",
-                meaning=SNOMED_CT["399101009"]))
+                meaning=SNOMEDCT["399101009"]))
         setattr(cls, "snomedct:399103007",
             PermissibleValue(
                 text="snomedct:399103007",
                 title="Friedman projection",
-                meaning=SNOMED_CT["399103007"]))
+                meaning=SNOMEDCT["399103007"]))
         setattr(cls, "snomedct:399106004",
             PermissibleValue(
                 text="snomedct:399106004",
                 title="Suprasternal long axis view",
-                meaning=SNOMED_CT["399106004"]))
+                meaning=SNOMEDCT["399106004"]))
         setattr(cls, "snomedct:399108003",
             PermissibleValue(
                 text="snomedct:399108003",
                 title="Right anterior oblique emissive projection",
-                meaning=SNOMED_CT["399108003"]))
+                meaning=SNOMEDCT["399108003"]))
         setattr(cls, "snomedct:399110001",
             PermissibleValue(
                 text="snomedct:399110001",
                 title="Tangential projection",
-                meaning=SNOMED_CT["399110001"]))
+                meaning=SNOMEDCT["399110001"]))
         setattr(cls, "snomedct:399113004",
             PermissibleValue(
                 text="snomedct:399113004",
                 title="Eponymous projection",
-                meaning=SNOMED_CT["399113004"]))
+                meaning=SNOMEDCT["399113004"]))
         setattr(cls, "snomedct:399118008",
             PermissibleValue(
                 text="snomedct:399118008",
                 title="Left lateral emissive projection",
-                meaning=SNOMED_CT["399118008"]))
+                meaning=SNOMEDCT["399118008"]))
         setattr(cls, "snomedct:399125001",
             PermissibleValue(
                 text="snomedct:399125001",
                 title="Twining projection",
-                meaning=SNOMED_CT["399125001"]))
+                meaning=SNOMEDCT["399125001"]))
         setattr(cls, "snomedct:399127009",
             PermissibleValue(
                 text="snomedct:399127009",
                 title="Teufel projection",
-                meaning=SNOMED_CT["399127009"]))
+                meaning=SNOMEDCT["399127009"]))
         setattr(cls, "snomedct:399129007",
             PermissibleValue(
                 text="snomedct:399129007",
                 title="Holly projection",
-                meaning=SNOMED_CT["399129007"]))
+                meaning=SNOMEDCT["399129007"]))
         setattr(cls, "snomedct:399130002",
             PermissibleValue(
                 text="snomedct:399130002",
                 title="West Point projection",
-                meaning=SNOMED_CT["399130002"]))
+                meaning=SNOMEDCT["399130002"]))
         setattr(cls, "snomedct:399132005",
             PermissibleValue(
                 text="snomedct:399132005",
                 title="Frontal-oblique axial projection",
-                meaning=SNOMED_CT["399132005"]))
+                meaning=SNOMEDCT["399132005"]))
         setattr(cls, "snomedct:399135007",
             PermissibleValue(
                 text="snomedct:399135007",
                 title="Left anterior oblique projection",
-                meaning=SNOMED_CT["399135007"]))
+                meaning=SNOMEDCT["399135007"]))
         setattr(cls, "snomedct:399136008",
             PermissibleValue(
                 text="snomedct:399136008",
                 title="Left posterior oblique emissive projection",
-                meaning=SNOMED_CT["399136008"]))
+                meaning=SNOMEDCT["399136008"]))
         setattr(cls, "snomedct:399138009",
             PermissibleValue(
                 text="snomedct:399138009",
                 title="Penner projection",
-                meaning=SNOMED_CT["399138009"]))
+                meaning=SNOMEDCT["399138009"]))
         setattr(cls, "snomedct:399139001",
             PermissibleValue(
                 text="snomedct:399139001",
                 title="Parasternal long axis view",
-                meaning=SNOMED_CT["399139001"]))
+                meaning=SNOMEDCT["399139001"]))
         setattr(cls, "snomedct:399142007",
             PermissibleValue(
                 text="snomedct:399142007",
                 title="Albers-Schönberg projection",
-                meaning=SNOMED_CT["399142007"]))
+                meaning=SNOMEDCT["399142007"]))
         setattr(cls, "snomedct:399145009",
             PermissibleValue(
                 text="snomedct:399145009",
                 title="Suprasternal short axis view",
-                meaning=SNOMED_CT["399145009"]))
+                meaning=SNOMEDCT["399145009"]))
         setattr(cls, "snomedct:399146005",
             PermissibleValue(
                 text="snomedct:399146005",
                 title="Grashey projection",
-                meaning=SNOMED_CT["399146005"]))
+                meaning=SNOMEDCT["399146005"]))
         setattr(cls, "snomedct:399148006",
             PermissibleValue(
                 text="snomedct:399148006",
                 title="Chamberlain projection",
-                meaning=SNOMED_CT["399148006"]))
+                meaning=SNOMEDCT["399148006"]))
         setattr(cls, "snomedct:399152006",
             PermissibleValue(
                 text="snomedct:399152006",
                 title="Kandel projection",
-                meaning=SNOMED_CT["399152006"]))
+                meaning=SNOMEDCT["399152006"]))
         setattr(cls, "snomedct:399156009",
             PermissibleValue(
                 text="snomedct:399156009",
                 title="Laquerriere-Pierquin projection",
-                meaning=SNOMED_CT["399156009"]))
+                meaning=SNOMEDCT["399156009"]))
         setattr(cls, "snomedct:399157000",
             PermissibleValue(
                 text="snomedct:399157000",
                 title="Norgaard's projection",
-                meaning=SNOMED_CT["399157000"]))
+                meaning=SNOMEDCT["399157000"]))
         setattr(cls, "snomedct:399159002",
             PermissibleValue(
                 text="snomedct:399159002",
                 title="Latero-medial oblique emissive projection",
-                meaning=SNOMED_CT["399159002"]))
+                meaning=SNOMEDCT["399159002"]))
         setattr(cls, "snomedct:399160007",
             PermissibleValue(
                 text="snomedct:399160007",
                 title="Frontal oblique projection",
-                meaning=SNOMED_CT["399160007"]))
+                meaning=SNOMEDCT["399160007"]))
         setattr(cls, "snomedct:399161006",
             PermissibleValue(
                 text="snomedct:399161006",
                 title="Cleavage mammography view",
-                meaning=SNOMED_CT["399161006"]))
+                meaning=SNOMEDCT["399161006"]))
         setattr(cls, "snomedct:399162004",
             PermissibleValue(
                 text="snomedct:399162004",
                 title="Cranio-caudal projection",
-                meaning=SNOMED_CT["399162004"]))
+                meaning=SNOMEDCT["399162004"]))
         setattr(cls, "snomedct:399163009",
             PermissibleValue(
                 text="snomedct:399163009",
                 title="Magnified projection",
-                meaning=SNOMED_CT["399163009"]))
+                meaning=SNOMEDCT["399163009"]))
         setattr(cls, "snomedct:399168000",
             PermissibleValue(
                 text="snomedct:399168000",
                 title="Hough projection",
-                meaning=SNOMED_CT["399168000"]))
+                meaning=SNOMEDCT["399168000"]))
         setattr(cls, "snomedct:399169008",
             PermissibleValue(
                 text="snomedct:399169008",
                 title="Lauenstein projection",
-                meaning=SNOMED_CT["399169008"]))
+                meaning=SNOMEDCT["399169008"]))
         setattr(cls, "snomedct:399171008",
             PermissibleValue(
                 text="snomedct:399171008",
                 title="Ottonello projection",
-                meaning=SNOMED_CT["399171008"]))
+                meaning=SNOMEDCT["399171008"]))
         setattr(cls, "snomedct:399173006",
             PermissibleValue(
                 text="snomedct:399173006",
                 title="Left lateral projection",
-                meaning=SNOMED_CT["399173006"]))
+                meaning=SNOMEDCT["399173006"]))
         setattr(cls, "snomedct:399179005",
             PermissibleValue(
                 text="snomedct:399179005",
                 title="Lawrence projection",
-                meaning=SNOMED_CT["399179005"]))
+                meaning=SNOMEDCT["399179005"]))
         setattr(cls, "snomedct:399181007",
             PermissibleValue(
                 text="snomedct:399181007",
                 title="Pawlow projection",
-                meaning=SNOMED_CT["399181007"]))
+                meaning=SNOMEDCT["399181007"]))
         setattr(cls, "snomedct:399182000",
             PermissibleValue(
                 text="snomedct:399182000",
                 title="Oblique projection",
-                meaning=SNOMED_CT["399182000"]))
+                meaning=SNOMEDCT["399182000"]))
         setattr(cls, "snomedct:399184004",
             PermissibleValue(
                 text="snomedct:399184004",
                 title="Left oblique projection",
-                meaning=SNOMED_CT["399184004"]))
+                meaning=SNOMEDCT["399184004"]))
         setattr(cls, "snomedct:399188001",
             PermissibleValue(
                 text="snomedct:399188001",
                 title="Superolateral to inferomedial oblique projection",
-                meaning=SNOMED_CT["399188001"]))
+                meaning=SNOMEDCT["399188001"]))
         setattr(cls, "snomedct:399192008",
             PermissibleValue(
                 text="snomedct:399192008",
                 title="Cranio-caudal projection exaggerated laterally",
-                meaning=SNOMED_CT["399192008"]))
+                meaning=SNOMEDCT["399192008"]))
         setattr(cls, "snomedct:399195005",
             PermissibleValue(
                 text="snomedct:399195005",
                 title="Right ventricular outflow tract view",
-                meaning=SNOMED_CT["399195005"]))
+                meaning=SNOMEDCT["399195005"]))
         setattr(cls, "snomedct:399196006",
             PermissibleValue(
                 text="snomedct:399196006",
                 title="Caudo-cranial projection",
-                meaning=SNOMED_CT["399196006"]))
+                meaning=SNOMEDCT["399196006"]))
         setattr(cls, "snomedct:399198007",
             PermissibleValue(
                 text="snomedct:399198007",
                 title="Right lateral projection",
-                meaning=SNOMED_CT["399198007"]))
+                meaning=SNOMEDCT["399198007"]))
         setattr(cls, "snomedct:399199004",
             PermissibleValue(
                 text="snomedct:399199004",
                 title="Henschen projection",
-                meaning=SNOMED_CT["399199004"]))
+                meaning=SNOMEDCT["399199004"]))
         setattr(cls, "snomedct:399200001",
             PermissibleValue(
                 text="snomedct:399200001",
                 title="Subcostal short axis view",
-                meaning=SNOMED_CT["399200001"]))
+                meaning=SNOMEDCT["399200001"]))
         setattr(cls, "snomedct:399201002",
             PermissibleValue(
                 text="snomedct:399201002",
                 title="Judd projection",
-                meaning=SNOMED_CT["399201002"]))
+                meaning=SNOMEDCT["399201002"]))
         setattr(cls, "snomedct:399206007",
             PermissibleValue(
                 text="snomedct:399206007",
                 title="Law projection",
-                meaning=SNOMED_CT["399206007"]))
+                meaning=SNOMEDCT["399206007"]))
         setattr(cls, "snomedct:399212002",
             PermissibleValue(
                 text="snomedct:399212002",
                 title="Camp-Coventry projection",
-                meaning=SNOMED_CT["399212002"]))
+                meaning=SNOMEDCT["399212002"]))
         setattr(cls, "snomedct:399214001",
             PermissibleValue(
                 text="snomedct:399214001",
                 title="Apical four chamber view",
-                meaning=SNOMED_CT["399214001"]))
+                meaning=SNOMEDCT["399214001"]))
         setattr(cls, "snomedct:399215000",
             PermissibleValue(
                 text="snomedct:399215000",
                 title="Wigby-Taylor projection",
-                meaning=SNOMED_CT["399215000"]))
+                meaning=SNOMEDCT["399215000"]))
         setattr(cls, "snomedct:399218003",
             PermissibleValue(
                 text="snomedct:399218003",
                 title="Arcelin projection",
-                meaning=SNOMED_CT["399218003"]))
+                meaning=SNOMEDCT["399218003"]))
         setattr(cls, "snomedct:399225005",
             PermissibleValue(
                 text="snomedct:399225005",
                 title="Oblique caudo-cranial projection",
-                meaning=SNOMED_CT["399225005"]))
+                meaning=SNOMEDCT["399225005"]))
         setattr(cls, "snomedct:399227002",
             PermissibleValue(
                 text="snomedct:399227002",
                 title="Kemp Harper projection",
-                meaning=SNOMED_CT["399227002"]))
+                meaning=SNOMEDCT["399227002"]))
         setattr(cls, "snomedct:399232001",
             PermissibleValue(
                 text="snomedct:399232001",
                 title="Apical two chamber view",
-                meaning=SNOMED_CT["399232001"]))
+                meaning=SNOMEDCT["399232001"]))
         setattr(cls, "snomedct:399234000",
             PermissibleValue(
                 text="snomedct:399234000",
                 title="Rhese projection",
-                meaning=SNOMED_CT["399234000"]))
+                meaning=SNOMEDCT["399234000"]))
         setattr(cls, "snomedct:399236003",
             PermissibleValue(
                 text="snomedct:399236003",
                 title="Right oblique projection",
-                meaning=SNOMED_CT["399236003"]))
+                meaning=SNOMEDCT["399236003"]))
         setattr(cls, "snomedct:399237007",
             PermissibleValue(
                 text="snomedct:399237007",
                 title="Alexander projection",
-                meaning=SNOMED_CT["399237007"]))
+                meaning=SNOMEDCT["399237007"]))
         setattr(cls, "snomedct:399239005",
             PermissibleValue(
                 text="snomedct:399239005",
                 title="Parasternal short axis view at the aortic valve level",
-                meaning=SNOMED_CT["399239005"]))
+                meaning=SNOMEDCT["399239005"]))
         setattr(cls, "snomedct:399241006",
             PermissibleValue(
                 text="snomedct:399241006",
                 title="Titterington projection",
-                meaning=SNOMED_CT["399241006"]))
+                meaning=SNOMEDCT["399241006"]))
         setattr(cls, "snomedct:399242004",
             PermissibleValue(
                 text="snomedct:399242004",
                 title="Acanthioparietal projection",
-                meaning=SNOMED_CT["399242004"]))
+                meaning=SNOMEDCT["399242004"]))
         setattr(cls, "snomedct:399243009",
             PermissibleValue(
                 text="snomedct:399243009",
                 title="Settegast projection",
-                meaning=SNOMED_CT["399243009"]))
+                meaning=SNOMEDCT["399243009"]))
         setattr(cls, "snomedct:399245002",
             PermissibleValue(
                 text="snomedct:399245002",
                 title="Cleaves projection",
-                meaning=SNOMED_CT["399245002"]))
+                meaning=SNOMEDCT["399245002"]))
         setattr(cls, "snomedct:399246001",
             PermissibleValue(
                 text="snomedct:399246001",
                 title="Blackett-Healy projection",
-                meaning=SNOMED_CT["399246001"]))
+                meaning=SNOMEDCT["399246001"]))
         setattr(cls, "snomedct:399247005",
             PermissibleValue(
                 text="snomedct:399247005",
                 title="Tarrant projection",
-                meaning=SNOMED_CT["399247005"]))
+                meaning=SNOMEDCT["399247005"]))
         setattr(cls, "snomedct:399251007",
             PermissibleValue(
                 text="snomedct:399251007",
                 title="Lorenz projection",
-                meaning=SNOMED_CT["399251007"]))
+                meaning=SNOMEDCT["399251007"]))
         setattr(cls, "snomedct:399255003",
             PermissibleValue(
                 text="snomedct:399255003",
                 title="Submentovertical projection",
-                meaning=SNOMED_CT["399255003"]))
+                meaning=SNOMEDCT["399255003"]))
         setattr(cls, "snomedct:399260004",
             PermissibleValue(
                 text="snomedct:399260004",
                 title="Mediolateral projection",
-                meaning=SNOMED_CT["399260004"]))
+                meaning=SNOMEDCT["399260004"]))
         setattr(cls, "snomedct:399263002",
             PermissibleValue(
                 text="snomedct:399263002",
                 title="Beclere projection",
-                meaning=SNOMED_CT["399263002"]))
+                meaning=SNOMEDCT["399263002"]))
         setattr(cls, "snomedct:399265009",
             PermissibleValue(
                 text="snomedct:399265009",
                 title="Exaggerated cranio-caudal projection",
-                meaning=SNOMED_CT["399265009"]))
+                meaning=SNOMEDCT["399265009"]))
         setattr(cls, "snomedct:399268006",
             PermissibleValue(
                 text="snomedct:399268006",
                 title="Medio-lateral oblique emissive projection",
-                meaning=SNOMED_CT["399268006"]))
+                meaning=SNOMEDCT["399268006"]))
         setattr(cls, "snomedct:399270002",
             PermissibleValue(
                 text="snomedct:399270002",
                 title="Towne's projection",
-                meaning=SNOMED_CT["399270002"]))
+                meaning=SNOMEDCT["399270002"]))
         setattr(cls, "snomedct:399271003",
             PermissibleValue(
                 text="snomedct:399271003",
                 title="Parasternal short axis view at the papillary muscle level",
-                meaning=SNOMED_CT["399271003"]))
+                meaning=SNOMEDCT["399271003"]))
         setattr(cls, "snomedct:399272005",
             PermissibleValue(
                 text="snomedct:399272005",
                 title="Parietoacanthial projection",
-                meaning=SNOMED_CT["399272005"]))
+                meaning=SNOMEDCT["399272005"]))
         setattr(cls, "snomedct:399273000",
             PermissibleValue(
                 text="snomedct:399273000",
                 title="Sagittal-oblique axial emissive projection",
-                meaning=SNOMED_CT["399273000"]))
+                meaning=SNOMEDCT["399273000"]))
         setattr(cls, "snomedct:399277004",
             PermissibleValue(
                 text="snomedct:399277004",
                 title="Hickey projection",
-                meaning=SNOMED_CT["399277004"]))
+                meaning=SNOMEDCT["399277004"]))
         setattr(cls, "snomedct:399278009",
             PermissibleValue(
                 text="snomedct:399278009",
                 title="Cahoon projection",
-                meaning=SNOMED_CT["399278009"]))
+                meaning=SNOMEDCT["399278009"]))
         setattr(cls, "snomedct:399280003",
             PermissibleValue(
                 text="snomedct:399280003",
                 title="Kasabach projection",
-                meaning=SNOMED_CT["399280003"]))
+                meaning=SNOMEDCT["399280003"]))
         setattr(cls, "snomedct:399281004",
             PermissibleValue(
                 text="snomedct:399281004",
                 title="Fleischner projection",
-                meaning=SNOMED_CT["399281004"]))
+                meaning=SNOMEDCT["399281004"]))
         setattr(cls, "snomedct:399284007",
             PermissibleValue(
                 text="snomedct:399284007",
                 title="Merchant projection",
-                meaning=SNOMED_CT["399284007"]))
+                meaning=SNOMEDCT["399284007"]))
         setattr(cls, "snomedct:399285008",
             PermissibleValue(
                 text="snomedct:399285008",
                 title="Holmblad projection",
-                meaning=SNOMED_CT["399285008"]))
+                meaning=SNOMEDCT["399285008"]))
         setattr(cls, "snomedct:399288005",
             PermissibleValue(
                 text="snomedct:399288005",
                 title="Oblique cranio-caudal projection",
-                meaning=SNOMED_CT["399288005"]))
+                meaning=SNOMEDCT["399288005"]))
         setattr(cls, "snomedct:399290006",
             PermissibleValue(
                 text="snomedct:399290006",
                 title="Schüller projection",
-                meaning=SNOMED_CT["399290006"]))
+                meaning=SNOMEDCT["399290006"]))
         setattr(cls, "snomedct:399292003",
             PermissibleValue(
                 text="snomedct:399292003",
                 title="Stecher projection",
-                meaning=SNOMED_CT["399292003"]))
+                meaning=SNOMEDCT["399292003"]))
         setattr(cls, "snomedct:399296000",
             PermissibleValue(
                 text="snomedct:399296000",
                 title="Taylor projection",
-                meaning=SNOMED_CT["399296000"]))
+                meaning=SNOMEDCT["399296000"]))
         setattr(cls, "snomedct:399297009",
             PermissibleValue(
                 text="snomedct:399297009",
                 title="Right lateral emissive projection",
-                meaning=SNOMED_CT["399297009"]))
+                meaning=SNOMEDCT["399297009"]))
         setattr(cls, "snomedct:399300004",
             PermissibleValue(
                 text="snomedct:399300004",
                 title="Lateral-medial emissive projection",
-                meaning=SNOMED_CT["399300004"]))
+                meaning=SNOMEDCT["399300004"]))
         setattr(cls, "snomedct:399303002",
             PermissibleValue(
                 text="snomedct:399303002",
                 title="Dunlap projection",
-                meaning=SNOMED_CT["399303002"]))
+                meaning=SNOMEDCT["399303002"]))
         setattr(cls, "snomedct:399306005",
             PermissibleValue(
                 text="snomedct:399306005",
                 title="Parasternal short axis view",
-                meaning=SNOMED_CT["399306005"]))
+                meaning=SNOMEDCT["399306005"]))
         setattr(cls, "snomedct:399308006",
             PermissibleValue(
                 text="snomedct:399308006",
                 title="Lindblom projection",
-                meaning=SNOMED_CT["399308006"]))
+                meaning=SNOMEDCT["399308006"]))
         setattr(cls, "snomedct:399310008",
             PermissibleValue(
                 text="snomedct:399310008",
                 title="Subcostal long axis view",
-                meaning=SNOMED_CT["399310008"]))
+                meaning=SNOMEDCT["399310008"]))
         setattr(cls, "snomedct:399311007",
             PermissibleValue(
                 text="snomedct:399311007",
                 title="Grandy projection",
-                meaning=SNOMED_CT["399311007"]))
+                meaning=SNOMEDCT["399311007"]))
         setattr(cls, "snomedct:399312000",
             PermissibleValue(
                 text="snomedct:399312000",
                 title="Antero-posterior oblique projection",
-                meaning=SNOMED_CT["399312000"]))
+                meaning=SNOMEDCT["399312000"]))
         setattr(cls, "snomedct:399313005",
             PermissibleValue(
                 text="snomedct:399313005",
                 title="Swanson projection",
-                meaning=SNOMED_CT["399313005"]))
+                meaning=SNOMEDCT["399313005"]))
         setattr(cls, "snomedct:399316002",
             PermissibleValue(
                 text="snomedct:399316002",
                 title="Parieto-orbital projection",
-                meaning=SNOMED_CT["399316002"]))
+                meaning=SNOMEDCT["399316002"]))
         setattr(cls, "snomedct:399318001",
             PermissibleValue(
                 text="snomedct:399318001",
                 title="Kovacs projection",
-                meaning=SNOMED_CT["399318001"]))
+                meaning=SNOMEDCT["399318001"]))
         setattr(cls, "snomedct:399320003",
             PermissibleValue(
                 text="snomedct:399320003",
                 title="Clements-Nakayama projection",
-                meaning=SNOMED_CT["399320003"]))
+                meaning=SNOMEDCT["399320003"]))
         setattr(cls, "snomedct:399321004",
             PermissibleValue(
                 text="snomedct:399321004",
                 title="Anterior emissive projection",
-                meaning=SNOMED_CT["399321004"]))
+                meaning=SNOMEDCT["399321004"]))
         setattr(cls, "snomedct:399325008",
             PermissibleValue(
                 text="snomedct:399325008",
                 title="Sagittal-oblique axial projection",
-                meaning=SNOMED_CT["399325008"]))
+                meaning=SNOMEDCT["399325008"]))
         setattr(cls, "snomedct:399327000",
             PermissibleValue(
                 text="snomedct:399327000",
                 title="Low-Beer projection",
-                meaning=SNOMED_CT["399327000"]))
+                meaning=SNOMEDCT["399327000"]))
         setattr(cls, "snomedct:399330007",
             PermissibleValue(
                 text="snomedct:399330007",
                 title="Valdini projection",
-                meaning=SNOMED_CT["399330007"]))
+                meaning=SNOMEDCT["399330007"]))
         setattr(cls, "snomedct:399332004",
             PermissibleValue(
                 text="snomedct:399332004",
                 title="Kurzbauer projection",
-                meaning=SNOMED_CT["399332004"]))
+                meaning=SNOMEDCT["399332004"]))
         setattr(cls, "snomedct:399335002",
             PermissibleValue(
                 text="snomedct:399335002",
                 title="Dorsoplantar projection",
-                meaning=SNOMED_CT["399335002"]))
+                meaning=SNOMEDCT["399335002"]))
         setattr(cls, "snomedct:399339008",
             PermissibleValue(
                 text="snomedct:399339008",
                 title="Apical long axis",
-                meaning=SNOMED_CT["399339008"]))
+                meaning=SNOMEDCT["399339008"]))
         setattr(cls, "snomedct:399341009",
             PermissibleValue(
                 text="snomedct:399341009",
                 title="Haas projection",
-                meaning=SNOMED_CT["399341009"]))
+                meaning=SNOMEDCT["399341009"]))
         setattr(cls, "snomedct:399342002",
             PermissibleValue(
                 text="snomedct:399342002",
                 title="Lilienfeld projection",
-                meaning=SNOMED_CT["399342002"]))
+                meaning=SNOMEDCT["399342002"]))
         setattr(cls, "snomedct:399344001",
             PermissibleValue(
                 text="snomedct:399344001",
                 title="Broden projection",
-                meaning=SNOMED_CT["399344001"]))
+                meaning=SNOMEDCT["399344001"]))
         setattr(cls, "snomedct:399348003",
             PermissibleValue(
                 text="snomedct:399348003",
                 title="Antero-posterior projection",
-                meaning=SNOMED_CT["399348003"]))
+                meaning=SNOMEDCT["399348003"]))
         setattr(cls, "snomedct:399349006",
             PermissibleValue(
                 text="snomedct:399349006",
                 title="Stenver's projection",
-                meaning=SNOMED_CT["399349006"]))
+                meaning=SNOMEDCT["399349006"]))
         setattr(cls, "snomedct:399351005",
             PermissibleValue(
                 text="snomedct:399351005",
                 title="Orbito-parietal projection",
-                meaning=SNOMED_CT["399351005"]))
+                meaning=SNOMEDCT["399351005"]))
         setattr(cls, "snomedct:399352003",
             PermissibleValue(
                 text="snomedct:399352003",
                 title="Lateral-medial projection",
-                meaning=SNOMED_CT["399352003"]))
+                meaning=SNOMEDCT["399352003"]))
         setattr(cls, "snomedct:399355001",
             PermissibleValue(
                 text="snomedct:399355001",
                 title="Chausse projection",
-                meaning=SNOMED_CT["399355001"]))
+                meaning=SNOMEDCT["399355001"]))
         setattr(cls, "snomedct:399356000",
             PermissibleValue(
                 text="snomedct:399356000",
                 title="Right anterior oblique projection",
-                meaning=SNOMED_CT["399356000"]))
+                meaning=SNOMEDCT["399356000"]))
         setattr(cls, "snomedct:399358004",
             PermissibleValue(
                 text="snomedct:399358004",
                 title="Caldwell projection",
-                meaning=SNOMED_CT["399358004"]))
+                meaning=SNOMEDCT["399358004"]))
         setattr(cls, "snomedct:399360002",
             PermissibleValue(
                 text="snomedct:399360002",
                 title="Verticosubmental projection",
-                meaning=SNOMED_CT["399360002"]))
+                meaning=SNOMEDCT["399360002"]))
         setattr(cls, "snomedct:399361003",
             PermissibleValue(
                 text="snomedct:399361003",
                 title="Nuclear medicine projection",
-                meaning=SNOMED_CT["399361003"]))
+                meaning=SNOMEDCT["399361003"]))
         setattr(cls, "snomedct:399362005",
             PermissibleValue(
                 text="snomedct:399362005",
                 title="Bertel projection",
-                meaning=SNOMED_CT["399362005"]))
+                meaning=SNOMEDCT["399362005"]))
         setattr(cls, "snomedct:399365007",
             PermissibleValue(
                 text="snomedct:399365007",
                 title="Pearson projection",
-                meaning=SNOMED_CT["399365007"]))
+                meaning=SNOMEDCT["399365007"]))
         setattr(cls, "snomedct:399368009",
             PermissibleValue(
                 text="snomedct:399368009",
                 title="Medio-lateral oblique projection",
-                meaning=SNOMED_CT["399368009"]))
+                meaning=SNOMEDCT["399368009"]))
         setattr(cls, "snomedct:399370000",
             PermissibleValue(
                 text="snomedct:399370000",
                 title="Lysholm projection",
-                meaning=SNOMED_CT["399370000"]))
+                meaning=SNOMEDCT["399370000"]))
         setattr(cls, "snomedct:399371001",
             PermissibleValue(
                 text="snomedct:399371001",
                 title="Parasternal short axis view at the level of the mitral chords",
-                meaning=SNOMED_CT["399371001"]))
+                meaning=SNOMEDCT["399371001"]))
         setattr(cls, "snomedct:399372008",
             PermissibleValue(
                 text="snomedct:399372008",
                 title="Ferguson projection",
-                meaning=SNOMED_CT["399372008"]))
+                meaning=SNOMEDCT["399372008"]))
         setattr(cls, "snomedct:399488007",
             PermissibleValue(
                 text="snomedct:399488007",
                 title="Midline",
-                meaning=SNOMED_CT["399488007"]))
+                meaning=SNOMEDCT["399488007"]))
         setattr(cls, "snomedct:408723005",
             PermissibleValue(
                 text="snomedct:408723005",
                 title="Cranial LAO",
-                meaning=SNOMED_CT["408723005"]))
+                meaning=SNOMEDCT["408723005"]))
         setattr(cls, "snomedct:408724004",
             PermissibleValue(
                 text="snomedct:408724004",
                 title="Caudal LAO",
-                meaning=SNOMED_CT["408724004"]))
+                meaning=SNOMEDCT["408724004"]))
         setattr(cls, "snomedct:408725003",
             PermissibleValue(
                 text="snomedct:408725003",
                 title="Cranial RAO",
-                meaning=SNOMED_CT["408725003"]))
+                meaning=SNOMEDCT["408725003"]))
         setattr(cls, "snomedct:408726002",
             PermissibleValue(
                 text="snomedct:408726002",
                 title="Caudal RAO",
-                meaning=SNOMED_CT["408726002"]))
+                meaning=SNOMEDCT["408726002"]))
         setattr(cls, "snomedct:421610009",
             PermissibleValue(
                 text="snomedct:421610009",
                 title="Bottom",
-                meaning=SNOMED_CT["421610009"]))
+                meaning=SNOMEDCT["421610009"]))
         setattr(cls, "snomedct:421812003",
             PermissibleValue(
                 text="snomedct:421812003",
                 title="Top",
-                meaning=SNOMED_CT["421812003"]))
+                meaning=SNOMEDCT["421812003"]))
         setattr(cls, "snomedct:422534007",
             PermissibleValue(
                 text="snomedct:422534007",
                 title="Rafert-Long projection",
-                meaning=SNOMED_CT["422534007"]))
+                meaning=SNOMEDCT["422534007"]))
         setattr(cls, "snomedct:422568001",
             PermissibleValue(
                 text="snomedct:422568001",
                 title="Moore projection",
-                meaning=SNOMED_CT["422568001"]))
+                meaning=SNOMEDCT["422568001"]))
         setattr(cls, "snomedct:422670003",
             PermissibleValue(
                 text="snomedct:422670003",
                 title="Apple projection",
-                meaning=SNOMED_CT["422670003"]))
+                meaning=SNOMEDCT["422670003"]))
         setattr(cls, "snomedct:422795009",
             PermissibleValue(
                 text="snomedct:422795009",
                 title="Neer projection",
-                meaning=SNOMED_CT["422795009"]))
+                meaning=SNOMEDCT["422795009"]))
         setattr(cls, "snomedct:422861003",
             PermissibleValue(
                 text="snomedct:422861003",
                 title="Burman projection",
-                meaning=SNOMED_CT["422861003"]))
+                meaning=SNOMEDCT["422861003"]))
         setattr(cls, "snomedct:422954003",
             PermissibleValue(
                 text="snomedct:422954003",
                 title="Stryker projection",
-                meaning=SNOMED_CT["422954003"]))
+                meaning=SNOMEDCT["422954003"]))
         setattr(cls, "snomedct:422996004",
             PermissibleValue(
                 text="snomedct:422996004",
                 title="Wolf projection",
-                meaning=SNOMED_CT["422996004"]))
+                meaning=SNOMEDCT["422996004"]))
         setattr(cls, "snomedct:423091003",
             PermissibleValue(
                 text="snomedct:423091003",
                 title="Colcher-Sussman projection",
-                meaning=SNOMED_CT["423091003"]))
+                meaning=SNOMEDCT["423091003"]))
         setattr(cls, "snomedct:423720000",
             PermissibleValue(
                 text="snomedct:423720000",
                 title="Rafer projection",
-                meaning=SNOMED_CT["423720000"]))
+                meaning=SNOMEDCT["423720000"]))
         setattr(cls, "snomedct:424086005",
             PermissibleValue(
                 text="snomedct:424086005",
                 title="Hirtz Modification projection",
-                meaning=SNOMED_CT["424086005"]))
+                meaning=SNOMEDCT["424086005"]))
         setattr(cls, "snomedct:424655003",
             PermissibleValue(
                 text="snomedct:424655003",
                 title="Eraso Modification projection",
-                meaning=SNOMED_CT["424655003"]))
+                meaning=SNOMEDCT["424655003"]))
         setattr(cls, "snomedct:424811006",
             PermissibleValue(
                 text="snomedct:424811006",
                 title="Danelius-Miller projection",
-                meaning=SNOMED_CT["424811006"]))
+                meaning=SNOMEDCT["424811006"]))
         setattr(cls, "snomedct:424962005",
             PermissibleValue(
                 text="snomedct:424962005",
                 title="Fisk projection",
-                meaning=SNOMED_CT["424962005"]))
+                meaning=SNOMEDCT["424962005"]))
         setattr(cls, "snomedct:425030002",
             PermissibleValue(
                 text="snomedct:425030002",
                 title="Kite projection",
-                meaning=SNOMED_CT["425030002"]))
+                meaning=SNOMEDCT["425030002"]))
         setattr(cls, "snomedct:425035007",
             PermissibleValue(
                 text="snomedct:425035007",
                 title="Robert projection",
-                meaning=SNOMED_CT["425035007"]))
+                meaning=SNOMEDCT["425035007"]))
         setattr(cls, "snomedct:425042007",
             PermissibleValue(
                 text="snomedct:425042007",
                 title="Rosenberg projection",
-                meaning=SNOMED_CT["425042007"]))
+                meaning=SNOMEDCT["425042007"]))
         setattr(cls, "snomedct:425157002",
             PermissibleValue(
                 text="snomedct:425157002",
                 title="Folio projection",
-                meaning=SNOMED_CT["425157002"]))
+                meaning=SNOMEDCT["425157002"]))
         setattr(cls, "snomedct:425188003",
             PermissibleValue(
                 text="snomedct:425188003",
                 title="Garth projection",
-                meaning=SNOMED_CT["425188003"]))
+                meaning=SNOMEDCT["425188003"]))
         setattr(cls, "snomedct:441505008",
             PermissibleValue(
                 text="snomedct:441505008",
                 title="Dorsopalmar projection",
-                meaning=SNOMED_CT["441505008"]))
+                meaning=SNOMEDCT["441505008"]))
         setattr(cls, "snomedct:441555000",
             PermissibleValue(
                 text="snomedct:441555000",
                 title="Inferomedial to superolateral oblique view",
-                meaning=SNOMED_CT["441555000"]))
+                meaning=SNOMEDCT["441555000"]))
         setattr(cls, "snomedct:441672003",
             PermissibleValue(
                 text="snomedct:441672003",
                 title="Dorso-ventral projection",
-                meaning=SNOMED_CT["441672003"]))
+                meaning=SNOMEDCT["441672003"]))
         setattr(cls, "snomedct:441753009",
             PermissibleValue(
                 text="snomedct:441753009",
                 title="Mammography view",
-                meaning=SNOMED_CT["441753009"]))
+                meaning=SNOMEDCT["441753009"]))
         setattr(cls, "snomedct:442361004",
             PermissibleValue(
                 text="snomedct:442361004",
                 title="Stereoscopic view",
-                meaning=SNOMED_CT["442361004"]))
+                meaning=SNOMEDCT["442361004"]))
         setattr(cls, "snomedct:442441009",
             PermissibleValue(
                 text="snomedct:442441009",
                 title="Ventro-dorsal projection",
-                meaning=SNOMED_CT["442441009"]))
+                meaning=SNOMEDCT["442441009"]))
         setattr(cls, "snomedct:442580003",
             PermissibleValue(
                 text="snomedct:442580003",
                 title="Axillary tissue mammography view",
-                meaning=SNOMED_CT["442580003"]))
+                meaning=SNOMEDCT["442580003"]))
         setattr(cls, "snomedct:442581004",
             PermissibleValue(
                 text="snomedct:442581004",
                 title="Nipple in profile mammography view",
-                meaning=SNOMED_CT["442581004"]))
+                meaning=SNOMEDCT["442581004"]))
         setattr(cls, "snomedct:442593008",
             PermissibleValue(
                 text="snomedct:442593008",
                 title="Infra-mammary fold mammography view",
-                meaning=SNOMED_CT["442593008"]))
+                meaning=SNOMEDCT["442593008"]))
         setattr(cls, "snomedct:442594002",
             PermissibleValue(
                 text="snomedct:442594002",
                 title="Right stereoscopic view",
-                meaning=SNOMED_CT["442594002"]))
+                meaning=SNOMEDCT["442594002"]))
         setattr(cls, "snomedct:442640004",
             PermissibleValue(
                 text="snomedct:442640004",
                 title="Left stereoscopic view",
-                meaning=SNOMED_CT["442640004"]))
+                meaning=SNOMEDCT["442640004"]))
         setattr(cls, "snomedct:442653001",
             PermissibleValue(
                 text="snomedct:442653001",
                 title="Stereoscopic view incremented from baseline",
-                meaning=SNOMED_CT["442653001"]))
+                meaning=SNOMEDCT["442653001"]))
         setattr(cls, "snomedct:442667005",
             PermissibleValue(
                 text="snomedct:442667005",
                 title="Stereoscopic view decremented from baseline",
-                meaning=SNOMED_CT["442667005"]))
+                meaning=SNOMEDCT["442667005"]))
         setattr(cls, "snomedct:443082005",
             PermissibleValue(
                 text="snomedct:443082005",
                 title="Parasternal long axis view of right ventricular inflow tract",
-                meaning=SNOMED_CT["443082005"]))
+                meaning=SNOMEDCT["443082005"]))
         setattr(cls, "snomedct:443083000",
             PermissibleValue(
                 text="snomedct:443083000",
                 title="Parasternal long axis view of right ventricular outflow tract",
-                meaning=SNOMED_CT["443083000"]))
+                meaning=SNOMEDCT["443083000"]))
         setattr(cls, "snomedct:443100003",
             PermissibleValue(
                 text="snomedct:443100003",
                 title="Subcostal view of cardiac outlets directed anteriorly",
-                meaning=SNOMED_CT["443100003"]))
+                meaning=SNOMEDCT["443100003"]))
         setattr(cls, "snomedct:443160001",
             PermissibleValue(
                 text="snomedct:443160001",
                 title="Subcostal short axis view at papillary muscle level",
-                meaning=SNOMED_CT["443160001"]))
+                meaning=SNOMEDCT["443160001"]))
         setattr(cls, "snomedct:443162009",
             PermissibleValue(
                 text="snomedct:443162009",
                 title="Suprasternal coronal view",
-                meaning=SNOMED_CT["443162009"]))
+                meaning=SNOMEDCT["443162009"]))
         setattr(cls, "snomedct:443163004",
             PermissibleValue(
                 text="snomedct:443163004",
                 title="Suprasternal sagittal view",
-                meaning=SNOMED_CT["443163004"]))
+                meaning=SNOMEDCT["443163004"]))
         setattr(cls, "snomedct:443293000",
             PermissibleValue(
                 text="snomedct:443293000",
                 title="Transgastric short axis view",
-                meaning=SNOMED_CT["443293000"]))
+                meaning=SNOMEDCT["443293000"]))
         setattr(cls, "snomedct:443459002",
             PermissibleValue(
                 text="snomedct:443459002",
                 title="Intramedullary",
-                meaning=SNOMED_CT["443459002"]))
+                meaning=SNOMEDCT["443459002"]))
         setattr(cls, "snomedct:443499004",
             PermissibleValue(
                 text="snomedct:443499004",
                 title="Subcostal short axis view at mitral valve level",
-                meaning=SNOMED_CT["443499004"]))
+                meaning=SNOMEDCT["443499004"]))
         setattr(cls, "snomedct:443500008",
             PermissibleValue(
                 text="snomedct:443500008",
                 title="Subcostal short axis view at venous inflow level",
-                meaning=SNOMED_CT["443500008"]))
+                meaning=SNOMEDCT["443500008"]))
         setattr(cls, "snomedct:443562002",
             PermissibleValue(
                 text="snomedct:443562002",
                 title="Suprasternal long axis view of aortic arch",
-                meaning=SNOMED_CT["443562002"]))
+                meaning=SNOMEDCT["443562002"]))
         setattr(cls, "snomedct:443609003",
             PermissibleValue(
                 text="snomedct:443609003",
                 title="Subcostal short axis view at aortic valve level",
-                meaning=SNOMED_CT["443609003"]))
+                meaning=SNOMEDCT["443609003"]))
         setattr(cls, "snomedct:443640005",
             PermissibleValue(
                 text="snomedct:443640005",
                 title="Subcostal oblique coronal view",
-                meaning=SNOMED_CT["443640005"]))
+                meaning=SNOMEDCT["443640005"]))
         setattr(cls, "snomedct:443662005",
             PermissibleValue(
                 text="snomedct:443662005",
                 title="Transesophageal four chamber view (qualifier value)",
-                meaning=SNOMED_CT["443662005"]))
+                meaning=SNOMEDCT["443662005"]))
         setattr(cls, "snomedct:443698002",
             PermissibleValue(
                 text="snomedct:443698002",
                 title="Transesophageal short axis view (qualifier value)",
-                meaning=SNOMED_CT["443698002"]))
+                meaning=SNOMEDCT["443698002"]))
         setattr(cls, "snomedct:65424008",
             PermissibleValue(
                 text="snomedct:65424008",
                 title="Contiguous",
-                meaning=SNOMED_CT["65424008"]))
+                meaning=SNOMEDCT["65424008"]))
         setattr(cls, "snomedct:66459002",
             PermissibleValue(
                 text="snomedct:66459002",
                 title="Unilateral",
-                meaning=SNOMED_CT["66459002"]))
+                meaning=SNOMEDCT["66459002"]))
         setattr(cls, "snomedct:72906007",
             PermissibleValue(
                 text="snomedct:72906007",
                 title="Common",
-                meaning=SNOMED_CT["72906007"]))
+                meaning=SNOMEDCT["72906007"]))
         setattr(cls, "snomedct:741000124103",
             PermissibleValue(
                 text="snomedct:741000124103",
                 title="Dorsoventral",
-                meaning=SNOMED_CT["741000124103"]))
+                meaning=SNOMEDCT["741000124103"]))
         setattr(cls, "snomedct:761000124104",
             PermissibleValue(
                 text="snomedct:761000124104",
                 title="Dorsolateral",
-                meaning=SNOMED_CT["761000124104"]))
+                meaning=SNOMEDCT["761000124104"]))
         setattr(cls, "snomedct:771000124106",
             PermissibleValue(
                 text="snomedct:771000124106",
                 title="Ventrolateral",
-                meaning=SNOMED_CT["771000124106"]))
+                meaning=SNOMEDCT["771000124106"]))
         setattr(cls, "snomedct:781000124109",
             PermissibleValue(
                 text="snomedct:781000124109",
                 title="Palmar",
-                meaning=SNOMED_CT["781000124109"]))
+                meaning=SNOMEDCT["781000124109"]))
 
 class EnumStudyDesign(EnumDefinitionImpl):
     """
