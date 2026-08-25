@@ -37,3 +37,12 @@ enums:
         title: Physical Fitness
         aliases:
           - physical_fitness
+      # adding values for Kids first
+      mesh:D009369:
+        title: Neoplasms
+        aliases:
+          - neoplasms
+      mesh:D009358:
+        title: Congenital, Hereditary, and Neonatal Diseases and Abnormalities
+        aliases:
+          - congenital_hereditary_and_neonatal_diseases_and_abnormalities

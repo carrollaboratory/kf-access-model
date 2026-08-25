@@ -1,0 +1,26 @@
+---
+id: https://w3id.org/carrollaboratory/kf-access-model
+name: EnumStudyStatus
+enums:
+  EnumStudyStatus:
+    title: Study Status
+    description: >-
+      Processing/release status of a study, from
+      kf_lib_data_ingest.common.constants.STUDY.STATUS, aligned to NCIT values
+    permissible_values:
+      ncit:C219673:
+        title: Data Set Released
+        aliases:
+          - released
+      ncit:C53470:
+        title: Pending
+        aliases:
+          - pending
+      ncit:C63471:
+        title: Canceled
+        aliases:
+          - canceled
+      ncit:C44281:
+        title: Failed
+        aliases:
+          - failed

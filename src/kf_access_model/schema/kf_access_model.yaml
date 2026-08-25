@@ -221,14 +221,28 @@ classes:
     title: Record
     mixin: true
     slots:
-    - visible
-    - visibility_comment
-    - visibility_reason
     - external_id
+    - access_policy_id
     - study_id
+
+  AccessPolicy:
+    title: Access Policy
+    description: The access policy that describes the controls around use of
+      data
+    slots:
+      - access_policy_id
+      - data_use_accession
+      - data_use_permission
+      - data_use_modifier
+      - disease_limitation
+      - access_description
+      - website
     slot_usage:
-      study_id:
-        range: sdGlobalID
+      access_policy_id:
+      # KF does not currently have Consent resources in our FHIR server
+        range: coGlobalID
+        required: true
+        identifier: true
 
   Study:
     title: Research Study 
@@ -258,13 +272,13 @@ classes:
       - status
     slot_usage:
       parent_study:
-        description: The parent KFStudy for this study, if it is a nested study.
+        description: The parent Study for this study, if it is a nested study.
         range: Study
       principal_investigator:
-        description: The KFInvestigator(s) responsible for the study.
+        description: The Investigator(s) responsible for the study.
         range: Investigator
       contact:
-        description: The KFInvestigator(s) to contact with questions about this study.
+        description: The Investigator(s) to contact with questions about this study.
         range: Investigator
 
   Investigator:
@@ -727,7 +741,7 @@ slots:
   domain:
     title: Study Domain
     description: The broad category of research this study addresses.
-    range: EnumStudyDomain
+    range: EnumResearchDomain
   status:
     title: Study Status
     description: The processing/release status of this study.
@@ -891,7 +905,7 @@ slots:
     range: string 
   consanguinity: 
     description: Is there known or suspected consanguinity in this study family?
-    range: EnumConsanguinityAssertion
+    range: EnumPresentAbsent
   family_study_focus: 
     description: The specific focus of the investigation, eg, a condition. 
     range: uriorcurie 
@@ -924,7 +938,7 @@ slots:
   assertion_provenance:
     title: Assertion Provenance
     description: The original source of this assertion
-    range: EnumAssertionProvenance
+    range: EnumDataSourceType
   age_at_assertion:
     title: Age at assertion
     description: The age in days of the Subject when the assertion was made.
@@ -1425,218 +1439,6 @@ slots:
 
 enums:
 
-  EnumVisibilityReason:
-    title: Visibility Reason
-    description: >-
-      Reasons a Kids First Dataservice record is or is not visible/
-      released, from kf_lib_data_ingest.common.constants.COMMON.VISIBILITY_REASON.
-    permissible_values:
-      ready:
-        title: Ready For Release
-      pre_release:
-        title: Pre-Release
-      sample_issue:
-        title: Sample Issue
-      consent_hold:
-        title: Consent Hold
-      sequencing_quality:
-        title: Sequencing Quality Issue
-
-  EnumDataAccessAuthority:
-    title: Data Access Authority
-    description: >-
-      Authorities that can govern access to a study's data, from
-      kf_lib_data_ingest.common.constants.AUTHORITY.
-    permissible_values:
-      dbgap:
-        title: dbGaP
-
-  EnumStudyDomain:
-    title: Study Domain
-    description: >-
-      Broad categories of research a study addresses, from
-      kf_lib_data_ingest.common.constants.STUDY.
-    permissible_values:
-      cancer:
-        title: Cancer
-      structural_defect:
-        title: Structural Birth Defect
-      structural_defect_and_cancer:
-        title: Structural Birth Defect and Cancer
-
-  EnumStudyStatus:
-    title: Study Status
-    description: >-
-      Processing/release status of a study, from
-      kf_lib_data_ingest.common.constants.STUDY.STATUS.
-    permissible_values:
-      canceled:
-        title: Canceled
-      failed:
-        title: Failed
-      pending:
-        title: Pending
-      published:
-        title: Published
-      publishing:
-        title: Publishing
-      running:
-        title: Running
-      staged:
-        title: Staged
-      waiting:
-        title: Waiting
-
-  #  --- Subject / Family ---
-  EnumNull:
-    description: Base enumeration providing null options.
-    permissible_values:
-      unknown:
-        title: Unknown
-        meaning: NCIT:C17998
-  EnumConsanguinityAssertion: 
-    description: Asserts known or suspected consanguinity in this study family
-    permissible_values:  
-      not_suspected: 
-        title: not-suspected
-        description: Not suspected 
-        meaning: snomedct:428263003
-      suspected: 
-        title: suspected 
-        description: Suspected
-        meaning: snomedct:415684004
-      known_present: 
-        title: known-present 
-        description: Known Present
-        meaning: snomedct:410515003
-      unknown: 
-        title: unknown 
-        description: Unknown
-        meaning: snomedct:261665006
-  EnumAssertionProvenance:
-    description: Possible data sources for assertions.
-    is_a: EnumNull
-    permissible_values:
-      medical_record:
-        title: Medical Record
-        description: Data obtained from a medical record
-      investigator_assessment:
-        title: Investigator Assessment
-        description: Data obtained by examination, interview, etc. with investigator
-      participant_or_caregiver_report:
-        title: Participant or Caregiver Report
-        description: Data obtained from survey, questionnaire, etc. filled out by participant or caregiver
-      other:
-        title: Other
-        description: Data obtained from other source, such as tissue bank
-  EnumOutcomeDiseaseRelated:
-    title: Outcome Disease Related
-    description: >-
-      Whether an Outcome is related to the disease(s) under study, from
-      kf_lib_data_ingest.common.constants.OUTCOME.DISEASE_RELATED.
-    permissible_values:
-      yes:
-        title: 'Yes'
-      no:
-        title: 'No'
-  
-# --- Sample / Specimen ---
-  EnumConsentType:
-    title: Consent Type
-    description: >-
-      Data Use Ontology-style consent short names used by Kids First, from
-      kf_lib_data_ingest.common.constants.CONSENT_TYPE.
-    permissible_values:
-      DS-OBDR-MDS:
-        title: DS-OBDR-MDS
-        description: >-
-          Disease-Specific (Orofacial birth defects and related
-          phenotypes, MDS). Use of the data must be related to Orofacial
-          birth defects and related phenotypes; includes methods
-          development research.
-      DS-OBD-MDS:
-        title: DS-OBD-MDS
-        description: >-
-          Disease-Specific (Orofacial birth defects, MDS). Use of the
-          data must be related to Orofacial birth defects; includes
-          methods development research.
-      DS-OC-PUB-MDS:
-        title: DS-OC-PUB-MDS
-        description: >-
-          Disease-Specific (Oral Clefts, PUB, MDS). Use of the data must
-          be related to Oral Clefts; requestor agrees to make results
-          publicly available; includes methods development research.
-      HMB-MDS:
-        title: HMB-MDS
-        description: >-
-          Health/Medical/Biomedical (MDS). Limited to health/medical/
-          biomedical purposes, excludes population origins/ancestry
-          research; includes methods development research.
-      HMB-IRB:
-        title: HMB-IRB
-        description: Health/Medical/Biomedical general research.
-      DS-CHD-IRB:
-        title: DS-CHD-IRB
-        description: Disease specific Cardiac Heart Defect.
-      DS-CHD:
-        title: DS-CHD
-        description: Disease specific Cardiac Heart Defect.
-      HMB-NPU:
-        title: HMB-NPU
-        description: >-
-          Health/Medical/Biomedical (NPU). Limited to health/medical/
-          biomedical purposes and to not-for-profit organizations.
-      GRU:
-        title: GRU
-        description: General Research Use.
-      GRU-NPU:
-        title: GRU-NPU
-        description: >-
-          General Research Use (NPU). Limited to general research use by
-          not-for-profit organizations.
-      HMB-GSO:
-        title: HMB-GSO
-        description: >-
-          Health/Medical/Biomedical (GSO). Genetic studies only; no
-          phenotype-only research.
-
-
-  EnumSpecimenComposition:
-    title: Specimen Composition
-    description: >-
-      Material composition of a specimen, from
-      kf_lib_data_ingest.common.constants.SPECIMEN.COMPOSITION.
-    permissible_values:
-      blood:
-        title: Peripheral Whole Blood
-      bone:
-        title: Bone
-      bone_marrow:
-        title: Bone Marrow
-      buccal_swab:
-        title: Buccal Cells
-      ebvi:
-        title: Epstein-Barr Virus Immortalized Cells
-      fibroblasts:
-        title: Fibroblasts
-      line:
-        title: Derived Cell Line
-      lymphoblastoid_cell_lines:
-        title: Lymphoblastoid Cell Lines
-      lymphocytes:
-        title: Lymphocytes
-      mnc:
-        title: Mononuclear Cells
-      plasma:
-        title: Plasma
-      saliva:
-        title: Saliva
-      tissue:
-        title: Solid Tissue
-      xenograft:
-        title: Xenograft Tissue
-
-
   EnumCellEntity:
     description: The type of cell entity present in the sample.
     permissible_values:
@@ -2020,224 +1822,4 @@ enums:
         title: Fred Hutchinson Cancer Research Center
         description: 'Kids First sequencing center ID: SC_8JXH42X1'
 
-  EnumFamilyRelationshipKF:
-    title: Family Relationship (Kids First)
-    description: >-
-      Family relationship terms used by the Kids First ingest library,
-      from kf_lib_data_ingest.common.constants.RELATIONSHIP. "Twin" here
-      means identical twins; use the normal sibling terms for
-      non-identical twins. Distinct from cam:EnumFamilyRelation, which is
-      instead reachable from the KIN ontology.
-    permissible_values:
-      proband:
-        title: Proband
-      wife:
-        title: Wife
-      husband:
-        title: Husband
-      spouse:
-        title: Spouse
-      mother:
-        title: Mother
-      father:
-        title: Father
-      parent:
-        title: Parent
-      daughter:
-        title: Daughter
-      son:
-        title: Son
-      child:
-        title: Child
-      sister:
-        title: Sister
-      brother:
-        title: Brother
-      sibling:
-        title: Sibling
-      twin_sister:
-        title: Twin Sister
-      twin_brother:
-        title: Twin Brother
-      twin:
-        title: Twin
-      maternal_half_sister:
-        title: Maternal Half-Sister
-      maternal_half_brother:
-        title: Maternal Half-Brother
-      maternal_half_sibling:
-        title: Maternal Half-Sibling
-      paternal_half_sister:
-        title: Paternal Half-Sister
-      paternal_half_brother:
-        title: Paternal Half-Brother
-      paternal_half_sibling:
-        title: Paternal Half-Sibling
-      half_sister:
-        title: Half-Sister
-      half_brother:
-        title: Half-Brother
-      half_sibling:
-        title: Half-Sibling
-      maternal_grandmother:
-        title: Maternal Grandmother
-      maternal_grandfather:
-        title: Maternal Grandfather
-      maternal_grandparent:
-        title: Maternal Grandparent
-      paternal_grandmother:
-        title: Paternal Grandmother
-      paternal_grandfather:
-        title: Paternal Grandfather
-      paternal_grandparent:
-        title: Paternal Grandparent
-      grandmother:
-        title: Grandmother
-      grandfather:
-        title: Grandfather
-      grandparent:
-        title: Grandparent
-      maternal_granddaughter:
-        title: Maternal Granddaughter
-      maternal_grandson:
-        title: Maternal Grandson
-      maternal_grandchild:
-        title: Maternal Grandchild
-      paternal_granddaughter:
-        title: Paternal Granddaughter
-      paternal_grandson:
-        title: Paternal Grandson
-      paternal_grandchild:
-        title: Paternal Grandchild
-      granddaughter:
-        title: Granddaughter
-      grandson:
-        title: Grandson
-      grandchild:
-        title: Grandchild
-      maternal_great_grandmother:
-        title: Maternal Great-Grandmother
-      maternal_great_grandfather:
-        title: Maternal Great-Grandfather
-      maternal_great_grandparent:
-        title: Maternal Great-Grandparent
-      paternal_great_grandmother:
-        title: Paternal Great-Grandmother
-      paternal_great_grandfather:
-        title: Paternal Great-Grandfather
-      paternal_great_grandparent:
-        title: Paternal Great-Grandparent
-      great_grandmother:
-        title: Great-Grandmother
-      great_grandfather:
-        title: Great-Grandfather
-      great_grandparent:
-        title: Great-Grandparent
-      maternal_great_granddaughter:
-        title: Maternal Great-Granddaughter
-      maternal_great_grandson:
-        title: Maternal Great-Grandson
-      maternal_great_grandchild:
-        title: Maternal Great-Grandchild
-      paternal_great_granddaughter:
-        title: Paternal Great-Granddaughter
-      paternal_great_grandson:
-        title: Paternal Great-Grandson
-      paternal_great_grandchild:
-        title: Paternal Great-Grandchild
-      great_granddaughter:
-        title: Great-Granddaughter
-      great_grandson:
-        title: Great-Grandson
-      great_grandchild:
-        title: Great-Grandchild
-      maternal_aunt:
-        title: Maternal Aunt
-      maternal_uncle:
-        title: Maternal Uncle
-      maternal_pibling:
-        title: Maternal Aunt or Uncle
-      paternal_aunt:
-        title: Paternal Aunt
-      paternal_uncle:
-        title: Paternal Uncle
-      paternal_pibling:
-        title: Paternal Aunt or Uncle
-      aunt:
-        title: Aunt
-      uncle:
-        title: Uncle
-      pibling:
-        title: Aunt or Uncle
-      maternal_niece:
-        title: Maternal Niece
-      maternal_nephew:
-        title: Maternal Nephew
-      maternal_nibling:
-        title: Maternal Niece or Nephew
-      paternal_niece:
-        title: Paternal Niece
-      paternal_nephew:
-        title: Paternal Nephew
-      paternal_nibling:
-        title: Paternal Niece or Nephew
-      niece:
-        title: Niece
-      nephew:
-        title: Nephew
-      nibling:
-        title: Niece or Nephew
-      maternal_great_aunt:
-        title: Maternal Great Aunt
-      maternal_great_uncle:
-        title: Maternal Great Uncle
-      maternal_great_pibling:
-        title: Maternal Great Aunt or Uncle
-      paternal_great_aunt:
-        title: Paternal Great Aunt
-      paternal_great_uncle:
-        title: Paternal Great Uncle
-      paternal_great_pibling:
-        title: Paternal Great Aunt or Uncle
-      great_aunt:
-        title: Great Aunt
-      great_uncle:
-        title: Great Uncle
-      great_pibling:
-        title: Great Aunt or Uncle
-      maternal_great_niece:
-        title: Maternal Great Niece
-      maternal_great_nephew:
-        title: Maternal Great Nephew
-      maternal_great_nibling:
-        title: Maternal Great Niece or Nephew
-      paternal_great_niece:
-        title: Paternal Great Niece
-      paternal_great_nephew:
-        title: Paternal Great Nephew
-      paternal_great_nibling:
-        title: Paternal Great Niece or Nephew
-      great_niece:
-        title: Great Niece
-      great_nephew:
-        title: Great Nephew
-      great_nibling:
-        title: Great Niece or Nephew
-      maternal_first_cousin:
-        title: Maternal First Cousin
-      paternal_first_cousin:
-        title: Paternal First Cousin
-      first_cousin:
-        title: First Cousin
-      maternal_second_cousin:
-        title: Maternal Second Cousin
-      paternal_second_cousin:
-        title: Paternal Second Cousin
-      second_cousin:
-        title: Second Cousin
-      maternal_cousin:
-        title: Maternal Cousin
-      paternal_cousin:
-        title: Paternal Cousin
-      cousin:
-        title: Cousin
+ 

@@ -1,0 +1,20 @@
+---
+id: https://w3id.org/carrollaboratory/kf-access-model
+name: EnumVisibilityReason
+enums:
+  EnumVisibilityReason:
+    title: Visibility Reason
+    description: >-
+      Reasons a Kids First Dataservice record is or is not visible/
+      released, from kf_lib_data_ingest.common.constants.COMMON.VISIBILITY_REASON.
+    permissible_values:
+      ready:
+        title: Ready For Release
+      pre_release:
+        title: Pre-Release
+      sample_issue:
+        title: Sample Issue
+      consent_hold:
+        title: Consent Hold
+      sequencing_quality:
+        title: Sequencing Quality Issue
