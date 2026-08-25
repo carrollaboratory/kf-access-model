@@ -1,0 +1,14 @@
+id: https://w3id.org/carrollaboratory/kf-access-model
+name: EnumUnknownOther
+enums:
+  EnumUnknownOther:
+    description: Base enumeration providing Unknown and Other options.
+    permissible_values:
+      snomedct:261665006:
+        title: Unknown
+        aliases:
+          - unknown
+      snomedct:74964007:
+        title: Other
+        aliases:
+          - other

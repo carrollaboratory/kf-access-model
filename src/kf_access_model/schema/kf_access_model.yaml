@@ -11,7 +11,9 @@ see_also:
   - https://carrollaboratory.github.io/kf-access-model
 
 prefixes:
-  kidsfirst: https://w3id.org/carrollaboratory/kf-access-model/
+  kidsfirst: 
+    prefix_prefix: kidsfirst
+    prefix_reference: https://w3id.org/carrollaboratory/kf-access-model/
   cam:
     prefix_prefix: cam
     prefix_reference: https://includedcc.org/common-access-model/
@@ -68,7 +70,6 @@ prefixes:
     prefix_reference: http://purl.obolibrary.org/obo/CHMO_
   NCBITaxon:
     prefix_prefix: NCBITaxon
-  NCBITaxon: http://purl.obolibrary.org/obo/NCBITaxon_
     prefix_reference: http://purl.obolibrary.org/obo/NCBITaxon_
   xsd:
     prefix_prefix: xsd
@@ -81,7 +82,136 @@ default_prefix: kidsfirst
 default_range: string
 
 imports:
-  - upstream-models/common_access_model
+  # - upstream-models/common_access_model
+  - linkml:types
+  - enums/EnumAssayType
+  - enums/EnumAsserterType
+  - enums/EnumAvailabilityStatus
+  - enums/EnumDataCategory
+  - enums/EnumDataSourceType
+  - enums/EnumDataUseModifier
+  - enums/EnumDataUsePermission
+  - enums/EnumEDAMDataTypes
+  - enums/EnumEDAMFormats
+  - enums/EnumEthnicity
+  - enums/EnumFamilyRelation
+  - enums/EnumFamilyRole
+  - enums/EnumFamilyType
+  - enums/EnumFileHashType
+  - enums/EnumLaterality
+  - enums/EnumOrganism
+  - enums/EnumParticipantLifespanStage
+  - enums/EnumPresentAbsent
+  - enums/EnumProgram
+  - enums/EnumRace
+  - enums/EnumResearchDomain
+  - enums/EnumSampleCollectionMethod
+  - enums/EnumSex
+  - enums/EnumSite
+  - enums/EnumSpatialQualifiers
+  - enums/EnumStudyDesign
+  - enums/EnumSubjectType
+  - enums/EnumUnknown
+  - enums/EnumUnknownOther
+  - enums/EnumVitalStatus
+
+types:
+  ptGlobalID:
+    name: ptGlobalID
+    description: Dewrangle pt global ID. For FHIR Patient Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  obGlobalID:
+    name: obGlobalID
+    description: Dewrangle ob global ID. For FHIR Observation Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  lsGlobalID:
+    name: lsGlobalID
+    description: Dewrangle ls global ID. For FHIR List Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  orGlobalID:
+    name: orGlobalID
+    description: Dewrangle or global ID. For FHIR Organization Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  grGlobalID:
+    name: grGlobalID
+    description: Dewrangle gr global ID. For FHIR Group Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  sdGlobalID:
+    name: sdGlobalID
+    description: Dewrangle sd global ID. For FHIR ResearchStudy Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  deGlobalID:
+    name: deGlobalID
+    description: Dewrangle de global ID. For FHIR Device Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  bsGlobalID:
+    name: bsGlobalID
+    description: Dewrangle bs global ID. For FHIR Specimen Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  adGlobalID:
+    name: adGlobalID
+    description: Dewrangle ad global ID. For FHIR ActivityDefinition Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  drGlobalID:
+    name: drGlobalID
+    description: Dewrangle dr global ID. For FHIR DocumentReference Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  enGlobalID:
+    name: enGlobalID
+    description: Dewrangle en global ID. For FHIR Encounter Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  coGlobalID:
+    name: coGlobalID
+    description: Dewrangle co global ID. For FHIR Consent Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  diGlobalID:
+    name: diGlobalID
+    description: Dewrangle di global ID. For FHIR Diagnostic Report Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  fmGlobalID:
+    name: fmGlobalID
+    description: Dewrangle __ global ID. For FHIR FamilyMemberHistory Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  pdGlobalID:
+    name: pdGlobalID
+    description: Dewrangle __ global ID. For FHIR PlanDefinition Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
+  msGlobalID:
+    name: msGlobalID
+    description: Dewrangle __ global ID. For FHIR MedicationStatement Resources.
+    from_schema: https://w3id.org/carrollaboratory/kf-access-model
+    base: str
+    uri: xsd:string
 
 classes:
   Any:
@@ -91,17 +221,14 @@ classes:
     title: Record
     mixin: true
     slots:
-    - kf_id
     - visible
     - visibility_comment
     - visibility_reason
     - external_id
     - study_id
     slot_usage:
-      kf_id:
-        range: kfID
-        required: true
-        identifier: true
+      study_id:
+        range: sdGlobalID
 
   Study:
     title: Research Study 
@@ -628,7 +755,10 @@ slots:
   program:
     title: Program
     description: Funding source(s) for the study
-    range: EnumProgram
+    range: uriorcurie
+    any_of: 
+    - range: uriorcurie
+    - range: EnumProgram
     required: true
     multivalued: true
   study_description:
@@ -669,26 +799,38 @@ slots:
     title: Organism Type 
     description: Organism Type, typically from NCBITaxon. For reference, Human is NCBITaxon:9606.
     range: uriorcurie 
-  subject_type: 
-    title: Subject Type 
+  subject_type:
+    title: Subject Type
     description: Type of entity this record represents
-    required: true 
-    range: EnumSubjectType 
+    required: true
+    range: Concept
+    any_of:
+      - range: EnumSubjectType
+      - range: EnumUnknownOther
   sex:
     title: Sex
     description: Sex of Participant
-    range: EnumSex
+    range: Concept
+    any_of:
+      - range: EnumSex
+      - range: EnumUnknownOther
     required: true
   race:
     title: Race
     description: Race of Participant
-    range: EnumRace
+    range: Concept
+    any_of:
+      - range: EnumRace
+      - range: EnumUnknownOther
     required: true
     multivalued: true
   ethnicity:
     title: Ethnicity
     description: Ethnicity of Participant
-    range: EnumEthnicity
+    range: Concept
+    any_of:
+      - range: EnumEthnicity
+      - range: EnumUnknownOther
     required: true
   is_proband:
     title: Is Proband
@@ -700,19 +842,24 @@ slots:
       Whether the Participant is affected by the condition(s) under study.
     range: boolean
   age_at_first_engagement:
+    #Should this just be a reference out to an encounter?
     title: Age at First Participant Engagement
-    description: Age in days of Participant at first recorded study event (enrollment, visit, observation, 
-     sample collection, survey completion, etc.). Age at enrollment is preferred, if available.
+    description:
+      Age in days of Participant at first recorded study event (enrollment, visit, observation,
+      sample collection, survey completion, etc.). Age at enrollment is preferred, if available.
     range: integer
     unit:
       ucum_code: d
     #Range -1 year to 89*365.25 (Privacy upper bound for ages over 89 years)
     minimum_value: -365
-    maximum_value: 32507    
+    maximum_value: 32507
   vital_status:
     title: Vital Status
     description: Whether participant is alive or dead
-    range: EnumVitalStatus
+    range: Concept
+    any_of:
+      - range: EnumVitalStatus
+      - range: EnumUnknown
   age_at_last_vital_status:
     title: Age at Last Vital Status
     description: Age in days when participant's vital status was last recorded
@@ -734,7 +881,10 @@ slots:
     range: Family
   family_type: 
     description: Describes the 'type' of study family, eg, trio.
-    range: EnumFamilyType 
+    range: Concept
+    any_of:
+      - range: Concept
+      - range: EnumFamilyType
   family_description: 
     description: Free text describing the study family, such as potential 
      inheritance or details about consanguinity
@@ -755,10 +905,14 @@ slots:
     range: Subject
     inlined: false
   relation:
-    description: Code definting the relationship predicate. Relationship of the "Family Member" 
-     to the "Subject", eg, mother of. Ideally uses KIN ontology.
+    description:
+      Code definting the relationship predicate. Relationship of the "Family Member"
+      to the "Subject", eg, mother of. Ideally uses KIN ontology.
     required: true
-    range: EnumFamilyRelation
+    range: Concept
+    any_of:
+      - range: EnumFamilyRelation
+      - range: EnumUnknown
 
   # --- Diagnosis / Phenotype / Outcome ---
 
@@ -891,7 +1045,10 @@ slots:
   availablity_status: 
     title: Sample Availability
     description: Can this Sample be requested for further analysis?
-    range: EnumAvailabilityStatus 
+    range: Concept
+    any_of:
+      - range: Concept
+      - range: EnumAvailabilityStatus 
   storage_method: 
     title: Sample Storage Method
     description: Sample storage method, eg, Frozen or with additives. OBI may be suitable, or ChEBI for additives.
@@ -922,19 +1079,33 @@ slots:
   method: 
     title: Biospecimen Collection Method 
     description: The approach used to collect the biospecimen.
-    range: EnumSampleCollectionMethod
-  site: 
-    title: Biospecimen Collection Site  
+    range: Concept
+    any_of:
+      - range: Concept
+      - range: EnumSampleCollectionMethod
+  site:
+    title: Biospecimen Collection Site
     description: The location of the specimen collection.
-    range: EnumSite
-  spatial_qualifier: 
+    range: Concept
+    any_of:
+      - range: Concept
+      - range: EnumSite
+  spatial_qualifier:
     title: Spatial Qualifier
-    description: Qualifier that further refine the specific location of biospecimen collection
-    range: EnumSpatialQualifiers
-  laterality: 
+    description: Qualifier that further refine the specific location of
+      biospecimen collection
+    range: Concept
+    any_of:
+      - range: Concept
+      - range: EnumSpatialQualifiers
+  laterality:
     title: Location Laterality
-    description: Laterality that further refine the specific location of biospecimen collection
-    range: EnumLaterality
+    description: Laterality that further refine the specific location of
+      biospecimen collection
+    range: Concept
+    any_of:
+      - range: Concept
+      - range: EnumLaterality
   tissue_type:
     title: Tissue Type
     description: The type of tissue this Sample represents.
@@ -1008,7 +1179,10 @@ slots:
   specimen_status:
     title: Specimen Status
     description: Whether the specimen is available for further analysis.
-    range: EnumAvailabilityStatus
+    range: Concept
+    any_of:
+      - range: Concept
+      - range: EnumAvailabilityStatus
   dbgap_consent_code:
     title: dbGaP Consent Code
     description: >-
@@ -1032,7 +1206,10 @@ slots:
   format:
     title: File Format
     description: The format of the file.
-    range: EnumEDAMFormats
+    range: Concept
+    any_of:
+      - range: Concept
+      - range: EnumEDAMFormats
   file_extension:
     title: File Extension
     description: Typically a 3-4 letter code at the end of a filename that identifies the file format.
@@ -1042,7 +1219,10 @@ slots:
   data_type:
     title: Data Type
     description: The type of data within this file.
-    range: EnumEDAMDataTypes
+    range: Concept
+    any_of:
+      - range: Concept
+      - range:  EnumEDAMDataTypes
   size:
     title: File Size
     description: Size of the file, in Bytes. May require BigInt or similar.
@@ -1077,7 +1257,10 @@ slots:
   hash_type:
     title: File Hash Type
     description: The type of file hash, eg, md5
-    range: EnumFileHashType
+    range: Concept
+    any_of:
+      - range: Concept
+      - range: EnumFileHashType
   hash_value:
     title: File Hash Value
     description: The value of the file hash
@@ -1085,7 +1268,10 @@ slots:
   data_category:
     title: Data Category
     description: General category of data in this Record (e.g. Clinical, Genomics, etc)
-    range: EnumDataCategory
+    range: Concept
+    any_of:
+      - range: Concept
+      - range: EnumDataCategory
   controlled_access:
     title: Controlled Access
     description: Whether access to this file is controlled.
@@ -1142,7 +1328,10 @@ slots:
   assay_type:
     title: Assay Type
     description: The type of assay performed.
-    range: EnumAssayType 
+    range: Concept
+    any_of:
+      - range: Concept
+      - range: EnumAssayType 
   assay_source:
     title: Assay Source Text
     description: The original description of the Assay performed.
@@ -1236,83 +1425,6 @@ slots:
 
 enums:
 
-  # --- Study / Investigator ---
-  EnumProgram:
-      title: Funding Programs
-      description: Funding programs relevant to inform operations.
-      permissible_values:
-        include:
-          title: INCLUDE
-        kf:
-          title: KF
-        other:
-          title: Other
-  EnumResearchDomain:
-    title: Research Domain
-    description: Domains of Research used to find studies.
-    permissible_values:
-      behavior_and_behavior_mechanisms:
-        title: Behavior and Behavior Mechanisms
-        meaning: mesh:D001520
-      congenital_heart_defects:
-        title: Congenital Heart Defects
-        meaning: mesh:D006330
-      immune_system_diseases:
-        title: Immune System Diseases
-        meaning: mesh:D007154
-      hematologic_diseases:
-        title: Hematologic Diseases
-        meaning: mesh:D006402
-      neurodevelopment:
-        title: Neurodevelopment
-        meaning: mesh:D065886
-      sleep_wake_disorders:
-        title: Sleep Wake Disorders
-        meaning: mesh:D012893
-      all_co_occurring_conditions:
-        title: All Co-occurring Conditions
-        meaning: mesh:D013568
-      physical_fitness:
-        title: Physical Fitness
-        meaning: mesh:D010809
-      other:
-        title: Other
-
-        # correct terms for KF? Neoplasms for cancer and Congenital, Hereditary, and Neonatal Diseases and Abnormalities for birth defects
-      neoplasms:
-        title: Neoplasms
-        meaning: mesh:D009369
-      congenital_abnormalities:
-        title: Congenital, Hereditary, and Neonatal Diseases and Abnormalities
-        meaning: mesh:D009358
-
-  EnumStudyDesign:
-    title: Study Design
-    description: Approaches for collecting data, investigating interventions, and/or analyzing data.
-    #TODO: Add meanings
-    permissible_values:
-      case_control:
-        title: Case-Control
-      case_set:
-        title: Case Set
-      control_set:
-        title: Control Set
-      clinical_trial:
-        title: Clinical Trial
-      cross_sectional:
-        title: Cross-Sectional
-      family_twins_trios:
-        title: Family/Twins/Trios
-      interventional:
-        title: Interventional
-      longitudinal:
-        title: Longitudinal
-      trial_readiness_study:
-        title: Trial Readiness Study
-      tumor_vs_matched_normal:
-        title: Tumor vs Matched Normal
-      # do we need additional values for KF?
-
   EnumVisibilityReason:
     title: Visibility Reason
     description: >-
@@ -1376,167 +1488,31 @@ enums:
         title: Waiting
 
   #  --- Subject / Family ---
-  EnumSubjectType:
-    description: Types of Subject entities
-    permissible_values: 
-      participant: 
-        description: Study participant with consent, assent, or waiver of consent.
-      non_participant:
-        description: An individual associated with a study who was not explictly consented, eg, the subject
-          of a reported family history.
-      cell_line: 
-        description: Cell Line
-      animal_model: 
-        description: Animal model
-      group:
-        description: A group of individuals or entities.
-      other:
-        description: A different entity type- ideally this will be resolved!
-  EnumSex:
-    description: Subject Sex
-    permissible_values:
-      female:
-        title: Female
-        meaning: NCIT:C16576
-      male:
-        title: Male
-        meaning: NCIT:C20197
-      other:
-        title: Other
-        meaning: NCIT:C17649
-      unknown:
-        title: Unknown
-        meaning: NCIT:C17998
-  EnumRace:
-    description: Participant Race
-    permissible_values:
-      american_indian_or_alaska_native:
-        title: American Indian or Alaska Native
-        meaning: NCIT:C41259
-      asian:
-        title: Asian
-        meaning: NCIT:C41260
-      black_or_african_american:
-        title: Black or African American
-        meaning: NCIT:C16352
-      more_than_one_race:
-        title: More than one race
-        meaning: NCIT:C67109
-      native_hawaiian_or_other_pacific_islander:
-        title: Native Hawaiian or Other Pacific Islander
-        meaning: NCIT:C41219
-      other:
-        title: Other
-        meaning: NCIT:C17649
-      white:
-        title: White
-        meaning: NCIT:C41261
-      prefer_not_to_answer:
-        title: Prefer not to answer
-        meaning: NCIT:C132222
-      unknown:
-        title: Unknown
-        meaning: NCIT:C17998
-      east_asian:
-        title: East Asian
-        description: UK only; do not use for US data
-        meaning: NCIT:C161419
-      latin_american:
-        title: Latin American
-        description: UK only; do not use for US data
-        meaning: NCIT:C126531
-      middle_eastern_or_north_african:
-        title: Middle Eastern or North African
-        description: UK only; do not use for US data
-        meaning: NCIT:C43866
-      south_asian:
-        title: South Asian
-        description: UK only; do not use for US data
-        meaning: NCIT:C41263
-  EnumEthnicity:
-    description: Participant ethnicity, specific to Hispanic or Latino.
-    permissible_values:
-      # asked_but_unknown:
-      #   text: asked_but_unknown
-      #   title: Asked but unknown
-      hispanic_or_latino:
-        title: Hispanic or Latino
-        meaning: NCIT:C17459
-      not_hispanic_or_latino:
-        title: Not Hispanic or Latino
-        meaning: NCIT:C41222
-      #This should likely be rolled into a null flavor
-      prefer_not_to_answer:
-        title: Prefer not to answer
-        meaning: NCIT:C132222
-      unknown:
-        title: Unknown
-        meaning: NCIT:C17998
-  EnumVitalStatus:
-    description: Descriptions of a Subject's vital status
-    is_a: EnumNull
-    permissible_values:
-      dead:
-        title: Dead
-        meaning: NCIT:C28554
-      alive:
-        title: Alive
-        meaning: NCIT:C37987
   EnumNull:
     description: Base enumeration providing null options.
     permissible_values:
       unknown:
         title: Unknown
         meaning: NCIT:C17998
-  EnumFamilyType:
-    description: Enumerations describing research family type 
-    is_a: EnumNull
-    permissible_values: 
-      control_only:
-        title: Control-only 
-        description: Control Only 
-      duo: 
-        title: Duo
-        description: Duo 
-      proband_only: 
-        title: Proband-only 
-        description: Proband Only 
-      trio: 
-        title: Trio 
-        description: Trio (2 parents and affected child)
-      trio_plus: 
-        title: Trio+ 
-        description: 2 Parents and 2 or more children
-  EnumFamilyRelation:
-    description: Definitions of family relations as provided by KIN Ontology.
-    is_a: EnumNull
-    reachable_from:
-      source_ontology: http://purl.org/ga4gh/kin.owl
-      source_nodes:
-        - KIN:KIN_001
-      is_direct: false
-      include_self: true
-      relationship_types:
-        - rdfs:subClassOf
   EnumConsanguinityAssertion: 
     description: Asserts known or suspected consanguinity in this study family
     permissible_values:  
       not_suspected: 
         title: not-suspected
         description: Not suspected 
-        meaning: snomed_ct:428263003
+        meaning: snomedct:428263003
       suspected: 
         title: suspected 
         description: Suspected
-        meaning: snomed_ct:415684004
+        meaning: snomedct:415684004
       known_present: 
         title: known-present 
         description: Known Present
-        meaning: snomed_ct:410515003
+        meaning: snomedct:410515003
       unknown: 
         title: unknown 
         description: Unknown
-        meaning: snomed_ct:261665006
+        meaning: snomedct:261665006
   EnumAssertionProvenance:
     description: Possible data sources for assertions.
     is_a: EnumNull
@@ -1563,38 +1539,8 @@ enums:
         title: 'Yes'
       no:
         title: 'No'
-  EnumPresentAbsent:
-    description: Options for Phenotypic Feature Assertions that may be
-      present, absent, or indeterminate. Derived from https://loinc.org/LL750-1
-    is_a: EnumNull
-    permissible_values:
-      "loinc:LA9633-4":
-        title: Present 
-        meaning: loinc:LA9633-4
-        description: This feature was determined to be present.
-      "loinc:LA9634-2":
-        title: Absent 
-        meaning: loinc:LA9634-2
-        description: This feature was determined to be absent.
-      "loinc:LA11884-6":
-        title: Indeterminate 
-        meaning: loinc:LA11884-6
-        description: This feature was assessed, but unable to be determined 
-          as present or absent.
-
   
 # --- Sample / Specimen ---
-  EnumAvailabilityStatus:
-    description: Is the biospecimen available for use?
-    permissible_values:
-      available:
-        title: Available 
-        meaning: ig2_biospecimen_availability:available 
-        description: Biospecimen is Available
-      unavailable: 
-        title: Unavailable 
-        meaning: ig2_biospecimen_availability:unavailable 
-        description: Biospecimen is Unavailable
   EnumConsentType:
     title: Consent Type
     description: >-
@@ -1690,27 +1636,6 @@ enums:
       xenograft:
         title: Xenograft Tissue
 
-  EnumSampleCollectionMethod:
-    description: The approach used to collect the biospecimen. [LOINC](https://loinc.org) is recommended.
-  EnumSite:
-    description: The location of the specimen collection. [SNOMED Body Site](https://hl7.org/fhir/R4B/valueset-body-site.html) is recommended.
-  EnumSpatialQualifiers:
-    description: Any spatial/location qualifiers.
-    enum_uri: http://hl7.org/fhir/us/mcode/ValueSet/mcode-body-location-qualifier-vs 
-    reachable_from:
-      source_ontology: bioregistry:snomedct
-      source_nodes:
-        - snomedct:106233006
-        - snomedct:272424004 
-        - snomedct:51440002
-        - snomedct:399488007
-        - snomedct:24028007
-        - snomedct:7771000
-      is_direct: false
-      relationship_types:
-        - rdfs:subClassOf
-  EnumLaterality:
-    description: Laterality information for the site
 
   EnumCellEntity:
     description: The type of cell entity present in the sample.
@@ -1756,77 +1681,6 @@ enums:
         title: Tumor
 
  # --- File ---
-  EnumEDAMFormats:
-    description: Data formats from the EDAM ontology.
-    reachable_from:
-      source_ontology: bioregistry:edam
-      source_nodes:
-        - edam:format_1915 #Format
-      include_self: false
-      is_direct: false
-      relationship_types:
-        - rdfs:subClassOf
-  EnumEDAMDataTypes:
-    description: Data types from the EDAM ontology.
-    reachable_from:
-      source_ontology: bioregistry:edam
-      source_nodes:
-        - edam:data_0006 #Data
-      include_self: false
-      is_direct: false
-      relationship_types:
-        - rdfs:subClassOf
-  EnumFileHashType:
-    description: Types of file hashes supported.
-    permissible_values:
-      md5:
-        title: MD5
-      etag: 
-        title: ETag
-      sha1:
-        title: SHA-1
-      sha256:
-        title: SHA-256
-      sha512:
-        title: SHA-512
-  EnumDataCategory:
-    title: Data Category
-    description: Categories of data which may be collected about participants.
-    #TODO: Add meanings
-    permissible_values:
-    #Should we have these two demo/clinical data categories?
-      unharmonized_demographic_clinical_data:
-        title: Unharmonized Demographic/Clinical Data
-      harmonized_demographic_clinical_data:
-        title: Harmonized Demographic/Clinical Data
-      genomics:
-        title: Genomics
-      transcriptomics:
-        title: Transcriptomics
-      epigenomics:
-        title: Epigenomics
-      proteomics:
-        title: Proteomics
-      metabolomics:
-        title: Metabolomics
-      cognitive_behavioral:
-        title: Cognitive/Behavioral
-      immune_profiling:
-        title: Immune Profiling
-      imaging:
-        title: Imaging
-      microbiome:
-        title: Microbiome
-      #What is the difference between these two?
-      fitness:
-        title: Fitness
-      physical_activity:
-        title: Physical Activity
-      other:
-        title: Other
-      sleep_study:
-        title: Sleep Study
-
   EnumGenomicFileAvailability:
     title: Genomic File Availability
     description: >-
@@ -1886,17 +1740,6 @@ enums:
         title: Somatic Structural Variations
 
 # -- Assay / Read Group / Sequencing Assay ---
-  EnumAssayType:
-    description: Type of assays performed
-    is_a: EnumNull
-    reachable_from:
-      source_ontology: bioregistry:obi
-      source_nodes:
-        - obi:0000070 #Assay
-      include_self: true
-      is_direct: false
-      relationship_types:
-        - rdfs:subClassOf
   EnumReadGroupQualityScale:
     title: Read Group Quality Scale
     description: >-
