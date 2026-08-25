@@ -330,8 +330,8 @@
 
 
 
-        FamilyRelationship --&gt; "1" EnumFamilyRelation : relation
-        click EnumFamilyRelation href "../EnumFamilyRelation/"
+        FamilyRelationship --&gt; "1" Concept : relation
+        click Concept href "../Concept/"
 
 
 
@@ -387,7 +387,7 @@
 </tr>
 <tr>
 <td><a href="../relation/">relation</a></td>
-<td>1 <br/> <a href="../EnumFamilyRelation/">EnumFamilyRelation</a></td>
+<td>1 <br/> <a href="../Concept/">Concept</a> or <br/><a href="../EnumFamilyRelation/">EnumFamilyRelation</a> or <br/><a href="../EnumUnknown/">EnumUnknown</a></td>
 <td>Code definting the relationship predicate</td>
 <td>direct</td>
 </tr>
@@ -521,8 +521,11 @@
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FamilyRelationship</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FamilyRelationship</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumFamilyRelation</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Concept</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">any_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumFamilyRelation</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumUnknown</span>
 <span class="w">  </span><span class="nt">subject_id</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">subject_id</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The family member Subject who is the relationship "object".</span>

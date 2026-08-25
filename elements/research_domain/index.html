@@ -513,7 +513,7 @@
 
 
 <h1 id="slot-research_domain">Slot: research_domain</h1>
-<p><em>Main research domain(s) of the study, other than Down syndrome</em></p>
+<p><em>Main research domain(s) of the study</em></p>
 <div>
 <p>URI: <a href="https://w3id.org/carrollaboratory/kf-access-model/research_domain">kf_access_model:research_domain</a></p>
 <!-- no inheritance hierarchy -->
@@ -546,7 +546,7 @@
 <tbody>
 <tr>
 <td>Range</td>
-<td><a href="../EnumResearchDomain/">EnumResearchDomain</a></td>
+<td><a href="../Concept/">Concept</a>&nbsp;or&nbsp;<br /><a href="../EnumResearchDomain/">EnumResearchDomain</a></td>
 </tr>
 <tr>
 <td>Domain Of</td>
@@ -573,6 +573,15 @@
 </tr>
 </tbody>
 </table>
+<details>
+<summary>Expressions &amp; Logic</summary>
+#### Any Of
+
+Value must satisfy at least one of:
+- AnonymousSlotExpression({'range': 'Concept'})
+- AnonymousSlotExpression({'range': 'EnumResearchDomain'})
+
+</details>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -600,14 +609,17 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">research_domain</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Main research domain(s) of the study, other than Down syndrome</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Main research domain(s) of the study</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/carrollaboratory/kf-access-model</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StudyMetadata</span>
-<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumResearchDomain</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Concept</span>
 <span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">any_of</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Concept</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumResearchDomain</span>
 </code></pre></div>
 </details>
 </div>

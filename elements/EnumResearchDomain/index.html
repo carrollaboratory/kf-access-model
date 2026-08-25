@@ -403,17 +403,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#slots" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Slots
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#identifier-and-mapping-information" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -474,7 +463,7 @@
 
 
 <h1 id="enum-research-domain-enumresearchdomain">Enum: Research Domain (EnumResearchDomain)</h1>
-<p><em>Domains of Research used to find studies.</em></p>
+<p><em>Domains of research activities.</em></p>
 <div>
 <p>URI: <a href="https://w3id.org/carrollaboratory/kf-access-model/EnumResearchDomain">kf_access_model:EnumResearchDomain</a></p>
 <h2 id="permissible-values">Permissible Values</h2>
@@ -489,73 +478,52 @@
 </thead>
 <tbody>
 <tr>
-<td>behavior_and_behavior_mechanisms</td>
 <td>mesh:D001520</td>
+<td>None</td>
 <td></td>
 <td>Title: Behavior and Behavior Mechanisms<br></td>
 </tr>
 <tr>
-<td>congenital_heart_defects</td>
 <td>mesh:D006330</td>
+<td>None</td>
 <td></td>
 <td>Title: Congenital Heart Defects<br></td>
 </tr>
 <tr>
-<td>immune_system_diseases</td>
 <td>mesh:D007154</td>
+<td>None</td>
 <td></td>
 <td>Title: Immune System Diseases<br></td>
 </tr>
 <tr>
-<td>hematologic_diseases</td>
 <td>mesh:D006402</td>
+<td>None</td>
 <td></td>
 <td>Title: Hematologic Diseases<br></td>
 </tr>
 <tr>
-<td>neurodevelopment</td>
 <td>mesh:D065886</td>
+<td>None</td>
 <td></td>
 <td>Title: Neurodevelopment<br></td>
 </tr>
 <tr>
-<td>sleep_wake_disorders</td>
 <td>mesh:D012893</td>
+<td>None</td>
 <td></td>
 <td>Title: Sleep Wake Disorders<br></td>
 </tr>
 <tr>
-<td>all_co_occurring_conditions</td>
 <td>mesh:D013568</td>
+<td>None</td>
 <td></td>
 <td>Title: All Co-occurring Conditions<br></td>
 </tr>
 <tr>
-<td>physical_fitness</td>
 <td>mesh:D010809</td>
-<td></td>
-<td>Title: Physical Fitness<br></td>
-</tr>
-<tr>
-<td>other</td>
 <td>None</td>
 <td></td>
-<td>Title: Other<br></td>
-</tr>
-</tbody>
-</table>
-<h2 id="slots">Slots</h2>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../research_domain/">research_domain</a></td>
-<td>Main research domain(s) of the study, other than Down syndrome</td>
+<td>Title: Physical Fitness<br></td>
 </tr>
 </tbody>
 </table>
@@ -567,46 +535,51 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumResearchDomain</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Domains of Research used to find studies.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Domains of research activities.</span>
 <span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Research Domain</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/carrollaboratory/kf-access-model</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">permissible_values</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">behavior_and_behavior_mechanisms</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">behavior_and_behavior_mechanisms</span>
-<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mesh:D001520</span>
+<span class="w">  </span><span class="nt">mesh:D001520</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mesh:D001520</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Behavior and Behavior Mechanisms</span>
-<span class="w">  </span><span class="nt">congenital_heart_defects</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">congenital_heart_defects</span>
-<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mesh:D006330</span>
+<span class="w">    </span><span class="nt">aliases</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">behavior_and_behavior_mechanisms</span>
+<span class="w">  </span><span class="nt">mesh:D006330</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mesh:D006330</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Congenital Heart Defects</span>
-<span class="w">  </span><span class="nt">immune_system_diseases</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">immune_system_diseases</span>
-<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mesh:D007154</span>
+<span class="w">    </span><span class="nt">aliases</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">congenital_heart_defects</span>
+<span class="w">  </span><span class="nt">mesh:D007154</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mesh:D007154</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Immune System Diseases</span>
-<span class="w">  </span><span class="nt">hematologic_diseases</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hematologic_diseases</span>
-<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mesh:D006402</span>
+<span class="w">    </span><span class="nt">aliases</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">immune_system_diseases</span>
+<span class="w">  </span><span class="nt">mesh:D006402</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mesh:D006402</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Hematologic Diseases</span>
-<span class="w">  </span><span class="nt">neurodevelopment</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">neurodevelopment</span>
-<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mesh:D065886</span>
+<span class="w">    </span><span class="nt">aliases</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hematologic_diseases</span>
+<span class="w">  </span><span class="nt">mesh:D065886</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mesh:D065886</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Neurodevelopment</span>
-<span class="w">  </span><span class="nt">sleep_wake_disorders</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sleep_wake_disorders</span>
-<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mesh:D012893</span>
+<span class="w">    </span><span class="nt">aliases</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">neurodevelopment</span>
+<span class="w">  </span><span class="nt">mesh:D012893</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mesh:D012893</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Sleep Wake Disorders</span>
-<span class="w">  </span><span class="nt">all_co_occurring_conditions</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all_co_occurring_conditions</span>
-<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mesh:D013568</span>
+<span class="w">    </span><span class="nt">aliases</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sleep_wake_disorders</span>
+<span class="w">  </span><span class="nt">mesh:D013568</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mesh:D013568</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">All Co-occurring Conditions</span>
-<span class="w">  </span><span class="nt">physical_fitness</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">physical_fitness</span>
-<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mesh:D010809</span>
+<span class="w">    </span><span class="nt">aliases</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all_co_occurring_conditions</span>
+<span class="w">  </span><span class="nt">mesh:D010809</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mesh:D010809</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Physical Fitness</span>
-<span class="w">  </span><span class="nt">other</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Other</span>
+<span class="w">    </span><span class="nt">aliases</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">physical_fitness</span>
 </code></pre></div>
 </details>
 </div>

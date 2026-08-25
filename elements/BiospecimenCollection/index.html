@@ -341,8 +341,8 @@
 
 
 
-        BiospecimenCollection --&gt; "0..1" EnumLaterality : laterality
-        click EnumLaterality href "../EnumLaterality/"
+        BiospecimenCollection --&gt; "0..1" Concept : laterality
+        click Concept href "../Concept/"
 
 
 
@@ -363,8 +363,8 @@
 
 
 
-        BiospecimenCollection --&gt; "0..1" EnumSite : site
-        click EnumSite href "../EnumSite/"
+        BiospecimenCollection --&gt; "0..1" Concept : site
+        click Concept href "../Concept/"
 
 
 
@@ -374,8 +374,8 @@
 
 
 
-        BiospecimenCollection --&gt; "0..1" EnumSpatialQualifiers : spatial_qualifier
-        click EnumSpatialQualifiers href "../EnumSpatialQualifiers/"
+        BiospecimenCollection --&gt; "0..1" Concept : spatial_qualifier
+        click Concept href "../Concept/"
 
 
 
@@ -426,19 +426,19 @@
 </tr>
 <tr>
 <td><a href="../site/">site</a></td>
-<td>0..1 <br/> <a href="../EnumSite/">EnumSite</a></td>
+<td>0..1 <br/> <a href="../Concept/">Concept</a> or <br/><a href="../EnumSite/">EnumSite</a></td>
 <td>The location of the specimen collection</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../spatial_qualifier/">spatial_qualifier</a></td>
-<td>0..1 <br/> <a href="../EnumSpatialQualifiers/">EnumSpatialQualifiers</a></td>
+<td>0..1 <br/> <a href="../Concept/">Concept</a> or <br/><a href="../EnumSpatialQualifiers/">EnumSpatialQualifiers</a></td>
 <td>Qualifier that further refine the specific location of biospecimen collection</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../laterality/">laterality</a></td>
-<td>0..1 <br/> <a href="../EnumLaterality/">EnumLaterality</a></td>
+<td>0..1 <br/> <a href="../Concept/">Concept</a> or <br/><a href="../EnumLaterality/">EnumLaterality</a></td>
 <td>Laterality that further refine the specific location of biospecimen collectio...</td>
 <td>direct</td>
 </tr>
@@ -596,7 +596,10 @@
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiospecimenCollection</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiospecimenCollection</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumSite</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Concept</span>
+<span class="w">    </span><span class="nt">any_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Concept</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumSite</span>
 <span class="w">  </span><span class="nt">spatial_qualifier</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spatial_qualifier</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Qualifier that further refine the specific location of biospecimen</span>
@@ -607,7 +610,10 @@
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiospecimenCollection</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiospecimenCollection</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumSpatialQualifiers</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Concept</span>
+<span class="w">    </span><span class="nt">any_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Concept</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumSpatialQualifiers</span>
 <span class="w">  </span><span class="nt">laterality</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">laterality</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Laterality that further refine the specific location of biospecimen</span>
@@ -618,7 +624,10 @@
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiospecimenCollection</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiospecimenCollection</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumLaterality</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Concept</span>
+<span class="w">    </span><span class="nt">any_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Concept</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumLaterality</span>
 <span class="w">  </span><span class="nt">encounter_id</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">encounter_id</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unique identifier for this Encounter.</span>

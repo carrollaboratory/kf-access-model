@@ -392,10 +392,32 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#enumeration-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enumeration Source
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#permissible-values" class="md-nav__link">
     <span class="md-ellipsis">
       
         Permissible Values
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slots
       
     </span>
   </a>
@@ -463,9 +485,14 @@
 
 
 <h1 id="enum-enumpresentabsent">Enum: EnumPresentAbsent</h1>
-<p><em>Options for Phenotypic Feature Assertions that may be present, absent, or indeterminate. Derived from <a href="https://loinc.org/LL750-1">https://loinc.org/LL750-1</a></em></p>
+<p><em>Options for describing presence or absence. Derived from SNOMED CT Known codes. The "Known" codes and "Not suspected" are the broadest terms and suitable for general use.</em></p>
 <div>
 <p>URI: <a href="https://w3id.org/carrollaboratory/kf-access-model/EnumPresentAbsent">kf_access_model:EnumPresentAbsent</a></p>
+<h2 id="enumeration-source">Enumeration Source</h2>
+<p><strong>Reachable From:</strong>
+- <strong>Source:</strong> NONE
+- <strong>Nodes:</strong> snomedct:36692007
+- <strong>Via:</strong> rdfs:subClassOf</p>
 <h2 id="permissible-values">Permissible Values</h2>
 <table>
 <thead>
@@ -478,22 +505,85 @@
 </thead>
 <tbody>
 <tr>
-<td>loinc:LA9633-4</td>
-<td>loinc:LA9633-4</td>
-<td>This feature was determined to be present</td>
-<td>Title: Present<br></td>
+<td>snomedct:410515003</td>
+<td>snomedct:410515003</td>
+<td></td>
+<td>Title: Known present<br></td>
 </tr>
 <tr>
-<td>loinc:LA9634-2</td>
-<td>loinc:LA9634-2</td>
-<td>This feature was determined to be absent</td>
-<td>Title: Absent<br></td>
+<td>snomedct:410516002</td>
+<td>snomedct:410516002</td>
+<td></td>
+<td>Title: Known absent<br></td>
 </tr>
 <tr>
-<td>loinc:LA11884-6</td>
-<td>loinc:LA11884-6</td>
-<td>This feature was assessed, but unable to be determined as present or absent</td>
-<td>Title: Indeterminate<br></td>
+<td>snomedct:410590009</td>
+<td>snomedct:410590009</td>
+<td></td>
+<td>Title: Known possible<br></td>
+</tr>
+<tr>
+<td>snomedct:410591008</td>
+<td>snomedct:410591008</td>
+<td></td>
+<td>Title: Definitely present<br></td>
+</tr>
+<tr>
+<td>snomedct:410592001</td>
+<td>snomedct:410592001</td>
+<td></td>
+<td>Title: Probably present<br></td>
+</tr>
+<tr>
+<td>snomedct:410593006</td>
+<td>snomedct:410593006</td>
+<td></td>
+<td>Title: Probably not present<br></td>
+</tr>
+<tr>
+<td>snomedct:410594000</td>
+<td>snomedct:410594000</td>
+<td></td>
+<td>Title: Definitely not present<br></td>
+</tr>
+<tr>
+<td>snomedct:410605003</td>
+<td>snomedct:410605003</td>
+<td></td>
+<td>Title: Confirmed present<br></td>
+</tr>
+<tr>
+<td>snomedct:415684004</td>
+<td>snomedct:415684004</td>
+<td></td>
+<td>Title: Suspected<br></td>
+</tr>
+<tr>
+<td>snomedct:428263003</td>
+<td>snomedct:428263003</td>
+<td></td>
+<td>Title: Not suspected<br></td>
+</tr>
+<tr>
+<td>snomedct:723511001</td>
+<td>snomedct:723511001</td>
+<td></td>
+<td>Title: Refuted<br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="slots">Slots</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../consanguinity/">consanguinity</a></td>
+<td>Is there known or suspected consanguinity in this study family?</td>
 </tr>
 </tbody>
 </table>
@@ -505,28 +595,64 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumPresentAbsent</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Options for Phenotypic Feature Assertions that may be present, absent,</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">or indeterminate. Derived from https://loinc.org/LL750-1</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Options for describing presence or absence. Derived from SNOMED CT Known</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">codes. The &quot;Known&quot; codes and &quot;Not suspected&quot; are the broadest terms and suitable</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">for general use.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/carrollaboratory/kf-access-model</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumNull</span>
 <span class="nt">permissible_values</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">loinc:LA9633-4</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loinc:LA9633-4</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">This feature was determined to be present.</span>
-<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loinc:LA9633-4</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Present</span>
-<span class="w">  </span><span class="nt">loinc:LA9634-2</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loinc:LA9634-2</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">This feature was determined to be absent.</span>
-<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loinc:LA9634-2</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Absent</span>
-<span class="w">  </span><span class="nt">loinc:LA11884-6</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loinc:LA11884-6</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">This feature was assessed, but unable to be determined as present</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">or absent.</span>
-<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loinc:LA11884-6</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Indeterminate</span>
+<span class="w">  </span><span class="nt">snomedct:410515003</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">snomedct:410515003</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">snomedct:410515003</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Known present</span>
+<span class="w">  </span><span class="nt">snomedct:410516002</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">snomedct:410516002</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">snomedct:410516002</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Known absent</span>
+<span class="w">  </span><span class="nt">snomedct:410590009</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">snomedct:410590009</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">snomedct:410590009</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Known possible</span>
+<span class="w">  </span><span class="nt">snomedct:410591008</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">snomedct:410591008</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">snomedct:410591008</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Definitely present</span>
+<span class="w">  </span><span class="nt">snomedct:410592001</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">snomedct:410592001</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">snomedct:410592001</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Probably present</span>
+<span class="w">  </span><span class="nt">snomedct:410593006</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">snomedct:410593006</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">snomedct:410593006</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Probably not present</span>
+<span class="w">  </span><span class="nt">snomedct:410594000</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">snomedct:410594000</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">snomedct:410594000</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Definitely not present</span>
+<span class="w">  </span><span class="nt">snomedct:410605003</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">snomedct:410605003</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">snomedct:410605003</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Confirmed present</span>
+<span class="w">  </span><span class="nt">snomedct:415684004</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">snomedct:415684004</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">snomedct:415684004</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Suspected</span>
+<span class="w">  </span><span class="nt">snomedct:428263003</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">snomedct:428263003</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">snomedct:428263003</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Not suspected</span>
+<span class="w">  </span><span class="nt">snomedct:723511001</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">snomedct:723511001</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">snomedct:723511001</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Refuted</span>
+<span class="nt">reachable_from</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">source_ontology</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bioregistry:snomedct</span>
+<span class="w">  </span><span class="nt">source_nodes</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">snomedct:36692007</span>
+<span class="w">  </span><span class="nt">relationship_types</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rdfs:subClassOf</span>
+<span class="w">  </span><span class="nt">is_direct</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="nt">include_self</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 </code></pre></div>
 </details>
 </div>

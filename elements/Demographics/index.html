@@ -319,8 +319,8 @@
 
 
 
-        Demographics --&gt; "1" EnumEthnicity : ethnicity
-        click EnumEthnicity href "../EnumEthnicity/"
+        Demographics --&gt; "1" Concept : ethnicity
+        click Concept href "../Concept/"
 
 
 
@@ -332,8 +332,8 @@
 
 
 
-        Demographics --&gt; "1..*" EnumRace : race
-        click EnumRace href "../EnumRace/"
+        Demographics --&gt; "1..*" Concept : race
+        click Concept href "../Concept/"
 
 
 
@@ -343,8 +343,8 @@
 
 
 
-        Demographics --&gt; "1" EnumSex : sex
-        click EnumSex href "../EnumSex/"
+        Demographics --&gt; "1" Concept : sex
+        click Concept href "../Concept/"
 
 
 
@@ -376,8 +376,8 @@
 
 
 
-        Demographics --&gt; "0..1" EnumVitalStatus : vital_status
-        click EnumVitalStatus href "../EnumVitalStatus/"
+        Demographics --&gt; "0..1" Concept : vital_status
+        click Concept href "../Concept/"
 
 
 
@@ -405,19 +405,19 @@
 </tr>
 <tr>
 <td><a href="../sex/">sex</a></td>
-<td>1 <br/> <a href="../EnumSex/">EnumSex</a></td>
+<td>1 <br/> <a href="../Concept/">Concept</a> or <br/><a href="../EnumSex/">EnumSex</a> or <br/><a href="../EnumUnknownOther/">EnumUnknownOther</a></td>
 <td>Sex of Participant</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../race/">race</a></td>
-<td>1..* <br/> <a href="../EnumRace/">EnumRace</a></td>
+<td>1..* <br/> <a href="../Concept/">Concept</a> or <br/><a href="../EnumRace/">EnumRace</a> or <br/><a href="../EnumUnknownOther/">EnumUnknownOther</a></td>
 <td>Race of Participant</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../ethnicity/">ethnicity</a></td>
-<td>1 <br/> <a href="../EnumEthnicity/">EnumEthnicity</a></td>
+<td>1 <br/> <a href="../Concept/">Concept</a> or <br/><a href="../EnumEthnicity/">EnumEthnicity</a> or <br/><a href="../EnumUnknownOther/">EnumUnknownOther</a></td>
 <td>Ethnicity of Participant</td>
 <td>direct</td>
 </tr>
@@ -429,7 +429,7 @@
 </tr>
 <tr>
 <td><a href="../vital_status/">vital_status</a></td>
-<td>0..1 <br/> <a href="../EnumVitalStatus/">EnumVitalStatus</a></td>
+<td>0..1 <br/> <a href="../Concept/">Concept</a> or <br/><a href="../EnumVitalStatus/">EnumVitalStatus</a> or <br/><a href="../EnumUnknown/">EnumUnknown</a></td>
 <td>Whether participant is alive or dead</td>
 <td>direct</td>
 </tr>
@@ -551,8 +551,11 @@
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Demographics</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Demographics</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumSex</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Concept</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">any_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumSex</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumUnknownOther</span>
 <span class="w">  </span><span class="nt">race</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">race</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Race of Participant</span>
@@ -562,9 +565,12 @@
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Demographics</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Demographics</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumRace</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Concept</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">any_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumRace</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumUnknownOther</span>
 <span class="w">  </span><span class="nt">ethnicity</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ethnicity</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ethnicity of Participant</span>
@@ -574,8 +580,11 @@
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Demographics</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Demographics</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumEthnicity</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Concept</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">any_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumEthnicity</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumUnknownOther</span>
 <span class="w">  </span><span class="nt">age_at_last_vital_status</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">age_at_last_vital_status</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Age in days when participant's vital status was last recorded</span>
@@ -599,7 +608,10 @@
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Demographics</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Demographics</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumVitalStatus</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Concept</span>
+<span class="w">    </span><span class="nt">any_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumVitalStatus</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumUnknown</span>
 <span class="w">  </span><span class="nt">age_at_first_engagement</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">age_at_first_engagement</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Age in days of Participant at first recorded study event (enrollment,</span>
