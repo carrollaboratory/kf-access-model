@@ -133,6 +133,7 @@ venv.bak/
 
 # mkdocs documentation
 /site
+/docs/schema
 
 # mypy
 .mypy_cache/
@@ -146,5 +147,3 @@ dmypy.json
 .idea
 # Local vscode editor config
 .vscode
-/docs
-/src/kf_access_model/datamodel

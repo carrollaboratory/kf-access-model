@@ -203,16 +203,11 @@ classes:
       - domain
       - status
     slot_usage:
-      parent_study:
-        description: The parent Study for this study, if it is a nested study.
-        range: Study
-      principal_investigator:
-        description: The Investigator(s) responsible for the study.
-        range: Investigator
-      contact:
-        description: The Investigator(s) to contact with questions about this study.
-        range: Investigator
-
+      study_id:
+        range: sdGlobalID
+        required: true
+        identifier: true
+        
   StudyMetadata:
     title: Study Metadata
     description: Additional features about studies that may not apply to all studies
@@ -303,6 +298,8 @@ classes:
     slot_usage:
       subject_id:
         range: ptGlobalID
+        required: true
+        identifier: true
 
   Demographics:
     title: Demographics
