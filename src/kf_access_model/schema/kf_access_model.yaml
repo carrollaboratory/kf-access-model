@@ -11,82 +11,39 @@ see_also:
   - https://carrollaboratory.github.io/kf-access-model
 
 prefixes:
-  kidsfirst: 
-    prefix_prefix: kidsfirst
-    prefix_reference: https://w3id.org/carrollaboratory/kf-access-model/
-  cam:
-    prefix_prefix: cam
-    prefix_reference: https://includedcc.org/common-access-model/
-  linkml:
-    prefix_prefix: linkml
-    prefix_reference: https://w3id.org/linkml/
-  schema:
-    prefix_prefix: schema
-    prefix_reference: http://schema.org/
-  CDCREC:
-    prefix_prefix: CDCREC
-    prefix_reference: urn:oid:2.16.840.1.113883.6.238/
-  hl7_null:
-    prefix_prefix: hl7_null
-    prefix_reference: http://terminology.hl7.org/CodeSystem/v3-NullFlavor/
-  snomedct:
-    prefix_prefix: snomedct
-    prefix_reference: http://snomed.info/id/
-  MONDO:
-    prefix_prefix: MONDO
-    prefix_reference: http://purl.obolibrary.org/obo/MONDO_
-  HP:
-    prefix_prefix: HP
-    prefix_reference: http://purl.obolibrary.org/obo/HP_
-  mesh:
-    prefix_prefix: mesh
-    prefix_reference: http://id.nlm.nih.gov/mesh/
-  NCIT:
-    prefix_prefix: NCIT
-    prefix_reference: http://purl.obolibrary.org/obo/NCIT_
-  PATO:
-    prefix_prefix: PATO
-    prefix_reference: http://purl.obolibrary.org/obo/PATO_
-  DUO:
-    prefix_prefix: DUO
-    prefix_reference: http://purl.obolibrary.org/obo/DUO_
-  loinc:
-    prefix_prefix: loinc
-    prefix_reference: https://loinc.org/
-  KIN:
-    prefix_prefix: KIN
-    prefix_reference: http://purl.org/ga4gh/kin.owl#
-  edam:
-    prefix_prefix: edam
-    prefix_reference: http://edamontology.org
-  OBI:
-    prefix_prefix: OBI
-    prefix_reference: http://purl.obolibrary.org/obo/OBI_
-  MS:
-    prefix_prefix: MS
-    prefix_reference: http://purl.obolibrary.org/obo/MS_
-  CHMO:
-    prefix_prefix: CHMO
-    prefix_reference: http://purl.obolibrary.org/obo/CHMO_
-  NCBITaxon:
-    prefix_prefix: NCBITaxon
-    prefix_reference: http://purl.obolibrary.org/obo/NCBITaxon_
-  xsd:
-    prefix_prefix: xsd
-    prefix_reference: http://www.w3.org/2001/XMLSchema#
-  shex:
-    prefix_prefix: shex
-    prefix_reference: http://www.w3.org/ns/shex#
+  kidsfirst: https://w3id.org/carrollaboratory/kf-access-model/
+  cam: https://includedcc.org/common-access-model/
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  # subset of CDC Race and Ethnicity Code Set Version 1.0
+  CDCREC: urn:oid:2.16.840.1.113883.6.238/
+  hl7_null: http://terminology.hl7.org/CodeSystem/v3-NullFlavor/
+  snomedct: http://snomed.info/id/
+  MONDO: http://purl.obolibrary.org/obo/MONDO_
+  HP: http://purl.obolibrary.org/obo/HP_
+  mesh: http://id.nlm.nih.gov/mesh/
+  NCIT: http://purl.obolibrary.org/obo/NCIT_
+  PATO: http://purl.obolibrary.org/obo/PATO_
+  DUO: http://purl.obolibrary.org/obo/DUO_
+  loinc: https://loinc.org/
+  KIN: http://purl.org/ga4gh/kin.owl#
+  edam: http://edamontology.org
+  OBI: http://purl.obolibrary.org/obo/OBI_
+  MS: http://purl.obolibrary.org/obo/MS_
+  CHMO: http://purl.obolibrary.org/obo/CHMO_
+  NCBITaxon: http://purl.obolibrary.org/obo/NCBITaxon_
+  xsd: http://www.w3.org/2001/XMLSchema#
+  shex: http://www.w3.org/ns/shex#
 
 default_prefix: kidsfirst
 default_range: string
 
 imports:
-  # - upstream-models/common_access_model
   - linkml:types
   - enums/EnumAssayType
   - enums/EnumAsserterType
   - enums/EnumAvailabilityStatus
+  - enums/EnumConsentType
   - enums/EnumDataCategory
   - enums/EnumDataSourceType
   - enums/EnumDataUseModifier
@@ -95,127 +52,104 @@ imports:
   - enums/EnumEDAMFormats
   - enums/EnumEthnicity
   - enums/EnumFamilyRelation
+  - enums/EnumFamilyRelationship
   - enums/EnumFamilyRole
   - enums/EnumFamilyType
   - enums/EnumFileHashType
   - enums/EnumLaterality
   - enums/EnumOrganism
+  - enums/EnumOutcomeDiseaseRelated
   - enums/EnumParticipantLifespanStage
   - enums/EnumPresentAbsent
   - enums/EnumProgram
   - enums/EnumRace
   - enums/EnumResearchDomain
   - enums/EnumSampleCollectionMethod
+  - enums/EnumSequencingCenter
   - enums/EnumSex
   - enums/EnumSite
   - enums/EnumSpatialQualifiers
+  - enums/EnumSpecimenComposition
   - enums/EnumStudyDesign
+  - enums/EnumStudyStatus
   - enums/EnumSubjectType
   - enums/EnumUnknown
   - enums/EnumUnknownOther
+  - enums/EnumVisibilityReason
   - enums/EnumVitalStatus
 
 types:
   ptGlobalID:
-    name: ptGlobalID
+    uri: xsd:string
+    base: str
     description: Dewrangle pt global ID. For FHIR Patient Resources.
-    from_schema: https://w3id.org/carrollaboratory/kf-access-model
-    base: str
-    uri: xsd:string
   obGlobalID:
-    name: obGlobalID
+    uri: xsd:string
+    base: str
     description: Dewrangle ob global ID. For FHIR Observation Resources.
-    from_schema: https://w3id.org/carrollaboratory/kf-access-model
-    base: str
-    uri: xsd:string
   lsGlobalID:
-    name: lsGlobalID
+    uri: xsd:string
+    base: str
     description: Dewrangle ls global ID. For FHIR List Resources.
-    from_schema: https://w3id.org/carrollaboratory/kf-access-model
-    base: str
-    uri: xsd:string
   orGlobalID:
-    name: orGlobalID
+    uri: xsd:string
+    base: str
     description: Dewrangle or global ID. For FHIR Organization Resources.
-    from_schema: https://w3id.org/carrollaboratory/kf-access-model
-    base: str
-    uri: xsd:string
   grGlobalID:
-    name: grGlobalID
+    uri: xsd:string
+    base: str
     description: Dewrangle gr global ID. For FHIR Group Resources.
-    from_schema: https://w3id.org/carrollaboratory/kf-access-model
-    base: str
-    uri: xsd:string
   sdGlobalID:
-    name: sdGlobalID
+    uri: xsd:string
+    base: str
     description: Dewrangle sd global ID. For FHIR ResearchStudy Resources.
-    from_schema: https://w3id.org/carrollaboratory/kf-access-model
-    base: str
-    uri: xsd:string
   deGlobalID:
-    name: deGlobalID
+    uri: xsd:string
+    base: str
     description: Dewrangle de global ID. For FHIR Device Resources.
-    from_schema: https://w3id.org/carrollaboratory/kf-access-model
-    base: str
-    uri: xsd:string
   bsGlobalID:
-    name: bsGlobalID
+    uri: xsd:string
+    base: str
     description: Dewrangle bs global ID. For FHIR Specimen Resources.
-    from_schema: https://w3id.org/carrollaboratory/kf-access-model
-    base: str
-    uri: xsd:string
   adGlobalID:
-    name: adGlobalID
+    uri: xsd:string
+    base: str
     description: Dewrangle ad global ID. For FHIR ActivityDefinition Resources.
-    from_schema: https://w3id.org/carrollaboratory/kf-access-model
-    base: str
-    uri: xsd:string
   drGlobalID:
-    name: drGlobalID
+    uri: xsd:string
+    base: str
     description: Dewrangle dr global ID. For FHIR DocumentReference Resources.
-    from_schema: https://w3id.org/carrollaboratory/kf-access-model
-    base: str
-    uri: xsd:string
   enGlobalID:
-    name: enGlobalID
+    uri: xsd:string
+    base: str
     description: Dewrangle en global ID. For FHIR Encounter Resources.
-    from_schema: https://w3id.org/carrollaboratory/kf-access-model
-    base: str
-    uri: xsd:string
   coGlobalID:
-    name: coGlobalID
+    uri: xsd:string
+    base: str
     description: Dewrangle co global ID. For FHIR Consent Resources.
-    from_schema: https://w3id.org/carrollaboratory/kf-access-model
-    base: str
-    uri: xsd:string
   diGlobalID:
-    name: diGlobalID
+    uri: xsd:string
+    base: str
     description: Dewrangle di global ID. For FHIR Diagnostic Report Resources.
-    from_schema: https://w3id.org/carrollaboratory/kf-access-model
-    base: str
-    uri: xsd:string
+
+  # To be created
   fmGlobalID:
-    name: fmGlobalID
+    uri: xsd:string
+    base: str
     description: Dewrangle __ global ID. For FHIR FamilyMemberHistory Resources.
-    from_schema: https://w3id.org/carrollaboratory/kf-access-model
-    base: str
-    uri: xsd:string
   pdGlobalID:
-    name: pdGlobalID
+    uri: xsd:string
+    base: str
     description: Dewrangle __ global ID. For FHIR PlanDefinition Resources.
-    from_schema: https://w3id.org/carrollaboratory/kf-access-model
-    base: str
-    uri: xsd:string
   msGlobalID:
-    name: msGlobalID
-    description: Dewrangle __ global ID. For FHIR MedicationStatement Resources.
-    from_schema: https://w3id.org/carrollaboratory/kf-access-model
-    base: str
     uri: xsd:string
+    base: str
+    description: Dewrangle __ global ID. For FHIR MedicationStatement Resources.
+
 
 classes:
   Any:
-      class_uri: linkml:Any
+    class_uri: linkml:Any
   Record:
     description: One row / entity within the dataservice
     title: Record
@@ -259,15 +193,13 @@ classes:
       - contact
       - study_description
       - website
-      # - publication
+      - publication
       - acknowledgments
       - citation_statement
-      # - do_id
+      - do_id
 
       # KF fields
-      # - data_access_authority -- always mapped to dbGaP in KF
       - version
-      - attribution
       - domain
       - status
     slot_usage:
@@ -281,6 +213,63 @@ classes:
         description: The Investigator(s) to contact with questions about this study.
         range: Investigator
 
+  StudyMetadata:
+    title: Study Metadata
+    description: Additional features about studies that may not apply to all studies
+    mixins:
+      - Record
+    slots:
+    - participant_lifespan_stage
+    - selection_criteria
+    - study_design
+    - clinical_data_source_type
+    - data_category
+    - vbr_id
+    - research_domain
+    - expected_number_of_participants
+    - actual_number_of_participants
+    slot_usage:
+      study_id:
+        required: true
+        identifier: true
+      data_category:
+        required: true
+        multivalued: true
+
+# could be repurposed as sequencing center/VBR for KF
+  VirtualBiorepository:
+    title: Virtual BioRepository (VBR)
+    description: An organization that can provide access to specimen for further analysis.
+    mixins:
+      - Record
+    slots:
+    - vbr_id
+    - name
+    - institution
+    - contact
+    - website
+    - vbr_readme
+    slot_usage:
+      vbr_id:
+        range: orGlobalID
+        required: true
+        identifier: true
+
+  DOI:
+    title: Digital Object Identifier (DOI)
+    description: A DOI is a permanent reference with metadata about a digital object.
+    mixins:
+      - Record
+    slots:
+    - do_id
+    - bibliographic_reference
+    slot_usage:
+      do_id:
+        range: string
+        required: true
+        identifier: true
+
+
   Investigator:
     title: Investigator
     description: An individual who made contributions to the collection, analysis, or sharing of data.
@@ -290,6 +279,16 @@ classes:
       - institution
       - investigator_title
       - email
+
+  Publication:
+    title: Publication
+    description: Information about a specific publication.
+    mixins:
+      - Record
+    #Could add more here
+    slots:
+    - bibliographic_reference
+    - website
 
   Subject:
     title: Subject
@@ -301,10 +300,21 @@ classes:
       - subject_id
       - subject_type
       - organism_type
+    slot_usage:
+      subject_id:
+        range: ptGlobalID
+
+  Demographics:
+    title: Demographics
+    description: Basic participant demographics summary
+    mixins:
+      - Record
+    slots:
+      - subject_id
       - sex
       - race
       - ethnicity
-      - age_at_last_vital_status 
+      - age_at_last_vital_status
       - vital_status
       - age_at_first_engagement
 
@@ -314,7 +324,8 @@ classes:
       - affected_status
     slot_usage:
       subject_id:
-        range: ptGlobalID
+        required: true
+        identifier: true
 
   Family:
     title: Family
@@ -347,6 +358,26 @@ classes:
         required: true
         description: The family member Subject who is the relationship "object".
 
+  FamilyMembership:
+    title: Family Membership
+    description: Designates a Subject as a member of a family with a specified role.
+    mixins:
+      - Record
+    slots:
+    - family_membership_id
+    - family_id
+    - subject_id
+    - family_role
+    slot_usage:
+      family_membership_id:
+        range: string
+        required: true
+        identifier: true
+      family_id:
+        required: true
+      subject_id:
+        required: true
+
   SubjectAssertion:
     title: Subject Assertion 
     description: Assertion about a particular Subject. Diagnoses, Phenotypes, and other clinical observations can be recorded as Subject Assertions.
@@ -354,8 +385,9 @@ classes:
     slots:
       - assertion_id
       - subject_id
-      # - encounter_id
-      - assertion_provenance
+      - encounter_id
+      - asserter_type
+      - assertion_source_type
       - age_at_assertion
       - age_at_event
       - age_at_resolution
@@ -377,7 +409,7 @@ classes:
   KFSubjectAssertion:
     title: Subject Assertion
     description: A Subject Assertion recorded for a Participant.
-    mixins: SubjectAssertion
+    is_a: SubjectAssertion
     slots:
       - source_text_tumor_location
       - uberon_id_tumor_location
@@ -427,7 +459,7 @@ classes:
       - site 
       - spatial_qualifier 
       - laterality 
-      # - encounter_id
+      - encounter_id
     slot_usage:
       biospecimen_collection_id:
         range: string
@@ -455,8 +487,6 @@ classes:
       - external_sample_id
       - source_text_tissue_type
       - composition
-      # - source_text_anatomical_site
-      # - age_at_event_days
       - source_text_tumor_descriptor
       - ncit_id_tissue_type
       - ncit_id_anatomical_site
@@ -465,17 +495,72 @@ classes:
       - shipment_origin
       - shipment_date
       - analyte_type
-      # - concentration_mg_per_ml
-      # - volume_ul
       - specimen_status
-      # - method_of_sample_procurement
       - dbgap_consent_code
       - consent_type
     slot_usage:
       aliquot_id:
         range: string
 
-  GenomicFile:
+
+  Encounter:
+    title: Participant Encounter
+    description: An event at which data was collected about a participant,
+      an intervention was made, or information about a participant was recorded.
+    mixins:
+      - Record
+    slots:
+    - encounter_id
+    - subject_id
+      #TODO: Should this alternatively be an "encounter type", ie, to not require a full definition?
+    - encounter_definition_id
+    - age_at_event
+    slot_usage:
+      encounter_id:
+        range: enGlobalID
+        required: true
+        identifier: true
+  EncounterDefinition:
+    title: Encounter Definition
+    description: A definition of an encounter type in this study, ie, an event
+      at which data was collected about a participant, an intervention was made,
+      or information about a participant was recorded. This may be something
+      planned by a study or a type of data collection.
+    #TODO: These are metadata and may not need the same Record basis.
+    mixins:
+      - Record
+    slots:
+    - encounter_definition_id
+    - name
+    - description
+    - activity_definition_id
+    slot_usage:
+      encounter_definition_id:
+        range: pdGlobalID
+        required: true
+        identifier: true
+      activity_definition_id:
+        multivalued: true
+  ActivityDefinition:
+    title: Activity Definition
+    description: A definition of an activity in this study, eg, a biospecimen
+      collection, assay, intervention, survey, or assessment.
+    #TODO: These are metadata and may not need the same Record basis.
+    mixins:
+      - Record
+    slots:
+      - activity_definition_id
+      - name
+      - description
+      #TODO: Probably want an "expected data generated" slot, eg,
+      #observation definitions or dd refs
+    slot_usage:
+      activity_definition_id:
+        range: adGlobalID
+        required: true
+        identifier: true
+
+  File:
     title: File
     description: A data file generated by or associated with sequencing. 
     mixins: Record 
@@ -497,15 +582,18 @@ classes:
       - hash
       - availability
       # KF Fields
-      - controlled_access
       - is_harmonized
+      - file_version_descriptor
+      # could these be refactored into an access policy?
       - acl
       - authz
-      - reference_genome
-      - workflow_type
-      - workflow_tool
-      - workflow_version
-      - file_version_descriptor
+      - controlled_access
+
+#  Should these be in Assay?
+      # - reference_genome
+      # - workflow_type
+      # - workflow_tool
+      # - workflow_version
     slot_usage:
       file_id:
         range: drGlobalID
@@ -538,6 +626,7 @@ classes:
       - file_id
       - assay_type
       - assay_source
+      - activity_definition_id
     slot_usage:
       assay_id:
         range: diGlobalID
@@ -554,7 +643,7 @@ classes:
   SequencingAssay:
     title: Sequencing Experiment Assay
     description: A sequencing experiment performed on a Biospecimen.
-    mixins: Assay
+    is_a: Assay
     slots:
       - sequencing_center_id
       - library_name
@@ -576,80 +665,42 @@ classes:
       - is_adapter_trimmed
       - adapter_sequencing
 
-
-  ReadGroup:
-    title: Read Group
-    description: Sequencing read group (flow cell / lane) metadata.
-    mixins: Record
-    slots:
-      - file_id
       - flow_cell
       - lane_number
       - quality_scale
 
-#  This could just be an enum
-  SequencingCenter:
-    title: Sequencing Center
-    description: An organization that performs sequencing for a study.
-    mixins: Record
+
+  Dataset:
+    title: Dataset
+    description: Set of files grouped together for release.
     slots:
-      - name
+    - dataset_id
+    - name
+    - description
+    - do_id
+    - file_id
+    - publication
+      #TODO: Are these good elements for the core entity?
+    - data_collection_start
+    - data_collection_end
+    slot_usage:
+      dataset_id:
+        range: lsGlobalID
+        required: true
+        identifier: true
+      file_id:
+        multivalued: true
+        description: The list of files comprising this dataset.
 
-  
 
-# KF linking tables - do we need to include any of these?
-
-  # KFBiospecimenGenomicFile:
-  #   title: Biospecimen Genomic File
-  #   description: Links a Biospecimen to a GenomicFile it produced.
-  #   is_a: KFRecord
+#  This could just be an enum or could be refactored into VBR
+  # SequencingCenter:
+  #   title: Sequencing Center
+  #   description: An organization that performs sequencing for a study.
+  #   mixins: Record
   #   slots:
-  #     - biospecimen_id
-  #     - genomic_file_id
-  #   slot_usage:
-  #     biospecimen_id:
-  #       required: true
-  #     genomic_file_id:
-  #       required: true
+  #     - name
 
-  # KFBiospecimenDiagnosis:
-  #   title: Biospecimen Diagnosis
-  #   description: Links a Biospecimen to a Diagnosis it is associated with.
-  #   is_a: KFRecord
-  #   slots:
-  #     - biospecimen_id
-  #     - diagnosis_id
-  #   slot_usage:
-  #     biospecimen_id:
-  #       required: true
-  #     diagnosis_id:
-  #       required: true
-
-  # KFReadGroupGenomicFile:
-  #   title: Read Group Genomic File
-  #   description: Links a ReadGroup to a GenomicFile it produced.
-  #   is_a: KFRecord
-  #   slots:
-  #     - read_group_id
-  #     - genomic_file_id
-  #   slot_usage:
-  #     read_group_id:
-  #       required: true
-  #     genomic_file_id:
-  #       required: true
-
-  # KFSequencingExperimentGenomicFile:
-  #   title: Sequencing Experiment Genomic File
-  #   description: Links a SequencingExperiment to a GenomicFile it produced.
-  #   is_a: KFRecord
-  #   slots:
-  #     - sequencing_experiment_id
-  #     - genomic_file_id
-  #   slot_usage:
-  #     sequencing_experiment_id:
-  #       required: true
-  #     genomic_file_id:
-  #       required: true
 
 slots:
 
@@ -665,26 +716,39 @@ slots:
     required: false 
     range: uriorcurie 
     multivalued: true 
-  kf_id:
-    title: KF ID
-    description: >-
-      Kids First Dataservice identifier for this record, eg, PT_00000000.
+  access_policy_id:
+    title: Access Policy ID
+    description: Global identifier for the access policy that applies to
+      this row of data.
+    range: AccessPolicy
+  data_use_accession:
+    title: Data Use Accession
+    description: Accession used to provision access to the record, eg,
+      a dbGaP phsID.
+    range: uriorcurie
+  data_use_permission:
+    title: Data Use Permission
+    description: Broad category of restrictions on data use.
+    # range: EnumDataUsePermission
+    required: true
+  data_use_modifier:
+    title: Data Use Modifier
+    description: Additional modifiers that limit data use.
+    # range: EnumDataUseModifier
+  disease_limitation:
+    title: Data Use Disease Limitation
+    description: If the access is limited to a specific disease purpose,
+      it is specified here.
     range: string
-    pattern: "^[A-Z]{2}_[A-Z0-9]{8}$"
-  visible:
-    title: Visible
-    description: >-
-      Whether this record is visible/released, per Kids First Dataservice
-      access control.
-    range: boolean
-  visibility_comment:
-    title: Visibility Comment
-    description: Free-text explanation supporting visibility_reason.
+  access_description:
+    title: Access Description
+    description: Any additional information to support access requests.
     range: string
-  visibility_reason:
-    title: Visibility Reason
-    description: The reason this record is or is not visible.
-    range: EnumVisibilityReason
+  do_id:
+    title: DOI
+    description: Digital Object Identifier (DOI) for this Record.
+    range: DOI
+    multivalued: false
 
   # --- Study/Investigator ---  
   parent_study:
@@ -720,11 +784,6 @@ slots:
     description: Short name for the study
     range: string
     required: false
-  data_access_authority:
-    title: Data Access Authority
-    description: >-
-      The authority governing access to this study's data, eg, dbGaP.
-    range: EnumDataAccessAuthority
   version:
     title: Version
     description: The version of this study's data.
@@ -733,10 +792,6 @@ slots:
     title: File Version Descriptor
     description: >-
       A descriptor distinguishing this record's data version from others.
-    range: string
-  attribution:
-    title: Attribution
-    description: Text describing how to attribute use of this study's data.
     range: string
   domain:
     title: Study Domain
@@ -801,6 +856,77 @@ slots:
      (INvestigation of Co-occurring conditions across the Lifespan to Understand Down syndromE) Project <insert accession 
      number(s) and/or study DOI(s)>, and were accessed from the INCLUDE Data Hub and <insert other database(s)>."
     range: string
+  bibliographic_reference:
+    title: Bibiliographic Reference
+    description: Text use to reference this Record.
+    range: string
+  vbr_id:
+    title: Virtual Biorepository
+    description: Information about the study's Virtual Biorepository, if
+      participating
+    range: VirtualBiorepository
+  vbr_readme:
+    title: VBR Readme
+    description: Instructions for contacting or requesting samples from Virtual
+      Biorepository, if participating
+    range: string
+  research_domain:
+    description: Main research domain(s) of the study
+    range: Concept
+    any_of: 
+      - range: Concept
+      - range: EnumResearchDomain
+    required: true
+    multivalued: true
+  participant_lifespan_stage:
+    title: Participant Lifespan Stage
+    description: Focus age group(s) of the study population
+    range: EnumParticipantLifespanStage
+    required: true
+    multivalued: true
+  selection_criteria:
+    title: Selection Criteria
+    description: Brief description of inclusion and/or exclusion criteria for
+      the study
+    range: string
+  study_design:
+    title: Study Design
+    description: Overall design of study, including whether it is longitudinal
+      and whether family members/unrelated controls are also enrolled
+    range: Concept
+    any_of:
+      - range: Concept
+      - range: EnumStudyDesign
+    required: true
+    multivalued: true
+  data_category:
+    title: Data Category
+    description: General category of data in this Record (e.g. Clinical,
+      Genomics, etc)
+    range: Concept
+    any_of:
+      - range: Concept
+      - range: EnumDataCategory
+  clinical_data_source_type:
+    title: Clinical Data Source Type
+    description: Source(s) of data collected from study participants
+    range: EnumDataSourceType
+    required: true
+    multivalued: true
+  publication:
+    title: Publication
+    description: Publications associated with this Record.
+    range: Publication
+    multivalued: true
+  expected_number_of_participants:
+    title: Expected Number of Participants
+    description: Total expected number of participants to be recruited.
+    range: integer
+    required: true
+  actual_number_of_participants:
+    title: Actual Number of Participants
+    description: Total participants included at this time.
+    range: integer
 
 
   # --- Participant ---
@@ -884,11 +1010,6 @@ slots:
     maximum_value: 32507
 
   # --- Family / Family Relationship ---
-  # subject_id:
-  #   description: The family member Subject who is the relationship "object".
-  #   required: true
-  #   range: Subject
-  #   inlined: false
   family_id:
     title: Family ID
     description: Global ID for the Family
@@ -927,6 +1048,16 @@ slots:
     any_of:
       - range: EnumFamilyRelation
       - range: EnumUnknown
+  family_membership_id:
+    title: Family Relationship ID
+    description: ID for the Family Relationship
+    range: FamilyMembership
+  family_role:
+    description: The "role" of this individual in this family. Could include terms like "proband", "mother", etc.
+    range: Concept
+    any_of:
+      - range: Concept
+      - range: EnumFamilyRole
 
   # --- Diagnosis / Phenotype / Outcome ---
 
@@ -935,9 +1066,13 @@ slots:
     description: INCLUDE Global ID for the Assertion
     range: SubjectAssertion
     multivalued: false 
-  assertion_provenance:
-    title: Assertion Provenance
-    description: The original source of this assertion
+  asserter_type:
+    title: Asserter Type
+    description: The original asserter of this information
+    range: EnumAsserterType
+  assertion_source_type:
+    title: Assertion Source
+    description: The source of this assertion from the original data
     range: EnumDataSourceType
   age_at_assertion:
     title: Age at assertion
@@ -1140,7 +1275,7 @@ slots:
   sequencing_center_id:
     title: Sequencing Center ID
     description: The sequencing center associated with this record.
-    range: SequencingCenter
+    range: EnumSequencingCenter
   external_sample_id:
     title: External Sample ID
     description: >-
@@ -1208,11 +1343,29 @@ slots:
       The Data Use Ontology-style consent short name for this specimen.
     range: EnumConsentType
 
+  # --- Encounter/Activity
+  encounter_id:
+    title: Encounter ID
+    description: Unique identifier for this Encounter.
+    range: Encounter
+  description:
+    title: Description
+    description: Description for this entity.
+    range: string
+  encounter_definition_id:
+    title: Encounter Definition ID
+    description: Unique identifier for this Encounter Definition.
+    range: EncounterDefinition
+  activity_definition_id:
+    title: Activity Definition ID
+    description: Unique identifier for this Activity Definition.
+    range: ActivityDefinition
+
   # --- Genomic File ---
   file_id:
     title: File ID
     description: Unique identifier for this File.
-    range: GenomicFile
+    range: File
   filename:
     title: Filename
     description: The name of the file.
@@ -1279,13 +1432,6 @@ slots:
     title: File Hash Value
     description: The value of the file hash
     range: string
-  data_category:
-    title: Data Category
-    description: General category of data in this Record (e.g. Clinical, Genomics, etc)
-    range: Concept
-    any_of:
-      - range: Concept
-      - range: EnumDataCategory
   controlled_access:
     title: Controlled Access
     description: Whether access to this file is controlled.
@@ -1334,7 +1480,7 @@ slots:
     description: The version of the workflow tool used to produce this file.
     range: string
 
-  # --- Read Group / Sequencing Assay ---
+  # --- Sequencing Assay ---
   assay_id:
     title: Assay ID
     description: The unique identifier for the Assay.
@@ -1435,6 +1581,22 @@ slots:
   adapter_sequencing:
     title: Adapter Sequence
     description: The adapter sequence used, if known.
+    range: string
+
+# --- Dataset ---
+  dataset_id:
+    title: Dataset ID
+    description: Unique identifier for a Dataset.
+    range: Dataset
+  data_collection_start:
+    title: Data Collection Start
+    description: The date that data collection started. May include only a year.
+    #TODO: We could re-evaluate these as dates, but that may be too implementation specific
+    range: string
+  data_collection_end:
+    title: Data Collection End
+    description: The date that data collection started. May include only a year.
+    #TODO: We could re-evaluate these as dates, but that may be too implementation specific
     range: string
 
 enums:
@@ -1706,120 +1868,3 @@ enums:
         title: polyA
       totalrnaseq:
         title: totalRNAseq
-
-# Do we need to add a field for sequencing center ID? Or is the name enough? We could use a short code instead of the kf ID
-  EnumSequencingCenter:
-    title: Sequencing Center
-    description: >-
-      Sequencing centers known to Kids First, from
-      kf_lib_data_ingest.common.constants.SEQUENCING.CENTER. Provided for
-      reference; KFSequencingCenter.name is left as free text so new
-      centers can be added without a schema change.
-    permissible_values:
-      ashion:
-        title: Ashion
-        description: 'Kids First sequencing center ID: SC_0CNMF82N'
-      baylor:
-        title: Baylor College of Medicine
-        description: 'Kids First sequencing center ID: SC_A1JNZAZH'
-      bc_cancer_agency:
-        title: British Columbia Cancer Agency Genome Sciences Centre
-        description: 'Kids First sequencing center ID: SC_FN7NH453'
-      bgi:
-        title: BGI@CHOP Genome Center
-        description: 'Kids First sequencing center ID: SC_WWEQ9HFY'
-      bgi_china:
-        title: BGI
-        description: 'Kids First sequencing center ID: SC_FAD4KCQG'
-      broad:
-        title: Broad Institute
-        description: 'Kids First sequencing center ID: SC_DGDDQVYR'
-      cbtn_unsequenced:
-        title: CBTN Unsequenced
-        description: 'Kids First sequencing center ID: SC_31369RXZ'
-      chop:
-        title: CHOP
-        description: 'Kids First sequencing center ID: SC_9NSC532X'
-      chop_dgd:
-        title: CHOP DGD
-        description: 'Kids First sequencing center ID: SC_ZZPPF973'
-      complete_genomics:
-        title: Complete Genomics
-        description: 'Kids First sequencing center ID: SC_D30SEWS4'
-      csir:
-        title: CSIR - Institute of Genomics and Integrative Biology, Delhi, India
-        description: 'Kids First sequencing center ID: SC_MDY0AZMZ'
-      feline_diagnostics:
-        title: Feline Diagnostics LLC
-        description: 'Kids First sequencing center ID: SC_CATTVETT'
-      fg:
-        title: fg
-        description: 'Kids First sequencing center ID: SC_XXXXXXX2'
-      genedx:
-        title: GeneDx
-        description: 'Kids First sequencing center ID: SC_5EDC0A25'
-      hgt:
-        title: Humangenetik Tübingen
-        description: 'Kids First sequencing center ID: SC_75KENA7A'
-      hudson_alpha:
-        title: HudsonAlpha Institute for Biotechnology
-        description: 'Kids First sequencing center ID: SC_X1N69WJM'
-      nant:
-        title: NantOmics
-        description: 'Kids First sequencing center ID: SC_N1EVHSME'
-      novogene:
-        title: Novogene
-        description: 'Kids First sequencing center ID: SC_2ZBAMKK0'
-      nygc:
-        title: New York Genome Center
-        description: 'Kids First sequencing center ID: SC_BJW95TMY'
-      nci:
-        title: National Cancer Institute, Khan Lab
-        description: 'Kids First sequencing center ID: SC_F6RZ51K9'
-      nih:
-        title: National Institutes of Health
-        description: 'Kids First sequencing center ID: SC_HEXD2E5R'
-      princess_maxima:
-        title: Princess Maxima Center
-        description: 'Kids First sequencing center ID: SC_V4CCQ3WE'
-      sickkids:
-        title: SickKids
-        description: 'Kids First sequencing center ID: SC_9WMJKQ1X'
-      sidra:
-        title: Genomic Clinical Core at Sidra Medical and Research Center
-        description: 'Kids First sequencing center ID: SC_KE2ASNJM'
-      st_jude:
-        title: St Jude
-        description: 'Kids First sequencing center ID: SC_1K3QGW4V'
-      temp:
-        title: TEMP
-        description: 'Kids First sequencing center ID: SC_SJJ0B9GN'
-      tempus:
-        title: Tempus
-        description: 'Kids First sequencing center ID: SC_TQ8HJWGE'
-      tgen:
-        title: The Translational Genomics Research Institute
-        description: 'Kids First sequencing center ID: SC_KQ9JZG3P'
-      unknown_chris_jones:
-        title: 'UNKNOWN:CHRIS_JONES'
-        description: 'Kids First sequencing center ID: SC_5A2B1T4K'
-      ucsf_cat:
-        title: UCSF CAT
-        description: 'Kids First sequencing center ID: SC_MSQP04K7'
-      variantyx:
-        title: Variantyx
-        description: 'Kids First sequencing center ID: SC_T2A19FHX'
-      virtual:
-        title: Virtual
-        description: 'Kids First sequencing center ID: SC_BATJDPHB'
-      washu:
-        title: Washington University
-        description: 'Kids First sequencing center ID: SC_K52V7463'
-      yale:
-        title: Yale
-        description: 'Kids First sequencing center ID: SC_31W52VNX'
-      fredhutch:
-        title: Fred Hutchinson Cancer Research Center
-        description: 'Kids First sequencing center ID: SC_8JXH42X1'
-
- 
