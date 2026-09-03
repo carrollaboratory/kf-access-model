@@ -146,3 +146,5 @@ dmypy.json
 .idea
 # Local vscode editor config
 .vscode
+/docs
+/src/kf_access_model/datamodel

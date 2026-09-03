@@ -1,4 +1,4 @@
-id: https://w3id.org/carrollaboratory/kf-access-model
+id: https://w3id.org/carrollaboratory/kf-access-model/EnumFileHashType
 name: EnumFileHashType
 enums:
   EnumFileHashType:

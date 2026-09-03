@@ -1,5 +1,5 @@
 ---
-id: https://w3id.org/carrollaboratory/kf-access-model
+id: https://w3id.org/carrollaboratory/kf-access-model/EnumDataUsePermission
 name: EnumDataUsePermission
 enums:
   EnumDataUsePermission:
