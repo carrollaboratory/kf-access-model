@@ -1,0 +1,37 @@
+id: https://w3id.org/carrollaboratory/kf-access-model/EnumSpecimenComposition
+name: EnumSpecimenComposition
+enums:
+  EnumSpecimenComposition:
+    title: Specimen Composition
+    description: >-
+      Material composition of a specimen, from
+      kf_lib_data_ingest.common.constants.SPECIMEN.COMPOSITION.
+    permissible_values:
+      blood:
+        title: Peripheral Whole Blood
+      bone:
+        title: Bone
+      bone_marrow:
+        title: Bone Marrow
+      buccal_swab:
+        title: Buccal Cells
+      ebvi:
+        title: Epstein-Barr Virus Immortalized Cells
+      fibroblasts:
+        title: Fibroblasts
+      line:
+        title: Derived Cell Line
+      lymphoblastoid_cell_lines:
+        title: Lymphoblastoid Cell Lines
+      lymphocytes:
+        title: Lymphocytes
+      mnc:
+        title: Mononuclear Cells
+      plasma:
+        title: Plasma
+      saliva:
+        title: Saliva
+      tissue:
+        title: Solid Tissue
+      xenograft:
+        title: Xenograft Tissue

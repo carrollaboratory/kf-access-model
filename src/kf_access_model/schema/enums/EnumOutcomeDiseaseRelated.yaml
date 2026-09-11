@@ -1,0 +1,14 @@
+---
+id: https://w3id.org/carrollaboratory/kf-access-model/EnumOutcomeDiseaseRelated
+name: EnumOutcomeDiseaseRelated
+enums:
+  EnumOutcomeDiseaseRelated:
+    title: Outcome Disease Related
+    description: >-
+      Whether an Outcome is related to the disease(s) under study, from
+      kf_lib_data_ingest.common.constants.OUTCOME.DISEASE_RELATED.
+    permissible_values:
+      yes:
+        title: 'Yes'
+      no:
+        title: 'No'

@@ -1,0 +1,14 @@
+id: https://w3id.org/carrollaboratory/kf-access-model/EnumVitalStatus
+name: EnumVitalStatus
+enums:
+  EnumVitalStatus:
+    description: Descriptions of a Subject's vital status
+    permissible_values:
+      snomedct:419099009:
+        title: Dead
+        aliases:
+          - dead
+      snomedct:438949009:
+        title: Alive
+        aliases:
+          - alive
