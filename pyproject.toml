@@ -1,7 +1,6 @@
 [build-system]
 requires = ["hatchling>=1.32.0",
-  "uv-dynamic-versioning",
-  "the-caddie"]
+  "uv-dynamic-versioning"]
 build-backend = "hatchling.build"
 
 [project]
@@ -77,8 +76,15 @@ quiet-level = 3
 [tool.typos.default.extend-words]
 linke = "linke"
 
-# Activate the hook
-[tool.hatch.build.targets.wheel.hooks.caddie-sqla]
+[tool.hatch.build.targets.wheel]
+packages = ["src/kf_access_model"]
+artifacts = ["src/kf_access_model/datamodel/*.py"]
+
+[tool.hatch.build.targets.sdist]
+artifacts = ["src/kf_access_model/datamodel/*.py"]
+
+# [tool.hatch.build.targets.wheel.hooks.caddie-sqla]
+
 
 [tool.typos.files]
 extend-exclude = [

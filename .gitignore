@@ -4,6 +4,11 @@
 # generated part of documentation
 
 /docs/elements/*.md
+
+/src/kf_access_model/datamodel/kf_access_model.py
+/src/kf_access_model/datamodel/kf_access_model_pydantic.py
+/src/kf_access_model/datamodel/kf_access_model_sqla.py
+
 # linkml-run-examples output (not useful to have in git in its current form)
 /examples/output/
 
