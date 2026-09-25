@@ -27,6 +27,7 @@ repos:
       - id: codespell
         additional_dependencies:
           - tomli
+        exclude: _typos.toml
 
   - repo: https://github.com/crate-ci/typos
     rev: v1.46.3
