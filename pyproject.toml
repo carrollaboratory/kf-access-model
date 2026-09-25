@@ -63,6 +63,7 @@ skip = [
   "LICENSE",
   "pyproject.toml",
   "uv.lock",
+  "_typos.toml",
   "project/*",
   "src/kf_access_model/datamodel/kf_access_model_pydantic.py",
   "src/kf_access_model/datamodel/kf_access_model.py",
