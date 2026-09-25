@@ -63,10 +63,13 @@ skip = [
   "LICENSE",
   "pyproject.toml",
   "uv.lock",
+  "_typos.toml",
   "project/*",
   "src/kf_access_model/datamodel/kf_access_model_pydantic.py",
   "src/kf_access_model/datamodel/kf_access_model.py",
+  "./src/kf_access_model/schema/upstream-models/*.yaml"
 ]
+ignore-words = ".codespell-ignore.txt"
 
 # Reminder: words have to be lowercased for the ignore-words-list
 ignore-words-list = "linke"

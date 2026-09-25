@@ -18,7 +18,12 @@ repos:
     hooks:
       - id: yamllint
         args: [-c=.yamllint.yaml]
-        exclude: ^\.copier-answers\.yml$
+        exclude: |
+                  (?x)^(
+                    \.copier-answers\.yml|
+                    docs/schema/.*\.yaml|
+                    src/kf_access_model/schema/upstream-models/.*\.yaml
+                  )$
         verbose: true  # Show warnings.
 
   - repo: https://github.com/codespell-project/codespell
@@ -27,6 +32,7 @@ repos:
       - id: codespell
         additional_dependencies:
           - tomli
+        exclude: ^src/kf_access_model/schema/upstream-models/.*\.yaml$
 
   - repo: https://github.com/crate-ci/typos
     rev: v1.46.3
