@@ -1,0 +1,14 @@
+---
+id: https://w3id.org/carrollaboratory/kf-access-model/EnumFamilyRelationship
+name: EnumFamilyRelationship
+enums:
+  EnumFamilyRelationship:
+    description: Definitions of family relationships as provided by SNOMED_CT
+    reachable_from:
+      source_ontology: bioregistry:snomedct
+      source_nodes:
+      - snomedct:125677006
+      is_direct: false
+      include_self: true
+      relationship_types:
+      - rdfs:subClassOf
