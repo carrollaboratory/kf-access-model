@@ -1,7 +1,6 @@
 [build-system]
-requires = ["hatchling",
-  "uv-dynamic-versioning",
-  "the-caddie"]
+requires = ["hatchling>=1.32.0",
+  "uv-dynamic-versioning"]
 build-backend = "hatchling.build"
 
 [project]
@@ -17,21 +16,20 @@ requires-python = ">=3.12,<4.0"
 dynamic = ["version"]
 
 dependencies = [
-  "hatchling>=1.32.0",
-  "linkml>=1.11.0",
+  "sqlalchemy",
   "linkml-runtime>=1.11.0",
-  "the-caddie",
-  "term-weaver",
 ]
 
 [dependency-groups]
 dev = [
-    "linkml>=1.9.6",
+    "linkml>=1.11.0",
     "mkdocs-material>=8.2.8",
     "mkdocs-mermaid2-plugin>=1.1.1",
     "mkdocs-pymdownx-material-extras>=2.5.6",
     "jupyter>=1.0.0",
     "mknotebooks>= 0.8.0",
+    "the-caddie",
+    "term-weaver",
 ]
 
 # See https://hatch.pypa.io/latest/config/build/#file-selection for how to
@@ -78,8 +76,15 @@ quiet-level = 3
 [tool.typos.default.extend-words]
 linke = "linke"
 
-# Activate the hook
-[tool.hatch.build.targets.wheel.hooks.caddie-sqla]
+[tool.hatch.build.targets.wheel]
+packages = ["src/kf_access_model"]
+artifacts = ["src/kf_access_model/datamodel/*.py"]
+
+[tool.hatch.build.targets.sdist]
+artifacts = ["src/kf_access_model/datamodel/*.py"]
+
+# [tool.hatch.build.targets.wheel.hooks.caddie-sqla]
+
 
 [tool.typos.files]
 extend-exclude = [
