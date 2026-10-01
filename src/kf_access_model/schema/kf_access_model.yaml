@@ -168,10 +168,6 @@ classes:
 
 
 slots:
-  version:
-    title: Version
-    description: The version of the study.
-    range: string
   domain:
     title: Domain
     description: The domain of the study.
