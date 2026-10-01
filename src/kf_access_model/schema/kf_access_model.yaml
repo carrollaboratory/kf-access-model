@@ -41,10 +41,10 @@ default_range: string
 
 imports:
   - upstream-models/common_access_model
-  - Enums/EnumOutcomeDiseaseRelated
-  - Enums/EnumSequencingCenter
-  - Enums/EnumSpecimenComposition
-  - Enums/EnumConsentType
+  - enums/EnumOutcomeDiseaseRelated
+  - enums/EnumSequencingCenter
+  - enums/EnumSpecimenComposition
+  - enums/EnumConsentType
 
 classes:
 
