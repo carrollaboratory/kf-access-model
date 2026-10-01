@@ -48,15 +48,14 @@ imports:
 
 classes:
 
-  # Study:
-  #   title: Research Study 
-  #   description: Study Metadata 
-  #   mixins: Record
-  #   slots: 
-  #     # KF fields
-  #     - version
-  #     - domain
-  #     - status
+  KFStudy:
+    title: Research Study 
+    description: Study Metadata 
+    is_a: Study
+    slots: 
+      - version
+      - domain
+      - status
         
   KFParticipant:
     title: KF Participant
@@ -103,8 +102,9 @@ classes:
       - shipment_date
       - analyte_type
       - specimen_status
-      - dbgap_consent_code
-      - consent_type
+      # these should be refactored into an access policy
+      # - dbgap_consent_code
+      # - consent_type
 
 
   KFFile:
@@ -135,27 +135,51 @@ classes:
       - is_paired_end
       - platform
       - instrument_model
+      - read_pair_number
+      - is_adapter_trimmed
+      - adapter_sequencing # required if is_adapter_trimmed is false
+      - quality_scale
+
+  WGSAssay:
+    title: Whole Genome Sequencing Assay
+    description: A whole genome sequencing experiment performed on a Biospecimen.
+    is_a: SequencingAssay
+    slots:
       - max_insert_size
       - mean_insert_size
       - mean_depth
       - total_reads
       - mean_read_length
+
+  WXSAssay:
+    title: Whole Exome Sequencing Assay
+    description: A whole exome sequencing experiment performed on a Biospecimen.
+    is_a: WGSAssay
+    slots:
       - target_capture_kit
-      - read_pair_number
-      - is_adapter_trimmed
-      - adapter_sequencing
-      - reference_genome
-      - workflow_type
-      - workflow_tool
-      - workflow_version
+
+  RNASeqAssay:
+    title: RNA Sequencing Assay
+    description: An RNA sequencing experiment performed on a Biospecimen.
+    is_a: SequencingAssay
+    slots:
       - flow_cell
       - lane_number
-      - quality_scale
-
 
 
 slots:
-
+  version:
+    title: Version
+    description: The version of the study.
+    range: string
+  domain:
+    title: Domain
+    description: The domain of the study.
+    range: string
+  status:
+    title: Status
+    description: The status of the study.
+    range: string
   is_proband:
     title: Is Proband
     description: Whether this Participant is the proband of their Family.
