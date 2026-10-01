@@ -35,3 +35,7 @@ expand:
 # Deletes permissible_values block from enum file so it can be re-expanded
 clear file_path:
   uv run weaver --clear src/common_access_model/schema/enums/{{file_path}}.yaml
+
+[group('project management')]
+precommit:
+  pre-commit install
