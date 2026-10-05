@@ -139,6 +139,10 @@ classes:
       - is_adapter_trimmed
       - adapter_sequencing # required if is_adapter_trimmed is false
       - quality_scale
+      - reference_genome
+      - workflow_type
+      - workflow_tool
+      - workflow_version
 
   WGSAssay:
     title: Whole Genome Sequencing Assay
@@ -436,81 +440,6 @@ enums:
     permissible_values:
       single_cell:
         title: Single Cell
-      bulk:
-        title: Bulk Cells
-
-  EnumTissueType:
-    title: Tissue Type
-    description: >-
-      Types of tissue, from
-      kf_lib_data_ingest.common.constants.SPECIMEN.TISSUE_TYPE.
-    permissible_values:
-      germline:
-        title: Normal
-        description: Germline (normal) tissue.
-      normal:
-        title: Normal
-      tumor:
-        title: Tumor
-
- # --- File ---
-  EnumGenomicFileAvailability:
-    title: Genomic File Availability
-    description: >-
-      Availability of a genomic file, from
-      kf_lib_data_ingest.common.constants.GENOMIC_FILE.AVAILABILITY.
-    permissible_values:
-      immediate:
-        title: Immediate Download
-      cold_storage:
-        title: Cold Storage
-
-  EnumGenomicFileDataType:
-    title: Genomic File Data Type
-    description: >-
-      Types of data carried by a genomic file, from
-      kf_lib_data_ingest.common.constants.GENOMIC_FILE.DATA_TYPE.
-    permissible_values:
-      aligned_reads:
-        title: Aligned Reads
-      aligned_reads_index:
-        title: Aligned Reads Index
-      expression:
-        title: Expression
-      gvcf:
-        title: gVCF
-      gvcf_index:
-        title: gVCF Index
-      histology_images:
-        title: Histology Images
-      nucleotide_variation:
-        title: Simple Nucleotide Variations
-      operation_reports:
-        title: Operation Reports
-      pathology_reports:
-        title: Pathology Reports
-      radiology_images:
-        title: Radiology Images
-      radiology_reports:
-        title: Radiology Reports
-      unaligned_reads:
-        title: Unaligned Reads
-      variant_calls:
-        title: Variant Calls
-      variant_calls_index:
-        title: Variant Calls Index
-      annotated_somatic_mutations:
-        title: Annotated Somatic Mutations
-      gene_expression:
-        title: Gene Expression
-      gene_fusions:
-        title: Gene Fusions
-      isoform_expression:
-        title: Isoform Expression
-      somatic_copy_number_variations:
-        title: Somatic Copy Number Variations
-      somatic_structural_variations:
-        title: Somatic Structural Variations
 
 # -- Assay / Read Group / Sequencing Assay ---
   EnumReadGroupQualityScale:
