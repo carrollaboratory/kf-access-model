@@ -456,106 +456,6 @@ enums:
       single_cell:
         text: single_cell
         title: Single Cell
-      bulk:
-        text: bulk
-        title: Bulk Cells
-  EnumTissueType:
-    name: EnumTissueType
-    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumTissueType
-    description: Types of tissue, from kf_lib_data_ingest.common.constants.SPECIMEN.TISSUE_TYPE.
-    title: Tissue Type
-    from_schema: https://w3id.org/carrollaboratory/kf-access-model
-    permissible_values:
-      germline:
-        text: germline
-        description: Germline (normal) tissue.
-        title: Normal
-      normal:
-        text: normal
-        title: Normal
-      tumor:
-        text: tumor
-        title: Tumor
-  EnumGenomicFileAvailability:
-    name: EnumGenomicFileAvailability
-    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumGenomicFileAvailability
-    description: Availability of a genomic file, from kf_lib_data_ingest.common.constants.GENOMIC_FILE.AVAILABILITY.
-    title: Genomic File Availability
-    from_schema: https://w3id.org/carrollaboratory/kf-access-model
-    permissible_values:
-      immediate:
-        text: immediate
-        title: Immediate Download
-      cold_storage:
-        text: cold_storage
-        title: Cold Storage
-  EnumGenomicFileDataType:
-    name: EnumGenomicFileDataType
-    definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumGenomicFileDataType
-    description: Types of data carried by a genomic file, from kf_lib_data_ingest.common.constants.GENOMIC_FILE.DATA_TYPE.
-    title: Genomic File Data Type
-    from_schema: https://w3id.org/carrollaboratory/kf-access-model
-    permissible_values:
-      aligned_reads:
-        text: aligned_reads
-        title: Aligned Reads
-      aligned_reads_index:
-        text: aligned_reads_index
-        title: Aligned Reads Index
-      expression:
-        text: expression
-        title: Expression
-      gvcf:
-        text: gvcf
-        title: gVCF
-      gvcf_index:
-        text: gvcf_index
-        title: gVCF Index
-      histology_images:
-        text: histology_images
-        title: Histology Images
-      nucleotide_variation:
-        text: nucleotide_variation
-        title: Simple Nucleotide Variations
-      operation_reports:
-        text: operation_reports
-        title: Operation Reports
-      pathology_reports:
-        text: pathology_reports
-        title: Pathology Reports
-      radiology_images:
-        text: radiology_images
-        title: Radiology Images
-      radiology_reports:
-        text: radiology_reports
-        title: Radiology Reports
-      unaligned_reads:
-        text: unaligned_reads
-        title: Unaligned Reads
-      variant_calls:
-        text: variant_calls
-        title: Variant Calls
-      variant_calls_index:
-        text: variant_calls_index
-        title: Variant Calls Index
-      annotated_somatic_mutations:
-        text: annotated_somatic_mutations
-        title: Annotated Somatic Mutations
-      gene_expression:
-        text: gene_expression
-        title: Gene Expression
-      gene_fusions:
-        text: gene_fusions
-        title: Gene Fusions
-      isoform_expression:
-        text: isoform_expression
-        title: Isoform Expression
-      somatic_copy_number_variations:
-        text: somatic_copy_number_variations
-        title: Somatic Copy Number Variations
-      somatic_structural_variations:
-        text: somatic_structural_variations
-        title: Somatic Structural Variations
   EnumReadGroupQualityScale:
     name: EnumReadGroupQualityScale
     definition_uri: https://w3id.org/carrollaboratory/kf-access-model/EnumReadGroupQualityScale
@@ -29373,6 +29273,9 @@ slots:
     title: Reference Genome
     from_schema: https://w3id.org/carrollaboratory/kf-access-model
     slot_uri: kidsfirst:reference_genome
+    owner: SequencingAssay
+    domain_of:
+    - SequencingAssay
     range: EnumReferenceGenome
   workflow_type:
     name: workflow_type
@@ -29382,6 +29285,9 @@ slots:
     title: Workflow Type
     from_schema: https://w3id.org/carrollaboratory/kf-access-model
     slot_uri: kidsfirst:workflow_type
+    owner: SequencingAssay
+    domain_of:
+    - SequencingAssay
     range: string
   workflow_tool:
     name: workflow_tool
@@ -29391,6 +29297,9 @@ slots:
     title: Workflow Tool
     from_schema: https://w3id.org/carrollaboratory/kf-access-model
     slot_uri: kidsfirst:workflow_tool
+    owner: SequencingAssay
+    domain_of:
+    - SequencingAssay
     range: string
   workflow_version:
     name: workflow_version
@@ -29399,6 +29308,9 @@ slots:
     title: Workflow Version
     from_schema: https://w3id.org/carrollaboratory/kf-access-model
     slot_uri: kidsfirst:workflow_version
+    owner: SequencingAssay
+    domain_of:
+    - SequencingAssay
     range: string
   flow_cell:
     name: flow_cell
@@ -32061,6 +31973,10 @@ classes:
     - is_adapter_trimmed
     - adapter_sequencing
     - quality_scale
+    - reference_genome
+    - workflow_type
+    - workflow_tool
+    - workflow_version
     class_uri: kidsfirst:SequencingAssay
   WGSAssay:
     name: WGSAssay
@@ -32094,6 +32010,10 @@ classes:
     - is_adapter_trimmed
     - adapter_sequencing
     - quality_scale
+    - reference_genome
+    - workflow_type
+    - workflow_tool
+    - workflow_version
     - max_insert_size
     - mean_insert_size
     - mean_depth
@@ -32132,6 +32052,10 @@ classes:
     - is_adapter_trimmed
     - adapter_sequencing
     - quality_scale
+    - reference_genome
+    - workflow_type
+    - workflow_tool
+    - workflow_version
     - max_insert_size
     - mean_insert_size
     - mean_depth
@@ -32171,6 +32095,10 @@ classes:
     - is_adapter_trimmed
     - adapter_sequencing
     - quality_scale
+    - reference_genome
+    - workflow_type
+    - workflow_tool
+    - workflow_version
     - flow_cell
     - lane_number
     class_uri: kidsfirst:RNASeqAssay
@@ -32885,7 +32813,7 @@ classes:
     class_uri: cam:Dataset
 metamodel_version: 1.11.0
 source_file: kf_access_model.yaml
-source_file_date: '2026-10-01T22:41:28'
-source_file_size: 19347
-generation_date: '2026-10-01T22:41:36'
+source_file_date: '2026-10-05T14:41:02'
+source_file_size: 17344
+generation_date: '2026-10-05T14:41:09'
 

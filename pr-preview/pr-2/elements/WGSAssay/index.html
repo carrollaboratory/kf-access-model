@@ -450,6 +450,17 @@
 
       WGSAssay : read_pair_number
 
+      WGSAssay : reference_genome
+
+
+
+
+
+        WGSAssay --&gt; "0..1" EnumReferenceGenome : reference_genome
+        click EnumReferenceGenome href "../EnumReferenceGenome/"
+
+
+
       WGSAssay : sample_id
 
 
@@ -495,6 +506,12 @@
 
 
       WGSAssay : total_reads
+
+      WGSAssay : workflow_tool
+
+      WGSAssay : workflow_type
+
+      WGSAssay : workflow_version
 
 </code></pre>
 <h2 id="inheritance">Inheritance</h2>
@@ -633,6 +650,30 @@
 <td><a href="../quality_scale/">quality_scale</a></td>
 <td>0..1 <br/> <a href="../EnumReadGroupQualityScale/">EnumReadGroupQualityScale</a></td>
 <td>The quality score scale used for this read group</td>
+<td><a href="../SequencingAssay/">SequencingAssay</a></td>
+</tr>
+<tr>
+<td><a href="../reference_genome/">reference_genome</a></td>
+<td>0..1 <br/> <a href="../EnumReferenceGenome/">EnumReferenceGenome</a></td>
+<td>The reference genome build this file is aligned to or was generated against</td>
+<td><a href="../SequencingAssay/">SequencingAssay</a></td>
+</tr>
+<tr>
+<td><a href="../workflow_type/">workflow_type</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>The type of workflow that produced this file</td>
+<td><a href="../SequencingAssay/">SequencingAssay</a></td>
+</tr>
+<tr>
+<td><a href="../workflow_tool/">workflow_tool</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>The tool used by the workflow that produced this file</td>
+<td><a href="../SequencingAssay/">SequencingAssay</a></td>
+</tr>
+<tr>
+<td><a href="../workflow_version/">workflow_version</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>The version of the workflow tool used to produce this file</td>
 <td><a href="../SequencingAssay/">SequencingAssay</a></td>
 </tr>
 <tr>
@@ -938,6 +979,49 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SequencingAssay</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumReadGroupQualityScale</span>
+<span class="w">  </span><span class="nt">reference_genome</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reference_genome</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The reference genome build this file is aligned to or was generated</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">against.</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reference Genome</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/carrollaboratory/kf-access-model</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WGSAssay</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SequencingAssay</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnumReferenceGenome</span>
+<span class="w">  </span><span class="nt">workflow_type</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">workflow_type</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">type</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">workflow</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">produced</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">file.</span><span class="nv"> </span><span class="s">(Kids</span><span class="nv"> </span><span class="s">First</span><span class="nv"> </span><span class="s">Dataservice</span>
+<span class="w">      </span><span class="s">field:</span><span class="nv"> </span><span class="s">worflow_type)'</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Workflow Type</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/carrollaboratory/kf-access-model</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WGSAssay</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SequencingAssay</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">workflow_tool</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">workflow_tool</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">tool</span><span class="nv"> </span><span class="s">used</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">workflow</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">produced</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">file.</span><span class="nv"> </span><span class="s">(Kids</span><span class="nv"> </span><span class="s">First</span>
+<span class="w">      </span><span class="s">Dataservice</span><span class="nv"> </span><span class="s">field:</span><span class="nv"> </span><span class="s">worflow_tool)'</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Workflow Tool</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/carrollaboratory/kf-access-model</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WGSAssay</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SequencingAssay</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">workflow_version</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">workflow_version</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The version of the workflow tool used to produce this file.</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Workflow Version</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/carrollaboratory/kf-access-model</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WGSAssay</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SequencingAssay</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">assay_id</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assay_id</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The unique identifier for the Assay.</span>
