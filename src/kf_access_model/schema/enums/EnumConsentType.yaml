@@ -1,0 +1,62 @@
+---
+id: https://w3id.org/carrollaboratory/kf-access-model/EnumConsentType
+name: EnumConsentType
+enums:
+  EnumConsentType:
+    title: Consent Type
+    description: >-
+      Data Use Ontology-style consent short names used by Kids First, from
+      kf_lib_data_ingest.common.constants.CONSENT_TYPE.
+    permissible_values:
+      DS-OBDR-MDS:
+        title: DS-OBDR-MDS
+        description: >-
+          Disease-Specific (Orofacial birth defects and related
+          phenotypes, MDS). Use of the data must be related to Orofacial
+          birth defects and related phenotypes; includes methods
+          development research.
+      DS-OBD-MDS:
+        title: DS-OBD-MDS
+        description: >-
+          Disease-Specific (Orofacial birth defects, MDS). Use of the
+          data must be related to Orofacial birth defects; includes
+          methods development research.
+      DS-OC-PUB-MDS:
+        title: DS-OC-PUB-MDS
+        description: >-
+          Disease-Specific (Oral Clefts, PUB, MDS). Use of the data must
+          be related to Oral Clefts; requestor agrees to make results
+          publicly available; includes methods development research.
+      HMB-MDS:
+        title: HMB-MDS
+        description: >-
+          Health/Medical/Biomedical (MDS). Limited to health/medical/
+          biomedical purposes, excludes population origins/ancestry
+          research; includes methods development research.
+      HMB-IRB:
+        title: HMB-IRB
+        description: Health/Medical/Biomedical general research.
+      DS-CHD-IRB:
+        title: DS-CHD-IRB
+        description: Disease specific Cardiac Heart Defect.
+      DS-CHD:
+        title: DS-CHD
+        description: Disease specific Cardiac Heart Defect.
+      HMB-NPU:
+        title: HMB-NPU
+        description: >-
+          Health/Medical/Biomedical (NPU). Limited to health/medical/
+          biomedical purposes and to not-for-profit organizations.
+      GRU:
+        title: GRU
+        description: General Research Use.
+      GRU-NPU:
+        title: GRU-NPU
+        description: >-
+          General Research Use (NPU). Limited to general research use by
+          not-for-profit organizations.
+      HMB-GSO:
+        title: HMB-GSO
+        description: >-
+          Health/Medical/Biomedical (GSO). Genetic studies only; no
+          phenotype-only research.
