@@ -62,9 +62,11 @@ classes:
     description: Information specific to KF participants
     is_a: Demographics
     slots:
-      - family_id
-      - is_proband
+      # - family_id
+      # - is_proband is represented in family_role
       - affected_status
+      - disease_related 
+      # switch to cause_of_death?
 
 # Added new class for KF Assertion to allow for values relateed to tumor/cancer data
   KFSubjectAssertion:
@@ -72,39 +74,37 @@ classes:
     description: A Subject Assertion recorded for a Participant.
     is_a: SubjectAssertion
     slots:
-      - source_text_tumor_location
-      - uberon_id_tumor_location
+      - tumor_location
       - spatial_descriptor
       - diagnosis_category
-      - disease_related
-      - vital_status
 
 
   KFAliquot:
     title: KF Aliquot
-    description: Information specific to KF aliquots
+    description: Information specific to KF aliquots (biospecimens)
     is_a: Aliquot 
     slots: 
       - has_matched_normal_sample
       - cell_entity
-      - external_aliquot_id
       - sequencing_center_id
-      - subject_id
-      - external_sample_id
-      - source_text_tissue_type
-      - composition
-      - source_text_tumor_descriptor
-      - ncit_id_tissue_type
-      - ncit_id_anatomical_site
-      - uberon_id_anatomical_site
-      - spatial_descriptor
-      - shipment_origin
-      - shipment_date
       - analyte_type
-      - specimen_status
-      # these should be refactored into an access policy
-      # - dbgap_consent_code
-      # - consent_type
+
+  KFSample:
+    title: KF Sample
+    description: Information specific to KF samples.
+    is_a: Sample
+    slots:
+      - composition
+      - tissue_type
+
+  KFBiospecimenCollection:
+      title: KF Biospecimen Collection
+      description: Information specific to KF biospecimen collections.
+      is_a: BiospecimenCollection
+      slots:
+        - tumor_descriptor
+        - shipment_origin
+        - shipment_date
 
 
   KFFile:
@@ -114,10 +114,6 @@ classes:
     slots: 
       - is_harmonized
       - file_version_descriptor
-      # could these be refactored into an access policy?
-      - acl
-      - authz
-      - controlled_access
 
 # Created a new class for SequencingAssay to allow for sequencing-specific metadata to be captured
   SequencingAssay:
@@ -129,13 +125,10 @@ classes:
       - library_name
       - experiment_date
       - experiment_strategy
-      - library_strand
-      - library_prep
-      - library_selection
       - is_paired_end
       - platform
       - instrument_model
-      - read_pair_number
+      - total_reads
       - is_adapter_trimmed
       - adapter_sequencing # required if is_adapter_trimmed is false
       - quality_scale
@@ -143,32 +136,29 @@ classes:
       - workflow_type
       - workflow_tool
       - workflow_version
+      - workflow_endpoint
+      - flow_cell
+      - lane_number
 
-  WGSAssay:
-    title: Whole Genome Sequencing Assay
-    description: A whole genome sequencing experiment performed on a Biospecimen.
+  GenomicsAssay:
+    title: Genomic Sequencing Assay
+    description: A whole genome or whole exome sequencing experiment performed on a Biospecimen.
     is_a: SequencingAssay
     slots:
       - max_insert_size
       - mean_insert_size
       - mean_depth
-      - total_reads
       - mean_read_length
-
-  WXSAssay:
-    title: Whole Exome Sequencing Assay
-    description: A whole exome sequencing experiment performed on a Biospecimen.
-    is_a: WGSAssay
-    slots:
       - target_capture_kit
 
-  RNASeqAssay:
+  TranscriptomicsAssay:
     title: RNA Sequencing Assay
     description: An RNA sequencing experiment performed on a Biospecimen.
     is_a: SequencingAssay
     slots:
-      - flow_cell
-      - lane_number
+      - library_strand
+      - library_prep # is this equivalent to library_construction?
+      - library_selection
 
 
 slots:
@@ -189,14 +179,10 @@ slots:
     description: >-
       Whether the Participant is affected by the condition(s) under study.
     range: boolean
-  source_text_tumor_location:
-    title: Source Text Tumor Location
-    description: The tumor location as reported by the source study.
-    range: string
-  uberon_id_tumor_location:
-    title: UBERON ID Tumor Location
-    description: The UBERON ontology term for the tumor location.
-    range: uriorcurie
+  tumor_location:
+    title: Tumor Location
+    description: The tumor location in UBERON as reported by the source study.
+    range: concept
   spatial_descriptor:
     title: Spatial Descriptor
     description: Additional spatial/location qualifiers for this record.
@@ -233,25 +219,24 @@ slots:
       The submitter-provided identifier for the Sample this Biospecimen
       belongs to.
     range: string
-  source_text_tissue_type:
-    title: Source Text Tissue Type
-    description: The tissue type as reported by the source study.
-    range: string
+  tissue_type:
+    title: Tissue Type
+    description: The type of tissue represented in the specimen.
+    range: Concept
   composition:
     title: Composition
     description: The material composition of the specimen.
     range: EnumSpecimenComposition
-  source_text_anatomical_site:
-    title: Source Text Anatomical Site
-    description: >-
-      The anatomical site of collection, as reported by the source study.
-    range: string
-  source_text_tumor_descriptor:
-    title: Source Text Tumor Descriptor
+  anatomical_site:
+    title: Anatomical Site
+    description: The anatomical site of collection.
+    range: Concept
+  tumor_descriptor:
+    title: Tumor Descriptor
     description: >-
       The tumor descriptor (eg, Primary, Metastatic) as reported by the
       source study.
-    range: string
+    range: Concept
   ncit_id_tissue_type:
     title: NCIT ID Tissue Type
     description: The NCIT ontology term for the tissue type.
