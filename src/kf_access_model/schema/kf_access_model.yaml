@@ -5,7 +5,8 @@ title: kf-access-model
 description: |-
   Internal Access model for the Kids First Data Resource Center.
 
-  This schema creates a base access model for the Kids First program, attempting to combine both the common-access-model and the KF Dataservice.
+  This schema creates a base access model for the Kids First program,
+  attempting to combine both the common-access-model and the KF Dataservice.
 license: MIT
 see_also:
   - https://carrollaboratory.github.io/kf-access-model
@@ -26,8 +27,8 @@ prefixes:
   PATO: http://purl.obolibrary.org/obo/PATO_
   DUO: http://purl.obolibrary.org/obo/DUO_
   loinc: https://loinc.org/
-  KIN: http://purl.org/ga4gh/kin.owl#
-  edam: http://edamontology.org
+  KIN: http://purl.org/ga4gh/kin.owl#KIN_
+  edam: http://edamontology.org/
   OBI: http://purl.obolibrary.org/obo/OBI_
   MS: http://purl.obolibrary.org/obo/MS_
   CHMO: http://purl.obolibrary.org/obo/CHMO_
@@ -40,23 +41,20 @@ default_range: string
 
 
 imports:
-  - upstream-models/common_access_model-0.2.0
-  - enums/EnumOutcomeDiseaseRelated
+  - upstream-models/common_access_model-0.2.2
   - enums/EnumSequencingCenter
-  - enums/EnumSpecimenComposition
-  - enums/EnumConsentType
 
 classes:
 
   KFStudy:
-    title: Research Study 
-    description: Study Metadata 
+    title: Research Study
+    description: Study Metadata
     is_a: Study
-    slots: 
+    slots:
       - version
       - domain
       - status
-        
+
   KFParticipant:
     title: KF Participant
     description: Information specific to KF participants
@@ -65,101 +63,38 @@ classes:
       # - family_id
       # - is_proband is represented in family_role
       - affected_status
-      - disease_related 
+      - disease_related
       # switch to cause_of_death?
 
-# Added new class for KF Assertion to allow for values relateed to tumor/cancer data
+  # Added new class for KF Assertion to allow for values relateed to tumor/cancer data
   KFSubjectAssertion:
     title: Subject Assertion
     description: A Subject Assertion recorded for a Participant.
     is_a: SubjectAssertion
     slots:
       - tumor_location
-      - spatial_descriptor
       - diagnosis_category
 
-
-  KFAliquot:
-    title: KF Aliquot
-    description: Information specific to KF aliquots (biospecimens)
-    is_a: Aliquot 
-    slots: 
-      - has_matched_normal_sample
-      - cell_entity
-      - sequencing_center_id
-      - analyte_type
 
   KFSample:
     title: KF Sample
     description: Information specific to KF samples.
     is_a: Sample
     slots:
-      - composition
-      - tissue_type
+      - has_matched_normal_sample
+      # composition (sample_type)
+      - tissue_type  # tumor vs normal
+      - analyte_type
 
   KFBiospecimenCollection:
-      title: KF Biospecimen Collection
-      description: Information specific to KF biospecimen collections.
-      is_a: BiospecimenCollection
-      slots:
-        - tumor_descriptor
-        - shipment_origin
-        - shipment_date
-
-
-  KFFile:
-    title: KF File
-    description: Information specific to KF Files. 
-    is_a: File 
-    slots: 
-      - is_harmonized
-      - file_version_descriptor
-
-# Created a new class for SequencingAssay to allow for sequencing-specific metadata to be captured
-  SequencingAssay:
-    title: Sequencing Experiment Assay
-    description: A sequencing experiment performed on a Biospecimen.
-    is_a: Assay
+    title: KF Biospecimen Collection
+    description: Information specific to KF biospecimen collections.
+    is_a: BiospecimenCollection
     slots:
       - sequencing_center_id
-      - library_name
-      - experiment_date
-      - experiment_strategy
-      - is_paired_end
-      - platform
-      - instrument_model
-      - total_reads
-      - is_adapter_trimmed
-      - adapter_sequencing # required if is_adapter_trimmed is false
-      - quality_scale
-      - reference_genome
-      - workflow_type
-      - workflow_tool
-      - workflow_version
-      - workflow_endpoint
-      - flow_cell
-      - lane_number
-
-  GenomicsAssay:
-    title: Genomic Sequencing Assay
-    description: A whole genome or whole exome sequencing experiment performed on a Biospecimen.
-    is_a: SequencingAssay
-    slots:
-      - max_insert_size
-      - mean_insert_size
-      - mean_depth
-      - mean_read_length
-      - target_capture_kit
-
-  TranscriptomicsAssay:
-    title: RNA Sequencing Assay
-    description: An RNA sequencing experiment performed on a Biospecimen.
-    is_a: SequencingAssay
-    slots:
-      - library_strand
-      - library_prep # is this equivalent to library_construction?
-      - library_selection
-
+      - tumor_descriptor
+      - shipment_origin
+      - shipment_date
 
 slots:
   domain:
@@ -182,7 +117,7 @@ slots:
   tumor_location:
     title: Tumor Location
     description: The tumor location in UBERON as reported by the source study.
-    range: concept
+    range: Concept
   spatial_descriptor:
     title: Spatial Descriptor
     description: Additional spatial/location qualifiers for this record.
@@ -195,7 +130,7 @@ slots:
     title: Disease Related
     description: >-
       Whether this Outcome is related to the disease(s) under study.
-    range: EnumOutcomeDiseaseRelated
+    range: boolean
   has_matched_normal_sample:
     title: Has Matched Normal Sample
     description: Whether this sample has a matched normal sample.
@@ -203,7 +138,7 @@ slots:
   cell_entity:
     title: Cell Entity
     description: The type of cell entity present in the sample.
-    range: EnumCellEntity
+    range: string
   external_aliquot_id:
     title: External Aliquot ID
     description: >-
@@ -260,7 +195,7 @@ slots:
   analyte_type:
     title: Analyte Type
     description: The type of analyte extracted from the specimen.
-    range: EnumAnalyte
+    # range: EnumAnalyteType
   specimen_status:
     title: Specimen Status
     description: Whether the specimen is available for further analysis.
@@ -273,12 +208,6 @@ slots:
     description: >-
       The dbGaP-style consent short name/code for this specimen.
     range: string
-  consent_type:
-    title: Consent Type
-    description: >-
-      The Data Use Ontology-style consent short name for this specimen.
-    range: EnumConsentType
-
   controlled_access:
     title: Controlled Access
     description: Whether access to this file is controlled.
@@ -291,303 +220,3 @@ slots:
     title: File Version Descriptor
     description: What version of the file this is (e.g. latest, etc.)
     range: string
-  urls:
-    title: URLs
-    description: The location(s) of this file.
-    range: uri
-    multivalued: true
-  acl:
-    title: ACL
-    description: Deprecated access control list for this file. See authz.
-    range: string
-    multivalued: true
-  authz:
-    title: Authz
-    description: >-
-      The access control identifiers (eg, dbGaP phs accessions) that gate
-      access to this file.
-    range: string
-    multivalued: true
-  reference_genome:
-    title: Reference Genome
-    description: >-
-      The reference genome build this file is aligned to or was generated
-      against.
-    range: EnumReferenceGenome
-  workflow_type:
-    title: Workflow Type
-    description: >-
-      The type of workflow that produced this file. (Kids First
-      Dataservice field: worflow_type)
-    range: string
-  workflow_tool:
-    title: Workflow Tool
-    description: >-
-      The tool used by the workflow that produced this file. (Kids First
-      Dataservice field: worflow_tool)
-    range: string
-  workflow_version:
-    title: Workflow Version
-    description: The version of the workflow tool used to produce this file.
-    range: string
-  flow_cell:
-    title: Flow Cell
-    description: The flow cell identifier for this read group.
-    range: string
-  lane_number:
-    title: Lane Number
-    description: The lane number for this read group.
-    range: integer
-  quality_scale:
-    title: Quality Scale
-    description: The quality score scale used for this read group.
-    range: EnumReadGroupQualityScale
-  library_name:
-    title: Library Name
-    description: The name of the sequencing library.
-    range: string
-  experiment_date:
-    title: Experiment Date
-    description: The date the sequencing experiment was performed.
-    range: date
-  experiment_strategy:
-    title: Experiment Strategy
-    description: The sequencing strategy used.
-    range: EnumSequencingStrategy
-  library_strand:
-    title: Library Strand
-    description: The strandedness of the sequencing library.
-    range: EnumLibraryStrand
-  library_prep:
-    title: Library Prep
-    description: The library preparation method used.
-    range: EnumLibraryPrep
-  library_selection:
-    title: Library Selection
-    description: The library selection method used.
-    range: EnumLibrarySelection
-  is_paired_end:
-    title: Is Paired End
-    description: Whether the sequencing reads are paired-end.
-    range: boolean
-  platform:
-    title: Platform
-    description: The sequencing platform used.
-    range: EnumSequencingPlatform
-  instrument_model:
-    title: Instrument Model
-    description: The sequencing instrument model used.
-    range: EnumSequencingInstrument
-  max_insert_size:
-    title: Max Insert Size
-    description: The maximum insert size, in base pairs.
-    range: integer
-  mean_insert_size:
-    title: Mean Insert Size
-    description: The mean insert size, in base pairs.
-    range: float
-  mean_depth:
-    title: Mean Depth
-    description: The mean sequencing depth of coverage.
-    range: float
-  total_reads:
-    title: Total Reads
-    description: The total number of reads generated.
-    range: integer
-  mean_read_length:
-    title: Mean Read Length
-    description: The mean read length, in base pairs.
-    range: integer
-  target_capture_kit:
-    title: Target Capture Kit
-    description: The target capture kit used, if any.
-    range: string
-  read_pair_number:
-    title: Read Pair Number
-    description: >-
-      The read pair number (1 or 2) for this read group, for paired-end
-      sequencing.
-    range: integer
-  is_adapter_trimmed:
-    title: Is Adapter Trimmed
-    description: Whether adapter sequences were trimmed.
-    range: boolean
-  adapter_sequencing:
-    title: Adapter Sequence
-    description: The adapter sequence used, if known.
-    range: string
-
-
-enums:
-
-  EnumCellEntity:
-    description: The type of cell entity present in the sample.
-    permissible_values:
-      single_cell:
-        title: Single Cell
-
-# -- Assay / Read Group / Sequencing Assay ---
-  EnumReadGroupQualityScale:
-    title: Read Group Quality Scale
-    description: >-
-      Quality score scales, from
-      kf_lib_data_ingest.common.constants.READ_GROUP.QUALITY_SCALE.
-    permissible_values:
-      illumina13:
-        title: Illumina13
-      illumina15:
-        title: Illumina15
-      illumina18:
-        title: Illumina18
-      sanger:
-        title: Sanger
-      solexa:
-        title: Solexa
-
-# is there an ontology this should be standardized to?
-  EnumReferenceGenome:
-    title: Reference Genome
-    description: >-
-      Reference genome builds, from
-      kf_lib_data_ingest.common.constants.SEQUENCING.REFERENCE_GENOME.
-    permissible_values:
-      GRCh38:
-        title: GRCh38
-      GRCh37:
-        title: GRCh37
-      hs37d5:
-        title: hs37d5
-      hg19:
-        title: hg19
-
-# is there an ontology this should be standardized to?
-  EnumSequencingPlatform:
-    title: Sequencing Platform
-    description: >-
-      Sequencing platforms, from
-      kf_lib_data_ingest.common.constants.SEQUENCING.PLATFORM.
-    permissible_values:
-      complete_genomics:
-        title: Complete Genomics
-      illumina:
-        title: Illumina
-      ion_torrent:
-        title: Ion Torrent
-      ls454:
-        title: LS454
-      pacbio:
-        title: PacBio
-      solid:
-        title: SOLiD
-      ont:
-        title: ONT
-
-# is there an ontology this should be standardized to?
-  EnumSequencingInstrument:
-    title: Sequencing Instrument
-    description: >-
-      Sequencing instrument models, from
-      kf_lib_data_ingest.common.constants.SEQUENCING.INSTRUMENT.
-    permissible_values:
-      hiseq_x_v2_5:
-        title: HiSeq X v2.5
-      hiseq_x_10:
-        title: HiSeq X Ten
-
-  EnumLibraryStrand:
-    title: Library Strand
-    description: >-
-      Sequencing library strandedness, from
-      kf_lib_data_ingest.common.constants.SEQUENCING.STRAND.
-    permissible_values:
-      first:
-        title: First Stranded
-      second:
-        title: Second Stranded
-      stranded:
-        title: Stranded
-      unstranded:
-        title: Unstranded
-
-# is there an ontology this should be standardized to?
-  EnumSequencingStrategy:
-    title: Sequencing Strategy
-    description: >-
-      Sequencing strategies, from
-      kf_lib_data_ingest.common.constants.SEQUENCING.STRATEGY.
-    permissible_values:
-      linked_wgs:
-        title: Linked-Read WGS (10x Chromium)
-      methyl:
-        title: Methylation
-      mrna:
-        title: miRNA-Seq
-      rna:
-        title: RNA-Seq
-      wgs:
-        title: WGS
-      wxs:
-        title: WXS
-      targeted:
-        title: Targeted Sequencing
-      panel:
-        title: Panel
-      scrna:
-        title: scRNA-Seq
-      snrna:
-        title: snRNA-Seq
-      ccs_wgs:
-        title: Circular Consensus Sequencing WGS
-      ccs_rna:
-        title: Circular Consensus Sequencing RNA-Seq
-      clr_wgs:
-        title: Continuous Long Reads WGS
-      clr_rna:
-        title: Continuous Long Reads RNA-Seq
-      ont_wgs:
-        title: ONT WGS
-
-  EnumAnalyte:
-    title: Analyte Type
-    description: >-
-      Types of analyte extracted from a specimen, from
-      kf_lib_data_ingest.common.constants.SEQUENCING.ANALYTE.
-    permissible_values:
-      dna:
-        title: DNA
-      rna:
-        title: RNA
-      virtual:
-        title: Virtual
-
-  EnumLibrarySelection:
-    title: Library Selection
-    description: >-
-      Sequencing library selection methods, from
-      kf_lib_data_ingest.common.constants.SEQUENCING.LIBRARY.SELECTION.
-    permissible_values:
-      hybrid:
-        title: Hybrid Selection
-      pcr:
-        title: PCR
-      affinity_enrichment:
-        title: Affinity Enrichment
-      polyt_enrichment:
-        title: Poly-T Enrichment
-      random:
-        title: Random
-      rna_depletion:
-        title: rRNA Depletion
-      mrna_size_fractionation:
-        title: miRNA Size Fractionation
-
-  EnumLibraryPrep:
-    title: Library Prep
-    description: >-
-      Sequencing library preparation methods, from
-      kf_lib_data_ingest.common.constants.SEQUENCING.LIBRARY.PREP.
-    permissible_values:
-      polya:
-        title: polyA
-      totalrnaseq:
-        title: totalRNAseq
